@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="mi-supabase-url" content="">
+  <meta name="mi-supabase-anon-key" content="">
+  <title>Trainer 周报 - Mi English</title>
+  <link rel="stylesheet" href="css/style.css?v=3.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap');
+
+    body {
+      background:
+        radial-gradient(circle at top right, rgba(255,105,0,0.12), transparent 34%),
+        linear-gradient(180deg, #fffaf5 0%, #f7f8fc 100%);
+      font-family: 'Outfit', 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    .trainer-shell {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 24px 16px 56px;
+    }
+
+    .trainer-hero {
+      background: linear-gradient(135deg, #111827 0%, #1f2937 54%, #ff6900 130%);
+      color: white;
+      border-radius: 28px;
+      padding: 26px 22px;
+      box-shadow: 0 24px 60px rgba(17,24,39,0.18);
+      margin-bottom: 18px;
+    }
+
+    .trainer-kicker {
+      opacity: 0.76;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      font-size: 0.75rem;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .trainer-hero h1 {
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      line-height: 1.05;
+      margin-bottom: 10px;
+      letter-spacing: -0.03em;
+    }
+
+    .trainer-hero p {
+      max-width: 640px;
+      font-size: 0.92rem;
+      opacity: 0.82;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .trainer-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .trainer-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 14px;
+      padding: 12px 15px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 700;
+      border: 1px solid transparent;
+      cursor: pointer;
+    }
+
+    .trainer-btn.primary {
+      background: white;
+      color: #111827;
+    }
+
+    .trainer-btn.secondary {
+      background: rgba(255,255,255,0.1);
+      color: white;
+      border-color: rgba(255,255,255,0.18);
+    }
+
+    .toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .toolbar-left {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .toolbar label {
+      font-size: 0.78rem;
+      color: #6b7280;
+      font-weight: 700;
+    }
+
+    .toolbar select {
+      min-width: 220px;
+      border-radius: 12px;
+      border: 1px solid #d7dce4;
+      padding: 11px 12px;
+      background: white;
+      font: inherit;
+    }
+
+    .status-line {
+      font-size: 0.82rem;
+      color: #6b7280;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .metric-card,
+    .panel {
+      background: rgba(255,255,255,0.86);
+      border: 1px solid #e5e7eb;
+      border-radius: 22px;
+      box-shadow: 0 18px 45px rgba(15,23,42,0.06);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+
+    .metric-card {
+      padding: 18px 16px;
+    }
+
+    .metric-label {
+      font-size: 0.78rem;
+      color: #6b7280;
+      margin-bottom: 8px;
+      font-weight: 700;
+    }
+
+    .metric-value {
+      font-size: 2rem;
+      line-height: 1;
+      font-weight: 800;
+      color: #111827;
+      letter-spacing: -0.03em;
+    }
+
+    .metric-sub {
+      font-size: 0.74rem;
+      color: #9ca3af;
+      margin-top: 8px;
+    }
+
+    .panel {
+      padding: 18px;
+    }
+
+    .panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .panel-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: #111827;
+    }
+
+    .weakness-list {
+      display: grid;
+      gap: 10px;
+    }
+
+    .weakness-item {
+      border: 1px solid #f3d4bc;
+      background: linear-gradient(145deg, #fff9f4, #ffffff);
+      border-radius: 16px;
+      padding: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .weakness-rank {
+      width: 34px;
+      height: 34px;
+      border-radius: 12px;
+      background: #ffedd5;
+      color: #c2410c;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+
+    .weakness-meta {
+      flex: 1;
+    }
+
+    .weakness-title {
+      font-size: 0.94rem;
+      font-weight: 700;
+      color: #111827;
+      margin-bottom: 4px;
+    }
+
+    .weakness-desc {
+      font-size: 0.78rem;
+      color: #6b7280;
+    }
+
+    .weakness-score {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: #c2410c;
+    }
+
+    .empty-state {
+      padding: 24px 0;
+      text-align: center;
+      color: #6b7280;
+      font-size: 0.88rem;
+    }
+
+    @media (max-width: 820px) {
+      .metrics-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 520px) {
+      .metrics-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="trainer-shell">
+    <section class="trainer-hero">
+      <div class="trainer-kicker">Mi English v3.0</div>
+      <h1>Trainer 周报</h1>
+      <p>按 cohort 读取最新周报快照，展示总人数、激活、首场景完成率、场景通过率和 Top 3 弱项场景，并支持一键导出 CSV。</p>
+      <div class="trainer-actions">
+        <a href="index.html" class="trainer-btn primary"><i class="fas fa-house"></i> 返回首页</a>
+        <button type="button" class="trainer-btn secondary" id="exportCsvBtn"><i class="fas fa-file-csv"></i> 导出 CSV</button>
+      </div>
+    </section>
+
+    <section class="toolbar">
+      <div class="toolbar-left">
+        <label for="cohortSelect">选择 Cohort</label>
+        <select id="cohortSelect">
+          <option value="">加载中...</option>
+        </select>
+      </div>
+      <div class="status-line" id="trainerStatus">正在读取报表数据...</div>
+    </section>
+
+    <section class="metrics-grid">
+      <article class="metric-card">
+        <div class="metric-label">Cohort 总人数</div>
+        <div class="metric-value" id="metricTotalMembers">-</div>
+        <div class="metric-sub" id="metricWeek">最新周报</div>
+      </article>
+      <article class="metric-card">
+        <div class="metric-label">激活人数</div>
+        <div class="metric-value" id="metricActiveMembers">-</div>
+        <div class="metric-sub">7 天内活跃</div>
+      </article>
+      <article class="metric-card">
+        <div class="metric-label">首场景完成率</div>
+        <div class="metric-value" id="metricFirstSceneRate">-</div>
+        <div class="metric-sub">first scene completion</div>
+      </article>
+      <article class="metric-card">
+        <div class="metric-label">场景通过率</div>
+        <div class="metric-value" id="metricScenarioPassRate">-</div>
+        <div class="metric-sub">all scenario attempts</div>
+      </article>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <div class="panel-title">Top 3 弱项场景</div>
+      </div>
+      <div class="weakness-list" id="weaknessList"></div>
+      <div class="empty-state" id="trainerEmptyState" hidden>当前 cohort 暂无周报数据。</div>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/auth.js?v=3.0"></script>
+  <script src="js/trainer.js?v=3.0"></script>
+</body>
+</html>

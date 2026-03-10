@@ -214,6 +214,107 @@
     }
     .section-label i { color: var(--mi-orange); font-size: 0.875rem; }
 
+    .review-entry {
+      background: linear-gradient(145deg, #fff7ed 0%, #ffffff 100%);
+      border: 1px solid #fed7aa;
+      border-radius: var(--radius-xl);
+      padding: 18px 16px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+    .review-entry-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+    .review-entry-title {
+      font-size: 1rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+    .review-entry-kicker {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+    .review-entry-count {
+      min-width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      background: rgba(255, 105, 0, 0.12);
+      color: var(--mi-orange);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+    }
+    .review-entry-count .num {
+      font-size: 1.4rem;
+      line-height: 1;
+    }
+    .review-entry-count .label {
+      font-size: 0.625rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .review-entry-summary {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .review-entry-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .review-entry-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: white;
+      border: 1px solid #fde68a;
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 0.75rem;
+      color: #9a3412;
+      font-weight: 700;
+    }
+    .review-entry-actions {
+      display: flex;
+      gap: 10px;
+    }
+    .review-entry-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: 14px;
+      padding: 11px 12px;
+      text-decoration: none;
+      font-size: 0.8125rem;
+      font-weight: 700;
+      transition: transform var(--duration-fast), box-shadow var(--duration-fast);
+    }
+    .review-entry-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
+    }
+    .review-entry-btn.primary {
+      background: var(--mi-orange);
+      color: white;
+    }
+    .review-entry-btn.secondary {
+      background: white;
+      border: 1px solid var(--border-medium);
+      color: var(--text-primary);
+    }
+
     /* Featured: 2 large cards */
     .featured-row {
       display: grid;
@@ -603,6 +704,25 @@
       </div>
     </div>
 
+    <section class="review-entry ani-3" id="reviewEntrySection">
+      <div class="review-entry-head">
+        <div>
+          <div class="review-entry-kicker">Priority Review Queue</div>
+          <div class="review-entry-title">今日复习</div>
+        </div>
+        <div class="review-entry-count">
+          <div class="num" id="todayReviewCount">0</div>
+          <div class="label">items</div>
+        </div>
+      </div>
+      <div class="review-entry-summary" id="todayReviewSummary">正在整理今天最需要回看的场景和课程。</div>
+      <div class="review-entry-list" id="todayReviewList"></div>
+      <div class="review-entry-actions">
+        <a href="scenarios.html" class="review-entry-btn primary" id="todayReviewPrimaryBtn"><i class="fas fa-bolt"></i> 开始复习</a>
+        <a href="trainer.html" class="review-entry-btn secondary"><i class="fas fa-table"></i> Trainer 周报</a>
+      </div>
+    </section>
+
     <!-- Featured Section -->
     <div class="section-label ani-3"><i class="fas fa-star"></i> 核心功能</div>
     <div class="featured-row ani-3">
@@ -662,6 +782,8 @@
   <script src="js/analytics.js?v=3.0"></script>
   <script src="js/auth.js?v=3.0"></script>
   <script src="js/api.js?v=3.0"></script>
+  <script src="js/weakness.js?v=3.0"></script>
+  <script src="js/review-queue.js?v=3.0"></script>
   <script src="js/nav-more.js?v=1.0"></script>
   <script>
     var sessionResult = initSession(loadState());
@@ -713,6 +835,80 @@
       var tipEl = document.getElementById('dailyTip');
       tipEl.style.display = 'flex';
       document.getElementById('tipContent').innerHTML = '<strong>💡 学习小贴士：</strong>' + tips[Math.floor(Math.random() * tips.length)];
+    }
+
+    function buildFallbackScenarioAttempts() {
+      var attempts = [];
+      var sceneProgress = {};
+
+      try {
+        sceneProgress = JSON.parse(localStorage.getItem('mi-english-scenario-progress-v1') || '{}');
+      } catch (_) {
+        sceneProgress = {};
+      }
+
+      Object.keys(sceneProgress).forEach(function eachScene(sceneId) {
+        var item = sceneProgress[sceneId];
+        if (!item || !item.started || item.passedOnce) return;
+        attempts.push({
+          scene_id: sceneId,
+          status: 'failed',
+          attempted_at: item.updatedAt || new Date().toISOString(),
+          payload: {
+            attempts: item.attempts || 1
+          }
+        });
+      });
+
+      return attempts;
+    }
+
+    async function renderReviewEntry() {
+      var countEl = document.getElementById('todayReviewCount');
+      var summaryEl = document.getElementById('todayReviewSummary');
+      var listEl = document.getElementById('todayReviewList');
+      var primaryBtn = document.getElementById('todayReviewPrimaryBtn');
+
+      if (!countEl || !summaryEl || !listEl || !primaryBtn || !window.MiReviewQueue) return;
+
+      var source = {
+        scenario_attempts: buildFallbackScenarioAttempts(),
+        lesson_progress: [],
+        events: []
+      };
+
+      if (window.MiApi && typeof window.MiApi.loadUserProgress === 'function') {
+        try {
+          var remote = await window.MiApi.loadUserProgress();
+          if (remote && remote.ok) {
+            source.scenario_attempts = Array.isArray(remote.attempts) && remote.attempts.length ? remote.attempts : source.scenario_attempts;
+            source.lesson_progress = Array.isArray(remote.lessonRows) ? remote.lessonRows : [];
+          }
+        } catch (_) {}
+      }
+
+      var queue = window.MiReviewQueue.generateReviewQueue(source);
+      var todayItems = window.MiReviewQueue.getTodayReviewItems({ queue: queue });
+      var firstItem = todayItems[0] || queue[0] || null;
+
+      countEl.textContent = todayItems.length;
+      listEl.innerHTML = '';
+
+      if (!firstItem) {
+        summaryEl.textContent = '今天没有高优先级弱项，建议继续学习新内容或回顾角色推荐路径。';
+        primaryBtn.setAttribute('href', 'learn.html');
+        return;
+      }
+
+      summaryEl.textContent = '优先处理 ' + firstItem.title + '，规则按严重度优先，再按最近发生时间排序。';
+      primaryBtn.setAttribute('href', firstItem.targetType === 'scenario' ? ('scenarios.html?scene=' + encodeURIComponent(firstItem.targetId)) : 'learn.html');
+
+      todayItems.slice(0, 3).forEach(function eachItem(item) {
+        var chip = document.createElement('div');
+        chip.className = 'review-entry-chip';
+        chip.innerHTML = '<span>' + item.priorityLabel + '</span><span>' + item.title + '</span>';
+        listEl.appendChild(chip);
+      });
     }
 
     function setSyncPill(status, message) {
@@ -826,6 +1022,7 @@
       } else {
         setSyncPill('', '未登录');
       }
+      await renderReviewEntry();
     }
 
     window.addEventListener('mi-sync-status', function onSyncStatus(event) {
@@ -844,6 +1041,7 @@
     renderTips();
     renderRoleCards();
     renderRolePath();
+    renderReviewEntry();
     bindRoleSelection();
     initSyncState();
   </script>

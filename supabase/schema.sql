@@ -54,6 +54,45 @@ create table if not exists public.scenario_attempts (
 create index if not exists idx_scenario_attempts_user_scene_time
   on public.scenario_attempts(user_id, scene_id, attempted_at desc);
 
+create table if not exists public.cohorts (
+  id uuid primary key default gen_random_uuid(),
+  code text not null unique,
+  name text not null,
+  trainer_user_id uuid references public.users(id) on delete set null,
+  is_active boolean not null default true,
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);
+
+create table if not exists public.cohort_memberships (
+  id uuid primary key default gen_random_uuid(),
+  cohort_id uuid not null references public.cohorts(id) on delete cascade,
+  user_id uuid not null references public.users(id) on delete cascade,
+  membership_role text not null default 'member' check (membership_role in ('member', 'trainer', 'observer')),
+  joined_at timestamptz not null default now(),
+  unique (cohort_id, user_id)
+);
+
+create table if not exists public.weekly_reports (
+  id uuid primary key default gen_random_uuid(),
+  cohort_id uuid not null references public.cohorts(id) on delete cascade,
+  report_week date not null,
+  total_members int not null default 0,
+  active_members int not null default 0,
+  first_scene_completion_rate numeric(5,2) not null default 0,
+  scenario_pass_rate numeric(5,2) not null default 0,
+  top_weaknesses jsonb not null default '[]'::jsonb,
+  payload jsonb not null default '{}'::jsonb,
+  generated_at timestamptz not null default now(),
+  unique (cohort_id, report_week)
+);
+
+create index if not exists idx_cohort_memberships_cohort_user
+  on public.cohort_memberships(cohort_id, user_id);
+
+create index if not exists idx_weekly_reports_cohort_week
+  on public.weekly_reports(cohort_id, report_week desc);
+
 insert into public.roles(id, name, description)
 values
   ('retail_store', '零售门店', '门店接待、产品讲解、库存沟通'),
@@ -68,6 +107,9 @@ alter table public.user_roles enable row level security;
 alter table public.vocab_progress enable row level security;
 alter table public.lesson_progress enable row level security;
 alter table public.scenario_attempts enable row level security;
+alter table public.cohorts enable row level security;
+alter table public.cohort_memberships enable row level security;
+alter table public.weekly_reports enable row level security;
 
 create policy if not exists "users_select_own" on public.users
 for select using (auth.uid() = id);
@@ -101,3 +143,20 @@ create policy if not exists "scenario_attempts_select_own" on public.scenario_at
 for select using (auth.uid() = user_id);
 create policy if not exists "scenario_attempts_insert_own" on public.scenario_attempts
 for insert with check (auth.uid() = user_id);
+
+create policy if not exists "cohorts_select_authenticated" on public.cohorts
+for select using (auth.role() = 'authenticated');
+
+create policy if not exists "cohort_memberships_select_own" on public.cohort_memberships
+for select using (auth.uid() = user_id);
+create policy if not exists "cohort_memberships_insert_own" on public.cohort_memberships
+for insert with check (auth.uid() = user_id);
+create policy if not exists "cohort_memberships_update_own" on public.cohort_memberships
+for update using (auth.uid() = user_id);
+
+create policy if not exists "weekly_reports_select_authenticated" on public.weekly_reports
+for select using (auth.role() = 'authenticated');
+create policy if not exists "weekly_reports_insert_service" on public.weekly_reports
+for insert with check (auth.role() = 'service_role');
+create policy if not exists "weekly_reports_update_service" on public.weekly_reports
+for update using (auth.role() = 'service_role');

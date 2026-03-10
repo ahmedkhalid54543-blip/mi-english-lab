@@ -1,0 +1,222 @@
+(function initTrainerPage(global) {
+  'use strict';
+
+  var state = {
+    cohorts: [],
+    currentReport: null
+  };
+
+  function $(id) {
+    return document.getElementById(id);
+  }
+
+  function setStatus(message) {
+    var node = $('trainerStatus');
+    if (node) node.textContent = message;
+  }
+
+  function formatPercent(value) {
+    var num = Number(value);
+    if (!Number.isFinite(num)) return '-';
+    return Math.round(num * 100) / 100 + '%';
+  }
+
+  function formatWeek(value) {
+    if (!value) return '最新周报';
+    return '周报周期 ' + value;
+  }
+
+  function escapeCsv(value) {
+    var text = value == null ? '' : String(value);
+    if (/[",\n]/.test(text)) {
+      return '"' + text.replace(/"/g, '""') + '"';
+    }
+    return text;
+  }
+
+  function ensureClient() {
+    return global.MiAuth && typeof global.MiAuth.getClient === 'function' ? global.MiAuth.getClient() : null;
+  }
+
+  async function loadCohorts() {
+    var client = ensureClient();
+    if (!client) {
+      setStatus('Supabase 未配置或未初始化');
+      return;
+    }
+
+    var result = await client
+      .from('cohorts')
+      .select('id,name,code,is_active')
+      .order('is_active', { ascending: false })
+      .order('created_at', { ascending: false });
+
+    if (result.error) {
+      setStatus('读取 cohort 失败: ' + result.error.message);
+      return;
+    }
+
+    state.cohorts = Array.isArray(result.data) ? result.data : [];
+    renderCohortOptions();
+
+    if (!state.cohorts.length) {
+      setStatus('暂无 cohort');
+      renderReport(null);
+      return;
+    }
+
+    var params = new URLSearchParams(global.location.search);
+    var cohortId = params.get('cohort') || state.cohorts[0].id;
+    $('cohortSelect').value = cohortId;
+    await loadLatestReport(cohortId);
+  }
+
+  function renderCohortOptions() {
+    var select = $('cohortSelect');
+    if (!select) return;
+
+    if (!state.cohorts.length) {
+      select.innerHTML = '<option value="">暂无 cohort</option>';
+      return;
+    }
+
+    select.innerHTML = state.cohorts.map(function eachCohort(cohort) {
+      var label = (cohort.name || cohort.code || cohort.id) + (cohort.is_active ? ' · Active' : '');
+      return '<option value="' + cohort.id + '">' + label + '</option>';
+    }).join('');
+  }
+
+  async function loadLatestReport(cohortId) {
+    var client = ensureClient();
+    if (!client || !cohortId) {
+      renderReport(null);
+      return;
+    }
+
+    setStatus('正在读取最新周报...');
+
+    var result = await client
+      .from('weekly_reports')
+      .select('id,cohort_id,report_week,total_members,active_members,first_scene_completion_rate,scenario_pass_rate,top_weaknesses,generated_at')
+      .eq('cohort_id', cohortId)
+      .order('report_week', { ascending: false })
+      .limit(1)
+      .maybeSingle();
+
+    if (result.error) {
+      setStatus('读取周报失败: ' + result.error.message);
+      renderReport(null);
+      return;
+    }
+
+    state.currentReport = result.data || null;
+    renderReport(state.currentReport);
+    setStatus(state.currentReport ? '已加载最新周报' : '当前 cohort 暂无周报');
+  }
+
+  function renderMetric(id, value) {
+    var node = $(id);
+    if (node) node.textContent = value;
+  }
+
+  function renderReport(report) {
+    var emptyNode = $('trainerEmptyState');
+    var weaknessList = $('weaknessList');
+    var weekNode = $('metricWeek');
+
+    renderMetric('metricTotalMembers', report ? String(report.total_members || 0) : '-');
+    renderMetric('metricActiveMembers', report ? String(report.active_members || 0) : '-');
+    renderMetric('metricFirstSceneRate', report ? formatPercent(report.first_scene_completion_rate) : '-');
+    renderMetric('metricScenarioPassRate', report ? formatPercent(report.scenario_pass_rate) : '-');
+    if (weekNode) weekNode.textContent = report ? formatWeek(report.report_week) : '最新周报';
+
+    if (!weaknessList || !emptyNode) return;
+    weaknessList.innerHTML = '';
+
+    if (!report || !Array.isArray(report.top_weaknesses) || !report.top_weaknesses.length) {
+      emptyNode.hidden = false;
+      return;
+    }
+
+    emptyNode.hidden = true;
+    report.top_weaknesses.slice(0, 3).forEach(function eachWeakness(item, index) {
+      var row = document.createElement('div');
+      row.className = 'weakness-item';
+      row.innerHTML = '' +
+        '<div class="weakness-rank">' + (index + 1) + '</div>' +
+        '<div class="weakness-meta">' +
+          '<div class="weakness-title">' + (item.scene_title || item.scene_id || 'Unknown') + '</div>' +
+          '<div class="weakness-desc">' + (item.reason || item.severity_label || '需要复盘') + '</div>' +
+        '</div>' +
+        '<div class="weakness-score">' + (item.severity_score != null ? item.severity_score : '-') + '</div>';
+      weaknessList.appendChild(row);
+    });
+  }
+
+  function exportCurrentReportCsv() {
+    if (!state.currentReport) {
+      setStatus('当前没有可导出的周报');
+      return;
+    }
+
+    var rows = [
+      ['report_week', 'cohort_id', 'total_members', 'active_members', 'first_scene_completion_rate', 'scenario_pass_rate', 'weakness_rank', 'weakness_scene_id', 'weakness_scene_title', 'weakness_reason', 'weakness_severity_score']
+    ];
+
+    var weaknesses = Array.isArray(state.currentReport.top_weaknesses) ? state.currentReport.top_weaknesses.slice(0, 3) : [];
+    if (!weaknesses.length) {
+      weaknesses.push({});
+    }
+
+    weaknesses.forEach(function eachWeakness(item, index) {
+      rows.push([
+        state.currentReport.report_week || '',
+        state.currentReport.cohort_id || '',
+        state.currentReport.total_members || 0,
+        state.currentReport.active_members || 0,
+        state.currentReport.first_scene_completion_rate || 0,
+        state.currentReport.scenario_pass_rate || 0,
+        index + 1,
+        item.scene_id || '',
+        item.scene_title || '',
+        item.reason || item.severity_label || '',
+        item.severity_score != null ? item.severity_score : ''
+      ]);
+    });
+
+    var csv = rows.map(function joinRow(row) {
+      return row.map(escapeCsv).join(',');
+    }).join('\n');
+
+    var blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    var url = URL.createObjectURL(blob);
+    var link = document.createElement('a');
+    link.href = url;
+    link.download = 'trainer-weekly-report-' + (state.currentReport.report_week || 'latest') + '.csv';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+    setStatus('CSV 已导出');
+  }
+
+  function bindEvents() {
+    var cohortSelect = $('cohortSelect');
+    var exportBtn = $('exportCsvBtn');
+
+    if (cohortSelect) {
+      cohortSelect.addEventListener('change', function onCohortChange(event) {
+        loadLatestReport(event.target.value);
+      });
+    }
+
+    if (exportBtn) {
+      exportBtn.addEventListener('click', exportCurrentReportCsv);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function onReady() {
+    bindEvents();
+    loadCohorts();
+  });
+})(window);

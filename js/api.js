@@ -225,9 +225,20 @@
       return { ok: false, reason: roleResult.error.message };
     }
 
+    var lessonResult = await client
+      .from('lesson_progress')
+      .select('lesson_id,mastered_count,total_count,progress_pct,updated_at')
+      .eq('user_id', userId)
+      .order('updated_at', { ascending: false })
+      .limit(500);
+
+    if (lessonResult.error) {
+      return { ok: false, reason: lessonResult.error.message };
+    }
+
     var attemptsResult = await client
       .from('scenario_attempts')
-      .select('scene_id,score,total,passed,attempted_at')
+      .select('scene_id,score,total,passed,payload,attempted_at')
       .eq('user_id', userId)
       .order('attempted_at', { ascending: false })
       .limit(2000);
@@ -240,6 +251,7 @@
       ok: true,
       snapshot: userResult.data && userResult.data.app_state ? userResult.data.app_state : null,
       vocabRows: vocabResult.data || [],
+      lessonRows: lessonResult.data || [],
       role: roleResult.data || null,
       attempts: attemptsResult.data || []
     };
