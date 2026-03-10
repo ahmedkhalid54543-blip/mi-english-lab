@@ -1141,14 +1141,20 @@ const SCENARIOS = [
   }
 ];
 
+if (window.MiRoleConfig && typeof window.MiRoleConfig.annotateScenarios === 'function') {
+  window.MiRoleConfig.annotateScenarios(SCENARIOS);
+}
+
 const app = {
   state: null,
   progress: {},
   mistakes: [],
   currentCategory: 'all',
+  currentRoleId: null,
   currentSceneId: null,
   currentTab: 'interactive',
-  session: null
+  session: null,
+  startedSceneEvents: {}
 };
 
 function shuffleArray(items) {
@@ -1269,8 +1275,13 @@ function getStatusText(status) {
 }
 
 function getFilteredScenes() {
-  if (app.currentCategory === 'all') return [...SCENARIOS];
-  return SCENARIOS.filter(scene => scene.category === app.currentCategory);
+  var filtered = app.currentCategory === 'all'
+    ? [...SCENARIOS]
+    : SCENARIOS.filter(scene => scene.category === app.currentCategory);
+
+  if (!app.currentRoleId) return filtered;
+
+  return filtered.filter(scene => Array.isArray(scene.roles) && scene.roles.includes(app.currentRoleId));
 }
 
 function pickFeaturedScene(scenes) {
@@ -1501,6 +1512,16 @@ function openScene(sceneId) {
   app.currentSceneId = scene.id;
   if (!app.session || app.session.sceneId !== scene.id) {
     app.session = buildNewSession(scene);
+  }
+
+  if (!app.startedSceneEvents[scene.id]) {
+    app.startedSceneEvents[scene.id] = true;
+    if (window.MiAnalytics && typeof window.MiAnalytics.trackEvent === 'function') {
+      window.MiAnalytics.trackEvent('scenario_started', {
+        sceneId: scene.id,
+        roleId: app.currentRoleId || (app.state ? app.state.selectedRole : null)
+      });
+    }
   }
 
   renderStepsView(scene);
@@ -2164,6 +2185,23 @@ function completeSceneRound(scene) {
   } else {
     showToast(`本轮完成: ${score}/${total}`);
   }
+
+  if (window.MiAnalytics && typeof window.MiAnalytics.trackEvent === 'function') {
+    window.MiAnalytics.trackEvent('scenario_completed', {
+      sceneId: scene.id,
+      score,
+      total,
+      passed: passedNow,
+      roleId: app.currentRoleId || (app.state ? app.state.selectedRole : null)
+    });
+  }
+
+  if (window.MiApi && typeof window.MiApi.saveScenarioAttempt === 'function') {
+    window.MiApi.saveScenarioAttempt(scene.id, score, total, passedNow, {
+      passLine,
+      attempts: nextAttempts
+    });
+  }
 }
 
 function goNextQuestion() {
@@ -2373,17 +2411,46 @@ function initProfileState() {
   app.state = result.state;
   app.state.lastTab = 'scenarios';
   saveState(app.state);
+  app.currentRoleId = app.state.selectedRole || null;
 
   app.progress = readJSON(SCENARIO_PROGRESS_KEY, {});
   app.mistakes = readJSON(SCENARIO_MISTAKES_KEY, []);
 }
 
+function applyRoleAndQuery() {
+  if (window.MiRoleConfig && typeof window.MiRoleConfig.annotateScenarios === 'function') {
+    window.MiRoleConfig.annotateScenarios(SCENARIOS);
+  }
+
+  const params = new URLSearchParams(window.location.search || '');
+  const roleId = params.get('role');
+  const sceneId = params.get('scene');
+
+  if (roleId) {
+    app.currentRoleId = roleId;
+    if (app.state) {
+      app.state.selectedRole = roleId;
+      saveState(app.state);
+    }
+  }
+
+  if (sceneId) {
+    const scene = getSceneById(sceneId);
+    if (scene) {
+      openScene(sceneId);
+    }
+  }
+}
+
 function initScenarioLearning() {
   initProfileState();
+  applyRoleAndQuery();
   bindEvents();
   updateNavBadges();
   renderMistakeBadge();
-  renderLobby();
+  if (!app.currentSceneId) {
+    renderLobby();
+  }
 }
 
 document.addEventListener('DOMContentLoaded', initScenarioLearning);

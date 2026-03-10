@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="mi-supabase-url" content="">
+  <meta name="mi-supabase-anon-key" content="">
   <title>Mi English - 小米国际英语学习助手</title>
   <link rel="stylesheet" href="css/style.css?v=2.6">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -365,6 +367,130 @@
     .ani-3 { animation: fadeIn 0.4s var(--ease-out) both; animation-delay: 0.12s; }
     .ani-4 { animation: fadeIn 0.4s var(--ease-out) both; animation-delay: 0.18s; }
     .ani-5 { animation: fadeIn 0.4s var(--ease-out) both; animation-delay: 0.24s; }
+
+    .role-section {
+      margin-bottom: 18px;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      padding: 14px;
+    }
+    .role-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .role-title {
+      font-size: 0.9375rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+    .sync-pill {
+      font-size: 0.6875rem;
+      color: var(--text-secondary);
+      background: var(--bg-soft);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-full);
+      padding: 4px 8px;
+      white-space: nowrap;
+    }
+    .sync-pill.success {
+      border-color: #BBF7D0;
+      background: #F0FDF4;
+      color: #166534;
+    }
+    .sync-pill.error {
+      border-color: #FECACA;
+      background: #FEF2F2;
+      color: #991B1B;
+    }
+    .sync-pill.offline {
+      border-color: #FDE68A;
+      background: #FFFBEB;
+      color: #92400E;
+    }
+    .role-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+    .role-card {
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      background: #fff;
+      text-align: left;
+      cursor: pointer;
+      padding: 10px;
+      font-family: inherit;
+      transition: all var(--duration-fast);
+    }
+    .role-card.active {
+      border-color: var(--mi-orange);
+      box-shadow: 0 0 0 2px rgba(255, 105, 0, 0.15);
+    }
+    .role-card-title {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .role-card-desc {
+      font-size: 0.6875rem;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+    .path-card {
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
+      background: var(--bg-soft);
+      padding: 12px;
+    }
+    .path-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+      gap: 10px;
+    }
+    .path-role {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+    .path-title {
+      font-size: 0.9375rem;
+      font-weight: 800;
+      color: var(--text-primary);
+      margin-bottom: 6px;
+    }
+    .path-meta {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .path-actions {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+    .path-btn {
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      background: #fff;
+      color: var(--text-primary);
+      text-decoration: none;
+      text-align: center;
+      padding: 9px 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+    .path-btn.primary {
+      background: var(--mi-orange);
+      border-color: var(--mi-orange);
+      color: #fff;
+    }
   </style>
 </head>
 <body>
@@ -379,6 +505,7 @@
         </div>
       </a>
       <div class="nav-stats">
+        <a href="login.html" class="level-badge" style="text-decoration:none;">登录</a>
         <span class="nav-streak" id="navStreak">
           <i class="fas fa-fire"></i>
           <span id="streakCount">0</span>
@@ -432,6 +559,22 @@
         <i class="fas fa-play"></i> 继续学习
       </a>
     </div>
+
+    <section class="role-section ani-2" id="roleSelectionSection">
+      <div class="role-header">
+        <div class="role-title">选择你的角色路径</div>
+        <div class="sync-pill" id="syncStatusPill">未登录</div>
+      </div>
+      <div class="role-grid" id="roleGrid"></div>
+    </section>
+
+    <section class="role-section ani-2" id="rolePathSection" style="display:none;">
+      <div class="role-header">
+        <div class="role-title">今日推荐路径</div>
+        <div class="sync-pill" id="pathSyncStatusPill">未同步</div>
+      </div>
+      <div class="path-card" id="pathCard"></div>
+    </section>
 
     <!-- Quick Stats -->
     <div class="stat-row ani-2">
@@ -512,63 +655,197 @@
     <button type="button" class="tab-bar-btn" data-tab="more" data-action="open-more-menu"><i class="fas fa-ellipsis"></i><span>更多</span></button>
   </nav>
 
-  <script src="js/data.js?v=2.6"></script>
-  <script src="js/storage.js?v=2.6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/data.js?v=3.0"></script>
+  <script src="js/role-config.js?v=3.0"></script>
+  <script src="js/storage.js?v=3.0"></script>
+  <script src="js/analytics.js?v=3.0"></script>
+  <script src="js/auth.js?v=3.0"></script>
+  <script src="js/api.js?v=3.0"></script>
   <script src="js/nav-more.js?v=1.0"></script>
   <script>
-    // ── Init ──
-    const { state } = initSession(loadState());
+    var sessionResult = initSession(loadState());
+    var state = sessionResult.state;
 
-    // Nav bar
-    document.getElementById('streakCount').textContent = state.streak;
-    document.getElementById('levelBadge').textContent = 'Lv.' + state.level + ' ' + getLevelName(state.level);
+    function renderNavAndHero() {
+      document.getElementById('streakCount').textContent = state.streak;
+      document.getElementById('levelBadge').textContent = 'Lv.' + state.level + ' ' + getLevelName(state.level);
 
-    // ── Hero ──
-    var hour = new Date().getHours();
-    var greeting = hour < 12 ? 'Good morning ☀️' : hour < 18 ? 'Good afternoon 👋' : 'Good evening 🌙';
-    document.getElementById('heroGreeting').textContent = greeting;
-    document.getElementById('streakNum').textContent = state.streak;
-    document.getElementById('heroLevel').textContent = 'Lv.' + state.level + ' ' + getLevelName(state.level);
-    document.getElementById('heroXP').textContent = state.xp || 0;
+      var hour = new Date().getHours();
+      var greeting = hour < 12 ? 'Good morning ☀️' : hour < 18 ? 'Good afternoon 👋' : 'Good evening 🌙';
+      document.getElementById('heroGreeting').textContent = greeting;
+      document.getElementById('streakNum').textContent = state.streak;
+      document.getElementById('heroLevel').textContent = 'Lv.' + state.level + ' ' + getLevelName(state.level);
+      document.getElementById('heroXP').textContent = state.xp || 0;
 
-    // Progress ring
-    var allVocab = getAllVocab();
-    var total = allVocab.length;
-    var mastered = countStatus(state, 'mastered');
-    var pct = total > 0 ? Math.round(mastered / total * 100) : 0;
-    var circumference = 2 * Math.PI * 27; // r=27
-    var offset = circumference - (pct / 100) * circumference;
+      var allVocab = getAllVocab();
+      var total = allVocab.length;
+      var mastered = countStatus(state, 'mastered');
+      var pct = total > 0 ? Math.round(mastered / total * 100) : 0;
+      var circumference = 2 * Math.PI * 27;
+      var offset = circumference - (pct / 100) * circumference;
 
-    document.getElementById('ringPct').textContent = pct + '%';
-    document.getElementById('heroMastered').textContent = mastered + ' / ' + total;
-    document.getElementById('heroBar').style.width = pct + '%';
+      document.getElementById('ringPct').textContent = pct + '%';
+      document.getElementById('heroMastered').textContent = mastered + ' / ' + total;
+      document.getElementById('heroBar').style.width = pct + '%';
 
-    // Animate ring after slight delay
-    requestAnimationFrame(function() {
-      document.getElementById('progressRing').style.strokeDashoffset = offset;
+      requestAnimationFrame(function animateRing() {
+        document.getElementById('progressRing').style.strokeDashoffset = offset;
+      });
+
+      document.getElementById('totalWords').textContent = total;
+      document.getElementById('masteredWords').textContent = mastered;
+      document.getElementById('lessonsCount').textContent = DATA.lessons.length;
+
+      if (state.streak > 0) {
+        document.getElementById('streakBadge').style.background = 'rgba(255,255,255,0.32)';
+      }
+    }
+
+    function renderTips() {
+      var tips = [
+        '每天复习 10 个词汇，一个月就能掌握 300 个！',
+        '试试场景学习，在真实语境中记单词更牢固。',
+        '用词根拆解法，一个词根带出一串词汇！',
+        '练习模式的填空题最考验真功夫，试试看。',
+        '连续学习 7 天可以解锁成就勋章哦。'
+      ];
+      var tipEl = document.getElementById('dailyTip');
+      tipEl.style.display = 'flex';
+      document.getElementById('tipContent').innerHTML = '<strong>💡 学习小贴士：</strong>' + tips[Math.floor(Math.random() * tips.length)];
+    }
+
+    function setSyncPill(status, message) {
+      var text = message || '未登录';
+      var ids = ['syncStatusPill', 'pathSyncStatusPill'];
+      ids.forEach(function eachId(id) {
+        var el = document.getElementById(id);
+        if (!el) return;
+        el.className = 'sync-pill' + (status ? ' ' + status : '');
+        el.textContent = text;
+      });
+    }
+
+    function renderRoleCards() {
+      var roleGrid = document.getElementById('roleGrid');
+      if (!roleGrid || !window.MiRoleConfig) return;
+
+      roleGrid.innerHTML = window.MiRoleConfig.ROLES.map(function eachRole(role) {
+        var active = state.selectedRole === role.id ? 'active' : '';
+        return '' +
+          '<button type="button" class="role-card ' + active + '" data-role-id=\"' + role.id + '\">' +
+          '<div class="role-card-title">' + role.label + '</div>' +
+          '<div class="role-card-desc">' + role.description + '</div>' +
+          '</button>';
+      }).join('');
+    }
+
+    function renderRolePath() {
+      var roleSection = document.getElementById('roleSelectionSection');
+      var pathSection = document.getElementById('rolePathSection');
+      var pathCard = document.getElementById('pathCard');
+      if (!pathSection || !pathCard || !window.MiRoleConfig) return;
+
+      var role = window.MiRoleConfig.getRoleById(state.selectedRole);
+      if (!role) {
+        roleSection.style.display = '';
+        pathSection.style.display = 'none';
+        return;
+      }
+
+      roleSection.style.display = 'none';
+      pathSection.style.display = '';
+
+      var sceneId = window.MiRoleConfig.getRecommendedScenarioId(role.id);
+      var sceneMeta = window.MiRoleConfig.getScenarioMeta(sceneId);
+      var sceneProgress = {};
+      try {
+        sceneProgress = JSON.parse(localStorage.getItem('mi-english-scenario-progress-v1') || '{}');
+      } catch (_) {
+        sceneProgress = {};
+      }
+      var summary = window.MiRoleConfig.getRoleProgressSummary(role.id, state, sceneProgress);
+      var p = summary && summary.total > 0 ? Math.round((summary.mastered / summary.total) * 100) : 0;
+
+      pathCard.innerHTML = '' +
+        '<div class="path-card-head">' +
+        '<div class="path-role">当前角色：' + role.label + '</div>' +
+        '<button class="role-card" type="button" id="switchRoleBtn" style="padding:6px 10px;font-size:0.6875rem;">切换角色</button>' +
+        '</div>' +
+        '<div class="path-title">推荐场景：' + sceneMeta.title + '</div>' +
+        '<div class="path-meta">推荐课词掌握：' + (summary ? (summary.mastered + '/' + summary.total) : '0/0') + '（' + p + '%） · 场景完成：' + (summary ? summary.completedScenes : 0) + '个</div>' +
+        '<div class="path-actions">' +
+        '<a class="path-btn primary" href="scenarios.html?role=' + role.id + '&scene=' + sceneId + '">开始推荐场景</a>' +
+        '<a class="path-btn" href="learn.html">今日复习入口</a>' +
+        '</div>';
+
+      var switchBtn = document.getElementById('switchRoleBtn');
+      if (switchBtn) {
+        switchBtn.addEventListener('click', function backToRoleSelection() {
+          roleSection.style.display = '';
+          pathSection.style.display = 'none';
+        });
+      }
+    }
+
+    function bindRoleSelection() {
+      var roleGrid = document.getElementById('roleGrid');
+      if (!roleGrid) return;
+
+      roleGrid.addEventListener('click', async function handleRoleClick(event) {
+        var card = event.target.closest('[data-role-id]');
+        if (!card) return;
+
+        var roleId = card.getAttribute('data-role-id');
+        if (!roleId) return;
+
+        state.selectedRole = roleId;
+        saveState(state, { reason: 'role_selected' });
+
+        if (window.MiAnalytics) {
+          window.MiAnalytics.trackEvent('role_selected', { roleId: roleId });
+        }
+
+        if (window.MiApi && typeof window.MiApi.saveUserRole === 'function') {
+          await window.MiApi.saveUserRole(roleId);
+        }
+
+        renderRoleCards();
+        renderRolePath();
+      });
+    }
+
+    async function initSyncState() {
+      if (!window.MiApi || !window.MiAuth) return;
+      var session = await window.MiAuth.getSession();
+      if (session.ok && session.session) {
+        setSyncPill('', '同步中...');
+        await window.MiApi.syncLocalStateToCloud(state, { reason: 'app_open' });
+        await window.MiApi.pullAndMergeToLocal();
+        await window.MiApi.flushQueue();
+      } else {
+        setSyncPill('', '未登录');
+      }
+    }
+
+    window.addEventListener('mi-sync-status', function onSyncStatus(event) {
+      if (!event || !event.detail) return;
+      setSyncPill(event.detail.status, event.detail.message);
     });
 
-    // Stat cards
-    document.getElementById('totalWords').textContent = total;
-    document.getElementById('masteredWords').textContent = mastered;
-    document.getElementById('lessonsCount').textContent = DATA.lessons.length;
-
-    // Daily tip (rotate tips)
-    var tips = [
-      '每天复习 10 个词汇，一个月就能掌握 300 个！',
-      '试试场景学习，在真实语境中记单词更牢固。',
-      '用词根拆解法，一个词根带出一串词汇！',
-      '练习模式的填空题最考验真功夫，试试看。',
-      '连续学习 7 天可以解锁成就勋章哦。'
-    ];
-    var tipEl = document.getElementById('dailyTip');
-    tipEl.style.display = 'flex';
-    document.getElementById('tipContent').innerHTML = '<strong>💡 学习小贴士：</strong>' + tips[Math.floor(Math.random() * tips.length)];
-
-    // Streak badge glow if active
-    if (state.streak > 0) {
-      document.getElementById('streakBadge').style.background = 'rgba(255,255,255,0.32)';
+    if (window.MiAnalytics) {
+      window.MiAnalytics.trackEvent('app_open', {
+        page: 'index',
+        roleId: state.selectedRole || null
+      });
     }
+
+    renderNavAndHero();
+    renderTips();
+    renderRoleCards();
+    renderRolePath();
+    bindRoleSelection();
+    initSyncState();
   </script>
 </body>
 </html>

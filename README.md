@@ -7,7 +7,9 @@ Mi English is a static English learning tool for Xiaomi international training s
 - `index.html` and feature pages: home, learn, practice, browse, progress, scenarios, roots
 - `css/`, `js/`, `assets/`: runtime assets
 - `scripts/check-data.js`: data integrity check
+- `scripts/check-role-tags.js`: role-tag coverage check (7 scenes / 20 lessons / 815 vocab)
 - `scripts/check-audio-assets.js`: audio manifest coverage check
+- `supabase/schema.sql`: Supabase Auth + progress sync table definitions
 - `.github/workflows/deploy-pages.yml`: GitHub Pages deployment workflow
 - `vercel.json`: existing Vercel-specific header config
 
@@ -26,6 +28,7 @@ Then open:
 
 ```bash
 node scripts/check-data.js
+node scripts/check-role-tags.js
 node scripts/check-audio-assets.js
 ```
 
@@ -34,7 +37,25 @@ Expected current output:
 - lessons: 20
 - vocab: 815
 - patterns: 192
+- role tags: pass (all scenes/lessons/vocab have non-empty roles)
 - audio coverage: 100%
+
+## Supabase config (v3.0 Lab)
+
+This branch adds login + cross-device sync (email auth) and role-path home.
+
+1. Run `supabase/schema.sql` in Supabase SQL editor.
+2. Enable Email auth in Supabase Auth.
+3. Set config in HTML via:
+   - `meta[name="mi-supabase-url"]`
+   - `meta[name="mi-supabase-anon-key"]`
+   or assign `window.MI_SUPABASE_CONFIG = { url, anonKey }` before `js/auth.js`.
+
+Sync strategy:
+- Local-first writes (no blocking UX)
+- Offline queue in localStorage
+- Auto flush when network/auth available
+- Login triggers pull + merge + queue replay
 
 ## GitHub Pages deployment
 

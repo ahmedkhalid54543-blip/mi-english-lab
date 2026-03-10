@@ -10,6 +10,7 @@
   };
 
   const MORE_LINKS = [
+    { href: 'login.html', label: '登录/同步', icon: 'fa-user-check' },
     { href: 'browse.html', label: '词汇浏览', icon: 'fa-list-ul' },
     { href: 'roots.html', label: '词根学习', icon: 'fa-seedling' },
     { href: 'progress.html', label: '学习进度', icon: 'fa-chart-line' }

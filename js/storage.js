@@ -1,10 +1,10 @@
 /**
- * Mi English 存储层 v2.6
+ * Mi English 存储层 v3.0
  * 变更: 导入导出并入场景/词根进度 + 全量快照回滚 + 写入防崩
  */
 const STORAGE_KEY = 'mi-english-v2';
 const STORAGE_BACKUP_KEY = `${STORAGE_KEY}-backup-latest`;
-const STORAGE_VERSION = '2.6';
+const STORAGE_VERSION = '3.0';
 const STATUS_VALUES = new Set(['mastered', 'shaky', 'unknown']);
 const ALLOWED_TABS = new Set(['index', 'learn', 'practice', 'browse', 'progress', 'scenarios', 'roots']);
 const EXTRA_BACKUP_KEYS = Object.freeze({
@@ -58,6 +58,7 @@ function getDefaultState() {
     totalSessions: 0,
     level: 1,
     xp: 0,
+    selectedRole: null,
     lastTab: 'learn',
     lastLesson: 'all',
     createdAt: new Date().toISOString()
@@ -376,6 +377,9 @@ function sanitizeState(rawState) {
   safe.totalSessions = toSafeInt(migrated.totalSessions, 0, 0, 1000000);
   safe.xp = toSafeInt(migrated.xp, 0, 0, 10000000);
   safe.lastStudyDate = normalizeDay(migrated.lastStudyDate);
+  if (typeof migrated.selectedRole === 'string' && migrated.selectedRole.trim()) {
+    safe.selectedRole = migrated.selectedRole.trim();
+  }
   safe.lastTab = (typeof migrated.lastTab === 'string' && ALLOWED_TABS.has(migrated.lastTab)) ? migrated.lastTab : 'learn';
   safe.lastLesson = (typeof migrated.lastLesson === 'string' && (migrated.lastLesson === 'all' || lessonIds.has(migrated.lastLesson)))
     ? migrated.lastLesson
@@ -462,9 +466,48 @@ function loadState() {
   }
 }
 
-function saveState(state) {
+let cloudSyncTimer = null;
+let isCloudSyncRunning = false;
+
+function readScenarioProgressSnapshot() {
+  try {
+    const raw = localStorage.getItem(EXTRA_BACKUP_KEYS.scenarioProgress);
+    if (!raw) return {};
+    const parsed = JSON.parse(raw);
+    return isPlainObject(parsed) ? parsed : {};
+  } catch {
+    return {};
+  }
+}
+
+function scheduleCloudSync(state, reason) {
+  if (typeof window === 'undefined' || !window.MiApi || typeof window.MiApi.syncLocalStateToCloud !== 'function') {
+    return;
+  }
+
+  if (cloudSyncTimer) clearTimeout(cloudSyncTimer);
+  cloudSyncTimer = setTimeout(async () => {
+    if (isCloudSyncRunning) return;
+    isCloudSyncRunning = true;
+    try {
+      await window.MiApi.syncLocalStateToCloud(state, { reason: reason || 'save_state' });
+      if (typeof window.MiApi.scheduleFlush === 'function') {
+        window.MiApi.scheduleFlush(200);
+      }
+    } catch {
+      // keep local-first UX
+    } finally {
+      isCloudSyncRunning = false;
+    }
+  }, 900);
+}
+
+function saveState(state, options = {}) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    if (!options.skipCloudSync) {
+      scheduleCloudSync(state, options.reason || 'save_state');
+    }
     return true;
   } catch {
     // iOS 隐私模式/配额不足下避免直接抛错导致页面逻辑中断

@@ -131,8 +131,13 @@
   <!-- Toast -->
   <div class="toast" id="toast"></div>
 
-  <script src="js/data.js?v=2.6"></script>
-  <script src="js/storage.js?v=2.6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/data.js?v=3.0"></script>
+  <script src="js/role-config.js?v=3.0"></script>
+  <script src="js/storage.js?v=3.0"></script>
+  <script src="js/analytics.js?v=3.0"></script>
+  <script src="js/auth.js?v=3.0"></script>
+  <script src="js/api.js?v=3.0"></script>
   <script src="js/audio-manifest.js?v=1.4"></script>
   <script src="js/tts.js?v=1.2"></script>
   <script src="js/nav-more.js?v=1.0"></script>
@@ -295,6 +300,10 @@
       // Check achievements
       const newAch = checkAchievements(state);
       saveState(state);
+      if (window.MiApi && typeof window.MiApi.saveVocabProgress === 'function' && c.type === 'vocab') {
+        window.MiApi.saveVocabProgress(c.id, status, new Date().toISOString());
+        syncLessonProgress(c.lessonId);
+      }
       updateNav();
 
       // Show achievement toast
@@ -307,6 +316,14 @@
       if (newAch.length === 0) showToast(labels[status]);
 
       nextCard();
+    }
+
+    function syncLessonProgress(lessonId) {
+      if (!window.MiApi || typeof window.MiApi.saveLessonProgress !== 'function') return;
+      const lesson = DATA.lessons.find(l => l.id === lessonId);
+      if (!lesson || !Array.isArray(lesson.vocab) || lesson.vocab.length === 0) return;
+      const mastered = lesson.vocab.filter(v => state.vocabStatus[v.id] === 'mastered').length;
+      window.MiApi.saveLessonProgress(lessonId, mastered, lesson.vocab.length, new Date().toISOString());
     }
 
     function showToast(msg, type) {
