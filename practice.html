@@ -1,0 +1,784 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>练习 - Mi English</title>
+  <link rel="stylesheet" href="css/style.css?v=2.6">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    /* ── Landing: Mode Selection ─────────────── */
+    .landing-header {
+      text-align: center;
+      padding: 24px 0 8px;
+    }
+    .landing-header h2 {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .landing-header p {
+      font-size: 0.8125rem;
+      color: var(--text-muted);
+    }
+
+    .mode-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 20px 0 24px;
+    }
+    .mode-card {
+      position: relative;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border-radius: var(--radius-xl);
+      padding: 20px;
+      color: white;
+      cursor: pointer;
+      overflow: hidden;
+      transition: all var(--duration-normal) var(--ease-out);
+      border: 3px solid transparent;
+    }
+    .mode-card:focus-visible {
+      outline: 3px solid rgba(255,255,255,0.85);
+      outline-offset: 2px;
+    }
+    .mode-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    .mode-card:active {
+      transform: scale(0.97);
+    }
+    .mode-card.selected {
+      border-color: rgba(255,255,255,0.8);
+      box-shadow: 0 0 0 4px rgba(255,255,255,0.3), var(--shadow-lg);
+      transform: scale(1.02);
+    }
+    /* Dim unselected cards when one is picked */
+    .mode-cards.has-selection .mode-card:not(.selected) {
+      opacity: 0.55;
+      transform: scale(0.97);
+    }
+    .mode-card::before {
+      content: '';
+      position: absolute;
+      top: -30px; right: -20px;
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+    }
+    .mode-card::after {
+      content: '';
+      position: absolute;
+      bottom: -15px; left: 40%;
+      width: 60px; height: 60px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.06);
+    }
+    .mode-card.orange { background: linear-gradient(135deg, #FF6900, #FF8F40); }
+    .mode-card.green  { background: linear-gradient(135deg, #10B981, #34D399); }
+    .mode-card.blue   { background: linear-gradient(135deg, #3B82F6, #60A5FA); }
+
+    .mode-card .mc-icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.22);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.375rem;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+    .mode-card .mc-info {
+      flex: 1;
+      position: relative;
+      z-index: 1;
+    }
+    .mode-card .mc-title {
+      font-size: 1.0625rem;
+      font-weight: 800;
+    }
+    .mode-card .mc-en {
+      font-size: 0.6875rem;
+      opacity: 0.75;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .mode-card .mc-desc {
+      font-size: 0.75rem;
+      opacity: 0.85;
+      margin-top: 2px;
+    }
+    .mode-card .mc-check {
+      position: relative;
+      z-index: 1;
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      border: 2px solid rgba(255,255,255,0.4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      transition: all var(--duration-fast);
+    }
+    .mode-card.selected .mc-check {
+      background: white;
+      border-color: white;
+      color: var(--mi-orange);
+    }
+
+    /* ── Step indicators ─────────────────────── */
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .step-num {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--mi-orange);
+      color: white;
+      font-size: 0.8125rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .step-num.done {
+      background: var(--mi-green);
+    }
+    .step-text {
+      font-size: 0.9375rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .step-text .hint {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-muted);
+      margin-left: 6px;
+    }
+
+    /* Course section initially collapsed */
+    .course-section {
+      margin-bottom: 20px;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: max-height 0.4s var(--ease-out), opacity 0.3s var(--ease-out), margin 0.3s;
+      margin-top: 0;
+    }
+    .course-section.visible {
+      max-height: 500px;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      margin-top: 0;
+    }
+    /* Start section also collapsed */
+    .start-section {
+      margin-bottom: 20px;
+      max-height: 0;
+      overflow: hidden;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: max-height 0.4s var(--ease-out) 0.1s, opacity 0.3s var(--ease-out) 0.15s;
+    }
+    .start-section.visible {
+      max-height: 200px;
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    /* ── Course Selector ─────────────────────── */
+    .course-label {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .course-label i { color: var(--mi-orange); }
+    .course-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .course-chip {
+      padding: 8px 16px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      transition: all var(--duration-fast);
+      font-family: inherit;
+    }
+    .course-chip:hover {
+      border-color: var(--mi-orange);
+      color: var(--mi-orange);
+    }
+    .course-chip.active {
+      background: var(--mi-orange);
+      border-color: var(--mi-orange);
+      color: white;
+      box-shadow: 0 2px 8px rgba(255,105,0,0.25);
+    }
+
+    /* ── Start Button ────────────────────────── */
+    .start-big-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 16px 0;
+      border-radius: var(--radius-lg);
+      border: none;
+      background: linear-gradient(135deg, var(--mi-orange), #FF8533);
+      color: white;
+      font-size: 1.0625rem;
+      font-weight: 800;
+      font-family: inherit;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(255,105,0,0.3);
+      transition: all var(--duration-fast);
+    }
+    .start-big-btn:hover {
+      box-shadow: 0 6px 24px rgba(255,105,0,0.4);
+      transform: translateY(-1px);
+    }
+    .start-big-btn:active {
+      transform: scale(0.98);
+    }
+    .start-big-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    .start-hint {
+      text-align: center;
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+      margin-top: 8px;
+    }
+
+    /* ── Practice Area (existing styles) ──────── */
+    .match-grid { display: flex; gap: 12px; margin: 16px 0; }
+    .match-col { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+    .match-label { font-size: 0.6875rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+    .fill-input {
+      width: 100%; padding: 12px 16px; border: 2px solid var(--border);
+      border-radius: var(--radius-md); font-size: 1rem; font-family: inherit;
+      outline: none; transition: border-color var(--duration-fast);
+      background: var(--bg-card);
+    }
+    .fill-input:focus { border-color: var(--mi-orange); }
+    .fill-input.correct { border-color: var(--mi-green); background: var(--mi-green-light); }
+    .fill-input.wrong { border-color: var(--mi-red); background: var(--mi-red-light); }
+    .question-card {
+      background: var(--bg-card); border-radius: var(--radius-lg);
+      padding: 24px 20px; border: 1px solid var(--border-light);
+      text-align: center; margin-bottom: 16px;
+    }
+    .question-text { font-size: 1.125rem; font-weight: 700; margin-bottom: 8px; }
+    .question-sub { font-size: 0.8125rem; color: var(--text-muted); }
+    .result-card {
+      background: var(--bg-card); border-radius: var(--radius-lg);
+      padding: 32px 20px; border: 1px solid var(--border-light);
+      text-align: center;
+    }
+    .result-score { font-size: 3rem; font-weight: 800; color: var(--mi-orange); }
+    .result-label { font-size: 0.875rem; color: var(--text-muted); margin-top: 4px; }
+    .result-msg { font-size: 1.125rem; font-weight: 700; margin-top: 12px; }
+    .wrong-list { text-align: left; margin-top: 16px; }
+    .wrong-item {
+      padding: 10px 14px; border-radius: var(--radius-sm);
+      background: var(--mi-red-light); margin-bottom: 6px; font-size: 0.8125rem;
+    }
+    .wrong-item .en { font-weight: 700; }
+    .wrong-item .zh { color: var(--text-secondary); }
+    .translate-options { display: flex; flex-direction: column; gap: 8px; }
+    .option-row { display: flex; align-items: stretch; gap: 8px; }
+    .option-row .option-btn { flex: 1; }
+    .question-text-row {
+      display: flex; align-items: center; justify-content: center;
+      gap: 8px; flex-wrap: wrap; margin-bottom: 8px;
+    }
+    .question-text-row .question-text { margin-bottom: 0; }
+    .option-btn {
+      padding: 14px 16px; border: 1px solid var(--border);
+      border-radius: var(--radius-md); background: var(--bg-card);
+      cursor: pointer; font-size: 0.875rem; font-family: inherit;
+      text-align: left; transition: all var(--duration-fast);
+    }
+    .option-btn:hover { border-color: var(--mi-orange); background: var(--mi-orange-light); }
+    .option-btn.correct { background: var(--mi-green-light); border-color: var(--mi-green); color: var(--mi-green); font-weight: 700; }
+    .option-btn.wrong { background: var(--mi-red-light); border-color: var(--mi-red); }
+    .option-btn:disabled { pointer-events: none; }
+    .progress-mini { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+    .progress-mini .progress-track { flex: 1; height: 6px; }
+    .progress-mini span { font-size: 0.75rem; color: var(--text-muted); font-weight: 600; }
+
+    /* Back button during practice */
+    .back-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 6px 12px;
+      border-radius: var(--radius-full);
+      border: 1px solid var(--border);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all var(--duration-fast);
+    }
+    .back-btn:hover { border-color: var(--mi-orange); color: var(--mi-orange); }
+  </style>
+</head>
+<body>
+  <!-- Top Nav -->
+  <nav class="nav-header">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">
+        <div class="nav-logo">Mi</div>
+        <span class="nav-title">练习</span>
+      </a>
+      <div class="nav-stats">
+        <span class="nav-streak" id="navStreak"><i class="fas fa-fire"></i><span id="streakCount">0</span></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container page-content">
+    <!-- ═══ Landing Screen ═══ -->
+    <div id="landingScreen">
+      <!-- Step 1: Mode -->
+      <div class="step-header animate-fadeIn" id="step1Header">
+        <div class="step-num" id="step1Num">1</div>
+        <div class="step-text">选择练习模式 <span class="hint">点击一种模式</span></div>
+      </div>
+
+      <div class="mode-cards animate-fadeIn delay-1" id="modeCards">
+        <div class="mode-card orange" data-mode="match" tabindex="0" role="button" aria-pressed="false" onclick="pickMode(this)" onkeydown="handleModeCardKeydown(event, this)">
+          <div class="mc-icon"><i class="fas fa-puzzle-piece"></i></div>
+          <div class="mc-info">
+            <div class="mc-title">配对</div>
+            <div class="mc-en">Pairing</div>
+            <div class="mc-desc">看英文选中文，快速巩固记忆</div>
+          </div>
+          <div class="mc-check"><i class="fas fa-check"></i></div>
+        </div>
+        <div class="mode-card green" data-mode="translate" tabindex="0" role="button" aria-pressed="false" onclick="pickMode(this)" onkeydown="handleModeCardKeydown(event, this)">
+          <div class="mc-icon"><i class="fas fa-language"></i></div>
+          <div class="mc-info">
+            <div class="mc-title">翻译</div>
+            <div class="mc-en">Translation</div>
+            <div class="mc-desc">看中文选英文，逆向强化输出</div>
+          </div>
+          <div class="mc-check"><i class="fas fa-check"></i></div>
+        </div>
+        <div class="mode-card blue" data-mode="fill" tabindex="0" role="button" aria-pressed="false" onclick="pickMode(this)" onkeydown="handleModeCardKeydown(event, this)">
+          <div class="mc-icon"><i class="fas fa-pen-fancy"></i></div>
+          <div class="mc-info">
+            <div class="mc-title">填空</div>
+            <div class="mc-en">Fill-in-the-blank</div>
+            <div class="mc-desc">看中文写英文，真正掌握拼写</div>
+          </div>
+          <div class="mc-check"><i class="fas fa-check"></i></div>
+        </div>
+      </div>
+
+      <!-- Step 2: Course -->
+      <div class="course-section" id="courseSection">
+        <div class="step-header">
+          <div class="step-num">2</div>
+          <div class="step-text">选择课程范围 <span class="hint">默认全部课程</span></div>
+        </div>
+        <div class="course-chips" id="courseChips">
+          <button class="course-chip active" data-lesson="all" onclick="pickCourse(this)">全部</button>
+        </div>
+      </div>
+
+      <!-- Start Button -->
+      <div class="start-section" id="startSection">
+        <button class="start-big-btn" onclick="startPractice()" id="startBtn" disabled>
+          <i class="fas fa-play"></i> 开始练习
+        </button>
+        <div class="start-hint">每次随机 10 题，优先出不熟词汇</div>
+      </div>
+    </div>
+
+    <!-- ═══ Practice Area ═══ -->
+    <div id="practiceArea"></div>
+  </div>
+
+  <!-- Bottom Tab Bar -->
+  <nav class="tab-bar">
+    <a href="index.html" class="tab-bar-btn" data-tab="index"><i class="fas fa-home"></i><span>首页</span></a>
+    <a href="learn.html" class="tab-bar-btn" data-tab="learn"><i class="fas fa-book-open"></i><span>学习</span></a>
+    <a href="practice.html" class="tab-bar-btn" data-tab="practice"><i class="fas fa-gamepad"></i><span>练习</span></a>
+    <a href="scenarios.html" class="tab-bar-btn" data-tab="scenarios"><i class="fas fa-map-location-dot"></i><span>场景</span></a>
+    <button type="button" class="tab-bar-btn" data-tab="more" data-action="open-more-menu"><i class="fas fa-ellipsis"></i><span>更多</span></button>
+  </nav>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/data.js?v=2.6"></script>
+  <script src="js/storage.js?v=2.6"></script>
+  <script src="js/audio-manifest.js?v=1.4"></script>
+  <script src="js/tts.js?v=1.2"></script>
+  <script src="js/nav-more.js?v=1.0"></script>
+  <script>
+    let state = loadState();
+    let mode = 'match';
+    let selectedLesson = 'all';
+    let questions = [];
+    let currentQ = 0;
+    let score = 0;
+    let wrongItems = [];
+
+    // ── Init ──
+    function init() {
+      // Build course chips
+      var chips = document.getElementById('courseChips');
+      DATA.lessons.forEach(function(l) {
+        var btn = document.createElement('button');
+        btn.className = 'course-chip';
+        btn.dataset.lesson = l.id;
+        btn.textContent = l.id;
+        btn.onclick = function() { pickCourse(btn); };
+        chips.appendChild(btn);
+      });
+
+      var result = initSession(state);
+      state = result.state;
+      document.getElementById('streakCount').textContent = state.streak;
+    }
+
+    // ── Mode pick ──
+    function handleModeCardKeydown(event, el) {
+      if (!event || !el) return;
+      if (event.key === 'Enter' || event.key === ' ' || event.key === 'Spacebar') {
+        event.preventDefault();
+        pickMode(el);
+      }
+    }
+
+    function pickMode(el) {
+      document.querySelectorAll('.mode-card').forEach(function(c) {
+        c.classList.remove('selected');
+        c.setAttribute('aria-pressed', 'false');
+      });
+      el.classList.add('selected');
+      el.setAttribute('aria-pressed', 'true');
+      mode = el.dataset.mode;
+
+      // Mark container as having a selection (dims others)
+      document.getElementById('modeCards').classList.add('has-selection');
+
+      // Step 1 done
+      document.getElementById('step1Num').classList.add('done');
+      document.getElementById('step1Num').innerHTML = '<i class="fas fa-check" style="font-size:0.7rem"></i>';
+
+      // Reveal step 2 and start button
+      document.getElementById('courseSection').classList.add('visible');
+      document.getElementById('startSection').classList.add('visible');
+      document.getElementById('startBtn').disabled = false;
+    }
+
+    // ── Course pick ──
+    function pickCourse(el) {
+      document.querySelectorAll('.course-chip').forEach(function(c) {
+        c.classList.remove('active');
+      });
+      el.classList.add('active');
+      selectedLesson = el.dataset.lesson;
+    }
+
+    // ── Start practice ──
+    function startPractice() {
+      var pool = getAllVocab(selectedLesson);
+
+      // Prioritize unknown/shaky
+      var priority = pool.filter(function(v) {
+        var s = state.vocabStatus[v.id];
+        return s === 'unknown' || s === 'shaky' || !s;
+      });
+
+      var source = priority.length >= 10 ? priority : pool;
+      var shuffled = shuffle(source).slice(0, 10);
+
+      if (shuffled.length < 4) {
+        showToast('至少需要4个词汇才能练习！');
+        return;
+      }
+
+      questions = shuffled;
+      currentQ = 0;
+      score = 0;
+      wrongItems = [];
+
+      // Hide landing, show practice
+      document.getElementById('landingScreen').style.display = 'none';
+      renderQuestion();
+    }
+
+    // Safely encode text for use in inline onclick attributes (encodeURIComponent doesn't encode apostrophes)
+    function safeEncode(text) {
+      return encodeURIComponent(text).replace(/'/g, '%27');
+    }
+
+    function speakPracticeText(encoded, event) {
+      if (event) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      var text = '';
+      try { text = decodeURIComponent(String(encoded || '')); } catch(e) { text = String(encoded || ''); }
+      text = text.trim();
+      if (!text) return;
+      var speech = window.MiSpeech || window.MiTTS;
+      if (!speech || !speech.supported()) { showToast('当前浏览器不支持发音'); return; }
+      var result = speech.speak(text, { lang: 'en-US', rate: 0.92, preferAudio: true });
+      if (!result.ok) showToast('发音失败，请重试');
+    }
+
+    function renderQuestion() {
+      var area = document.getElementById('practiceArea');
+      if (currentQ >= questions.length) {
+        renderResult();
+        return;
+      }
+
+      var q = questions[currentQ];
+      var modeLabel = mode === 'match' ? '配对' : mode === 'translate' ? '翻译' : '填空';
+      var modeColor = mode === 'match' ? 'var(--mi-orange)' : mode === 'translate' ? 'var(--mi-green)' : 'var(--mi-blue)';
+
+      var html = '<div class="back-bar"><button class="back-btn" onclick="resetPractice()"><i class="fas fa-arrow-left"></i> 返回</button>' +
+        '<span style="font-size:0.75rem;font-weight:700;color:' + modeColor + '">' + modeLabel + '模式</span></div>';
+
+      html += '<div class="progress-mini">' +
+        '<span>' + (currentQ + 1) + '/' + questions.length + '</span>' +
+        '<div class="progress-track"><div class="progress-fill progress-fill--orange" style="width:' + ((currentQ) / questions.length * 100) + '%"></div></div>' +
+        '<span>' + score + ' pts</span></div>';
+
+      if (mode === 'match') {
+        html += renderMatchQuestion(q);
+      } else if (mode === 'translate') {
+        html += renderTranslateQuestion(q);
+      } else {
+        html += renderFillQuestion(q);
+      }
+
+      area.innerHTML = html;
+    }
+
+    // === MATCH MODE ===
+    function renderMatchQuestion(q) {
+      var allVocab = getAllVocab();
+      var others = shuffle(allVocab.filter(function(v) { return v.en !== q.en; })).slice(0, 3);
+      var options = shuffle([q].concat(others));
+
+      return '<div class="question-card">' +
+        '<div class="question-text-row">' +
+        '<div class="question-text">' + escapeHTML(q.en) + '</div>' +
+        '<button class="speak-btn speak-btn--sm" type="button" onclick="speakPracticeText(\'' + safeEncode(q.en) + '\', event)" aria-label="播放发音">' +
+        '<i class="fas fa-volume-high"></i></button></div>' +
+        '<div class="question-sub">选择正确的翻译</div></div>' +
+        '<div class="translate-options">' +
+        options.map(function(o) {
+          return '<button class="option-btn" data-correct="' + (o.en === q.en ? '1' : '0') + '" onclick="checkMatch(this, ' + (o.en === q.en) + ')">' + escapeHTML(o.zh) + '</button>';
+        }).join('') +
+        '</div>';
+    }
+
+    function checkMatch(btn, correct) {
+      var btns = document.querySelectorAll('.option-btn');
+      btns.forEach(function(b) { b.disabled = true; });
+
+      if (correct) {
+        btn.classList.add('correct');
+        score++;
+      } else {
+        btn.classList.add('wrong');
+        wrongItems.push(questions[currentQ]);
+        var correctBtn = document.querySelector('.option-btn[data-correct="1"]');
+        if (correctBtn) correctBtn.classList.add('correct');
+      }
+
+      setTimeout(function() { currentQ++; renderQuestion(); }, 1000);
+    }
+
+    // === TRANSLATE MODE ===
+    function renderTranslateQuestion(q) {
+      var allVocab = getAllVocab();
+      var others = shuffle(allVocab.filter(function(v) { return v.en !== q.en; })).slice(0, 3);
+      var options = shuffle([q].concat(others));
+
+      return '<div class="question-card">' +
+        '<div class="question-sub">翻译成英文：</div>' +
+        '<div class="question-text">' + escapeHTML(q.zh) + '</div></div>' +
+        '<div class="translate-options">' +
+        options.map(function(o) {
+          return '<div class="option-row">' +
+            '<button class="option-btn" data-correct="' + (o.en === q.en ? '1' : '0') + '" onclick="checkMatch(this, ' + (o.en === q.en) + ')">' + escapeHTML(o.en) + '</button>' +
+            '<button class="speak-btn speak-btn--sm" type="button" onclick="speakPracticeText(\'' + safeEncode(o.en) + '\', event)" aria-label="播放选项发音">' +
+            '<i class="fas fa-volume-high"></i></button></div>';
+        }).join('') +
+        '</div>';
+    }
+
+    // === FILL MODE ===
+    function renderFillQuestion(q) {
+      return '<div class="question-card">' +
+        '<div class="question-sub">输入对应的英文：</div>' +
+        '<div class="question-text">' + escapeHTML(q.zh) + '</div>' +
+        '<div class="question-sub" style="margin-top:8px;font-size:0.75rem;">提示：' + q.en.charAt(0) + '_'.repeat(Math.min(q.en.length - 1, 10)) + '</div></div>' +
+        '<input class="fill-input" id="fillInput" placeholder="输入你的答案..." autofocus onkeydown="if(event.key===\'Enter\')checkFill()">' +
+        '<button class="btn btn-primary btn-block mt-3" onclick="checkFill()"><i class="fas fa-check"></i> 检查</button>';
+    }
+
+    function checkFill() {
+      var input = document.getElementById('fillInput');
+      var normalizeFill = function(value) { return String(value || '').trim().toLowerCase().replace(/\s+/g, ' '); };
+      var answer = normalizeFill(input.value);
+      var q = questions[currentQ];
+      var correct = normalizeFill(q.en);
+      var isCorrect = answer === correct;
+
+      if (isCorrect) {
+        input.classList.add('correct');
+        score++;
+      } else {
+        input.classList.add('wrong');
+        wrongItems.push(q);
+      }
+
+      // Hide check button
+      var checkBtn = input.nextElementSibling;
+      if (checkBtn) checkBtn.style.display = 'none';
+
+      // Show answer card with word details + pronunciation
+      var cardColor = isCorrect ? 'var(--mi-green)' : 'var(--mi-red)';
+      var cardBg = isCorrect ? 'var(--mi-green-light)' : 'var(--mi-red-light)';
+      var cardIcon = isCorrect ? 'fa-circle-check' : 'fa-circle-xmark';
+      var cardLabel = isCorrect ? '正确！' : '正确答案：';
+
+      var cardHtml = '<div class="fill-answer-card" style="margin-top:14px;padding:18px 16px;border-radius:var(--radius-lg);border:1px solid ' + cardColor + ';background:' + cardBg + ';animation:fadeIn 0.3s var(--ease-out) both;">' +
+        '<div style="display:flex;align-items:center;gap:8px;margin-bottom:8px;">' +
+        '<i class="fas ' + cardIcon + '" style="color:' + cardColor + ';font-size:1.125rem;"></i>' +
+        '<span style="font-size:0.8125rem;font-weight:700;color:' + cardColor + ';">' + cardLabel + '</span></div>' +
+        '<div style="display:flex;align-items:center;gap:10px;">' +
+        '<div style="flex:1;">' +
+        '<div style="font-size:1.125rem;font-weight:800;color:var(--text-primary);">' + escapeHTML(q.en) + '</div>' +
+        '<div style="font-size:0.8125rem;color:var(--text-secondary);margin-top:2px;">' + escapeHTML(q.zh) + '</div>' +
+        '</div>' +
+        '<button class="speak-btn" type="button" onclick="speakPracticeText(\'' + safeEncode(q.en) + '\', event)" aria-label="播放发音">' +
+        '<i class="fas fa-volume-high"></i></button></div></div>' +
+        '<button class="btn btn-primary btn-block mt-3" onclick="currentQ++;renderQuestion();" style="animation:fadeIn 0.3s var(--ease-out) 0.2s both;">' +
+        '<i class="fas fa-arrow-right"></i> 下一题</button>';
+
+      // Insert after input
+      var container = document.getElementById('practiceArea');
+      var tempDiv = document.createElement('div');
+      tempDiv.innerHTML = cardHtml;
+      container.appendChild(tempDiv);
+
+      // Auto-play pronunciation
+      speakPracticeText(safeEncode(q.en));
+    }
+
+    // === RESULTS ===
+    function renderResult() {
+      var pct = Math.round((score / questions.length) * 100);
+      var perfect = score === questions.length;
+
+      state.practiceHistory.push({
+        date: new Date().toISOString(),
+        mode: mode,
+        score: score,
+        total: questions.length
+      });
+
+      state = addXP(state, XP_REWARDS.practiceRound);
+      if (perfect) state = addXP(state, XP_REWARDS.perfectRound);
+
+      var newAch = checkAchievements(state);
+      saveState(state);
+
+      var msg = '';
+      if (pct === 100) msg = '满分！🌟';
+      else if (pct >= 80) msg = '太棒了！🎉';
+      else if (pct >= 60) msg = '不错！👍';
+      else msg = '继续加油！💪';
+
+      var html = '<div class="result-card animate-scaleIn">' +
+        '<div class="result-score">' + pct + '%</div>' +
+        '<div class="result-label">答对 ' + score + ' / ' + questions.length + '</div>' +
+        '<div class="result-msg">' + msg + '</div>' +
+        '<div style="margin-top:8px;font-size:0.75rem;color:var(--text-muted);">+' + XP_REWARDS.practiceRound + (perfect ? '+' + XP_REWARDS.perfectRound : '') + ' XP</div></div>';
+
+      if (wrongItems.length > 0) {
+        html += '<h4 class="section-title mt-4"><i class="fas fa-times-circle text-red"></i> 错题回顾</h4><div class="wrong-list">';
+        wrongItems.forEach(function(w) {
+          html += '<div class="wrong-item"><span class="en">' + escapeHTML(w.en) + '</span> → <span class="zh">' + escapeHTML(w.zh) + '</span></div>';
+        });
+        html += '</div>';
+      }
+
+      newAch.forEach(function(a) { showToast('🏆 ' + a.title + ' — ' + a.desc, 'achievement'); });
+
+      html += '<button class="btn btn-primary btn-block mt-4" onclick="resetPractice()"><i class="fas fa-redo"></i> 再练一次</button>';
+
+      document.getElementById('practiceArea').innerHTML = html;
+    }
+
+    function resetPractice() {
+      document.getElementById('landingScreen').style.display = '';
+      document.getElementById('practiceArea').innerHTML = '';
+      // Keep mode selected state visible so user can quickly re-run
+      document.getElementById('courseSection').classList.add('visible');
+      document.getElementById('startSection').classList.add('visible');
+      document.getElementById('startBtn').disabled = !document.querySelector('.mode-card.selected');
+    }
+
+    function showToast(msg, type) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = 'toast show' + (type === 'achievement' ? ' achievement' : '');
+      setTimeout(function() { t.className = 'toast'; }, 2500);
+    }
+
+    init();
+  </script>
+</body>
+</html>

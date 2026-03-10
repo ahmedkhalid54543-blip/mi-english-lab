@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>浏览 - Mi English</title>
+  <link rel="stylesheet" href="css/style.css?v=2.6">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .lesson-progress {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.75rem; color: var(--text-muted);
+    }
+    .lesson-progress .progress-track { width: 60px; height: 4px; }
+    .status-dot {
+      display: inline-block; width: 8px; height: 8px;
+      border-radius: 50%; margin-right: 6px; vertical-align: middle;
+    }
+    .status-dot.mastered { background: var(--mi-green); }
+    .status-dot.shaky { background: var(--mi-yellow); }
+    .status-dot.unknown { background: var(--mi-red); }
+    .status-dot.new { background: var(--border); }
+    .vocab-row {
+      display: flex; align-items: flex-start; gap: 8px;
+      padding: 10px 0; border-top: 1px solid var(--border-light);
+    }
+    .vocab-row:first-child { border-top: none; }
+    .vocab-en { font-weight: 600; flex: 1; font-size: 0.875rem; }
+    .vocab-zh { color: var(--text-secondary); flex: 1; font-size: 0.8125rem; }
+    .vocab-scene { font-size: 0.6875rem; color: var(--text-muted); }
+    .vocab-audio { margin-left: 4px; flex: 0 0 auto; }
+    .total-count {
+      font-size: 0.8125rem; color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .pattern-row {
+      padding: 12px 0; border-top: 1px solid var(--border-light);
+    }
+    .pattern-row:first-child { border-top: none; }
+    .pattern-cat {
+      font-size: 0.6875rem; font-weight: 700; color: var(--mi-blue);
+      text-transform: uppercase; letter-spacing: 0.03em; margin-bottom: 4px;
+    }
+    .pattern-template { font-weight: 600; font-size: 0.875rem; margin-bottom: 4px; }
+    .pattern-explain { font-size: 0.8125rem; color: var(--text-secondary); }
+    .pattern-example { font-size: 0.8125rem; color: var(--mi-orange-dark); font-style: italic; margin-top: 4px; }
+    .tab-switch { display: flex; gap: 4px; margin-bottom: 12px; }
+    .tab-switch button {
+      flex: 1; padding: 8px; border-radius: var(--radius-sm);
+      border: 1px solid var(--border); background: var(--bg-card);
+      font-size: 0.8125rem; font-weight: 600; font-family: inherit;
+      cursor: pointer; color: var(--text-secondary); transition: all var(--duration-fast);
+    }
+    .tab-switch button.active {
+      background: var(--mi-orange); color: white; border-color: var(--mi-orange);
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Nav -->
+  <nav class="nav-header">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">
+        <div class="nav-logo">Mi</div>
+        <span class="nav-title">浏览</span>
+      </a>
+      <div class="nav-stats" id="totalDisplay">
+        <span class="text-sm text-muted" id="searchResults"></span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container page-content">
+    <!-- Search -->
+    <div class="search-box animate-fadeIn">
+      <i class="fas fa-search"></i>
+      <input class="search-input" id="searchInput" placeholder="搜索英文或中文..." oninput="doSearch()">
+    </div>
+
+    <!-- Tab Switch -->
+    <div class="tab-switch animate-fadeIn delay-1">
+      <button class="active" id="tabVocab" onclick="switchBrowse('vocab')">📖 词汇</button>
+      <button id="tabPattern" onclick="switchBrowse('pattern')">💬 句式</button>
+    </div>
+
+    <!-- Total Count -->
+    <div class="total-count animate-fadeIn delay-1" id="totalCount"></div>
+
+    <!-- Content -->
+    <div id="browseContent" class="animate-fadeIn delay-2"></div>
+  </div>
+
+  <!-- Bottom Tab Bar -->
+  <nav class="tab-bar">
+    <a href="index.html" class="tab-bar-btn" data-tab="index"><i class="fas fa-home"></i><span>首页</span></a>
+    <a href="learn.html" class="tab-bar-btn" data-tab="learn"><i class="fas fa-book-open"></i><span>学习</span></a>
+    <a href="practice.html" class="tab-bar-btn" data-tab="practice"><i class="fas fa-gamepad"></i><span>练习</span></a>
+    <a href="scenarios.html" class="tab-bar-btn" data-tab="scenarios"><i class="fas fa-map-location-dot"></i><span>场景</span></a>
+    <button type="button" class="tab-bar-btn" data-tab="more" data-action="open-more-menu"><i class="fas fa-ellipsis"></i><span>更多</span></button>
+  </nav>
+
+  <script src="js/data.js?v=2.6"></script>
+  <script src="js/storage.js?v=2.6"></script>
+  <script src="js/audio-manifest.js?v=1.4"></script>
+  <script src="js/tts.js?v=1.2"></script>
+  <script src="js/nav-more.js?v=1.0"></script>
+  <script>
+    let state = loadState();
+    let browseType = 'vocab';
+    let searchQuery = '';
+
+    function init() {
+      const result = initSession(state);
+      state = result.state;
+      renderBrowse();
+    }
+
+    function switchBrowse(type) {
+      browseType = type;
+      document.getElementById('tabVocab').classList.toggle('active', type === 'vocab');
+      document.getElementById('tabPattern').classList.toggle('active', type === 'pattern');
+      renderBrowse();
+    }
+
+    function doSearch() {
+      searchQuery = document.getElementById('searchInput').value.trim().toLowerCase();
+      renderBrowse();
+    }
+
+    function getStatusClass(status) {
+      return ['mastered', 'shaky', 'unknown'].includes(status) ? status : 'new';
+    }
+
+    function renderBrowse() {
+      const area = document.getElementById('browseContent');
+
+      if (browseType === 'vocab') {
+        renderVocabBrowse(area);
+      } else {
+        renderPatternBrowse(area);
+      }
+    }
+
+    function renderVocabBrowse(area) {
+      let totalVocab = 0;
+      let totalFiltered = 0;
+      let html = '';
+
+      DATA.lessons.forEach(lesson => {
+        let items = lesson.vocab;
+        totalVocab += items.length;
+
+        if (searchQuery) {
+          items = items.filter(v =>
+            v.en.toLowerCase().includes(searchQuery) ||
+            v.zh.toLowerCase().includes(searchQuery) ||
+            (v.scene && v.scene.toLowerCase().includes(searchQuery))
+          );
+        }
+
+        if (items.length === 0) return;
+        totalFiltered += items.length;
+
+        // Lesson progress
+        const mastered = lesson.vocab.filter(v => state.vocabStatus[v.id] === 'mastered').length;
+        const pct = lesson.vocab.length > 0 ? Math.round((mastered / lesson.vocab.length) * 100) : 0;
+
+        html += `
+          <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <div>
+                <span class="lesson-tag">${lesson.id}</span>
+                <span style="font-size:0.8125rem;font-weight:600;margin-left:8px;">${escapeHTML(lesson.title)}</span>
+                <span style="font-size:0.75rem;color:var(--text-muted);margin-left:4px;">(${items.length})</span>
+              </div>
+              <div class="lesson-progress">
+                <div class="progress-track"><div class="progress-fill progress-fill--green" style="width:${pct}%"></div></div>
+                <span>${pct}%</span>
+                <i class="fas fa-chevron-down" style="font-size:0.75rem;transition:transform 0.2s;"></i>
+              </div>
+            </div>
+            <div class="accordion-body">
+              <div class="accordion-content">
+                ${items.map(v => {
+                  const dotClass = getStatusClass(state.vocabStatus[v.id]);
+                  const encodedEn = encodeURIComponent(v.en || '');
+                  return `<div class="vocab-row">
+                    <span class="status-dot ${dotClass}"></span>
+                    <span class="vocab-en">${highlight(v.en)}</span>
+                    <span class="vocab-zh">${highlight(v.zh)}</span>
+                    ${v.scene ? `<span class="vocab-scene">${highlight(v.scene)}</span>` : ''}
+                    <button class="speak-btn speak-btn--sm vocab-audio" onclick="speakWordEncoded('${encodedEn}', event)" aria-label="播放发音"><i class="fas fa-volume-high"></i></button>
+                  </div>`;
+                }).join('')}
+              </div>
+            </div>
+          </div>`;
+      });
+
+      document.getElementById('totalCount').textContent = searchQuery
+        ? `找到 ${totalFiltered} 条结果（共 ${totalVocab} 条）`
+        : `共 ${totalVocab} 个词汇，覆盖 ${DATA.lessons.length} 课`;
+      document.getElementById('searchResults').textContent = searchQuery ? `找到 ${totalFiltered} 条` : '';
+
+      area.innerHTML = html || '<div class="empty-state"><i class="fas fa-search"></i><p>未找到结果</p></div>';
+    }
+
+    function renderPatternBrowse(area) {
+      let totalPatterns = 0;
+      let totalFiltered = 0;
+      let html = '';
+
+      DATA.lessons.forEach(lesson => {
+        if (!lesson.patterns || lesson.patterns.length === 0) return;
+        let items = lesson.patterns;
+        totalPatterns += items.length;
+
+        if (searchQuery) {
+          items = items.filter(p =>
+            p.template.toLowerCase().includes(searchQuery) ||
+            p.explanation.toLowerCase().includes(searchQuery) ||
+            (p.example && p.example.toLowerCase().includes(searchQuery))
+          );
+        }
+
+        if (items.length === 0) return;
+        totalFiltered += items.length;
+
+        html += `
+          <div class="accordion">
+            <div class="accordion-header" onclick="toggleAccordion(this)">
+              <div>
+                <span class="lesson-tag">${lesson.id}</span>
+                <span style="font-size:0.8125rem;font-weight:600;margin-left:8px;">${escapeHTML(lesson.title)}</span>
+                <span style="font-size:0.75rem;color:var(--text-muted);margin-left:4px;">(${items.length})</span>
+              </div>
+              <i class="fas fa-chevron-down" style="font-size:0.75rem;transition:transform 0.2s;"></i>
+            </div>
+            <div class="accordion-body">
+              <div class="accordion-content">
+                ${items.map(p => {
+                  const pDot = getStatusClass(state.patternStatus[p.id]);
+                  const encodedTpl = encodeURIComponent(p.example || p.template || '');
+                  return `<div class="pattern-row">
+                    <div class="pattern-cat"><span class="status-dot ${pDot}"></span>${escapeHTML(p.category)}</div>
+                    <div class="pattern-template">${highlight(p.template)} <button class="speak-btn speak-btn--sm" onclick="speakWordEncoded('${encodedTpl}', event)" aria-label="播放发音"><i class="fas fa-volume-high"></i></button></div>
+                    <div class="pattern-explain">${highlight(p.explanation)}</div>
+                    ${p.example ? `<div class="pattern-example">"${highlight(p.example)}"</div>` : ''}
+                  </div>`;
+                }).join('')}
+              </div>
+            </div>
+          </div>`;
+      });
+
+      document.getElementById('totalCount').textContent = searchQuery
+        ? `找到 ${totalFiltered} 条（共 ${totalPatterns} 条句式）`
+        : `共 ${totalPatterns} 个句式`;
+
+      area.innerHTML = html || '<div class="empty-state"><i class="fas fa-comments"></i><p>未找到句式</p></div>';
+    }
+
+    function toggleAccordion(header) {
+      const body = header.nextElementSibling;
+      const icon = header.querySelector('.fa-chevron-down');
+      body.classList.toggle('open');
+      if (icon) icon.style.transform = body.classList.contains('open') ? 'rotate(180deg)' : '';
+    }
+
+    function highlight(text) {
+      const safe = escapeHTML(text);
+      if (!searchQuery) return safe;
+      const regex = new RegExp(`(${searchQuery.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+      return safe.replace(regex, '<mark style="background:var(--mi-yellow-light);padding:0 2px;border-radius:2px;">$1</mark>');
+    }
+
+    function speakWordEncoded(encoded, event) {
+      if (event) {
+        event.stopPropagation();
+        event.preventDefault();
+      }
+
+      const text = decodeURIComponent(encoded || '').trim();
+      if (!text) return;
+
+      const speech = window.MiSpeech || window.MiTTS;
+      if (!speech || !speech.supported()) {
+        return;
+      }
+
+      speech.speak(text, { lang: 'en-US', rate: 0.92, preferAudio: true });
+    }
+
+    init();
+  </script>
+</body>
+</html>

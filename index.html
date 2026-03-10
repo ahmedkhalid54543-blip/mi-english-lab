@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Mi English - 小米国际英语学习助手</title>
+  <link rel="stylesheet" href="css/style.css?v=2.6">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    /* ── Hero Banner ─────────────────────────── */
+    .hero-banner {
+      position: relative;
+      background: linear-gradient(135deg, #FF6900 0%, #FF8533 50%, #FFB347 100%);
+      border-radius: var(--radius-xl);
+      padding: 28px 24px 24px;
+      color: white;
+      overflow: hidden;
+      margin-bottom: 20px;
+    }
+    .hero-banner::before {
+      content: '';
+      position: absolute;
+      top: -40px; right: -30px;
+      width: 140px; height: 140px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+    }
+    .hero-banner::after {
+      content: '';
+      position: absolute;
+      bottom: -20px; left: 30%;
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+    }
+    .hero-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-greeting {
+      font-size: 0.8125rem;
+      opacity: 0.9;
+      margin-bottom: 4px;
+    }
+    .hero-title {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 2px;
+    }
+    .hero-sub {
+      font-size: 0.75rem;
+      opacity: 0.8;
+    }
+    .hero-streak-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(255,255,255,0.22);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-radius: var(--radius-full);
+      padding: 6px 14px;
+      font-size: 0.8125rem;
+      font-weight: 700;
+    }
+    .hero-progress {
+      position: relative;
+      z-index: 1;
+      margin-top: 20px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .hero-ring {
+      position: relative;
+      width: 64px; height: 64px;
+      flex-shrink: 0;
+    }
+    .hero-ring svg { transform: rotate(-90deg); }
+    .hero-ring-bg { fill: none; stroke: rgba(255,255,255,0.2); stroke-width: 5; }
+    .hero-ring-fill {
+      fill: none;
+      stroke: white;
+      stroke-width: 5;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 1s var(--ease-out);
+    }
+    .hero-ring-text {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      font-weight: 800;
+    }
+    .hero-stats-row {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .hero-stat-line {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+    }
+    .hero-stat-line .label { opacity: 0.85; }
+    .hero-stat-line .val { font-weight: 700; }
+    .hero-bar {
+      height: 6px;
+      border-radius: 3px;
+      background: rgba(255,255,255,0.2);
+      overflow: hidden;
+    }
+    .hero-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+      background: white;
+      transition: width 1s var(--ease-out);
+    }
+    .hero-cta {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: 100%;
+      margin-top: 18px;
+      padding: 12px 0;
+      background: rgba(255,255,255,0.22);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: var(--radius-md);
+      color: white;
+      font-size: 0.9375rem;
+      font-weight: 700;
+      font-family: inherit;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--duration-fast);
+    }
+    .hero-cta:hover {
+      background: rgba(255,255,255,0.32);
+    }
+    .hero-cta:active {
+      transform: scale(0.98);
+    }
+
+    /* ── Stat Cards (3 cols) ─────────────────── */
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+    .stat-card-v2 {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 16px 12px 14px;
+      text-align: center;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      transition: all var(--duration-normal) var(--ease-out);
+    }
+    .stat-card-v2:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .stat-card-v2 .icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      margin: 0 auto 8px;
+    }
+    .stat-card-v2 .icon.orange { background: var(--mi-orange-light); color: var(--mi-orange); }
+    .stat-card-v2 .icon.green { background: var(--mi-green-light); color: var(--mi-green); }
+    .stat-card-v2 .icon.blue { background: var(--mi-blue-light); color: var(--mi-blue); }
+    .stat-card-v2 .num {
+      font-size: 1.375rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .stat-card-v2 .num.orange { color: var(--mi-orange); }
+    .stat-card-v2 .num.green { color: var(--mi-green); }
+    .stat-card-v2 .num.blue { color: var(--mi-blue); }
+    .stat-card-v2 .desc {
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ── Feature Cards ───────────────────────── */
+    .section-label {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .section-label i { color: var(--mi-orange); font-size: 0.875rem; }
+
+    /* Featured: 2 large cards */
+    .featured-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .feat-card {
+      position: relative;
+      border-radius: var(--radius-xl);
+      padding: 20px 16px 16px;
+      color: white;
+      overflow: hidden;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      min-height: 140px;
+      transition: all var(--duration-normal) var(--ease-out);
+    }
+    .feat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+    .feat-card:active { transform: scale(0.97); }
+    .feat-card::before {
+      content: '';
+      position: absolute;
+      top: -20px; right: -20px;
+      width: 80px; height: 80px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.12);
+    }
+    .feat-card.orange {
+      background: linear-gradient(135deg, #FF6900, #FF8F40);
+    }
+    .feat-card.indigo {
+      background: linear-gradient(135deg, #4F46E5, #7C6BF0);
+    }
+    .feat-card .feat-icon {
+      font-size: 1.75rem;
+      margin-bottom: auto;
+      position: relative;
+      z-index: 1;
+    }
+    .feat-card .feat-title {
+      font-size: 1.0625rem;
+      font-weight: 800;
+      position: relative;
+      z-index: 1;
+      margin-bottom: 2px;
+    }
+    .feat-card .feat-desc {
+      font-size: 0.6875rem;
+      opacity: 0.85;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Grid: 2x2 secondary cards */
+    .grid-2x2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    .grid-card {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      text-decoration: none;
+      color: inherit;
+      transition: all var(--duration-normal) var(--ease-out);
+    }
+    .grid-card:hover {
+      border-color: var(--mi-orange);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .grid-card:active { transform: scale(0.97); }
+    .grid-card .gc-icon {
+      width: 40px; height: 40px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.125rem;
+    }
+    .gc-icon.green { background: var(--mi-green-light); color: var(--mi-green); }
+    .gc-icon.blue { background: var(--mi-blue-light); color: var(--mi-blue); }
+    .gc-icon.teal { background: #ECFDF5; color: #047857; }
+    .gc-icon.amber { background: var(--mi-yellow-light); color: var(--mi-yellow); }
+    .grid-card .gc-title {
+      font-size: 0.9375rem;
+      font-weight: 700;
+    }
+    .grid-card .gc-desc {
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+      margin-top: -6px;
+    }
+
+    /* ── Streak Toast (bottom overlay for 0 streak) ── */
+    .daily-tip {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .daily-tip .tip-icon {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--mi-yellow-light);
+      color: var(--mi-yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.125rem;
+      flex-shrink: 0;
+    }
+    .daily-tip .tip-text {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .daily-tip .tip-text strong {
+      color: var(--text-primary);
+    }
+
+    /* ── Footer ──────────────────────────────── */
+    .footer-v2 {
+      text-align: center;
+      padding: 16px 0 8px;
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Animations ──────────────────────────── */
+    .ani-1 { animation: fadeIn 0.4s var(--ease-out) both; animation-delay: 0s; }
+    .ani-2 { animation: fadeIn 0.4s var(--ease-out) both; animation-delay: 0.06s; }
+    .ani-3 { animation: fadeIn 0.4s var(--ease-out) both; animation-delay: 0.12s; }
+    .ani-4 { animation: fadeIn 0.4s var(--ease-out) both; animation-delay: 0.18s; }
+    .ani-5 { animation: fadeIn 0.4s var(--ease-out) both; animation-delay: 0.24s; }
+  </style>
+</head>
+<body>
+  <!-- Top Nav -->
+  <nav class="nav-header">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">
+        <div class="nav-logo">Mi</div>
+        <div>
+          <span class="nav-title">Mi English</span>
+          <span class="nav-subtitle">v2.6</span>
+        </div>
+      </a>
+      <div class="nav-stats">
+        <span class="nav-streak" id="navStreak">
+          <i class="fas fa-fire"></i>
+          <span id="streakCount">0</span>
+        </span>
+        <span class="level-badge" id="levelBadge">Lv.1</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container page-content">
+
+    <!-- Hero Banner -->
+    <div class="hero-banner ani-1">
+      <div class="hero-top">
+        <div>
+          <div class="hero-greeting" id="heroGreeting">Good morning</div>
+          <div class="hero-title">Mi English</div>
+          <div class="hero-sub">小米国际英语学习助手</div>
+        </div>
+        <div class="hero-streak-badge" id="streakBadge">
+          <i class="fas fa-fire"></i>
+          <span id="streakNum">0</span> 天
+        </div>
+      </div>
+      <div class="hero-progress">
+        <!-- SVG ring -->
+        <div class="hero-ring">
+          <svg width="64" height="64" viewBox="0 0 64 64">
+            <circle class="hero-ring-bg" cx="32" cy="32" r="27" />
+            <circle class="hero-ring-fill" id="progressRing" cx="32" cy="32" r="27"
+              stroke-dasharray="169.65" stroke-dashoffset="169.65" />
+          </svg>
+          <div class="hero-ring-text" id="ringPct">0%</div>
+        </div>
+        <div class="hero-stats-row">
+          <div class="hero-stat-line">
+            <span class="label">词汇掌握进度</span>
+            <span class="val" id="heroMastered">0 / 0</span>
+          </div>
+          <div class="hero-bar">
+            <div class="hero-bar-fill" id="heroBar" style="width:0%"></div>
+          </div>
+          <div class="hero-stat-line" style="margin-top:2px;">
+            <span class="label">等级 <span id="heroLevel">Lv.1</span></span>
+            <span class="val"><span id="heroXP">0</span> XP</span>
+          </div>
+        </div>
+      </div>
+      <a href="learn.html" class="hero-cta">
+        <i class="fas fa-play"></i> 继续学习
+      </a>
+    </div>
+
+    <!-- Quick Stats -->
+    <div class="stat-row ani-2">
+      <div class="stat-card-v2">
+        <div class="icon orange"><i class="fas fa-language"></i></div>
+        <div class="num orange" id="totalWords">0</div>
+        <div class="desc">总词汇</div>
+      </div>
+      <div class="stat-card-v2">
+        <div class="icon green"><i class="fas fa-check-circle"></i></div>
+        <div class="num green" id="masteredWords">0</div>
+        <div class="desc">已掌握</div>
+      </div>
+      <div class="stat-card-v2">
+        <div class="icon blue"><i class="fas fa-graduation-cap"></i></div>
+        <div class="num blue" id="lessonsCount">0</div>
+        <div class="desc">课程数</div>
+      </div>
+    </div>
+
+    <!-- Daily Tip -->
+    <div class="daily-tip ani-3" id="dailyTip" style="display:none;">
+      <div class="tip-icon"><i class="fas fa-lightbulb"></i></div>
+      <div class="tip-text" id="tipContent">
+        <strong>学习小贴士：</strong>每天复习 10 个词汇，一个月就能掌握 300 个！
+      </div>
+    </div>
+
+    <!-- Featured Section -->
+    <div class="section-label ani-3"><i class="fas fa-star"></i> 核心功能</div>
+    <div class="featured-row ani-3">
+      <a href="learn.html" class="feat-card orange">
+        <div class="feat-icon"><i class="fas fa-book-open"></i></div>
+        <div class="feat-title">闪卡学习</div>
+        <div class="feat-desc">翻转卡片，轻松记忆</div>
+      </a>
+      <a href="scenarios.html" class="feat-card indigo">
+        <div class="feat-icon"><i class="fas fa-map-location-dot"></i></div>
+        <div class="feat-title">场景学习</div>
+        <div class="feat-desc">真实业务场景练表达</div>
+      </a>
+    </div>
+
+    <!-- Grid 2x2 -->
+    <div class="grid-2x2 ani-4">
+      <a href="practice.html" class="grid-card">
+        <div class="gc-icon green"><i class="fas fa-gamepad"></i></div>
+        <div class="gc-title">练习测试</div>
+        <div class="gc-desc">配对、翻译、填空</div>
+      </a>
+      <a href="browse.html" class="grid-card">
+        <div class="gc-icon blue"><i class="fas fa-list-ul"></i></div>
+        <div class="gc-title">词汇浏览</div>
+        <div class="gc-desc">搜索全部词汇</div>
+      </a>
+      <a href="roots.html" class="grid-card">
+        <div class="gc-icon teal"><i class="fas fa-seedling"></i></div>
+        <div class="gc-title">词根学习</div>
+        <div class="gc-desc">词根拆解与积木</div>
+      </a>
+      <a href="progress.html" class="grid-card">
+        <div class="gc-icon amber"><i class="fas fa-chart-line"></i></div>
+        <div class="gc-title">学习进度</div>
+        <div class="gc-desc">成就与数据管理</div>
+      </a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer-v2 ani-5">小米国际部英语培训专用</div>
+  </div>
+
+  <!-- Bottom Tab Bar -->
+  <nav class="tab-bar">
+    <a href="index.html" class="tab-bar-btn" data-tab="index"><i class="fas fa-home"></i><span>首页</span></a>
+    <a href="learn.html" class="tab-bar-btn" data-tab="learn"><i class="fas fa-book-open"></i><span>学习</span></a>
+    <a href="practice.html" class="tab-bar-btn" data-tab="practice"><i class="fas fa-gamepad"></i><span>练习</span></a>
+    <a href="scenarios.html" class="tab-bar-btn" data-tab="scenarios"><i class="fas fa-map-location-dot"></i><span>场景</span></a>
+    <button type="button" class="tab-bar-btn" data-tab="more" data-action="open-more-menu"><i class="fas fa-ellipsis"></i><span>更多</span></button>
+  </nav>
+
+  <script src="js/data.js?v=2.6"></script>
+  <script src="js/storage.js?v=2.6"></script>
+  <script src="js/nav-more.js?v=1.0"></script>
+  <script>
+    // ── Init ──
+    const { state } = initSession(loadState());
+
+    // Nav bar
+    document.getElementById('streakCount').textContent = state.streak;
+    document.getElementById('levelBadge').textContent = 'Lv.' + state.level + ' ' + getLevelName(state.level);
+
+    // ── Hero ──
+    var hour = new Date().getHours();
+    var greeting = hour < 12 ? 'Good morning ☀️' : hour < 18 ? 'Good afternoon 👋' : 'Good evening 🌙';
+    document.getElementById('heroGreeting').textContent = greeting;
+    document.getElementById('streakNum').textContent = state.streak;
+    document.getElementById('heroLevel').textContent = 'Lv.' + state.level + ' ' + getLevelName(state.level);
+    document.getElementById('heroXP').textContent = state.xp || 0;
+
+    // Progress ring
+    var allVocab = getAllVocab();
+    var total = allVocab.length;
+    var mastered = countStatus(state, 'mastered');
+    var pct = total > 0 ? Math.round(mastered / total * 100) : 0;
+    var circumference = 2 * Math.PI * 27; // r=27
+    var offset = circumference - (pct / 100) * circumference;
+
+    document.getElementById('ringPct').textContent = pct + '%';
+    document.getElementById('heroMastered').textContent = mastered + ' / ' + total;
+    document.getElementById('heroBar').style.width = pct + '%';
+
+    // Animate ring after slight delay
+    requestAnimationFrame(function() {
+      document.getElementById('progressRing').style.strokeDashoffset = offset;
+    });
+
+    // Stat cards
+    document.getElementById('totalWords').textContent = total;
+    document.getElementById('masteredWords').textContent = mastered;
+    document.getElementById('lessonsCount').textContent = DATA.lessons.length;
+
+    // Daily tip (rotate tips)
+    var tips = [
+      '每天复习 10 个词汇，一个月就能掌握 300 个！',
+      '试试场景学习，在真实语境中记单词更牢固。',
+      '用词根拆解法，一个词根带出一串词汇！',
+      '练习模式的填空题最考验真功夫，试试看。',
+      '连续学习 7 天可以解锁成就勋章哦。'
+    ];
+    var tipEl = document.getElementById('dailyTip');
+    tipEl.style.display = 'flex';
+    document.getElementById('tipContent').innerHTML = '<strong>💡 学习小贴士：</strong>' + tips[Math.floor(Math.random() * tips.length)];
+
+    // Streak badge glow if active
+    if (state.streak > 0) {
+      document.getElementById('streakBadge').style.background = 'rgba(255,255,255,0.32)';
+    }
+  </script>
+</body>
+</html>

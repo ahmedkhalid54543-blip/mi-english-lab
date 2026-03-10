@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>学习 - Mi English</title>
+  <link rel="stylesheet" href="css/style.css?v=2.6">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    .keyboard-hint {
+      text-align: center; font-size: 0.6875rem;
+      color: var(--text-muted); margin-top: 12px;
+    }
+    .keyboard-hint kbd {
+      background: var(--bg-hover); padding: 2px 6px;
+      border-radius: 4px; font-size: 0.625rem;
+      border: 1px solid var(--border-light);
+    }
+    .type-toggle { display: flex; gap: 6px; }
+    .type-toggle .filter-btn.active {
+      background: var(--mi-orange); color: white; border-color: var(--mi-orange);
+    }
+    .flashcard-audio-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 10;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Nav -->
+  <nav class="nav-header">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">
+        <div class="nav-logo">Mi</div>
+        <span class="nav-title">闪卡学习</span>
+      </a>
+      <div class="nav-stats">
+        <span class="nav-streak" id="navStreak"><i class="fas fa-fire"></i><span id="streakCount">0</span></span>
+        <span class="level-badge" id="levelBadge">Lv.1</span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container page-content">
+    <!-- Filter Bar -->
+    <div class="filter-bar animate-fadeIn">
+      <select class="filter-select" id="lessonFilter" onchange="applyFilters()">
+        <option value="all">全部课程</option>
+      </select>
+      <select class="filter-select" id="statusFilter" onchange="applyFilters()">
+        <option value="all">全部状态</option>
+        <option value="new">新词</option>
+        <option value="unknown">不会</option>
+        <option value="shaky">不熟</option>
+        <option value="mastered">已掌握</option>
+      </select>
+      <span class="filter-counter" id="cardCounter">0 / 0</span>
+    </div>
+
+    <!-- Type Toggle -->
+    <div class="filter-bar animate-fadeIn delay-1">
+      <div class="type-toggle">
+        <button class="filter-btn active" onclick="setCardType('vocab')" id="typeVocab">词汇</button>
+        <button class="filter-btn" onclick="setCardType('pattern')" id="typePattern">句式</button>
+      </div>
+      <button class="filter-btn" onclick="shuffleCards()" title="Shuffle"><i class="fas fa-shuffle"></i></button>
+    </div>
+
+    <!-- Flashcard -->
+    <div class="flashcard-container animate-scaleIn delay-2">
+      <div class="flashcard-inner" id="flashcard" onclick="flipCard()">
+        <div class="flashcard-face flashcard-front">
+          <span class="flashcard-tag" id="cardLesson">L01</span>
+          <button class="speak-btn flashcard-audio-btn" onclick="speakCurrentCard(event)" aria-label="播放发音">
+            <i class="fas fa-volume-high"></i>
+          </button>
+          <div class="flashcard-en" id="cardEn">加载中...</div>
+          <div class="flashcard-hint"><i class="fas fa-hand-pointer"></i> 点击翻转</div>
+        </div>
+        <div class="flashcard-face flashcard-back">
+          <span class="flashcard-tag" id="cardLessonBack">L01</span>
+          <button class="speak-btn flashcard-audio-btn" onclick="speakCurrentCard(event)" aria-label="播放发音">
+            <i class="fas fa-volume-high"></i>
+          </button>
+          <div class="flashcard-zh" id="cardZh">-</div>
+          <div class="flashcard-scene" id="cardScene"></div>
+          <div class="flashcard-example" id="cardExample"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="action-row animate-fadeIn delay-3">
+      <button class="action-btn action-btn--green" onclick="markCard('mastered')">
+        <i class="fas fa-check"></i> 掌握了
+      </button>
+      <button class="action-btn action-btn--yellow" onclick="markCard('shaky')">
+        <i class="fas fa-minus"></i> 不太熟
+      </button>
+      <button class="action-btn action-btn--red" onclick="markCard('unknown')">
+        <i class="fas fa-times"></i> 不会
+      </button>
+    </div>
+
+    <!-- Navigation -->
+    <div class="nav-arrows animate-fadeIn delay-3">
+      <button class="nav-arrow" onclick="prevCard()"><i class="fas fa-chevron-left"></i></button>
+      <span class="card-status" id="cardStatus">1 / 1</span>
+      <button class="nav-arrow" onclick="nextCard()"><i class="fas fa-chevron-right"></i></button>
+    </div>
+
+    <!-- Keyboard Hints -->
+    <div class="keyboard-hint animate-fadeIn delay-4">
+      <kbd>←</kbd> 上一个 &nbsp; <kbd>→</kbd> 下一个 &nbsp; <kbd>Space</kbd> 翻转 &nbsp;
+      <kbd>1</kbd> 掌握了 &nbsp; <kbd>2</kbd> 不太熟 &nbsp; <kbd>3</kbd> 不会
+    </div>
+  </div>
+
+  <!-- Bottom Tab Bar -->
+  <nav class="tab-bar">
+    <a href="index.html" class="tab-bar-btn" data-tab="index"><i class="fas fa-home"></i><span>首页</span></a>
+    <a href="learn.html" class="tab-bar-btn" data-tab="learn"><i class="fas fa-book-open"></i><span>学习</span></a>
+    <a href="practice.html" class="tab-bar-btn" data-tab="practice"><i class="fas fa-gamepad"></i><span>练习</span></a>
+    <a href="scenarios.html" class="tab-bar-btn" data-tab="scenarios"><i class="fas fa-map-location-dot"></i><span>场景</span></a>
+    <button type="button" class="tab-bar-btn" data-tab="more" data-action="open-more-menu"><i class="fas fa-ellipsis"></i><span>更多</span></button>
+  </nav>
+
+  <!-- Toast -->
+  <div class="toast" id="toast"></div>
+
+  <script src="js/data.js?v=2.6"></script>
+  <script src="js/storage.js?v=2.6"></script>
+  <script src="js/audio-manifest.js?v=1.4"></script>
+  <script src="js/tts.js?v=1.2"></script>
+  <script src="js/nav-more.js?v=1.0"></script>
+  <script>
+    let state = loadState();
+    let cards = [];
+    let currentIdx = 0;
+    let cardType = 'vocab';
+
+    // Init
+    function init() {
+      // Populate lesson filter
+      const sel = document.getElementById('lessonFilter');
+      DATA.lessons.forEach(l => {
+        const opt = document.createElement('option');
+        opt.value = l.id;
+        opt.textContent = `${l.id} - ${l.title}`;
+        sel.appendChild(opt);
+      });
+      if (state.lastLesson) sel.value = state.lastLesson;
+
+      updateNav();
+      applyFilters();
+
+      const result = initSession(state);
+      state = result.state;
+      updateNav();
+    }
+
+    function updateNav() {
+      document.getElementById('streakCount').textContent = state.streak;
+      document.getElementById('levelBadge').textContent = `Lv.${state.level} ${getLevelName(state.level)}`;
+    }
+
+    function setCardType(type) {
+      cardType = type;
+      document.getElementById('typeVocab').classList.toggle('active', type === 'vocab');
+      document.getElementById('typePattern').classList.toggle('active', type === 'pattern');
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const lesson = document.getElementById('lessonFilter').value;
+      const status = document.getElementById('statusFilter').value;
+
+      state.lastLesson = lesson;
+      saveState(state);
+
+      if (cardType === 'vocab') {
+        cards = getAllVocab(lesson);
+      } else {
+        cards = getAllPatterns(lesson);
+      }
+
+      // Filter by status
+      if (status !== 'all') {
+        cards = cards.filter(c => {
+          const s = cardType === 'vocab' ? state.vocabStatus[c.id] : state.patternStatus[c.id];
+          if (status === 'new') return !s;
+          return s === status;
+        });
+      }
+
+      currentIdx = 0;
+      document.getElementById('cardCounter').textContent = `共 ${cards.length} 张卡片`;
+      renderCard();
+    }
+
+    function shuffleCards() {
+      cards = shuffle(cards);
+      currentIdx = 0;
+      renderCard();
+      showToast('已随机排序！🔀');
+    }
+
+    function renderCard() {
+      if (cards.length === 0) {
+        document.getElementById('cardEn').textContent = '没有找到卡片';
+        document.getElementById('cardZh').textContent = '试试调整筛选条件';
+        document.getElementById('cardScene').textContent = '';
+        document.getElementById('cardExample').textContent = '';
+        document.getElementById('cardStatus').textContent = '0 / 0';
+        return;
+      }
+
+      const c = cards[currentIdx];
+      const fc = document.getElementById('flashcard');
+      fc.classList.remove('flipped');
+
+      // Front
+      document.getElementById('cardLesson').textContent = c.lessonId;
+      document.getElementById('cardEn').textContent = c.type === 'pattern' ? c.template || c.en : c.en;
+
+      // Back
+      document.getElementById('cardLessonBack').textContent = c.lessonId;
+      document.getElementById('cardZh').textContent = c.zh;
+      document.getElementById('cardScene').textContent = c.scene ? `🎯 ${c.scene}` : '';
+      document.getElementById('cardExample').textContent = c.example ? `"${c.example}"` : '';
+
+      // Counter
+      document.getElementById('cardStatus').textContent = `${currentIdx + 1} / ${cards.length}`;
+    }
+
+    function flipCard() {
+      document.getElementById('flashcard').classList.toggle('flipped');
+    }
+
+    function speakCurrentCard(event) {
+      if (event) {
+        event.stopPropagation();
+        event.preventDefault();
+      }
+
+      if (!cards.length) {
+        showToast('当前没有可发音内容');
+        return;
+      }
+
+      const current = cards[currentIdx];
+      const text = current.type === 'pattern' ? (current.example || current.template || current.en) : current.en;
+      if (!text) return;
+
+      const speech = window.MiSpeech || window.MiTTS;
+      if (!speech || !speech.supported()) {
+        showToast('当前浏览器不支持发音');
+        return;
+      }
+
+      const result = speech.speak(text, { lang: 'en-US', rate: 0.92, preferAudio: true });
+      if (!result.ok) {
+        showToast('发音失败，请重试');
+      }
+    }
+
+    function nextCard() {
+      if (cards.length === 0) return;
+      currentIdx = (currentIdx + 1) % cards.length;
+      renderCard();
+    }
+
+    function prevCard() {
+      if (cards.length === 0) return;
+      currentIdx = (currentIdx - 1 + cards.length) % cards.length;
+      renderCard();
+    }
+
+    function markCard(status) {
+      if (cards.length === 0) return;
+      const c = cards[currentIdx];
+      const pool = cardType === 'vocab' ? 'vocabStatus' : 'patternStatus';
+      const oldStatus = state[pool][c.id];
+      state[pool][c.id] = status;
+
+      // XP
+      state = addXP(state, XP_REWARDS.markCard);
+      if (status === 'mastered' && oldStatus !== 'mastered') {
+        state = addXP(state, XP_REWARDS.masterCard);
+      }
+
+      // Check achievements
+      const newAch = checkAchievements(state);
+      saveState(state);
+      updateNav();
+
+      // Show achievement toast
+      newAch.forEach(a => {
+        showToast(`🏆 Achievement: ${a.title} — ${a.desc}`, 'achievement');
+      });
+
+      // Show status feedback
+      const labels = { mastered: '✅ 掌握了！', shaky: '🔶 不太熟', unknown: '❌ 不会' };
+      if (newAch.length === 0) showToast(labels[status]);
+
+      nextCard();
+    }
+
+    function showToast(msg, type) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = 'toast show' + (type === 'achievement' ? ' achievement' : '');
+      setTimeout(() => { t.className = 'toast'; }, 2000);
+    }
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', e => {
+      if (e.key === 'ArrowRight') nextCard();
+      else if (e.key === 'ArrowLeft') prevCard();
+      else if (e.key === ' ') { e.preventDefault(); flipCard(); }
+      else if (e.key === '1') markCard('mastered');
+      else if (e.key === '2') markCard('shaky');
+      else if (e.key === '3') markCard('unknown');
+    });
+
+    // Swipe support
+    let touchStartX = 0;
+    document.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; });
+    document.addEventListener('touchend', e => {
+      const diff = e.changedTouches[0].clientX - touchStartX;
+      if (Math.abs(diff) > 60) {
+        if (diff > 0) prevCard(); else nextCard();
+      }
+    });
+
+    init();
+  </script>
+</body>
+</html>

@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>词根学习 - Mi English</title>
+  <link rel="stylesheet" href="css/style.css?v=2.6">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <style>
+    /* ===== View Management ===== */
+    .view { display: none; }
+    .view.active { display: block; }
+
+    /* ===== Page Header ===== */
+    .roots-header {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .roots-header h2 {
+      font-size: 1.125rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .roots-header p {
+      color: var(--text-secondary);
+      font-size: 0.8125rem;
+    }
+
+    /* ===== Stats Row ===== */
+    .root-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .root-stat {
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-light);
+      padding: 10px 8px;
+      text-align: center;
+    }
+    .root-stat-value {
+      font-size: 1.125rem;
+      font-weight: 800;
+      color: var(--mi-orange);
+    }
+    .root-stat-label {
+      margin-top: 2px;
+      color: var(--text-muted);
+      font-size: 0.6875rem;
+    }
+
+    /* ===== Root Grid (List View) ===== */
+    .root-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+    .root-tile {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      padding: 14px 12px;
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-out);
+      position: relative;
+      overflow: hidden;
+    }
+    .root-tile:hover {
+      border-color: var(--mi-orange);
+      box-shadow: var(--shadow-sm);
+      transform: translateY(-1px);
+    }
+    .root-tile:active {
+      transform: scale(0.98);
+    }
+    .root-tile-emoji {
+      font-size: 1.75rem;
+      margin-bottom: 6px;
+      line-height: 1;
+    }
+    .root-tile-name {
+      font-size: 0.9375rem;
+      font-weight: 800;
+      margin-bottom: 2px;
+    }
+    .root-tile-meaning {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+    .root-tile-words {
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .root-tile-badge {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.625rem;
+    }
+    .root-tile-badge.mastered {
+      background: var(--mi-green-light);
+      color: var(--mi-green);
+    }
+    .root-tile-badge.unmastered {
+      background: var(--bg-hover);
+      color: var(--text-muted);
+    }
+
+    /* ===== Detail View ===== */
+    .detail-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--mi-orange);
+      cursor: pointer;
+      margin-bottom: 12px;
+      border: none;
+      background: none;
+      padding: 4px 0;
+    }
+    .detail-back:hover { opacity: 0.8; }
+
+    .detail-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .detail-emoji {
+      font-size: 2.25rem;
+      line-height: 1;
+    }
+    .detail-title-group {
+      flex: 1;
+    }
+    .detail-root-name {
+      font-size: 1.375rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .detail-origin {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      color: var(--mi-blue);
+      background: var(--mi-blue-light);
+      border-radius: var(--radius-full);
+      padding: 2px 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .detail-meaning {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+    .mastered-chip {
+      font-size: 0.6875rem;
+      font-weight: 700;
+      border-radius: var(--radius-full);
+      padding: 4px 12px;
+      cursor: pointer;
+      border: none;
+      transition: all var(--duration-fast);
+    }
+    .mastered-chip.on {
+      color: var(--mi-green);
+      background: var(--mi-green-light);
+    }
+    .mastered-chip.off {
+      color: var(--text-muted);
+      background: var(--bg-hover);
+    }
+    .mastered-chip:hover { opacity: 0.8; }
+
+    .detail-note {
+      color: var(--text-secondary);
+      font-size: 0.8125rem;
+      margin-bottom: 14px;
+      padding: 10px 12px;
+      background: var(--mi-orange-light);
+      border-radius: var(--radius-sm);
+      line-height: 1.6;
+    }
+
+    .example-section-title {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+
+    .example-list {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .example-item {
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      padding: 12px;
+      transition: all var(--duration-fast);
+    }
+    .example-item:hover {
+      box-shadow: var(--shadow-sm);
+    }
+    .example-word-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+    .example-word {
+      font-size: 0.9375rem;
+      font-weight: 700;
+    }
+    .example-breakdown {
+      font-size: 0.75rem;
+      color: var(--mi-orange-dark);
+      font-weight: 600;
+      margin-bottom: 3px;
+    }
+    .example-meaning {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      margin-bottom: 6px;
+    }
+    .example-sentence {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      border-top: 1px dashed var(--border-light);
+      padding-top: 6px;
+      font-style: italic;
+    }
+
+    .detail-actions {
+      display: flex;
+      gap: 8px;
+    }
+    .detail-actions .btn { flex: 1; }
+
+    /* ===== Quiz View ===== */
+    .quiz-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--mi-orange);
+      cursor: pointer;
+      margin-bottom: 12px;
+      border: none;
+      background: none;
+      padding: 4px 0;
+    }
+    .quiz-back:hover { opacity: 0.8; }
+
+    .quiz-progress-bar {
+      height: 6px;
+      background: var(--bg-hover);
+      border-radius: var(--radius-full);
+      margin-bottom: 16px;
+      overflow: hidden;
+    }
+    .quiz-progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--mi-orange), var(--mi-yellow));
+      border-radius: var(--radius-full);
+      transition: width var(--duration-normal) var(--ease-out);
+    }
+
+    .quiz-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-lg);
+      padding: 20px 16px;
+      margin-bottom: 12px;
+    }
+    .quiz-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .quiz-meta {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    .quiz-score {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--mi-orange-dark);
+      background: var(--mi-orange-light);
+      border-radius: var(--radius-full);
+      padding: 3px 10px;
+    }
+    .quiz-q {
+      font-size: 1.0625rem;
+      font-weight: 700;
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+    .quiz-options {
+      display: grid;
+      gap: 8px;
+    }
+    .quiz-option {
+      width: 100%;
+      text-align: left;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      color: var(--text-primary);
+      padding: 12px 14px;
+      font-size: 0.875rem;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all var(--duration-fast);
+    }
+    .quiz-option:hover {
+      border-color: var(--mi-orange);
+      background: var(--mi-orange-light);
+    }
+    .quiz-option.correct {
+      border-color: var(--mi-green);
+      background: var(--mi-green-light);
+    }
+    .quiz-option.wrong {
+      border-color: var(--mi-red);
+      background: var(--mi-red-light);
+    }
+    .quiz-option.disabled {
+      pointer-events: none;
+      opacity: 0.7;
+    }
+    .quiz-result {
+      margin-top: 12px;
+      border: 1px solid var(--border-light);
+      border-radius: var(--radius-sm);
+      background: var(--bg-hover);
+      padding: 12px;
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      line-height: 1.65;
+    }
+    .quiz-result.correct {
+      border-color: rgba(16,185,129,0.35);
+      background: var(--mi-green-light);
+    }
+    .quiz-result.wrong {
+      border-color: rgba(239,68,68,0.3);
+      background: var(--mi-red-light);
+    }
+
+    .quiz-finish {
+      text-align: center;
+      padding: 20px 0;
+    }
+    .quiz-finish-emoji {
+      font-size: 3rem;
+      margin-bottom: 8px;
+    }
+    .quiz-finish h3 {
+      font-size: 1.125rem;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+    .quiz-finish p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 16px;
+    }
+    .quiz-finish-score {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--mi-orange);
+      margin-bottom: 4px;
+    }
+
+    .quiz-history {
+      margin-top: 16px;
+    }
+    .history-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+      border-top: 1px solid var(--border-light);
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+    .history-row:first-child { border-top: none; }
+
+    @media (max-width: 360px) {
+      .root-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="nav-header">
+    <div class="nav-inner">
+      <a class="nav-brand" href="index.html">
+        <div class="nav-logo">Mi</div>
+        <span class="nav-title">词根学习</span>
+      </a>
+      <div class="nav-stats">
+        <span class="nav-streak" id="navStreak"><i class="fas fa-fire"></i><span id="streakCount">0</span></span>
+        <span class="level-badge" id="levelBadge">Lv.1</span>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container page-content">
+
+    <!-- ===== VIEW 1: Root List ===== -->
+    <div class="view active" id="viewList">
+      <div class="roots-header animate-fadeIn">
+        <h2>词根 = 积木</h2>
+        <p>拆开词根看本质，英语词汇不用死记</p>
+      </div>
+
+      <div class="root-stats animate-fadeIn delay-1" id="rootStats"></div>
+
+      <div class="search-box animate-fadeIn delay-1">
+        <i class="fas fa-search"></i>
+        <input class="search-input" id="rootSearch" placeholder="搜索词根、含义或例词..." oninput="applyFilters()">
+      </div>
+
+      <div class="root-grid animate-fadeIn delay-2" id="rootGrid"></div>
+    </div>
+
+    <!-- ===== VIEW 2: Root Detail ===== -->
+    <div class="view" id="viewDetail">
+      <button class="detail-back" onclick="showList()">
+        <i class="fas fa-chevron-left"></i> 返回词根列表
+      </button>
+      <div id="detailContent"></div>
+    </div>
+
+    <!-- ===== VIEW 3: Quiz ===== -->
+    <div class="view" id="viewQuiz">
+      <button class="quiz-back" onclick="backFromQuiz()">
+        <i class="fas fa-chevron-left"></i> 返回
+      </button>
+      <div class="quiz-progress-bar">
+        <div class="quiz-progress-fill" id="quizProgressFill" style="width:0%"></div>
+      </div>
+      <div class="quiz-card" id="quizCard"></div>
+      <div class="quiz-history card card-padded" id="quizHistoryCard" style="display:none;">
+        <h3 class="section-title"><i class="fas fa-history"></i> 测验记录</h3>
+        <div id="quizHistory"></div>
+      </div>
+    </div>
+
+  </div>
+
+  <nav class="tab-bar">
+    <a href="index.html" class="tab-bar-btn" data-tab="index"><i class="fas fa-home"></i><span>首页</span></a>
+    <a href="learn.html" class="tab-bar-btn" data-tab="learn"><i class="fas fa-book-open"></i><span>学习</span></a>
+    <a href="practice.html" class="tab-bar-btn" data-tab="practice"><i class="fas fa-gamepad"></i><span>练习</span></a>
+    <a href="scenarios.html" class="tab-bar-btn" data-tab="scenarios"><i class="fas fa-map-location-dot"></i><span>场景</span></a>
+    <button type="button" class="tab-bar-btn" data-tab="more" data-action="open-more-menu"><i class="fas fa-ellipsis"></i><span>更多</span></button>
+  </nav>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="js/data.js?v=2.6"></script>
+  <script src="js/storage.js?v=2.6"></script>
+  <script src="js/audio-manifest.js?v=1.4"></script>
+  <script src="js/tts.js?v=1.2"></script>
+  <script src="js/roots.js?v=0.1"></script>
+  <script src="js/nav-more.js?v=1.0"></script>
+  <script>
+    /* ===== Emoji Map ===== */
+    var ROOT_EMOJI = {
+      spect: '👀', port: '📦', dict: '💬', scrib: '✍️',
+      vis: '👁️', aud: '👂', graph: '📊', bio: '🧬',
+      tele: '📡', phon: '🔊', ject: '🎯', tract: '🧲',
+      cred: '🤝', rupt: '💥', struct: '🏗️', form: '🔷',
+      chron: '⏰', manu: '✋', mot: '🏃', luc: '💡'
+    };
+
+    /* ===== State ===== */
+    var appState = loadState();
+    var rootState = loadRootState();
+    var filteredRoots = [];
+    var currentView = 'list';
+    var currentDetailId = null;
+
+    var quizBank = [];
+    var quizIndex = 0;
+    var quizScore = 0;
+    var quizAnswered = false;
+    var currentQuiz = null;
+    var quizSaved = false;
+
+    function showToast(msg) {
+      var t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = 'toast show';
+      setTimeout(function() { t.className = 'toast'; }, 2200);
+    }
+
+    function speakRootText(encoded, event) {
+      if (event) { event.preventDefault(); event.stopPropagation(); }
+      var text = '';
+      try { text = decodeURIComponent(String(encoded || '')); } catch(e) { text = String(encoded || ''); }
+      text = text.trim();
+      if (!text) return;
+      var speech = window.MiSpeech || window.MiTTS;
+      if (!speech || !speech.supported()) { showToast('当前浏览器不支持发音'); return; }
+      var result = speech.speak(text, { lang: 'en-US', rate: 0.92, preferAudio: true });
+      if (!result.ok) showToast('发音失败，请重试');
+    }
+
+    /* ===== View Switching ===== */
+    function switchView(name) {
+      currentView = name;
+      var views = document.querySelectorAll('.view');
+      for (var i = 0; i < views.length; i++) {
+        views[i].classList.remove('active');
+      }
+      document.getElementById('view' + name.charAt(0).toUpperCase() + name.slice(1)).classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    function showList() {
+      switchView('list');
+      renderStats();
+      renderGrid();
+    }
+
+    function showDetail(rootId) {
+      currentDetailId = rootId;
+      rootState.currentRootId = rootId;
+      rootState = saveRootState(rootState);
+      switchView('detail');
+      renderDetail();
+    }
+
+    function showQuiz() {
+      switchView('quiz');
+      restartQuiz();
+    }
+
+    function backFromQuiz() {
+      if (currentDetailId) {
+        showDetail(currentDetailId);
+      } else {
+        showList();
+      }
+    }
+
+    /* ===== Initialization ===== */
+    function init() {
+      var session = initSession(appState);
+      appState = session.state;
+      appState.lastTab = 'roots';
+      saveState(appState);
+
+      rootState = updateRootStreak(rootState);
+      rootState = saveRootState(rootState);
+
+      renderNav();
+      applyFilters();
+      renderStats();
+    }
+
+    function renderNav() {
+      document.getElementById('streakCount').textContent = appState.streak;
+      document.getElementById('levelBadge').textContent = 'Lv.' + appState.level + ' ' + getLevelName(appState.level);
+    }
+
+    /* ===== List View ===== */
+    function applyFilters() {
+      var query = document.getElementById('rootSearch').value.trim();
+      filteredRoots = filterRoots({ origin: 'all', query: query });
+      renderGrid();
+    }
+
+    function renderStats() {
+      var stats = getRootStats(rootState);
+      document.getElementById('rootStats').innerHTML =
+        '<div class="root-stat">' +
+          '<div class="root-stat-value">' + stats.total + '</div>' +
+          '<div class="root-stat-label">总词根</div>' +
+        '</div>' +
+        '<div class="root-stat">' +
+          '<div class="root-stat-value">' + stats.mastered + '</div>' +
+          '<div class="root-stat-label">已掌握</div>' +
+        '</div>' +
+        '<div class="root-stat">' +
+          '<div class="root-stat-value">' + stats.progress + '%</div>' +
+          '<div class="root-stat-label">掌握度</div>' +
+        '</div>';
+    }
+
+    function renderGrid() {
+      var grid = document.getElementById('rootGrid');
+      if (filteredRoots.length === 0) {
+        grid.innerHTML = '<div class="empty-state" style="padding:20px;grid-column:1/-1;"><p>没有匹配词根</p></div>';
+        return;
+      }
+
+      grid.innerHTML = filteredRoots.map(function(root) {
+        var emoji = ROOT_EMOJI[root.id] || '📖';
+        var mastered = isRootMastered(rootState, root.id);
+        var words = root.examples.map(function(ex) { return ex.word; }).join(' · ');
+        return '<div class="root-tile" onclick="showDetail(\'' + escapeHTML(root.id) + '\')">' +
+          '<div class="root-tile-badge ' + (mastered ? 'mastered' : 'unmastered') + '">' +
+            '<i class="fas ' + (mastered ? 'fa-check' : 'fa-circle') + '"></i>' +
+          '</div>' +
+          '<div class="root-tile-emoji">' + emoji + '</div>' +
+          '<div class="root-tile-name">' + escapeHTML(root.root) + '</div>' +
+          '<div class="root-tile-meaning">' + escapeHTML(root.meaningZh) + ' · ' + escapeHTML(root.meaningEn) + '</div>' +
+          '<div class="root-tile-words">' + escapeHTML(words) + '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    /* ===== Detail View ===== */
+    function renderDetail() {
+      var root = getRootById(currentDetailId);
+      var box = document.getElementById('detailContent');
+      if (!root) {
+        box.innerHTML = '<div class="empty-state" style="padding:20px;"><p>词根数据异常</p></div>';
+        return;
+      }
+
+      var emoji = ROOT_EMOJI[root.id] || '📖';
+      var mastered = isRootMastered(rootState, root.id);
+
+      var html = '<div class="card card-padded animate-fadeIn">';
+
+      /* Header */
+      html += '<div class="detail-header">' +
+        '<div class="detail-emoji">' + emoji + '</div>' +
+        '<div class="detail-title-group">' +
+          '<div class="detail-root-name">' +
+            escapeHTML(root.root) +
+            ' <button class="speak-btn speak-btn--sm" type="button" onclick="speakRootText(\'' + encodeURIComponent(root.root) + '\', event)" aria-label="播放词根发音"><i class="fas fa-volume-high"></i></button>' +
+            ' <span class="detail-origin">' + escapeHTML(root.origin) + '</span>' +
+          '</div>' +
+          '<div class="detail-meaning">' + escapeHTML(root.meaningZh) + ' · ' + escapeHTML(root.meaningEn) + '</div>' +
+        '</div>' +
+        '<button class="mastered-chip ' + (mastered ? 'on' : 'off') + '" onclick="toggleMastered()">' +
+          '<i class="fas ' + (mastered ? 'fa-check-circle' : 'fa-circle') + '"></i> ' +
+          (mastered ? '已掌握' : '未掌握') +
+        '</button>' +
+      '</div>';
+
+      /* Note */
+      html += '<div class="detail-note"><i class="fas fa-lightbulb" style="color:var(--mi-yellow);margin-right:6px;"></i>' + escapeHTML(root.note) + '</div>';
+
+      /* Examples */
+      html += '<div class="example-section-title">例词拆解 (' + root.examples.length + ')</div>';
+      html += '<div class="example-list">';
+      root.examples.forEach(function(ex) {
+        html += '<div class="example-item">' +
+          '<div class="example-word-row">' +
+            '<div class="example-word">' + escapeHTML(ex.word) + '</div>' +
+            '<button class="speak-btn speak-btn--sm" type="button" onclick="speakRootText(\'' + encodeURIComponent(ex.word) + '\', event)" aria-label="播放例词发音"><i class="fas fa-volume-high"></i></button>' +
+          '</div>' +
+          '<div class="example-breakdown"><i class="fas fa-puzzle-piece" style="margin-right:4px;"></i>' + escapeHTML(ex.breakdown) + '</div>' +
+          '<div class="example-meaning">' + escapeHTML(ex.meaning) + '</div>' +
+          '<div class="example-sentence">"' + escapeHTML(ex.sentence) + '"</div>' +
+        '</div>';
+      });
+      html += '</div>';
+
+      /* Actions */
+      html += '<div class="detail-actions">' +
+        '<button class="btn btn-outline" onclick="navigateRoot(-1)"><i class="fas fa-chevron-left"></i> 上一个</button>' +
+        '<button class="btn btn-primary" onclick="showQuiz()"><i class="fas fa-brain"></i> 词根小测</button>' +
+        '<button class="btn btn-outline" onclick="navigateRoot(1)">下一个 <i class="fas fa-chevron-right"></i></button>' +
+      '</div>';
+
+      html += '</div>';
+      box.innerHTML = html;
+    }
+
+    function navigateRoot(direction) {
+      var ids = filteredRoots.map(function(r) { return r.id; });
+      if (ids.length === 0) return;
+      var idx = ids.indexOf(currentDetailId);
+      if (idx < 0) idx = 0;
+      idx = (idx + direction + ids.length) % ids.length;
+      showDetail(ids[idx]);
+    }
+
+    function toggleMastered() {
+      if (!currentDetailId) return;
+      var wasMastered = isRootMastered(rootState, currentDetailId);
+      rootState = toggleRootMastered(rootState, currentDetailId);
+      rootState = saveRootState(rootState);
+
+      if (!wasMastered) {
+        appState = addXP(appState, 6);
+        saveState(appState);
+        renderNav();
+        showToast('已标记掌握，+6 XP');
+      } else {
+        showToast('已取消掌握');
+      }
+
+      renderDetail();
+    }
+
+    /* ===== Quiz View ===== */
+    function restartQuiz() {
+      document.getElementById('quizHistoryCard').style.display = 'none';
+      var pool = filteredRoots.length >= 4 ? filteredRoots : getAllRoots();
+      quizBank = [];
+      for (var i = 0; i < 5; i++) {
+        var q = buildRootQuiz(pool);
+        if (q) quizBank.push(q);
+      }
+      quizIndex = 0;
+      quizScore = 0;
+      quizAnswered = false;
+      quizSaved = false;
+      renderQuiz();
+      renderQuizHistory();
+    }
+
+    function renderQuiz() {
+      var card = document.getElementById('quizCard');
+      var progressFill = document.getElementById('quizProgressFill');
+
+      if (!quizBank.length) {
+        card.innerHTML = '<div class="empty-state" style="padding:20px;"><p>题库为空，至少需要4个词根</p></div>';
+        progressFill.style.width = '0%';
+        return;
+      }
+
+      if (quizIndex >= quizBank.length) {
+        finishQuizRound();
+        return;
+      }
+
+      currentQuiz = quizBank[quizIndex];
+      quizAnswered = false;
+      progressFill.style.width = ((quizIndex / quizBank.length) * 100) + '%';
+
+      var html = '<div class="quiz-head">' +
+        '<div class="quiz-meta">第 ' + (quizIndex + 1) + ' / ' + quizBank.length + ' 题</div>' +
+        '<div class="quiz-score">得分 ' + quizScore + '</div>' +
+      '</div>' +
+      '<div class="quiz-q">' + escapeHTML(currentQuiz.question) + '</div>' +
+      '<div class="quiz-options">';
+
+      currentQuiz.options.forEach(function(opt, idx) {
+        html += '<button class="quiz-option" onclick="answerQuiz(' + idx + ')">' + (idx + 1) + '. ' + escapeHTML(opt) + '</button>';
+      });
+      html += '</div><div id="quizResultWrap"></div>';
+      html += '<div style="margin-top:12px;text-align:right;">' +
+        '<button class="btn btn-primary" onclick="nextQuiz()">下一题 <i class="fas fa-arrow-right"></i></button>' +
+      '</div>';
+
+      card.innerHTML = html;
+    }
+
+    function answerQuiz(optionIndex) {
+      if (quizAnswered || !currentQuiz) return;
+      quizAnswered = true;
+      var correct = optionIndex === currentQuiz.answerIndex;
+
+      if (correct) {
+        quizScore += 1;
+        appState = addXP(appState, 2);
+        saveState(appState);
+        renderNav();
+      }
+
+      /* Highlight options */
+      var options = document.querySelectorAll('.quiz-option');
+      for (var i = 0; i < options.length; i++) {
+        options[i].classList.add('disabled');
+        if (i === currentQuiz.answerIndex) {
+          options[i].classList.add('correct');
+        } else if (i === optionIndex && !correct) {
+          options[i].classList.add('wrong');
+        }
+      }
+
+      var resultClass = correct ? 'correct' : 'wrong';
+      var title = correct ? '✅ 回答正确！' : '❌ 再想想';
+      document.getElementById('quizResultWrap').innerHTML =
+        '<div class="quiz-result ' + resultClass + '">' +
+          '<strong>' + title + '</strong><br>' +
+          '解析：' + escapeHTML(currentQuiz.explanation) +
+        '</div>';
+    }
+
+    function nextQuiz() {
+      if (!quizBank.length) return;
+      if (!quizAnswered && quizIndex < quizBank.length) {
+        showToast('先选择一个答案');
+        return;
+      }
+      quizIndex += 1;
+      renderQuiz();
+    }
+
+    function finishQuizRound() {
+      var total = quizBank.length;
+      var pct = total > 0 ? Math.round((quizScore / total) * 100) : 0;
+      var progressFill = document.getElementById('quizProgressFill');
+      progressFill.style.width = '100%';
+
+      var emoji = pct >= 80 ? '🎉' : pct >= 60 ? '💪' : '📖';
+      var msg = pct >= 80 ? '太棒了！继续探索更多词根吧' : pct >= 60 ? '不错！再练一轮会更好' : '别灰心，多看看词根拆解再来';
+
+      var card = document.getElementById('quizCard');
+      card.innerHTML = '<div class="quiz-finish">' +
+        '<div class="quiz-finish-emoji">' + emoji + '</div>' +
+        '<div class="quiz-finish-score">' + quizScore + ' / ' + total + '</div>' +
+        '<h3>正确率 ' + pct + '%</h3>' +
+        '<p>' + msg + '</p>' +
+        '<div style="display:flex;gap:8px;">' +
+          '<button class="btn btn-outline" style="flex:1;" onclick="backFromQuiz()"><i class="fas fa-chevron-left"></i> 返回</button>' +
+          '<button class="btn btn-primary" style="flex:1;" onclick="restartQuiz()"><i class="fas fa-rotate-right"></i> 再来一轮</button>' +
+        '</div>' +
+      '</div>';
+
+      if (!quizSaved) {
+        rootState = appendRootQuizHistory(rootState, quizScore, total);
+        rootState = saveRootState(rootState);
+        renderQuizHistory();
+        quizSaved = true;
+      }
+
+      document.getElementById('quizHistoryCard').style.display = '';
+    }
+
+    function renderQuizHistory() {
+      var history = (rootState.quizHistory || []).slice(-5).reverse();
+      var box = document.getElementById('quizHistory');
+      var card = document.getElementById('quizHistoryCard');
+
+      if (!history.length) {
+        card.style.display = 'none';
+        return;
+      }
+
+      box.innerHTML = history.map(function(item) {
+        var day = new Date(item.date).toLocaleDateString();
+        var pct = item.total > 0 ? Math.round((item.score / item.total) * 100) : 0;
+        return '<div class="history-row"><span>' + day + '</span><strong>' + item.score + '/' + item.total + ' (' + pct + '%)</strong></div>';
+      }).join('');
+    }
+
+    init();
+  </script>
+</body>
+</html>
