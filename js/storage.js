@@ -60,6 +60,9 @@ function getDefaultState() {
     level: 1,
     xp: 0,
     selectedRole: null,
+    profileName: '',
+    profileAvatar: '',
+    profileUpdatedAt: null,
     lastTab: 'learn',
     lastLesson: 'all',
     createdAt: new Date().toISOString()
@@ -118,6 +121,56 @@ function normalizeDay(value) {
   const d = new Date(`${value}T00:00:00Z`);
   if (Number.isNaN(d.getTime())) return null;
   return value;
+}
+
+function sanitizeProfileName(value) {
+  if (typeof value !== 'string') return '';
+  return value.trim().replace(/\s+/g, ' ').slice(0, 16);
+}
+
+function sanitizeProfileAvatar(value) {
+  if (typeof value !== 'string') return '';
+  const avatarId = value.trim();
+  if (!avatarId) return '';
+
+  if (typeof window !== 'undefined' && window.MiProfilePresets && typeof window.MiProfilePresets.hasPreset === 'function') {
+    return window.MiProfilePresets.hasPreset(avatarId) ? avatarId : '';
+  }
+
+  return avatarId.slice(0, 40);
+}
+
+function updateProfileState(state, profile, options = {}) {
+  const next = state && typeof state === 'object' ? { ...state } : getDefaultState();
+  if (!profile || typeof profile !== 'object') return next;
+
+  const hasName = Object.prototype.hasOwnProperty.call(profile, 'profileName');
+  const hasAvatar = Object.prototype.hasOwnProperty.call(profile, 'profileAvatar');
+  if (!hasName && !hasAvatar) return next;
+
+  let changed = false;
+
+  if (hasName) {
+    const profileName = sanitizeProfileName(profile.profileName);
+    if (profileName && profileName !== next.profileName) {
+      next.profileName = profileName;
+      changed = true;
+    }
+  }
+
+  if (hasAvatar) {
+    const profileAvatar = sanitizeProfileAvatar(profile.profileAvatar);
+    if (profileAvatar && profileAvatar !== next.profileAvatar) {
+      next.profileAvatar = profileAvatar;
+      changed = true;
+    }
+  }
+
+  if (changed) {
+    next.profileUpdatedAt = normalizeISODate(options.updatedAt) || new Date().toISOString();
+  }
+
+  return next;
 }
 
 function getDataIdSets() {
@@ -402,6 +455,12 @@ function sanitizeState(rawState) {
   safe.lastStudyDate = normalizeDay(migrated.lastStudyDate);
   if (typeof migrated.selectedRole === 'string' && migrated.selectedRole.trim()) {
     safe.selectedRole = migrated.selectedRole.trim();
+  }
+  safe.profileName = sanitizeProfileName(migrated.profileName);
+  safe.profileAvatar = sanitizeProfileAvatar(migrated.profileAvatar);
+  safe.profileUpdatedAt = normalizeISODate(migrated.profileUpdatedAt);
+  if ((safe.profileName || safe.profileAvatar) && !safe.profileUpdatedAt) {
+    safe.profileUpdatedAt = normalizeISODate(migrated.createdAt) || safe.createdAt;
   }
   safe.lastTab = (typeof migrated.lastTab === 'string' && ALLOWED_TABS.has(migrated.lastTab)) ? migrated.lastTab : 'learn';
   safe.lastLesson = (typeof migrated.lastLesson === 'string' && (migrated.lastLesson === 'all' || lessonIds.has(migrated.lastLesson)))

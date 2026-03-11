@@ -9,70 +9,304 @@
   <meta name="mi-supabase-url" content="">
   <meta name="mi-supabase-anon-key" content="">
   <style>
-    .auth-wrap {
-      max-width: 460px;
-      margin: 36px auto 0;
-      padding: 0 16px 32px;
+    body.auth-page {
+      background:
+        radial-gradient(circle at top left, rgba(255, 105, 0, 0.16), transparent 28%),
+        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.12), transparent 22%),
+        linear-gradient(180deg, #fffaf5 0%, #fafaf8 42%, #f7f5f2 100%);
+    }
+    .auth-shell {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 28px 16px 56px;
+      display: grid;
+      gap: 18px;
+    }
+    .auth-showcase,
+    .auth-card {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      box-shadow: 0 18px 50px rgba(26, 26, 46, 0.08);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 28px;
+    }
+    .auth-showcase {
+      position: relative;
+      overflow: hidden;
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .auth-showcase::after {
+      content: '';
+      position: absolute;
+      inset: auto -80px -80px auto;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(255, 105, 0, 0.18) 0%, rgba(255, 105, 0, 0) 70%);
+      pointer-events: none;
+    }
+    .auth-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--mi-orange-dark);
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 105, 0, 0.1);
+      width: fit-content;
+    }
+    .auth-hero-title {
+      font-size: clamp(2rem, 6vw, 3.6rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      max-width: 10ch;
+      margin-top: 4px;
+    }
+    .auth-hero-copy {
+      color: var(--text-secondary);
+      font-size: 1rem;
+      max-width: 42ch;
+    }
+    .auth-bullets {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 12px;
+    }
+    .auth-bullet {
+      padding: 14px 14px 12px;
+      background: rgba(250, 250, 248, 0.9);
+      border: 1px solid var(--border-light);
+      border-radius: 18px;
+    }
+    .auth-bullet i {
+      font-size: 1rem;
+      color: var(--mi-orange);
+      margin-bottom: 8px;
+    }
+    .auth-bullet strong {
+      display: block;
+      font-size: 0.875rem;
+      margin-bottom: 4px;
+    }
+    .auth-bullet span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .auth-preview-card {
+      position: relative;
+      z-index: 1;
+      padding: 18px;
+      background: linear-gradient(135deg, rgba(255, 243, 232, 0.92), rgba(255, 255, 255, 0.92));
+      border: 1px solid rgba(255, 105, 0, 0.14);
+      border-radius: 24px;
+    }
+    .auth-preview-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .auth-preview-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+    .auth-preview-user {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px 8px 8px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      box-shadow: var(--shadow-sm);
+    }
+    .auth-preview-user-copy strong {
+      display: block;
+      font-size: 0.875rem;
+      line-height: 1.1;
+    }
+    .auth-preview-user-copy span {
+      font-size: 0.6875rem;
+      color: var(--text-muted);
+    }
+    .auth-preview-sync {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #166534;
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      border-radius: 999px;
+      padding: 6px 10px;
+    }
+    .auth-preview-panel {
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.88);
+      border-radius: 20px;
+      border: 1px solid var(--border-light);
+    }
+    .auth-preview-panel strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 6px;
+    }
+    .auth-preview-panel p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      margin-bottom: 10px;
+    }
+    .auth-preview-task {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 105, 0, 0.12);
+      color: var(--mi-orange-dark);
+      font-size: 0.75rem;
+      font-weight: 700;
     }
     .auth-card {
-      background: var(--bg-card);
-      border-radius: var(--radius-xl);
-      border: 1px solid var(--border-light);
-      box-shadow: var(--shadow-sm);
-      padding: 22px;
+      padding: 24px;
+    }
+    .auth-head {
+      margin-bottom: 18px;
+    }
+    .auth-head .auth-kicker {
+      margin-bottom: 10px;
     }
     .auth-title {
-      font-size: 1.25rem;
+      font-size: 1.5rem;
       font-weight: 800;
       margin-bottom: 6px;
     }
     .auth-sub {
-      color: var(--text-muted);
+      color: var(--text-secondary);
+      font-size: 0.9375rem;
+      max-width: 44ch;
+    }
+    .auth-form {
+      display: grid;
+      gap: 14px;
+    }
+    .auth-field-grid {
+      display: grid;
+      gap: 14px;
+    }
+    .auth-field label,
+    .auth-avatar-head strong {
+      display: block;
       font-size: 0.8125rem;
-      margin-bottom: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+    .auth-field-note,
+    .auth-avatar-head span {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      line-height: 1.5;
     }
     .auth-input {
       width: 100%;
-      border: 1px solid var(--border-medium);
-      border-radius: var(--radius-md);
-      padding: 12px;
+      border: 1px solid rgba(221, 214, 206, 0.95);
+      border-radius: 16px;
+      padding: 14px 15px;
       font-size: 0.9375rem;
-      margin-bottom: 10px;
       font-family: inherit;
+      background: rgba(255, 255, 255, 0.92);
+      transition: border-color var(--duration-fast), box-shadow var(--duration-fast), transform var(--duration-fast);
+    }
+    .auth-input:focus {
+      outline: none;
+      border-color: rgba(255, 105, 0, 0.38);
+      box-shadow: 0 0 0 4px rgba(255, 105, 0, 0.1);
+      transform: translateY(-1px);
+    }
+    .auth-avatar-zone {
+      padding: 16px;
+      border-radius: 20px;
+      background: linear-gradient(180deg, rgba(247, 245, 242, 0.9), rgba(255, 255, 255, 0.95));
+      border: 1px solid var(--border-light);
+    }
+    .auth-avatar-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+    .auth-avatar-current {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px 8px 8px;
       background: #fff;
+      border: 1px solid var(--border-light);
+      border-radius: 16px;
+      box-shadow: var(--shadow-sm);
+      flex: none;
+    }
+    .auth-avatar-current strong {
+      display: block;
+      font-size: 0.8125rem;
+      line-height: 1.1;
+    }
+    .auth-avatar-current span {
+      font-size: 0.6875rem;
+      color: var(--text-muted);
     }
     .auth-actions {
       display: grid;
-      gap: 8px;
+      gap: 10px;
       grid-template-columns: 1fr 1fr;
-      margin-top: 8px;
+      margin-top: 2px;
     }
     .auth-btn {
       border: none;
-      border-radius: var(--radius-md);
-      padding: 10px 12px;
-      font-weight: 700;
+      border-radius: 16px;
+      padding: 13px 14px;
+      font-weight: 800;
+      font-size: 0.9375rem;
       font-family: inherit;
       cursor: pointer;
+      transition: transform var(--duration-fast), box-shadow var(--duration-fast), background var(--duration-fast);
+    }
+    .auth-btn:hover {
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-sm);
     }
     .auth-btn.primary {
-      background: var(--mi-orange);
+      background: linear-gradient(135deg, #FF6900, #FF8A24);
       color: #fff;
     }
     .auth-btn.secondary {
-      background: var(--bg-soft);
+      background: #fff;
       color: var(--text-primary);
-      border: 1px solid var(--border-light);
+      border: 1px solid rgba(59, 130, 246, 0.32);
     }
     .sync-status {
-      margin-top: 12px;
+      margin-top: 14px;
       font-size: 0.8125rem;
-      border-radius: var(--radius-md);
-      padding: 10px 12px;
+      border-radius: 16px;
+      padding: 12px 14px;
       border: 1px solid var(--border-light);
-      background: var(--bg-soft);
+      background: rgba(247, 245, 242, 0.9);
       color: var(--text-secondary);
-      min-height: 40px;
+      min-height: 48px;
+      line-height: 1.55;
     }
     .sync-status.success {
       border-color: #BBF7D0;
@@ -90,14 +324,79 @@
       color: #92400E;
     }
     .auth-footer {
-      margin-top: 12px;
+      margin-top: 14px;
+      display: grid;
+      gap: 8px;
       font-size: 0.75rem;
       color: var(--text-muted);
       line-height: 1.6;
     }
+    .auth-footer a {
+      color: var(--mi-orange-dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+    @media (min-width: 940px) {
+      .auth-shell {
+        grid-template-columns: minmax(0, 1.04fr) minmax(420px, 0.96fr);
+        align-items: start;
+        padding-top: 34px;
+      }
+      .auth-showcase {
+        min-height: calc(100vh - 150px);
+        justify-content: space-between;
+      }
+      .auth-card {
+        position: sticky;
+        top: 86px;
+      }
+      .auth-field-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .auth-field-grid .auth-field--wide,
+      .auth-field-grid .auth-avatar-zone {
+        grid-column: 1 / -1;
+      }
+    }
+    @media (max-width: 939px) {
+      .auth-shell {
+        padding-top: 18px;
+      }
+      .auth-showcase {
+        padding: 22px;
+      }
+      .auth-hero-title {
+        max-width: none;
+      }
+    }
+    @media (max-width: 640px) {
+      .auth-shell {
+        padding-inline: 12px;
+        gap: 14px;
+      }
+      .auth-showcase,
+      .auth-card {
+        border-radius: 24px;
+        padding: 18px;
+      }
+      .auth-bullets {
+        grid-template-columns: 1fr;
+      }
+      .auth-preview-top,
+      .auth-avatar-head {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .auth-actions {
+        grid-template-columns: 1fr;
+      }
+      .profile-avatar-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
   </style>
 </head>
-<body>
+<body class="auth-page">
   <nav class="nav-header">
     <div class="nav-inner">
       <a class="nav-brand" href="index.html">
@@ -110,23 +409,94 @@
     </div>
   </nav>
 
-  <main class="auth-wrap">
-    <section class="auth-card">
-      <h1 class="auth-title">登录并同步学习进度</h1>
-      <p class="auth-sub">邮箱登录后可自动同步词汇与场景进度（支持跨设备）。</p>
-
-      <input id="emailInput" class="auth-input" type="email" placeholder="请输入邮箱" autocomplete="email">
-      <input id="passwordInput" class="auth-input" type="password" placeholder="请输入密码" autocomplete="current-password">
-
-      <div class="auth-actions">
-        <button id="signInBtn" class="auth-btn primary" type="button">登录</button>
-        <button id="signUpBtn" class="auth-btn secondary" type="button">注册</button>
+  <main class="auth-shell">
+    <section class="auth-showcase">
+      <div>
+        <span class="auth-kicker"><i class="fas fa-cloud-arrow-up"></i> 跨设备同步</span>
+        <h1 class="auth-hero-title">登录之后，学习进度跟着你走。</h1>
+        <p class="auth-hero-copy">注册时顺手把昵称和像素头像设好，首页以后就直接显示你的名字，不再是冷冰冰的账号。</p>
       </div>
 
-      <div id="syncStatus" class="sync-status">请先填写 Supabase 配置（页面 meta 或 window.MI_SUPABASE_CONFIG）后使用登录。</div>
+      <div class="auth-bullets">
+        <div class="auth-bullet">
+          <i class="fas fa-user-astronaut"></i>
+          <strong>昵称直接上首页</strong>
+          <span>以后打开就是你的名字，不再是邮箱或“账号”。</span>
+        </div>
+        <div class="auth-bullet">
+          <i class="fas fa-gamepad"></i>
+          <strong>像素头像更有记忆点</strong>
+          <span>先选一个喜欢的头像，后面就能跟昵称一起展示。</span>
+        </div>
+        <div class="auth-bullet">
+          <i class="fas fa-mobile-screen"></i>
+          <strong>手机和电脑都能继续</strong>
+          <span>同一账号登录后，词卡和场景进度会自动跟过去。</span>
+        </div>
+      </div>
+
+      <div class="auth-preview-card">
+        <div class="auth-preview-label">首页预览</div>
+        <div class="auth-preview-top">
+          <div class="auth-preview-user" id="previewUser"></div>
+          <div class="auth-preview-sync">云端同步已开启</div>
+        </div>
+        <div class="auth-preview-panel">
+          <strong id="previewGreeting">Good morning · 学习搭子</strong>
+          <p>今天先做这一件事，其他入口都放在下面，需要时再进。</p>
+          <div class="auth-preview-task"><i class="fas fa-bolt"></i> 今日先完成 1 个关键动作</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="auth-card">
+      <div class="auth-head">
+        <span class="auth-kicker"><i class="fas fa-right-to-bracket"></i> 登录 / 注册</span>
+        <h2 class="auth-title">把昵称和头像一起设好</h2>
+        <p class="auth-sub">注册时建议一起填；如果你已经有账号，这里也能顺手补上，后面首页就会直接用昵称显示。</p>
+      </div>
+
+      <div class="auth-form">
+        <div class="auth-field-grid">
+          <div class="auth-field auth-field--wide">
+            <label for="emailInput">邮箱</label>
+            <input id="emailInput" class="auth-input" type="email" placeholder="请输入邮箱" autocomplete="email">
+          </div>
+
+          <div class="auth-field auth-field--wide">
+            <label for="passwordInput">密码</label>
+            <input id="passwordInput" class="auth-input" type="password" placeholder="请输入密码" autocomplete="current-password">
+          </div>
+
+          <div class="auth-field auth-field--wide">
+            <label for="profileNameInput">昵称</label>
+            <input id="profileNameInput" class="auth-input" type="text" placeholder="比如：Jason / Amy / 门店冠军" maxlength="16" autocomplete="nickname">
+            <span class="auth-field-note">注册时建议填写；登录时如果想补昵称，也可以直接在这里顺手改好。</span>
+          </div>
+
+          <div class="auth-avatar-zone">
+            <div class="auth-avatar-head">
+              <div>
+                <strong>像素头像</strong>
+                <span>注册时一起保存；登录时如果你手动换了头像，也会跟着同步到首页。</span>
+              </div>
+              <div class="auth-avatar-current" id="selectedAvatarPreview"></div>
+            </div>
+            <div id="avatarPicker" class="profile-avatar-grid"></div>
+          </div>
+        </div>
+
+        <div class="auth-actions">
+          <button id="signInBtn" class="auth-btn primary" type="button">登录</button>
+          <button id="signUpBtn" class="auth-btn secondary" type="button">注册</button>
+        </div>
+
+        <div id="syncStatus" class="sync-status">用已有账号登录，或者先注册一个带昵称和头像的新账号。</div>
+      </div>
 
       <div class="auth-footer">
-        <div>登录成功后将自动执行：云端拉取 + 本地合并 + 离线队列补发。</div>
+        <div>登录成功后会自动执行：云端拉取 + 本地合并 + 离线队列补发。</div>
+        <div>如果你只想先测试同步，直接注册后登录即可，不需要再点邮箱确认。</div>
         <div><a href="index.html">返回首页</a></div>
       </div>
     </section>
@@ -135,6 +505,7 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/data.js?v=3.0"></script>
   <script src="js/role-config.js?v=3.0"></script>
+  <script src="js/profile-presets.js?v=3.0"></script>
   <script src="js/sync-meta.js?v=3.0"></script>
   <script src="js/storage.js?v=3.0"></script>
   <script src="js/analytics.js?v=3.0"></script>
@@ -144,34 +515,165 @@
   <script src="js/sync-diagnostics.js?v=3.0"></script>
   <script>
     (function initLoginPage() {
+      var PROFILE_DRAFT_KEY = 'mi-auth-profile-draft-v1';
       var emailInput = document.getElementById('emailInput');
       var passwordInput = document.getElementById('passwordInput');
+      var profileNameInput = document.getElementById('profileNameInput');
+      var avatarPicker = document.getElementById('avatarPicker');
+      var previewUser = document.getElementById('previewUser');
+      var previewGreeting = document.getElementById('previewGreeting');
+      var selectedAvatarPreview = document.getElementById('selectedAvatarPreview');
       var signInBtn = document.getElementById('signInBtn');
       var signUpBtn = document.getElementById('signUpBtn');
       var syncStatus = document.getElementById('syncStatus');
+
+      var avatarTouched = false;
+      var currentState = typeof loadState === 'function' ? loadState() : null;
+      var selectedAvatarId = currentState && currentState.profileAvatar
+        ? currentState.profileAvatar
+        : (window.MiProfilePresets && typeof window.MiProfilePresets.normalizePresetId === 'function'
+          ? window.MiProfilePresets.normalizePresetId('')
+          : '');
+
+      function readProfileDraft() {
+        try {
+          var raw = localStorage.getItem(PROFILE_DRAFT_KEY);
+          return raw ? JSON.parse(raw) : null;
+        } catch (_) {
+          return null;
+        }
+      }
+
+      function saveProfileDraft(profile) {
+        try {
+          localStorage.setItem(PROFILE_DRAFT_KEY, JSON.stringify(profile || {}));
+        } catch (_) {}
+      }
+
+      function clearProfileDraft() {
+        try {
+          localStorage.removeItem(PROFILE_DRAFT_KEY);
+        } catch (_) {}
+      }
 
       function updateStatus(status, message) {
         syncStatus.className = 'sync-status ' + (status || '');
         syncStatus.textContent = message || '';
       }
 
-      function readCredentials() {
+      function getPreviewName() {
+        var nickname = (profileNameInput.value || '').trim();
+        return nickname || (currentState && currentState.profileName) || '学习搭子';
+      }
+
+      function renderAvatar(target, avatarId, name) {
+        if (!target) return;
+        var avatarHTML = window.MiProfilePresets && typeof window.MiProfilePresets.renderAvatar === 'function'
+          ? window.MiProfilePresets.renderAvatar(avatarId, { size: 'md', label: name || '学习者' })
+          : '';
+        target.innerHTML = avatarHTML +
+          '<span class="auth-preview-user-copy">' +
+            '<strong>' + escapeHTML(name || '学习搭子') + '</strong>' +
+            '<span>' + escapeHTML(avatarId || '默认头像') + '</span>' +
+          '</span>';
+      }
+
+      function updatePreview() {
+        var previewName = getPreviewName();
+        renderAvatar(previewUser, selectedAvatarId, previewName);
+        renderAvatar(selectedAvatarPreview, selectedAvatarId, previewName);
+        if (previewGreeting) {
+          previewGreeting.textContent = 'Good ' + (new Date().getHours() < 12 ? 'morning' : (new Date().getHours() < 18 ? 'afternoon' : 'evening')) + ' · ' + previewName;
+        }
+      }
+
+      function renderAvatarPicker() {
+        if (!avatarPicker || !window.MiProfilePresets || !Array.isArray(window.MiProfilePresets.list)) return;
+
+        avatarPicker.innerHTML = window.MiProfilePresets.list.map(function mapPreset(preset) {
+          var selectedClass = preset.id === selectedAvatarId ? ' is-selected' : '';
+          var avatarHTML = window.MiProfilePresets.renderAvatar(preset.id, { size: 'md', label: preset.name });
+          return '' +
+            '<button class="profile-avatar-option' + selectedClass + '" type="button" data-avatar-id="' + preset.id + '" aria-pressed="' + (preset.id === selectedAvatarId ? 'true' : 'false') + '">' +
+              avatarHTML +
+              '<span class="profile-avatar-name">' + escapeHTML(preset.name) + '</span>' +
+            '</button>';
+        }).join('');
+      }
+
+      function hydrateDraft() {
+        var hint = MiAuth.getLastEmailHint();
+        var draft = readProfileDraft();
+
+        if (hint) {
+          emailInput.value = hint;
+        }
+
+        if (draft && typeof draft === 'object') {
+          if (!profileNameInput.value && typeof draft.profileName === 'string') {
+            profileNameInput.value = draft.profileName;
+          }
+          if (typeof draft.profileAvatar === 'string' && draft.profileAvatar) {
+            selectedAvatarId = draft.profileAvatar;
+          }
+        }
+
+        if (!profileNameInput.value && currentState && currentState.profileName) {
+          profileNameInput.value = currentState.profileName;
+        }
+      }
+
+      function readForm() {
         return {
           email: (emailInput.value || '').trim(),
-          password: passwordInput.value || ''
+          password: passwordInput.value || '',
+          profileName: (profileNameInput.value || '').trim(),
+          profileAvatar: selectedAvatarId
         };
       }
 
-      function validateInput(creds) {
-        if (!creds.email || creds.email.indexOf('@') < 0) {
+      function validateCredentials(form) {
+        if (!form.email || form.email.indexOf('@') < 0) {
           updateStatus('error', '请输入有效邮箱');
           return false;
         }
-        if (!creds.password || creds.password.length < 6) {
+        if (!form.password || form.password.length < 6) {
           updateStatus('error', '密码至少 6 位');
           return false;
         }
         return true;
+      }
+
+      function validateSignupProfile(form) {
+        if (!form.profileName) {
+          updateStatus('error', '注册时请顺手填一个昵称，首页以后会直接显示它。');
+          return false;
+        }
+        return true;
+      }
+
+      function applyProfilePatch(form, options) {
+        if (typeof loadState !== 'function' || typeof saveState !== 'function' || typeof updateProfileState !== 'function') {
+          return;
+        }
+
+        var hasName = Boolean(form.profileName);
+        var hasAvatar = Boolean(form.profileAvatar) && (options && options.forceAvatar || avatarTouched);
+        if (!hasName && !hasAvatar) return;
+
+        var nextState = updateProfileState(loadState(), {
+          profileName: hasName ? form.profileName : undefined,
+          profileAvatar: hasAvatar ? form.profileAvatar : undefined
+        }, {
+          updatedAt: new Date().toISOString()
+        });
+
+        saveState(nextState, { reason: options && options.reason ? options.reason : 'profile_update' });
+        currentState = nextState;
+        saveProfileDraft({
+          profileName: nextState.profileName,
+          profileAvatar: nextState.profileAvatar
+        });
       }
 
       async function syncAfterLogin() {
@@ -182,43 +684,79 @@
         await MiApi.pullAndMergeToLocal();
         await MiApi.flushQueue();
 
+        currentState = loadState();
+        clearProfileDraft();
         updateStatus('success', '同步成功，正在跳转首页...');
         setTimeout(function redirectSoon() {
           window.location.href = 'index.html';
         }, 900);
       }
 
+      avatarPicker.addEventListener('click', function onAvatarPick(event) {
+        var button = event.target.closest('[data-avatar-id]');
+        if (!button) return;
+
+        selectedAvatarId = button.getAttribute('data-avatar-id') || selectedAvatarId;
+        avatarTouched = true;
+        renderAvatarPicker();
+        updatePreview();
+      });
+
+      profileNameInput.addEventListener('input', updatePreview);
+      passwordInput.addEventListener('keydown', function onPasswordEnter(event) {
+        if (event.key === 'Enter') {
+          signInBtn.click();
+        }
+      });
+
       signInBtn.addEventListener('click', async function onSignIn() {
-        var creds = readCredentials();
-        if (!validateInput(creds)) return;
+        var form = readForm();
+        if (!validateCredentials(form)) return;
 
         updateStatus('', '登录中...');
-        var result = await MiAuth.signInWithEmail(creds.email, creds.password);
+        var result = await MiAuth.signInWithEmail(form.email, form.password);
         if (!result.ok) {
           updateStatus('error', '登录失败：' + result.error);
           return;
         }
 
+        applyProfilePatch(form, { reason: 'profile_login_patch', forceAvatar: false });
+
         if (window.MiAnalytics) {
-          MiAnalytics.trackEvent('auth_login', { email: creds.email });
+          MiAnalytics.trackEvent('auth_login', { email: form.email, hasProfileName: Boolean(form.profileName) });
         }
 
         await syncAfterLogin();
       });
 
       signUpBtn.addEventListener('click', async function onSignUp() {
-        var creds = readCredentials();
-        if (!validateInput(creds)) return;
+        var form = readForm();
+        if (!validateCredentials(form) || !validateSignupProfile(form)) return;
 
         updateStatus('', '注册中...');
-        var result = await MiAuth.signUpWithEmail(creds.email, creds.password);
+        saveProfileDraft({
+          profileName: form.profileName,
+          profileAvatar: form.profileAvatar
+        });
+
+        var result = await MiAuth.signUpWithEmail(form.email, form.password, {
+          profileName: form.profileName,
+          profileAvatar: form.profileAvatar
+        });
         if (!result.ok) {
           updateStatus('error', '注册失败：' + result.error);
           return;
         }
 
+        applyProfilePatch(form, { reason: 'profile_signup', forceAvatar: true });
+
         if (window.MiAnalytics) {
-          MiAnalytics.trackEvent('auth_signup', { email: creds.email });
+          MiAnalytics.trackEvent('auth_signup', { email: form.email, hasProfileName: Boolean(form.profileName) });
+        }
+
+        if (result.data && result.data.session) {
+          await syncAfterLogin();
+          return;
         }
 
         updateStatus('success', '注册成功。现在可直接登录并同步学习进度。');
@@ -234,10 +772,9 @@
         updateStatus('error', 'Supabase 未就绪：' + setup.error);
       }
 
-      var hint = MiAuth.getLastEmailHint();
-      if (hint) {
-        emailInput.value = hint;
-      }
+      hydrateDraft();
+      renderAvatarPicker();
+      updatePreview();
     })();
   </script>
 </body>

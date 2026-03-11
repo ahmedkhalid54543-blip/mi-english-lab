@@ -53,6 +53,42 @@
       .replace(/'/g, '&#39;');
   }
 
+  function getProfileData() {
+    return {
+      name: state && typeof state.profileName === 'string' && state.profileName.trim()
+        ? state.profileName.trim()
+        : '',
+      avatarId: state && typeof state.profileAvatar === 'string' && state.profileAvatar.trim()
+        ? state.profileAvatar.trim()
+        : (global.MiProfilePresets && typeof global.MiProfilePresets.normalizePresetId === 'function'
+          ? global.MiProfilePresets.normalizePresetId('')
+          : '')
+    };
+  }
+
+  function renderLoginLink(isLoggedIn) {
+    var loginLink = $('headerLoginLink');
+    if (!loginLink) return;
+
+    if (!isLoggedIn) {
+      loginLink.innerHTML = '登录';
+      loginLink.classList.remove('profile-chip-link');
+      return;
+    }
+
+    var profile = getProfileData();
+    var avatarHTML = global.MiProfilePresets && typeof global.MiProfilePresets.renderAvatar === 'function'
+      ? global.MiProfilePresets.renderAvatar(profile.avatarId, { size: 'sm', label: profile.name || '学习者' })
+      : '';
+
+    loginLink.classList.add('profile-chip-link');
+    loginLink.innerHTML = avatarHTML +
+      '<span class="profile-chip-copy">' +
+        '<span class="profile-chip-name">' + safeHTML(profile.name || '学习者') + '</span>' +
+        '<span class="profile-chip-meta">账号</span>' +
+      '</span>';
+  }
+
   function getGreeting() {
     var hour = new Date().getHours();
     if (hour < 12) return 'Good morning';
@@ -527,12 +563,13 @@
   function renderHeaderAndStatus(context) {
     var mastery = getMasteryStats();
     var reviewCount = context.reviewSummary.todayItems.length;
+    var profile = getProfileData();
     var greeting = $('homeGreeting');
     var summary = $('homeStatusSummary');
     var progressLabel = $('homeProgressLabel');
     var progressBar = $('homeProgressBar');
     var syncPill = $('homeSyncStatus');
-    var loginLink = $('headerLoginLink');
+    var isLoggedIn = syncStatus.message && syncStatus.message !== '未登录';
 
     $('streakCount').textContent = state.streak || 0;
     $('levelBadge').textContent = 'Lv.' + state.level + ' ' + getLevelName(state.level);
@@ -541,7 +578,7 @@
     $('homeLevelValue').textContent = 'Lv.' + state.level;
     $('homeProgressPct').textContent = mastery.percent + '%';
 
-    if (greeting) greeting.textContent = getGreeting() + ' · 任务中心';
+    if (greeting) greeting.textContent = getGreeting() + ' · ' + (profile.name || '今天继续推进');
     if (progressLabel) {
       progressLabel.textContent = '词汇掌握 ' + mastery.mastered + '/' + mastery.total + ' · 今日复习 ' + reviewCount + ' 项';
     }
@@ -554,15 +591,12 @@
     }
     if (summary) {
       if (context.primaryTask.key === 'primary_review') {
-        summary.textContent = '今天先把待复习内容清掉，再回到学习流继续推进。';
+        summary.textContent = '先清掉今天该复习的内容，再继续往下学。';
       } else {
-        summary.textContent = '今天先完成一个最关键动作，其余入口放在下方常用区。';
+        summary.textContent = '先做完今天最关键的一步，其余入口都放在下面。';
       }
     }
-    if (loginLink && !loginLink.dataset.boundLabel) {
-      loginLink.dataset.boundLabel = 'true';
-      loginLink.textContent = syncStatus.message && syncStatus.message !== '未登录' ? '账号' : '登录';
-    }
+    renderLoginLink(isLoggedIn);
   }
 
   function renderAll() {
@@ -608,9 +642,7 @@
   }
 
   function updateLoginLabel(isLoggedIn) {
-    var loginLink = $('headerLoginLink');
-    if (!loginLink) return;
-    loginLink.textContent = isLoggedIn ? '账号' : '登录';
+    renderLoginLink(isLoggedIn);
   }
 
   async function selectRole(roleId) {

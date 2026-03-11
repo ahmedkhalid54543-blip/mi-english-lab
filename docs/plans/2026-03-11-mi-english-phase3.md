@@ -137,3 +137,16 @@ git add docs/plans/2026-03-11-mi-english-phase3.md tests/weakness.test.js tests/
 git commit -m "feat: add phase 3 review and trainer reporting"
 git push
 ```
+
+---
+
+## Follow-up Notes (2026-03-11 PM)
+
+- Homepage “next step recommendation” is currently deprioritized. Keep the homepage focused on `今日任务 + 常用入口`; do not spend more time on recommendation logic until scenario count is much higher.
+- Flashcard mastery flow still needs another pass: cards marked `已掌握` should stay out of the active learn queue when the learner comes back into flashcards.
+- Memory cards need a stronger `记忆卡` rewrite instead of `解释卡` wording.
+  - Single-word cards: prioritize root / word-building only when it genuinely helps memory.
+  - Phrase cards with one difficult word: center the card around that difficult word instead of flattening all words equally.
+  - Phrase cards with no difficult word: do not force root analysis; use action-based or scene-based memory hooks.
+  - Rewrite hooks toward humorous mnemonic lines, e.g. `ambulance -> 俺不能死`, rather than dry explanation text.
+- Internal product discussion copy should not appear in learner-facing pages. Keep visible text learner-oriented and outcome-oriented.

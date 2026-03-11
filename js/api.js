@@ -195,6 +195,51 @@
     return localValue >= remoteValue ? localValue : remoteValue;
   }
 
+  function mergeProfileBundle(localState, remoteState) {
+    var localSafe = localState && typeof localState === 'object' ? localState : {};
+    var remoteSafe = remoteState && typeof remoteState === 'object' ? remoteState : {};
+    var localHasProfile = Boolean(localSafe.profileName || localSafe.profileAvatar);
+    var remoteHasProfile = Boolean(remoteSafe.profileName || remoteSafe.profileAvatar);
+
+    if (!localHasProfile && !remoteHasProfile) {
+      return {
+        profileName: localSafe.profileName || '',
+        profileAvatar: localSafe.profileAvatar || '',
+        profileUpdatedAt: normalizeIso(localSafe.profileUpdatedAt) || null
+      };
+    }
+
+    if (!localHasProfile && remoteHasProfile) {
+      return {
+        profileName: remoteSafe.profileName || '',
+        profileAvatar: remoteSafe.profileAvatar || '',
+        profileUpdatedAt: normalizeIso(remoteSafe.profileUpdatedAt) || null
+      };
+    }
+
+    if (localHasProfile && !remoteHasProfile) {
+      return {
+        profileName: localSafe.profileName || '',
+        profileAvatar: localSafe.profileAvatar || '',
+        profileUpdatedAt: normalizeIso(localSafe.profileUpdatedAt) || null
+      };
+    }
+
+    if (compareIso(localSafe.profileUpdatedAt, remoteSafe.profileUpdatedAt) >= 0) {
+      return {
+        profileName: localSafe.profileName || '',
+        profileAvatar: localSafe.profileAvatar || '',
+        profileUpdatedAt: normalizeIso(localSafe.profileUpdatedAt) || null
+      };
+    }
+
+    return {
+      profileName: remoteSafe.profileName || '',
+      profileAvatar: remoteSafe.profileAvatar || '',
+      profileUpdatedAt: normalizeIso(remoteSafe.profileUpdatedAt) || null
+    };
+  }
+
   function buildRemoteSyncMeta(result) {
     var remoteMeta = global.MiSyncMeta && typeof global.MiSyncMeta.sanitizeSnapshot === 'function'
       ? global.MiSyncMeta.sanitizeSnapshot(result && result.snapshot ? result.snapshot.syncMeta : null)
@@ -287,6 +332,11 @@
     if (!mergedState.lastLesson && remoteSafe.lastLesson) mergedState.lastLesson = remoteSafe.lastLesson;
     if (!mergedState.lastTab && remoteSafe.lastTab) mergedState.lastTab = remoteSafe.lastTab;
     if (!mergedState.createdAt && remoteSafe.createdAt) mergedState.createdAt = remoteSafe.createdAt;
+
+    var mergedProfile = mergeProfileBundle(mergedState, remoteSafe);
+    mergedState.profileName = mergedProfile.profileName;
+    mergedState.profileAvatar = mergedProfile.profileAvatar;
+    mergedState.profileUpdatedAt = mergedProfile.profileUpdatedAt;
 
     return {
       state: mergedState,

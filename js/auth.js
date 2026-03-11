@@ -55,11 +55,21 @@
     return { ok: true, data: result.data };
   }
 
-  async function signUpWithEmail(email, password) {
+  async function signUpWithEmail(email, password, profile) {
     var setup = ensureClient();
     if (!setup.ok) return { ok: false, error: setup.error };
 
-    var result = await setup.client.auth.signUp({ email: email, password: password });
+    var payload = { email: email, password: password };
+    if (profile && typeof profile === 'object') {
+      payload.options = {
+        data: {
+          display_name: typeof profile.profileName === 'string' ? profile.profileName : '',
+          avatar_id: typeof profile.profileAvatar === 'string' ? profile.profileAvatar : ''
+        }
+      };
+    }
+
+    var result = await setup.client.auth.signUp(payload);
     if (result.error) return { ok: false, error: result.error.message };
 
     try {
