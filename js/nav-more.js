@@ -4,13 +4,14 @@
     'learn.html': 'learn',
     'practice.html': 'practice',
     'scenarios.html': 'scenarios',
+    'account.html': 'more',
     'browse.html': 'more',
     'roots.html': 'more',
     'progress.html': 'more'
   };
 
   const MORE_LINKS = [
-    { href: 'login.html', label: '登录/同步', icon: 'fa-user-check' },
+    { href: 'account.html', label: '账号设置', icon: 'fa-user-gear' },
     { href: 'browse.html', label: '词汇浏览', icon: 'fa-list-ul' },
     { href: 'roots.html', label: '词根学习', icon: 'fa-seedling' },
     { href: 'progress.html', label: '学习进度', icon: 'fa-chart-line' }

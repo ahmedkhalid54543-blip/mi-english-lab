@@ -88,6 +88,40 @@
     return { ok: true };
   }
 
+  async function updateUser(payload) {
+    var setup = ensureClient();
+    if (!setup.ok) return { ok: false, error: setup.error };
+    if (!payload || typeof payload !== 'object') return { ok: false, error: 'invalid_payload' };
+
+    var result = await setup.client.auth.updateUser(payload);
+    if (result.error) return { ok: false, error: result.error.message };
+
+    try {
+      if (payload.email) {
+        localStorage.setItem(STORAGE_SESSION_HINT, payload.email);
+      }
+    } catch (_) {}
+
+    return { ok: true, data: result.data };
+  }
+
+  async function updateProfileMetadata(profile) {
+    var metadata = {};
+    if (profile && typeof profile === 'object') {
+      if (typeof profile.profileName === 'string') metadata.display_name = profile.profileName;
+      if (typeof profile.profileAvatar === 'string') metadata.avatar_id = profile.profileAvatar;
+    }
+    return updateUser({ data: metadata });
+  }
+
+  async function updateEmail(email) {
+    return updateUser({ email: email });
+  }
+
+  async function updatePassword(password) {
+    return updateUser({ password: password });
+  }
+
   async function getSession() {
     var setup = ensureClient();
     if (!setup.ok) return { ok: false, error: setup.error, session: null };
@@ -144,6 +178,10 @@
     signInWithEmail: signInWithEmail,
     signUpWithEmail: signUpWithEmail,
     signOut: signOut,
+    updateUser: updateUser,
+    updateProfileMetadata: updateProfileMetadata,
+    updateEmail: updateEmail,
+    updatePassword: updatePassword,
     getSession: getSession,
     getUser: getUser,
     onAuthStateChange: onAuthStateChange,

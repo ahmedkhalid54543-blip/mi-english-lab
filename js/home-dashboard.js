@@ -71,6 +71,7 @@
     if (!loginLink) return;
 
     if (!isLoggedIn) {
+      loginLink.href = 'login.html';
       loginLink.innerHTML = '登录';
       loginLink.classList.remove('profile-chip-link');
       return;
@@ -82,10 +83,11 @@
       : '';
 
     loginLink.classList.add('profile-chip-link');
+    loginLink.href = 'account.html';
     loginLink.innerHTML = avatarHTML +
       '<span class="profile-chip-copy">' +
         '<span class="profile-chip-name">' + safeHTML(profile.name || '学习者') + '</span>' +
-        '<span class="profile-chip-meta">账号</span>' +
+        '<span class="profile-chip-meta">账号设置</span>' +
       '</span>';
   }
 
