@@ -200,6 +200,67 @@
       display: grid;
       gap: 14px;
     }
+    .auth-session-panel {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 18px;
+      padding: 16px;
+      border-radius: 22px;
+      background: linear-gradient(180deg, rgba(255, 243, 232, 0.9), rgba(255, 255, 255, 0.96));
+      border: 1px solid rgba(255, 105, 0, 0.16);
+    }
+    .auth-session-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: fit-content;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      color: #166534;
+      font-size: 0.75rem;
+      font-weight: 800;
+    }
+    .auth-session-copy h3 {
+      font-size: 1.125rem;
+      margin-bottom: 4px;
+    }
+    .auth-session-copy p {
+      font-size: 0.8125rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+    }
+    .auth-session-card {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.86);
+      border: 1px solid rgba(255, 255, 255, 0.7);
+      box-shadow: var(--shadow-sm);
+    }
+    .auth-session-meta {
+      display: grid;
+      gap: 2px;
+      min-width: 0;
+    }
+    .auth-session-meta strong {
+      font-size: 0.9375rem;
+    }
+    .auth-session-meta span {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      word-break: break-all;
+    }
+    .auth-session-actions {
+      display: grid;
+      gap: 10px;
+      grid-template-columns: 1fr 1fr;
+    }
     .auth-field-grid {
       display: grid;
       gap: 14px;
@@ -297,6 +358,11 @@
       color: var(--text-primary);
       border: 1px solid rgba(59, 130, 246, 0.32);
     }
+    .auth-btn.ghost {
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--text-primary);
+      border: 1px solid var(--border-light);
+    }
     .sync-status {
       margin-top: 14px;
       font-size: 0.8125rem;
@@ -390,6 +456,9 @@
       .auth-actions {
         grid-template-columns: 1fr;
       }
+      .auth-session-actions {
+        grid-template-columns: 1fr;
+      }
       .profile-avatar-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
@@ -456,7 +525,26 @@
         <p class="auth-sub">注册时建议一起填；如果你已经有账号，这里也能顺手补上，后面首页就会直接用昵称显示。</p>
       </div>
 
-      <div class="auth-form">
+      <section id="authSignedInPanel" class="auth-session-panel hidden">
+        <span class="auth-session-badge"><i class="fas fa-circle-check"></i> 当前已登录</span>
+        <div class="auth-session-copy">
+          <h3>这台设备已经有登录状态了</h3>
+          <p>如果你只是回来看看，不需要重复输密码。可以直接回首页继续学，或者先退出登录再换账号。</p>
+        </div>
+        <div class="auth-session-card">
+          <div class="auth-preview-user" id="signedInUserCard"></div>
+          <div class="auth-session-meta">
+            <strong id="signedInName">学习者</strong>
+            <span id="signedInEmail">-</span>
+          </div>
+        </div>
+        <div class="auth-session-actions">
+          <a href="index.html" class="auth-btn primary" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">继续学习</a>
+          <button id="signOutBtn" class="auth-btn ghost" type="button">退出登录</button>
+        </div>
+      </section>
+
+      <div id="authFormWrap" class="auth-form">
         <div class="auth-field-grid">
           <div class="auth-field auth-field--wide">
             <label for="emailInput">邮箱</label>
@@ -523,8 +611,14 @@
       var previewUser = document.getElementById('previewUser');
       var previewGreeting = document.getElementById('previewGreeting');
       var selectedAvatarPreview = document.getElementById('selectedAvatarPreview');
+      var authSignedInPanel = document.getElementById('authSignedInPanel');
+      var authFormWrap = document.getElementById('authFormWrap');
+      var signedInUserCard = document.getElementById('signedInUserCard');
+      var signedInName = document.getElementById('signedInName');
+      var signedInEmail = document.getElementById('signedInEmail');
       var signInBtn = document.getElementById('signInBtn');
       var signUpBtn = document.getElementById('signUpBtn');
+      var signOutBtn = document.getElementById('signOutBtn');
       var syncStatus = document.getElementById('syncStatus');
 
       var avatarTouched = false;
@@ -585,6 +679,45 @@
         if (previewGreeting) {
           previewGreeting.textContent = 'Good ' + (new Date().getHours() < 12 ? 'morning' : (new Date().getHours() < 18 ? 'afternoon' : 'evening')) + ' · ' + previewName;
         }
+      }
+
+      function getDefaultAvatarId() {
+        return window.MiProfilePresets && typeof window.MiProfilePresets.normalizePresetId === 'function'
+          ? window.MiProfilePresets.normalizePresetId('')
+          : selectedAvatarId;
+      }
+
+      function getUserProfile(user) {
+        var metadata = user && user.user_metadata && typeof user.user_metadata === 'object' ? user.user_metadata : {};
+        var localState = typeof loadState === 'function' ? loadState() : currentState;
+        var name = (localState && localState.profileName)
+          || (typeof metadata.display_name === 'string' ? metadata.display_name.trim() : '')
+          || ((user && user.email ? user.email.split('@')[0] : '') || '学习者');
+        var avatarId = (localState && localState.profileAvatar)
+          || (typeof metadata.avatar_id === 'string' ? metadata.avatar_id.trim() : '')
+          || getDefaultAvatarId();
+
+        return {
+          name: name,
+          email: user && user.email ? user.email : '',
+          avatarId: avatarId
+        };
+      }
+
+      function showSignedInPanel(user) {
+        var profile = getUserProfile(user);
+        if (authSignedInPanel) authSignedInPanel.classList.remove('hidden');
+        if (authFormWrap) authFormWrap.classList.add('hidden');
+        if (signedInName) signedInName.textContent = profile.name;
+        if (signedInEmail) signedInEmail.textContent = profile.email || '已登录';
+        renderAvatar(signedInUserCard, profile.avatarId, profile.name);
+        updateStatus('success', '当前账号已登录，可直接继续学习或退出登录。');
+      }
+
+      function showAuthForm(message, status) {
+        if (authSignedInPanel) authSignedInPanel.classList.add('hidden');
+        if (authFormWrap) authFormWrap.classList.remove('hidden');
+        if (message) updateStatus(status || '', message);
       }
 
       function renderAvatarPicker() {
@@ -692,6 +825,24 @@
         }, 900);
       }
 
+      async function refreshSessionState() {
+        var setup = MiAuth.ensureClient();
+        if (!setup.ok) {
+          showAuthForm('Supabase 未就绪：' + setup.error, 'error');
+          return;
+        }
+
+        try {
+          var sessionResult = await MiAuth.getSession();
+          if (sessionResult && sessionResult.ok && sessionResult.session && sessionResult.session.user) {
+            showSignedInPanel(sessionResult.session.user);
+            return;
+          }
+        } catch (_) {}
+
+        showAuthForm('用已有账号登录，或者先注册一个带昵称和头像的新账号。');
+      }
+
       avatarPicker.addEventListener('click', function onAvatarPick(event) {
         var button = event.target.closest('[data-avatar-id]');
         if (!button) return;
@@ -762,19 +913,30 @@
         updateStatus('success', '注册成功。现在可直接登录并同步学习进度。');
       });
 
+      signOutBtn.addEventListener('click', async function onSignOut() {
+        updateStatus('', '正在退出登录...');
+        var result = await MiAuth.signOut();
+        if (!result.ok) {
+          updateStatus('error', '退出失败：' + result.error);
+          return;
+        }
+        passwordInput.value = '';
+        showAuthForm('已退出登录，现在可以换其他账号登录。', 'success');
+      });
+
       window.addEventListener('mi-sync-status', function onSyncStatus(event) {
         if (!event || !event.detail) return;
         updateStatus(event.detail.status, event.detail.message);
       });
 
-      var setup = MiAuth.ensureClient();
-      if (!setup.ok) {
-        updateStatus('error', 'Supabase 未就绪：' + setup.error);
-      }
+      window.addEventListener('mi-auth-changed', function onAuthChanged() {
+        refreshSessionState();
+      });
 
       hydrateDraft();
       renderAvatarPicker();
       updatePreview();
+      refreshSessionState();
     })();
   </script>
 </body>
