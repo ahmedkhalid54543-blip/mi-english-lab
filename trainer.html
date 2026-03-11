@@ -88,6 +88,11 @@
       border-color: rgba(255,255,255,0.18);
     }
 
+    .trainer-btn[disabled] {
+      opacity: 0.45;
+      cursor: not-allowed;
+    }
+
     .toolbar {
       display: flex;
       flex-wrap: wrap;
@@ -122,6 +127,12 @@
     .status-line {
       font-size: 0.82rem;
       color: #6b7280;
+    }
+
+    .toolbar-right {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .metrics-grid {
@@ -182,6 +193,41 @@
       font-size: 1rem;
       font-weight: 800;
       color: #111827;
+    }
+
+    .access-copy {
+      font-size: 0.88rem;
+      color: #6b7280;
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .access-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      background: #e5e7eb;
+      color: #374151;
+      white-space: nowrap;
+    }
+
+    .access-chip[data-state="pending"] {
+      background: #fff7ed;
+      color: #c2410c;
+    }
+
+    .access-chip[data-state="forbidden"] {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .access-chip[data-state="error"] {
+      background: #fef3c7;
+      color: #92400e;
     }
 
     .weakness-list {
@@ -259,57 +305,73 @@
     <section class="trainer-hero">
       <div class="trainer-kicker">Mi English v3.0</div>
       <h1>Trainer 周报</h1>
-      <p>按 cohort 读取最新周报快照，展示总人数、激活、首场景完成率、场景通过率和 Top 3 弱项场景，并支持一键导出 CSV。</p>
+      <p>只对已绑定 cohort 的 trainer 开放。页面会先校验权限，再按 cohort 读取最新周报快照，展示总人数、激活、首场景完成率、场景通过率和 Top 3 弱项场景。</p>
       <div class="trainer-actions">
         <a href="index.html" class="trainer-btn primary"><i class="fas fa-house"></i> 返回首页</a>
-        <button type="button" class="trainer-btn secondary" id="exportCsvBtn"><i class="fas fa-file-csv"></i> 导出 CSV</button>
       </div>
     </section>
 
-    <section class="toolbar">
-      <div class="toolbar-left">
-        <label for="cohortSelect">选择 Cohort</label>
-        <select id="cohortSelect">
-          <option value="">加载中...</option>
-        </select>
-      </div>
-      <div class="status-line" id="trainerStatus">正在读取报表数据...</div>
-    </section>
-
-    <section class="metrics-grid">
-      <article class="metric-card">
-        <div class="metric-label">Cohort 总人数</div>
-        <div class="metric-value" id="metricTotalMembers">-</div>
-        <div class="metric-sub" id="metricWeek">最新周报</div>
-      </article>
-      <article class="metric-card">
-        <div class="metric-label">激活人数</div>
-        <div class="metric-value" id="metricActiveMembers">-</div>
-        <div class="metric-sub">7 天内活跃</div>
-      </article>
-      <article class="metric-card">
-        <div class="metric-label">首场景完成率</div>
-        <div class="metric-value" id="metricFirstSceneRate">-</div>
-        <div class="metric-sub">first scene completion</div>
-      </article>
-      <article class="metric-card">
-        <div class="metric-label">场景通过率</div>
-        <div class="metric-value" id="metricScenarioPassRate">-</div>
-        <div class="metric-sub">all scenario attempts</div>
-      </article>
-    </section>
-
-    <section class="panel">
+    <section class="panel" id="trainerAccessPanel">
       <div class="panel-head">
-        <div class="panel-title">Top 3 弱项场景</div>
+        <div>
+          <div class="panel-title" id="trainerAccessTitle">正在验证 trainer 权限...</div>
+          <p class="access-copy" id="trainerAccessMessage">会先确认当前账号是否绑定 trainer cohort，然后才会加载周报数据。</p>
+        </div>
+        <div class="access-chip" id="trainerAccessChip" data-state="pending">权限校验中</div>
       </div>
-      <div class="weakness-list" id="weaknessList"></div>
-      <div class="empty-state" id="trainerEmptyState" hidden>当前 cohort 暂无周报数据。</div>
     </section>
+
+    <div id="trainerAuthorizedContent" hidden>
+      <section class="toolbar">
+        <div class="toolbar-left">
+          <label for="cohortSelect">选择 Cohort</label>
+          <select id="cohortSelect">
+            <option value="">加载中...</option>
+          </select>
+        </div>
+        <div class="toolbar-right">
+          <div class="status-line" id="trainerStatus">正在读取报表数据...</div>
+          <button type="button" class="trainer-btn secondary" id="exportCsvBtn"><i class="fas fa-file-csv"></i> 导出 CSV</button>
+        </div>
+      </section>
+
+      <section class="metrics-grid">
+        <article class="metric-card">
+          <div class="metric-label">Cohort 总人数</div>
+          <div class="metric-value" id="metricTotalMembers">-</div>
+          <div class="metric-sub" id="metricWeek">最新周报</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-label">激活人数</div>
+          <div class="metric-value" id="metricActiveMembers">-</div>
+          <div class="metric-sub">7 天内活跃</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-label">首场景完成率</div>
+          <div class="metric-value" id="metricFirstSceneRate">-</div>
+          <div class="metric-sub">first scene completion</div>
+        </article>
+        <article class="metric-card">
+          <div class="metric-label">场景通过率</div>
+          <div class="metric-value" id="metricScenarioPassRate">-</div>
+          <div class="metric-sub">all scenario attempts</div>
+        </article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div class="panel-title">Top 3 弱项场景</div>
+        </div>
+        <div class="weakness-list" id="weaknessList"></div>
+        <div class="empty-state" id="trainerEmptyState" hidden>当前 cohort 暂无周报数据。</div>
+      </section>
+    </div>
   </main>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="js/supabase-config.js?v=3.0"></script>
   <script src="js/auth.js?v=3.0"></script>
+  <script src="js/trainer-guard.js?v=3.0"></script>
   <script src="js/trainer.js?v=3.0"></script>
 </body>
 </html>

@@ -10,7 +10,8 @@ const ALLOWED_TABS = new Set(['index', 'learn', 'practice', 'browse', 'progress'
 const EXTRA_BACKUP_KEYS = Object.freeze({
   rootsState: 'mi-english-roots-v1',
   scenarioProgress: 'mi-english-scenario-progress-v1',
-  scenarioMistakes: 'mi-english-scenario-mistakes-v1'
+  scenarioMistakes: 'mi-english-scenario-mistakes-v1',
+  syncMeta: 'mi-english-sync-meta-v1'
 });
 const SNAPSHOT_STORAGE_KEYS = [
   STORAGE_KEY,
@@ -299,12 +300,16 @@ function collectModuleDataForExport() {
   const rootsState = sanitizeRootsStateSnapshot(readLocalJSON(EXTRA_BACKUP_KEYS.rootsState, null));
   const scenarioProgress = sanitizeScenarioProgress(readLocalJSON(EXTRA_BACKUP_KEYS.scenarioProgress, {}));
   const scenarioMistakes = sanitizeScenarioMistakes(readLocalJSON(EXTRA_BACKUP_KEYS.scenarioMistakes, []));
+  const syncMeta = (typeof window !== 'undefined' && window.MiSyncMeta && typeof window.MiSyncMeta.exportSnapshot === 'function')
+    ? window.MiSyncMeta.exportSnapshot()
+    : readLocalJSON(EXTRA_BACKUP_KEYS.syncMeta, null);
 
   return {
     // null 代表无词根进度，导入时应清空目标端该模块
     rootsState,
     scenarioProgress,
-    scenarioMistakes
+    scenarioMistakes,
+    syncMeta
   };
 }
 
@@ -321,6 +326,13 @@ function sanitizeImportedModules(rawModules) {
   if (Object.prototype.hasOwnProperty.call(rawModules, 'scenarioMistakes')) {
     modules.scenarioMistakes = sanitizeScenarioMistakes(rawModules.scenarioMistakes);
   }
+  if (Object.prototype.hasOwnProperty.call(rawModules, 'syncMeta')) {
+    if (typeof window !== 'undefined' && window.MiSyncMeta && typeof window.MiSyncMeta.sanitizeSnapshot === 'function') {
+      modules.syncMeta = window.MiSyncMeta.sanitizeSnapshot(rawModules.syncMeta);
+    } else if (isPlainObject(rawModules.syncMeta)) {
+      modules.syncMeta = rawModules.syncMeta;
+    }
+  }
 
   return { hasModules: true, modules };
 }
@@ -331,6 +343,7 @@ function applyImportedModules(modules, hasModules) {
   const hasRootsState = Object.prototype.hasOwnProperty.call(modules, 'rootsState');
   const hasScenarioProgress = Object.prototype.hasOwnProperty.call(modules, 'scenarioProgress');
   const hasScenarioMistakes = Object.prototype.hasOwnProperty.call(modules, 'scenarioMistakes');
+  const hasSyncMeta = Object.prototype.hasOwnProperty.call(modules, 'syncMeta');
 
   if (hasRootsState) {
     if (isPlainObject(modules.rootsState)) {
@@ -352,6 +365,16 @@ function applyImportedModules(modules, hasModules) {
     localStorage.setItem(EXTRA_BACKUP_KEYS.scenarioMistakes, JSON.stringify(modules.scenarioMistakes));
   } else {
     localStorage.removeItem(EXTRA_BACKUP_KEYS.scenarioMistakes);
+  }
+
+  if (hasSyncMeta) {
+    if (modules.syncMeta && typeof window !== 'undefined' && window.MiSyncMeta && typeof window.MiSyncMeta.save === 'function') {
+      window.MiSyncMeta.save(modules.syncMeta);
+    } else if (isPlainObject(modules.syncMeta)) {
+      localStorage.setItem(EXTRA_BACKUP_KEYS.syncMeta, JSON.stringify(modules.syncMeta));
+    } else {
+      localStorage.removeItem(EXTRA_BACKUP_KEYS.syncMeta);
+    }
   }
 }
 
@@ -458,9 +481,12 @@ function clearAllStoredData() {
 function loadState() {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return getDefaultState();
-    const parsed = JSON.parse(raw);
-    return sanitizeState(parsed);
+    const parsed = raw ? JSON.parse(raw) : getDefaultState();
+    const safeState = sanitizeState(parsed);
+    if (typeof window !== 'undefined' && window.MiSyncMeta && typeof window.MiSyncMeta.seedFromState === 'function') {
+      window.MiSyncMeta.seedFromState(safeState);
+    }
+    return safeState;
   } catch {
     return getDefaultState();
   }
@@ -504,6 +530,12 @@ function scheduleCloudSync(state, reason) {
 
 function saveState(state, options = {}) {
   try {
+    if (!options.skipSyncMeta && typeof window !== 'undefined' && window.MiSyncMeta && typeof window.MiSyncMeta.recordStateChanges === 'function') {
+      const previousState = loadState();
+      window.MiSyncMeta.recordStateChanges(previousState, state, null, {
+        updatedAt: options.updatedAt
+      });
+    }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     if (!options.skipCloudSync) {
       scheduleCloudSync(state, options.reason || 'save_state');

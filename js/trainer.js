@@ -2,6 +2,7 @@
   'use strict';
 
   var state = {
+    access: null,
     cohorts: [],
     currentReport: null
   };
@@ -13,6 +14,31 @@
   function setStatus(message) {
     var node = $('trainerStatus');
     if (node) node.textContent = message;
+  }
+
+  function setAccessState(kind, title, message, badge) {
+    var panel = $('trainerAccessPanel');
+    var titleNode = $('trainerAccessTitle');
+    var messageNode = $('trainerAccessMessage');
+    var chipNode = $('trainerAccessChip');
+    var content = $('trainerAuthorizedContent');
+
+    if (panel) panel.hidden = kind === 'authorized';
+    if (content) content.hidden = kind !== 'authorized';
+
+    if (titleNode) titleNode.textContent = title || '';
+    if (messageNode) messageNode.textContent = message || '';
+
+    if (chipNode) {
+      chipNode.textContent = badge || '';
+      chipNode.setAttribute('data-state', kind || 'pending');
+    }
+  }
+
+  function setExportEnabled(enabled) {
+    var exportBtn = $('exportCsvBtn');
+    if (!exportBtn) return;
+    exportBtn.disabled = !enabled;
   }
 
   function formatPercent(value) {
@@ -38,35 +64,32 @@
     return global.MiAuth && typeof global.MiAuth.getClient === 'function' ? global.MiAuth.getClient() : null;
   }
 
-  async function loadCohorts() {
-    var client = ensureClient();
-    if (!client) {
-      setStatus('Supabase 未配置或未初始化');
-      return;
+  function findCohortById(cohortId) {
+    if (!cohortId) return null;
+
+    for (var i = 0; i < state.cohorts.length; i += 1) {
+      if (state.cohorts[i] && state.cohorts[i].id === cohortId) {
+        return state.cohorts[i];
+      }
     }
 
-    var result = await client
-      .from('cohorts')
-      .select('id,name,code,is_active')
-      .order('is_active', { ascending: false })
-      .order('created_at', { ascending: false });
+    return null;
+  }
 
-    if (result.error) {
-      setStatus('读取 cohort 失败: ' + result.error.message);
-      return;
-    }
-
-    state.cohorts = Array.isArray(result.data) ? result.data : [];
+  async function loadCohorts(access) {
+    state.access = access || null;
+    state.cohorts = access && Array.isArray(access.cohorts) ? access.cohorts.slice() : [];
     renderCohortOptions();
 
     if (!state.cohorts.length) {
-      setStatus('暂无 cohort');
+      setStatus('当前账号未绑定可访问的 cohort');
       renderReport(null);
       return;
     }
 
     var params = new URLSearchParams(global.location.search);
-    var cohortId = params.get('cohort') || state.cohorts[0].id;
+    var requestedCohortId = params.get('cohort');
+    var cohortId = findCohortById(requestedCohortId) ? requestedCohortId : state.cohorts[0].id;
     $('cohortSelect').value = cohortId;
     await loadLatestReport(cohortId);
   }
@@ -90,10 +113,12 @@
     var client = ensureClient();
     if (!client || !cohortId) {
       renderReport(null);
+      setExportEnabled(false);
       return;
     }
 
     setStatus('正在读取最新周报...');
+    setExportEnabled(false);
 
     var result = await client
       .from('weekly_reports')
@@ -111,6 +136,7 @@
 
     state.currentReport = result.data || null;
     renderReport(state.currentReport);
+    setExportEnabled(Boolean(state.currentReport));
     setStatus(state.currentReport ? '已加载最新周报' : '当前 cohort 暂无周报');
   }
 
@@ -215,8 +241,38 @@
     }
   }
 
+  async function boot() {
+    setExportEnabled(false);
+    setAccessState('pending', '正在验证 trainer 权限...', '会先确认当前账号是否绑定 trainer cohort，再读取对应周报。', '权限校验中');
+    setStatus('正在验证权限...');
+
+    if (!global.MiTrainerGuard || typeof global.MiTrainerGuard.resolveAccess !== 'function') {
+      setAccessState('error', 'trainer guard 未加载', '页面缺少权限校验模块，已阻止继续读取报表。', '已阻止');
+      setStatus('trainer guard 未加载');
+      return;
+    }
+
+    var access = await global.MiTrainerGuard.resolveAccess();
+    if (!access.ok) {
+      var isForbidden = access.reason === 'forbidden' || access.reason === 'no_session';
+      setAccessState(
+        isForbidden ? 'forbidden' : 'error',
+        access.reason === 'no_session' ? '请先登录 trainer 账号' : '当前账号没有 trainer 权限',
+        global.MiTrainerGuard.describeFailure(access),
+        isForbidden ? '已拦截' : '校验失败'
+      );
+      setStatus(global.MiTrainerGuard.describeFailure(access));
+      renderReport(null);
+      return;
+    }
+
+    setAccessState('authorized', '', '', '');
+    setStatus('权限校验通过');
+    await loadCohorts(access);
+  }
+
   document.addEventListener('DOMContentLoaded', function onReady() {
     bindEvents();
-    loadCohorts();
+    boot();
   });
 })(window);

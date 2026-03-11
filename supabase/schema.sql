@@ -90,6 +90,10 @@ create table if not exists public.weekly_reports (
 create index if not exists idx_cohort_memberships_cohort_user
   on public.cohort_memberships(cohort_id, user_id);
 
+create index if not exists idx_cohorts_trainer_user
+  on public.cohorts(trainer_user_id)
+  where trainer_user_id is not null;
+
 create index if not exists idx_weekly_reports_cohort_week
   on public.weekly_reports(cohort_id, report_week desc);
 
@@ -111,52 +115,87 @@ alter table public.cohorts enable row level security;
 alter table public.cohort_memberships enable row level security;
 alter table public.weekly_reports enable row level security;
 
-create policy if not exists "users_select_own" on public.users
+drop policy if exists "users_select_own" on public.users;
+create policy "users_select_own" on public.users
 for select using (auth.uid() = id);
-create policy if not exists "users_upsert_own" on public.users
+drop policy if exists "users_upsert_own" on public.users;
+create policy "users_upsert_own" on public.users
 for insert with check (auth.uid() = id);
-create policy if not exists "users_update_own" on public.users
+drop policy if exists "users_update_own" on public.users;
+create policy "users_update_own" on public.users
 for update using (auth.uid() = id);
 
-create policy if not exists "user_roles_select_own" on public.user_roles
+drop policy if exists "user_roles_select_own" on public.user_roles;
+create policy "user_roles_select_own" on public.user_roles
 for select using (auth.uid() = user_id);
-create policy if not exists "user_roles_upsert_own" on public.user_roles
+drop policy if exists "user_roles_upsert_own" on public.user_roles;
+create policy "user_roles_upsert_own" on public.user_roles
 for insert with check (auth.uid() = user_id);
-create policy if not exists "user_roles_update_own" on public.user_roles
+drop policy if exists "user_roles_update_own" on public.user_roles;
+create policy "user_roles_update_own" on public.user_roles
 for update using (auth.uid() = user_id);
 
-create policy if not exists "vocab_progress_select_own" on public.vocab_progress
+drop policy if exists "vocab_progress_select_own" on public.vocab_progress;
+create policy "vocab_progress_select_own" on public.vocab_progress
 for select using (auth.uid() = user_id);
-create policy if not exists "vocab_progress_upsert_own" on public.vocab_progress
+drop policy if exists "vocab_progress_upsert_own" on public.vocab_progress;
+create policy "vocab_progress_upsert_own" on public.vocab_progress
 for insert with check (auth.uid() = user_id);
-create policy if not exists "vocab_progress_update_own" on public.vocab_progress
+drop policy if exists "vocab_progress_update_own" on public.vocab_progress;
+create policy "vocab_progress_update_own" on public.vocab_progress
 for update using (auth.uid() = user_id);
 
-create policy if not exists "lesson_progress_select_own" on public.lesson_progress
+drop policy if exists "lesson_progress_select_own" on public.lesson_progress;
+create policy "lesson_progress_select_own" on public.lesson_progress
 for select using (auth.uid() = user_id);
-create policy if not exists "lesson_progress_upsert_own" on public.lesson_progress
+drop policy if exists "lesson_progress_upsert_own" on public.lesson_progress;
+create policy "lesson_progress_upsert_own" on public.lesson_progress
 for insert with check (auth.uid() = user_id);
-create policy if not exists "lesson_progress_update_own" on public.lesson_progress
+drop policy if exists "lesson_progress_update_own" on public.lesson_progress;
+create policy "lesson_progress_update_own" on public.lesson_progress
 for update using (auth.uid() = user_id);
 
-create policy if not exists "scenario_attempts_select_own" on public.scenario_attempts
+drop policy if exists "scenario_attempts_select_own" on public.scenario_attempts;
+create policy "scenario_attempts_select_own" on public.scenario_attempts
 for select using (auth.uid() = user_id);
-create policy if not exists "scenario_attempts_insert_own" on public.scenario_attempts
+drop policy if exists "scenario_attempts_insert_own" on public.scenario_attempts;
+create policy "scenario_attempts_insert_own" on public.scenario_attempts
 for insert with check (auth.uid() = user_id);
 
-create policy if not exists "cohorts_select_authenticated" on public.cohorts
-for select using (auth.role() = 'authenticated');
+drop policy if exists "cohorts_select_authenticated" on public.cohorts;
+drop policy if exists "cohorts_select_assigned_trainer" on public.cohorts;
+create policy "cohorts_select_assigned_trainer" on public.cohorts
+for select using (trainer_user_id = auth.uid());
 
-create policy if not exists "cohort_memberships_select_own" on public.cohort_memberships
-for select using (auth.uid() = user_id);
-create policy if not exists "cohort_memberships_insert_own" on public.cohort_memberships
-for insert with check (auth.uid() = user_id);
-create policy if not exists "cohort_memberships_update_own" on public.cohort_memberships
-for update using (auth.uid() = user_id);
+drop policy if exists "cohort_memberships_select_own" on public.cohort_memberships;
+drop policy if exists "cohort_memberships_insert_own" on public.cohort_memberships;
+drop policy if exists "cohort_memberships_update_own" on public.cohort_memberships;
+drop policy if exists "cohort_memberships_select_self_or_assigned_trainer" on public.cohort_memberships;
+create policy "cohort_memberships_select_self_or_assigned_trainer" on public.cohort_memberships
+for select using (
+  auth.uid() = user_id
+  or exists (
+    select 1
+    from public.cohorts
+    where cohorts.id = cohort_memberships.cohort_id
+      and cohorts.trainer_user_id = auth.uid()
+  )
+);
 
-create policy if not exists "weekly_reports_select_authenticated" on public.weekly_reports
-for select using (auth.role() = 'authenticated');
-create policy if not exists "weekly_reports_insert_service" on public.weekly_reports
+drop policy if exists "weekly_reports_select_authenticated" on public.weekly_reports;
+drop policy if exists "weekly_reports_select_assigned_trainer" on public.weekly_reports;
+create policy "weekly_reports_select_assigned_trainer" on public.weekly_reports
+for select using (
+  exists (
+    select 1
+    from public.cohorts
+    where cohorts.id = weekly_reports.cohort_id
+      and cohorts.trainer_user_id = auth.uid()
+  )
+);
+drop policy if exists "weekly_reports_insert_service" on public.weekly_reports;
+create policy "weekly_reports_insert_service" on public.weekly_reports
 for insert with check (auth.role() = 'service_role');
-create policy if not exists "weekly_reports_update_service" on public.weekly_reports
+drop policy if exists "weekly_reports_update_service" on public.weekly_reports;
+create policy "weekly_reports_update_service" on public.weekly_reports
 for update using (auth.role() = 'service_role');

@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>学习 - Mi English</title>
-  <link rel="stylesheet" href="css/style.css?v=2.6">
+  <link rel="stylesheet" href="css/style.css?v=3.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     .keyboard-hint {
@@ -25,6 +25,162 @@
       top: 10px;
       right: 10px;
       z-index: 10;
+    }
+    .flashcard-inner.has-memory {
+      min-height: 580px;
+    }
+    .flashcard-inner.has-memory .flashcard-back {
+      align-items: stretch;
+      justify-content: flex-start;
+      text-align: left;
+      overflow-y: auto;
+    }
+    .flashcard-back-body {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .flashcard-memory-flag {
+      margin-top: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 999px;
+      padding: 6px 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: #8a4b00;
+      background: rgba(255, 184, 77, 0.18);
+      border: 1px solid rgba(255, 184, 77, 0.35);
+    }
+    .flashcard-memory-flag.hidden,
+    .memory-image.hidden,
+    .memory-visual-placeholder.hidden {
+      display: none;
+    }
+    .flashcard-memory {
+      display: none;
+      width: 100%;
+      margin-top: 8px;
+    }
+    .flashcard-memory.active {
+      display: grid;
+      gap: 10px;
+    }
+    .memory-root-block {
+      display: grid;
+      gap: 4px;
+    }
+    .memory-root-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      width: fit-content;
+      color: #8a4b00;
+      background: rgba(255, 184, 77, 0.18);
+      border: 1px solid rgba(255, 184, 77, 0.35);
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    .memory-root-bridge {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+    .memory-section {
+      background: rgba(255, 255, 255, 0.76);
+      border: 1px solid rgba(255, 170, 82, 0.18);
+      border-radius: 16px;
+      padding: 12px;
+      display: grid;
+      gap: 8px;
+    }
+    .memory-section-title {
+      font-size: 0.6875rem;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: #9a5b14;
+    }
+    .memory-breakdown-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .memory-breakdown-item {
+      display: inline-flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 92px;
+      padding: 8px 10px;
+      border-radius: 12px;
+      background: #fffaf4;
+      border: 1px solid rgba(255, 170, 82, 0.18);
+    }
+    .memory-breakdown-part {
+      font-size: 0.8125rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    .memory-breakdown-gloss {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+    .memory-literal,
+    .memory-hook,
+    .memory-usage {
+      font-size: 0.8125rem;
+      line-height: 1.6;
+      color: var(--text-primary);
+    }
+    .memory-visual {
+      position: relative;
+      overflow: hidden;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,247,238,0.95));
+      border: 1px dashed rgba(255, 170, 82, 0.4);
+      min-height: 148px;
+    }
+    .memory-image {
+      display: block;
+      width: 100%;
+      max-height: 220px;
+      object-fit: cover;
+    }
+    .memory-visual-placeholder {
+      min-height: 148px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 16px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.75rem;
+      line-height: 1.5;
+    }
+    .flashcard-inner.has-memory .flashcard-zh,
+    .flashcard-inner.has-memory .flashcard-scene,
+    .flashcard-inner.has-memory .flashcard-example {
+      width: 100%;
+      text-align: left;
+    }
+    .flashcard-inner.has-memory .flashcard-zh {
+      margin-bottom: 0;
+      padding-right: 40px;
+    }
+    .flashcard-inner.has-memory .flashcard-example {
+      margin-top: 0;
+    }
+    @media (max-width: 639px) {
+      .flashcard-inner.has-memory {
+        min-height: 620px;
+      }
     }
   </style>
 </head>
@@ -78,6 +234,7 @@
             <i class="fas fa-volume-high"></i>
           </button>
           <div class="flashcard-en" id="cardEn">加载中...</div>
+          <div class="flashcard-memory-flag hidden" id="cardMemoryFlag"><i class="fas fa-brain"></i> 记忆层</div>
           <div class="flashcard-hint"><i class="fas fa-hand-pointer"></i> 点击翻转</div>
         </div>
         <div class="flashcard-face flashcard-back">
@@ -85,9 +242,12 @@
           <button class="speak-btn flashcard-audio-btn" onclick="speakCurrentCard(event)" aria-label="播放发音">
             <i class="fas fa-volume-high"></i>
           </button>
-          <div class="flashcard-zh" id="cardZh">-</div>
-          <div class="flashcard-scene" id="cardScene"></div>
-          <div class="flashcard-example" id="cardExample"></div>
+          <div class="flashcard-back-body">
+            <div class="flashcard-zh" id="cardZh">-</div>
+            <div class="flashcard-scene" id="cardScene"></div>
+            <div class="flashcard-example" id="cardExample"></div>
+            <div class="flashcard-memory" id="cardMemoryLayer" aria-live="polite"></div>
+          </div>
         </div>
       </div>
     </div>
@@ -133,11 +293,16 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/data.js?v=3.0"></script>
+  <script src="js/memory-data.js?v=1.0"></script>
+  <script src="js/memory-card.js?v=1.0"></script>
   <script src="js/role-config.js?v=3.0"></script>
+  <script src="js/sync-meta.js?v=3.0"></script>
   <script src="js/storage.js?v=3.0"></script>
   <script src="js/analytics.js?v=3.0"></script>
+  <script src="js/supabase-config.js?v=3.0"></script>
   <script src="js/auth.js?v=3.0"></script>
   <script src="js/api.js?v=3.0"></script>
+  <script src="js/sync-diagnostics.js?v=3.0"></script>
   <script src="js/audio-manifest.js?v=1.4"></script>
   <script src="js/tts.js?v=1.2"></script>
   <script src="js/nav-more.js?v=1.0"></script>
@@ -146,6 +311,14 @@
     let cards = [];
     let currentIdx = 0;
     let cardType = 'vocab';
+
+    function getMemoryRefs() {
+      return {
+        flashcard: document.getElementById('flashcard'),
+        memoryFlag: document.getElementById('cardMemoryFlag'),
+        memoryLayer: document.getElementById('cardMemoryLayer')
+      };
+    }
 
     // Init
     function init() {
@@ -215,11 +388,15 @@
 
     function renderCard() {
       if (cards.length === 0) {
+        document.getElementById('flashcard').classList.remove('flipped');
         document.getElementById('cardEn').textContent = '没有找到卡片';
         document.getElementById('cardZh').textContent = '试试调整筛选条件';
         document.getElementById('cardScene').textContent = '';
         document.getElementById('cardExample').textContent = '';
         document.getElementById('cardStatus').textContent = '0 / 0';
+        if (window.MiMemoryCard && typeof window.MiMemoryCard.clear === 'function') {
+          window.MiMemoryCard.clear(getMemoryRefs());
+        }
         return;
       }
 
@@ -236,6 +413,9 @@
       document.getElementById('cardZh').textContent = c.zh;
       document.getElementById('cardScene').textContent = c.scene ? `🎯 ${c.scene}` : '';
       document.getElementById('cardExample').textContent = c.example ? `"${c.example}"` : '';
+      if (window.MiMemoryCard && typeof window.MiMemoryCard.render === 'function') {
+        window.MiMemoryCard.render(c, getMemoryRefs());
+      }
 
       // Counter
       document.getElementById('cardStatus').textContent = `${currentIdx + 1} / ${cards.length}`;

@@ -62,14 +62,250 @@
     return user && user.id ? user.id : null;
   }
 
+  function normalizeIso(value) {
+    if (!value) return null;
+    var date = new Date(value);
+    if (Number.isNaN(date.getTime())) return null;
+    return date.toISOString();
+  }
+
+  function compareIso(left, right) {
+    var leftTime = normalizeIso(left) ? new Date(left).getTime() : 0;
+    var rightTime = normalizeIso(right) ? new Date(right).getTime() : 0;
+    if (leftTime === rightTime) return 0;
+    return leftTime > rightTime ? 1 : -1;
+  }
+
+  function readScenarioProgressLocal() {
+    try {
+      var raw = localStorage.getItem('mi-english-scenario-progress-v1');
+      if (!raw) return {};
+      var parsed = JSON.parse(raw);
+      return parsed && typeof parsed === 'object' ? parsed : {};
+    } catch (_) {
+      return {};
+    }
+  }
+
+  function writeScenarioProgressLocal(progress) {
+    try {
+      localStorage.setItem('mi-english-scenario-progress-v1', JSON.stringify(progress && typeof progress === 'object' ? progress : {}));
+      return true;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  function mergeScenarioProgress(localProgress, remoteProgress) {
+    var merged = {};
+    var ids = {};
+    var localSafe = localProgress && typeof localProgress === 'object' ? localProgress : {};
+    var remoteSafe = remoteProgress && typeof remoteProgress === 'object' ? remoteProgress : {};
+
+    Object.keys(localSafe).forEach(function addLocal(id) { ids[id] = true; });
+    Object.keys(remoteSafe).forEach(function addRemote(id) { ids[id] = true; });
+
+    Object.keys(ids).forEach(function eachId(id) {
+      var localItem = localSafe[id];
+      var remoteItem = remoteSafe[id];
+      if (!localItem) {
+        merged[id] = remoteItem;
+        return;
+      }
+      if (!remoteItem) {
+        merged[id] = localItem;
+        return;
+      }
+
+      var localUpdatedAt = normalizeIso(localItem.updatedAt);
+      var remoteUpdatedAt = normalizeIso(remoteItem.updatedAt);
+      if (localUpdatedAt && remoteUpdatedAt) {
+        merged[id] = compareIso(localUpdatedAt, remoteUpdatedAt) >= 0 ? localItem : remoteItem;
+        return;
+      }
+
+      if (localUpdatedAt) {
+        merged[id] = localItem;
+        return;
+      }
+
+      if (remoteUpdatedAt) {
+        merged[id] = remoteItem;
+        return;
+      }
+
+      merged[id] = localItem;
+    });
+
+    return merged;
+  }
+
+  function mergePracticeHistory(localHistory, remoteHistory) {
+    var seen = {};
+    var merged = [];
+    var source = []
+      .concat(Array.isArray(localHistory) ? localHistory : [])
+      .concat(Array.isArray(remoteHistory) ? remoteHistory : []);
+
+    source.forEach(function eachItem(item) {
+      if (!item || typeof item !== 'object') return;
+      var key = [item.date || '', item.mode || '', item.score || 0, item.total || 0].join('|');
+      if (seen[key]) return;
+      seen[key] = true;
+      merged.push(item);
+    });
+
+    merged.sort(function sortByDate(a, b) {
+      return compareIso(b && b.date, a && a.date);
+    });
+
+    return merged.slice(0, 2000);
+  }
+
+  function mergeAchievements(localAchievements, remoteAchievements) {
+    var byId = {};
+    []
+      .concat(Array.isArray(localAchievements) ? localAchievements : [])
+      .concat(Array.isArray(remoteAchievements) ? remoteAchievements : [])
+      .forEach(function eachAchievement(item) {
+        if (!item || typeof item.id !== 'string' || !item.id) return;
+        if (!byId[item.id]) {
+          byId[item.id] = item;
+          return;
+        }
+        if (compareIso(item.unlockedAt, byId[item.id].unlockedAt) < 0) {
+          byId[item.id] = item;
+        }
+      });
+
+    return Object.keys(byId).map(function mapId(id) {
+      return byId[id];
+    });
+  }
+
+  function mergeScalarMetric(localValue, remoteValue) {
+    var left = Number(localValue || 0);
+    var right = Number(remoteValue || 0);
+    return Math.max(left, right);
+  }
+
+  function mergeDayValue(localValue, remoteValue) {
+    if (!localValue) return remoteValue || null;
+    if (!remoteValue) return localValue || null;
+    return localValue >= remoteValue ? localValue : remoteValue;
+  }
+
+  function buildRemoteSyncMeta(result) {
+    var remoteMeta = global.MiSyncMeta && typeof global.MiSyncMeta.sanitizeSnapshot === 'function'
+      ? global.MiSyncMeta.sanitizeSnapshot(result && result.snapshot ? result.snapshot.syncMeta : null)
+      : { vocab: {}, pattern: {}, selectedRole: null };
+
+    if (Array.isArray(result && result.vocabRows)) {
+      result.vocabRows.forEach(function eachRow(row) {
+        if (!row || !row.vocab_id || !row.status) return;
+        remoteMeta.vocab[row.vocab_id] = {
+          value: row.status,
+          updatedAt: normalizeIso(row.updated_at)
+        };
+      });
+    }
+
+    if (result && result.role && result.role.role_id) {
+      remoteMeta.selectedRole = {
+        value: result.role.role_id,
+        updatedAt: normalizeIso(result.role.updated_at)
+      };
+    }
+
+    return remoteMeta;
+  }
+
+  function mergeAppState(localState, remoteState, localSyncMeta, remoteSyncMeta, result) {
+    var mergedState = Object.assign({}, localState || {});
+    var remoteSafe = remoteState && typeof remoteState === 'object' ? remoteState : {};
+    var localMeta = localSyncMeta || { vocab: {}, pattern: {}, selectedRole: null };
+    var remoteMeta = remoteSyncMeta || { vocab: {}, pattern: {}, selectedRole: null };
+    var remoteVocabMap = {};
+    var remotePatternMap = remoteSafe.patternStatus && typeof remoteSafe.patternStatus === 'object' ? remoteSafe.patternStatus : {};
+    var remoteSelectedRole = remoteSafe.selectedRole || null;
+
+    if (Array.isArray(result && result.vocabRows) && result.vocabRows.length > 0) {
+      result.vocabRows.forEach(function eachVocab(row) {
+        if (!row || !row.vocab_id || !row.status) return;
+        remoteVocabMap[row.vocab_id] = row.status;
+      });
+    } else {
+      remoteVocabMap = remoteSafe.vocabStatus && typeof remoteSafe.vocabStatus === 'object' ? remoteSafe.vocabStatus : {};
+    }
+
+    if (result && result.role && result.role.role_id) {
+      remoteSelectedRole = result.role.role_id;
+    }
+
+    if (global.MiSyncMeta && typeof global.MiSyncMeta.mergeStatusMaps === 'function') {
+      var mergedVocab = global.MiSyncMeta.mergeStatusMaps(
+        mergedState.vocabStatus,
+        remoteVocabMap,
+        localMeta.vocab,
+        remoteMeta.vocab
+      );
+      mergedState.vocabStatus = mergedVocab.values;
+      localMeta.vocab = mergedVocab.meta;
+
+      var mergedPattern = global.MiSyncMeta.mergeStatusMaps(
+        mergedState.patternStatus,
+        remotePatternMap,
+        localMeta.pattern,
+        remoteMeta.pattern
+      );
+      mergedState.patternStatus = mergedPattern.values;
+      localMeta.pattern = mergedPattern.meta;
+
+      var mergedRole = global.MiSyncMeta.mergeScalarValue(
+        mergedState.selectedRole,
+        remoteSelectedRole,
+        localMeta.selectedRole,
+        remoteMeta.selectedRole
+      );
+      mergedState.selectedRole = mergedRole.value;
+      localMeta.selectedRole = mergedRole.value ? {
+        value: mergedRole.value,
+        updatedAt: mergedRole.updatedAt || null
+      } : null;
+    } else {
+      mergedState.vocabStatus = Object.assign({}, mergedState.vocabStatus || {}, remoteVocabMap);
+      mergedState.patternStatus = Object.assign({}, mergedState.patternStatus || {}, remotePatternMap);
+      if (remoteSelectedRole) mergedState.selectedRole = remoteSelectedRole;
+    }
+
+    mergedState.practiceHistory = mergePracticeHistory(mergedState.practiceHistory, remoteSafe.practiceHistory);
+    mergedState.achievements = mergeAchievements(mergedState.achievements, remoteSafe.achievements);
+    mergedState.totalSessions = mergeScalarMetric(mergedState.totalSessions, remoteSafe.totalSessions);
+    mergedState.xp = mergeScalarMetric(mergedState.xp, remoteSafe.xp);
+    mergedState.streak = mergeScalarMetric(mergedState.streak, remoteSafe.streak);
+    mergedState.lastStudyDate = mergeDayValue(mergedState.lastStudyDate, remoteSafe.lastStudyDate);
+    if (!mergedState.lastLesson && remoteSafe.lastLesson) mergedState.lastLesson = remoteSafe.lastLesson;
+    if (!mergedState.lastTab && remoteSafe.lastTab) mergedState.lastTab = remoteSafe.lastTab;
+    if (!mergedState.createdAt && remoteSafe.createdAt) mergedState.createdAt = remoteSafe.createdAt;
+
+    return {
+      state: mergedState,
+      syncMeta: localMeta
+    };
+  }
+
   async function saveUserRole(roleId) {
     var client = getClient();
     var userId = await currentUserId();
     if (!client || !userId || !roleId) return { ok: false, reason: 'no_auth' };
+    var roleMeta = global.MiSyncMeta && typeof global.MiSyncMeta.getSelectedRoleMeta === 'function'
+      ? global.MiSyncMeta.getSelectedRoleMeta()
+      : null;
+    var updatedAt = roleMeta && roleMeta.value === roleId ? roleMeta.updatedAt : new Date().toISOString();
 
     var upsertRole = await client
       .from('user_roles')
-      .upsert({ user_id: userId, role_id: roleId, updated_at: new Date().toISOString() }, { onConflict: 'user_id' });
+      .upsert({ user_id: userId, role_id: roleId, updated_at: updatedAt }, { onConflict: 'user_id' });
 
     if (upsertRole.error) return { ok: false, reason: upsertRole.error.message };
 
@@ -79,12 +315,16 @@
   async function saveVocabProgress(vocabId, status, updatedAt) {
     var client = getClient();
     var userId = await currentUserId();
+    var meta = global.MiSyncMeta && typeof global.MiSyncMeta.getItemMeta === 'function'
+      ? global.MiSyncMeta.getItemMeta('vocab', vocabId)
+      : null;
+    var effectiveUpdatedAt = updatedAt || (meta && meta.value === status ? meta.updatedAt : null) || new Date().toISOString();
 
     var payload = {
       user_id: userId,
       vocab_id: vocabId,
       status: status,
-      updated_at: updatedAt || new Date().toISOString()
+      updated_at: effectiveUpdatedAt
     };
 
     if (!client || !userId) {
@@ -171,12 +411,16 @@
     }
 
     var user = await global.MiAuth.getUser();
+    var syncMeta = global.MiSyncMeta && typeof global.MiSyncMeta.exportSnapshot === 'function'
+      ? global.MiSyncMeta.exportSnapshot()
+      : null;
     var userPayload = {
       id: userId,
       email: user && user.email ? user.email : '',
       app_state: {
         state: state || {},
         scenarioProgress: scenarioProgress || {},
+        syncMeta: syncMeta,
         updatedAt: new Date().toISOString()
       },
       updated_at: new Date().toISOString()
@@ -300,30 +544,27 @@
       return { ok: false, reason: 'local_state_unavailable' };
     }
 
-    if (result.snapshot && result.snapshot.state && typeof result.snapshot.state === 'object') {
-      localState = Object.assign({}, localState, result.snapshot.state);
-    }
-
-    if (Array.isArray(result.vocabRows) && result.vocabRows.length > 0) {
-      localState.vocabStatus = localState.vocabStatus || {};
-      result.vocabRows.forEach(function eachVocab(row) {
-        if (!row || !row.vocab_id || !row.status) return;
-        localState.vocabStatus[row.vocab_id] = row.status;
-      });
-    }
-
-    if (result.role && result.role.role_id) {
-      localState.selectedRole = result.role.role_id;
-    }
+    var localSyncMeta = global.MiSyncMeta && typeof global.MiSyncMeta.seedFromState === 'function'
+      ? global.MiSyncMeta.seedFromState(localState)
+      : { vocab: {}, pattern: {}, selectedRole: null };
+    var remoteSyncMeta = buildRemoteSyncMeta(result);
+    var remoteSnapshotState = result.snapshot && result.snapshot.state && typeof result.snapshot.state === 'object'
+      ? result.snapshot.state
+      : null;
+    var merged = mergeAppState(localState, remoteSnapshotState, localSyncMeta, remoteSyncMeta, result);
+    localState = merged.state;
 
     var scenarioProgressFromAttempts = buildScenarioProgressFromAttempts(result.attempts);
-    if (Object.keys(scenarioProgressFromAttempts).length > 0) {
-      try {
-        localStorage.setItem('mi-english-scenario-progress-v1', JSON.stringify(scenarioProgressFromAttempts));
-      } catch (_) {}
+    var mergedScenarioProgress = mergeScenarioProgress(readScenarioProgressLocal(), scenarioProgressFromAttempts);
+    if (Object.keys(mergedScenarioProgress).length > 0) {
+      writeScenarioProgressLocal(mergedScenarioProgress);
     }
 
-    global.saveState(localState, { skipCloudSync: true });
+    if (global.MiSyncMeta && typeof global.MiSyncMeta.save === 'function') {
+      global.MiSyncMeta.save(merged.syncMeta);
+    }
+
+    global.saveState(localState, { skipCloudSync: true, skipSyncMeta: true });
     emitSyncStatus('success', '进度同步成功');
 
     return { ok: true, state: localState };
