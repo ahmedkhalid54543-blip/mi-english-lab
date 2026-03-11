@@ -583,8 +583,7 @@
       </div>
 
       <div class="auth-footer">
-        <div>登录成功后会自动执行：云端拉取 + 本地合并 + 离线队列补发。</div>
-        <div>如果你只想先测试同步，直接注册后登录即可，不需要再点邮箱确认。</div>
+        <div>登录后会自动带上你的学习记录，换设备也能继续。</div>
         <div><a href="index.html">返回首页</a></div>
       </div>
     </section>
@@ -810,7 +809,7 @@
       }
 
       async function syncAfterLogin() {
-        updateStatus('', '登录成功，正在同步进度...');
+        updateStatus('', '登录成功，正在准备你的学习记录...');
 
         var localState = loadState();
         await MiApi.syncLocalStateToCloud(localState, { reason: 'login' });
@@ -819,7 +818,7 @@
 
         currentState = loadState();
         clearProfileDraft();
-        updateStatus('success', '同步成功，正在跳转首页...');
+        updateStatus('success', '准备好了，正在回到首页...');
         setTimeout(function redirectSoon() {
           window.location.href = 'index.html';
         }, 900);
@@ -828,7 +827,7 @@
       async function refreshSessionState() {
         var setup = MiAuth.ensureClient();
         if (!setup.ok) {
-          showAuthForm('Supabase 未就绪：' + setup.error, 'error');
+          showAuthForm('登录服务暂时不可用，请稍后再试。', 'error');
           return;
         }
 
@@ -840,7 +839,7 @@
           }
         } catch (_) {}
 
-        showAuthForm('用已有账号登录，或者先注册一个带昵称和头像的新账号。');
+        showAuthForm('用已有账号登录，或者先注册一个新账号。');
       }
 
       avatarPicker.addEventListener('click', function onAvatarPick(event) {
