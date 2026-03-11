@@ -787,7 +787,8 @@
   function getImagePath(entry) {
     if (!entry || !entry.assetBaseName) return '';
     const basePath = batch.assetBasePath || 'assets/memory/';
-    return `${basePath}${entry.assetBaseName}.png`;
+    const assetVersion = encodeURIComponent(batch.version || '1.0');
+    return `${basePath}${entry.assetBaseName}.png?v=${assetVersion}`;
   }
 
   root.MiMemoryData = {
