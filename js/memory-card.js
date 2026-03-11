@@ -18,6 +18,13 @@
     `).join('');
   }
 
+  function getBreakdownTitle(entry) {
+    if (!entry || !entry.breakdownType) return '拆词记忆';
+    if (entry.breakdownType === 'root' || entry.breakdownType === 'word') return '词根 / 构词拆解';
+    if (entry.breakdownType === 'phrase') return '关键词拆解';
+    return '拆词记忆';
+  }
+
   function buildRootBridge(entry) {
     if (!entry.rootConnection) return '';
     return `
@@ -26,7 +33,6 @@
           <i class="fas fa-seedling"></i>
           词根联动：${safeHTML(entry.rootConnection.root)} = ${safeHTML(entry.rootConnection.meaningZh)}
         </a>
-        <div class="memory-root-bridge">${safeHTML(entry.rootConnection.bridge || '')}</div>
       </div>
     `;
   }
@@ -35,17 +41,12 @@
     return `
       ${buildRootBridge(entry)}
       <section class="memory-section">
-        <div class="memory-section-title">词根 / 构词拆解</div>
+        <div class="memory-section-title">${safeHTML(getBreakdownTitle(entry))}</div>
         <div class="memory-breakdown-list">${buildBreakdown(entry)}</div>
-        <div class="memory-literal">${safeHTML(entry.literal || '')}</div>
       </section>
       <section class="memory-section">
-        <div class="memory-section-title">联想钩子</div>
+        <div class="memory-section-title">幽默联想</div>
         <div class="memory-hook">${safeHTML(entry.hook || '')}</div>
-      </section>
-      <section class="memory-section">
-        <div class="memory-section-title">使用提示</div>
-        <div class="memory-usage">${safeHTML(entry.usageTip || '')}</div>
       </section>
       <section class="memory-section">
         <div class="memory-section-title">Lovart 图像</div>

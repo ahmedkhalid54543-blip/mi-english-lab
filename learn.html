@@ -207,6 +207,7 @@
         <option value="all">全部课程</option>
       </select>
       <select class="filter-select" id="statusFilter" onchange="applyFilters()">
+        <option value="learning" selected>学习中</option>
         <option value="all">全部状态</option>
         <option value="new">新词</option>
         <option value="unknown">不会</option>
@@ -370,6 +371,7 @@
         cards = cards.filter(c => {
           const s = cardType === 'vocab' ? state.vocabStatus[c.id] : state.patternStatus[c.id];
           if (status === 'new') return !s;
+          if (status === 'learning') return s !== 'mastered';
           return s === status;
         });
       }
@@ -494,6 +496,21 @@
       // Show status feedback
       const labels = { mastered: '✅ 掌握了！', shaky: '🔶 不太熟', unknown: '❌ 不会' };
       if (newAch.length === 0) showToast(labels[status]);
+
+      const activeFilter = document.getElementById('statusFilter').value;
+      const stillVisible = (
+        activeFilter === 'all' ||
+        (activeFilter === 'new' && !status) ||
+        (activeFilter === 'learning' && status !== 'mastered') ||
+        activeFilter === status
+      );
+
+      if (!stillVisible) {
+        cards.splice(currentIdx, 1);
+        if (currentIdx >= cards.length) currentIdx = 0;
+        renderCard();
+        return;
+      }
 
       nextCard();
     }
