@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>学习 - Mi English</title>
-  <link rel="stylesheet" href="css/style.css?v=3.0">
+  <link rel="stylesheet" href="css/style.css?v=3.1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     .keyboard-hint {
@@ -34,6 +34,7 @@
       justify-content: flex-start;
       text-align: left;
       overflow-y: auto;
+      padding-bottom: 12px;
     }
     .flashcard-back-body {
       width: 100%;
@@ -66,7 +67,7 @@
     }
     .flashcard-memory.active {
       display: grid;
-      gap: 10px;
+      gap: 8px;
     }
     .memory-root-block {
       display: grid;
@@ -139,17 +140,16 @@
     }
     .memory-visual {
       position: relative;
-      overflow: hidden;
       border-radius: 14px;
       background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,247,238,0.95));
       border: 1px dashed rgba(255, 170, 82, 0.4);
       min-height: 148px;
+      margin: -4px -4px -8px;
     }
     .memory-image {
       display: block;
       width: 100%;
-      max-height: 220px;
-      object-fit: cover;
+      border-radius: 14px;
     }
     .memory-visual-placeholder {
       min-height: 148px;
@@ -293,8 +293,8 @@
   <div class="toast" id="toast"></div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/data.js?v=3.0"></script>
-  <script src="js/memory-data.js?v=1.1"></script>
+  <script src="js/data.js?v=3.1"></script>
+  <script src="js/memory-data.js?v=1.2"></script>
   <script src="js/memory-card.js?v=1.1"></script>
   <script src="js/role-config.js?v=3.0"></script>
   <script src="js/sync-meta.js?v=3.0"></script>
@@ -304,7 +304,7 @@
   <script src="js/auth.js?v=3.0"></script>
   <script src="js/api.js?v=3.0"></script>
   <script src="js/sync-diagnostics.js?v=3.0"></script>
-  <script src="js/audio-manifest.js?v=1.4"></script>
+  <script src="js/audio-manifest.js?v=1.5"></script>
   <script src="js/tts.js?v=1.2"></script>
   <script src="js/nav-more.js?v=1.0"></script>
   <script>
@@ -417,10 +417,25 @@
       document.getElementById('cardExample').textContent = c.example ? `"${c.example}"` : '';
       if (window.MiMemoryCard && typeof window.MiMemoryCard.render === 'function') {
         window.MiMemoryCard.render(c, getMemoryRefs());
+        autoSizeFlashcard();
       }
 
       // Counter
       document.getElementById('cardStatus').textContent = `${currentIdx + 1} / ${cards.length}`;
+    }
+
+    function autoSizeFlashcard() {
+      const fc = document.getElementById('flashcard');
+      const back = fc.querySelector('.flashcard-back');
+      if (!back) return;
+      // Temporarily make back visible to measure its scroll height
+      const wasFlipped = fc.classList.contains('flipped');
+      back.style.position = 'relative';
+      back.style.visibility = wasFlipped ? '' : 'hidden';
+      const h = back.scrollHeight;
+      back.style.position = '';
+      back.style.visibility = '';
+      if (h > 0) fc.style.minHeight = h + 'px';
     }
 
     function flipCard() {

@@ -1,0 +1,252 @@
+[
+  {
+    "id": "L11-V16",
+    "en": "a decline in…",
+    "zh": "……的下滑（比fall更正式）"
+  },
+  {
+    "id": "L11-V17",
+    "en": "a drop in…",
+    "zh": "……的下跌（偏结果）"
+  },
+  {
+    "id": "L11-V18",
+    "en": "a sharp/slight decline",
+    "zh": "明显/小幅下滑"
+  },
+  {
+    "id": "L11-V19",
+    "en": "slightly / marginally",
+    "zh": "小幅地"
+  },
+  {
+    "id": "L11-V20",
+    "en": "moderately",
+    "zh": "适度地"
+  },
+  {
+    "id": "L11-V21",
+    "en": "gradually",
+    "zh": "逐步地"
+  },
+  {
+    "id": "L11-V22",
+    "en": "steadily",
+    "zh": "稳步地"
+  },
+  {
+    "id": "L11-V23",
+    "en": "year over year (YoY)",
+    "zh": "同比"
+  },
+  {
+    "id": "L11-V24",
+    "en": "month over month (MoM)",
+    "zh": "环比"
+  },
+  {
+    "id": "L11-V25",
+    "en": "quarter over quarter (QoQ)",
+    "zh": "季环比"
+  },
+  {
+    "id": "L11-V26",
+    "en": "versus…",
+    "zh": "相比……"
+  },
+  {
+    "id": "L11-V27",
+    "en": "compared with…",
+    "zh": "与……相比"
+  },
+  {
+    "id": "L11-V28",
+    "en": "lag behind…by…",
+    "zh": "比……滞后……"
+  },
+  {
+    "id": "L11-V29",
+    "en": "remained stable",
+    "zh": "保持稳定"
+  },
+  {
+    "id": "L11-V30",
+    "en": "roughly flat",
+    "zh": "基本持平"
+  },
+  {
+    "id": "L11-V31",
+    "en": "fluctuated slightly",
+    "zh": "小幅波动"
+  },
+  {
+    "id": "L11-V32",
+    "en": "showed mixed results",
+    "zh": "表现不一"
+  },
+  {
+    "id": "L11-V33",
+    "en": "a patchwork of results",
+    "zh": "参差不齐、好坏不一"
+  },
+  {
+    "id": "L11-V34",
+    "en": "the total size of…",
+    "zh": "……的整体规模"
+  },
+  {
+    "id": "L11-V35",
+    "en": "the number of…",
+    "zh": "……的数量"
+  },
+  {
+    "id": "L11-V36",
+    "en": "cumulative deliveries",
+    "zh": "累计交付量"
+  },
+  {
+    "id": "L11-V37",
+    "en": "received new orders totaling…",
+    "zh": "新接订单总额为……"
+  },
+  {
+    "id": "L11-V38",
+    "en": "had anticipated…",
+    "zh": "原本预计……"
+  },
+  {
+    "id": "L11-V39",
+    "en": "came in below/above expectations",
+    "zh": "低于/高于预期"
+  },
+  {
+    "id": "L11-V40",
+    "en": "fell short of expectations",
+    "zh": "未达预期"
+  },
+  {
+    "id": "L11-V41",
+    "en": "exceeded initial expectations",
+    "zh": "超出初期预期"
+  },
+  {
+    "id": "L11-V42",
+    "en": "a reassuring sign that…",
+    "zh": "一个令人安心的信号，表明……"
+  },
+  {
+    "id": "L11-V43",
+    "en": "a sign of weakening demand",
+    "zh": "需求走弱的迹象"
+  },
+  {
+    "id": "L11-V44",
+    "en": "raising concern that…",
+    "zh": "引发对……的担忧"
+  },
+  {
+    "id": "L11-V45",
+    "en": "suggests that…",
+    "zh": "表明……（比show更克制）"
+  },
+  {
+    "id": "L11-V46",
+    "en": "indicates a broader trend",
+    "zh": "反映更广泛的趋势"
+  },
+  {
+    "id": "L11-V47",
+    "en": "Overall, performance was broadly stable.",
+    "zh": "总体来看，表现较为稳定"
+  },
+  {
+    "id": "L11-V48",
+    "en": "Overall, results came in below expectations.",
+    "zh": "总体来看，结果低于预期"
+  },
+  {
+    "id": "L11-V49",
+    "en": "While some indicators improved, others raise concern.",
+    "zh": "尽管部分指标改善，但仍有数据引发担忧"
+  },
+  {
+    "id": "L11-V50",
+    "en": "Thank you for making the time to join us today.",
+    "zh": "感谢大家抽时间参会"
+  },
+  {
+    "id": "L11-V51",
+    "en": "Before we move into the business details, let me briefly set the context.",
+    "zh": "在进入业务细节前，我先简单介绍背景"
+  },
+  {
+    "id": "L11-V52",
+    "en": "so far",
+    "zh": "到目前为止"
+  },
+  {
+    "id": "L11-V53",
+    "en": "on track",
+    "zh": "进度正常"
+  },
+  {
+    "id": "L11-V54",
+    "en": "expected to be completed by…",
+    "zh": "预计完成时间"
+  },
+  {
+    "id": "L11-V55",
+    "en": "has prolonged…",
+    "zh": "拉长了……"
+  },
+  {
+    "id": "L11-V56",
+    "en": "is still catching up from…",
+    "zh": "仍在恢复……"
+  },
+  {
+    "id": "L11-V57",
+    "en": "reassuring",
+    "zh": "令人安心的"
+  },
+  {
+    "id": "L11-V58",
+    "en": "optimistic",
+    "zh": "积极的"
+  },
+  {
+    "id": "L11-V59",
+    "en": "stable",
+    "zh": "稳定"
+  },
+  {
+    "id": "L11-V60",
+    "en": "mixed",
+    "zh": "有好有坏"
+  },
+  {
+    "id": "L11-V61",
+    "en": "more fragile",
+    "zh": "更不稳定"
+  },
+  {
+    "id": "L11-V62",
+    "en": "Let me put it simply.",
+    "zh": "让我简单说"
+  },
+  {
+    "id": "L11-V63",
+    "en": "In simple terms…",
+    "zh": "简单来说……"
+  },
+  {
+    "id": "L11-V64",
+    "en": "Overall speaking…",
+    "zh": "总体来说……"
+  },
+  {
+    "id": "L11-V65",
+    "en": "revenue",
+    "zh": "营收"
+  }
+]

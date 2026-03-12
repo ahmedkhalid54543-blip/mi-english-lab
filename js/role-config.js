@@ -68,7 +68,8 @@
     L17: ['retail_store'],
     L18: ['retail_store', 'channel_partner', 'gtm_pitch'],
     L19: ['retail_store'],
-    L20: ['channel_partner']
+    L20: ['channel_partner'],
+    L21: ['channel_partner', 'retail_store']
   };
 
   function cloneRoles(ids) {

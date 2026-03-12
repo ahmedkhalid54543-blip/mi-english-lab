@@ -1,0 +1,252 @@
+[
+  {
+    "id": "L06-V21",
+    "en": "team spirit",
+    "zh": "团队精神"
+  },
+  {
+    "id": "L06-V22",
+    "en": "communicate its values",
+    "zh": "传达公司价值观"
+  },
+  {
+    "id": "L06-V23",
+    "en": "well-planned / tightly budgeted",
+    "zh": "计划周密 / 预算紧"
+  },
+  {
+    "id": "L06-V24",
+    "en": "money well spent",
+    "zh": "值得的投入"
+  },
+  {
+    "id": "L07-V0",
+    "en": "slow sell-out",
+    "zh": "动销慢"
+  },
+  {
+    "id": "L07-V1",
+    "en": "forecast gap",
+    "zh": "预测与实际的差距"
+  },
+  {
+    "id": "L07-V2",
+    "en": "align on the sales target",
+    "zh": "对齐销售目标"
+  },
+  {
+    "id": "L07-V3",
+    "en": "weekly sell-out report",
+    "zh": "终端销售周报"
+  },
+  {
+    "id": "L07-V4",
+    "en": "slow-moving stock",
+    "zh": "滞销库存"
+  },
+  {
+    "id": "L07-V6",
+    "en": "realistic target",
+    "zh": "务实目标"
+  },
+  {
+    "id": "L07-V7",
+    "en": "performance gap",
+    "zh": "业绩缺口"
+  },
+  {
+    "id": "L07-V8",
+    "en": "monthly review",
+    "zh": "月度回顾"
+  },
+  {
+    "id": "L07-V9",
+    "en": "healthy inventory level",
+    "zh": "健康库存水平"
+  },
+  {
+    "id": "L07-V10",
+    "en": "demand planning",
+    "zh": "需求规划"
+  },
+  {
+    "id": "L07-V11",
+    "en": "sell-out push",
+    "zh": "拉动销售"
+  },
+  {
+    "id": "L07-V12",
+    "en": "MAP price",
+    "zh": "最低广告价"
+  },
+  {
+    "id": "L07-V13",
+    "en": "price inversion",
+    "zh": "价格倒挂"
+  },
+  {
+    "id": "L07-V14",
+    "en": "price drop",
+    "zh": "价格下调"
+  },
+  {
+    "id": "L07-V15",
+    "en": "unauthorized discount",
+    "zh": "未授权折扣"
+  },
+  {
+    "id": "L07-V16",
+    "en": "pricing violation",
+    "zh": "违规定价"
+  },
+  {
+    "id": "L07-V17",
+    "en": "enforce the policy",
+    "zh": "执行定价政策"
+  },
+  {
+    "id": "L07-V20",
+    "en": "pricing consistency",
+    "zh": "价格一致性"
+  },
+  {
+    "id": "L07-V21",
+    "en": "competitive pressure",
+    "zh": "竞争性调价压力"
+  },
+  {
+    "id": "L07-V22",
+    "en": "listing quality",
+    "zh": "商品页面质量"
+  },
+  {
+    "id": "L07-V24",
+    "en": "traffic",
+    "zh": "流量"
+  },
+  {
+    "id": "L07-V25",
+    "en": "hero image",
+    "zh": "主图"
+  },
+  {
+    "id": "L07-V26",
+    "en": "product description quality",
+    "zh": "文案质量"
+  },
+  {
+    "id": "L07-V30",
+    "en": "creative assets",
+    "zh": "创意素材"
+  },
+  {
+    "id": "L07-V31",
+    "en": "promotion",
+    "zh": "促销活动"
+  },
+  {
+    "id": "L07-V32",
+    "en": "budget",
+    "zh": "预算"
+  },
+  {
+    "id": "L07-V33",
+    "en": "banner position",
+    "zh": "广告位"
+  },
+  {
+    "id": "L07-V34",
+    "en": "homepage exposure",
+    "zh": "首页曝光"
+  },
+  {
+    "id": "L07-V36",
+    "en": "influencer collaboration",
+    "zh": "达人合作"
+  },
+  {
+    "id": "L07-V37",
+    "en": "campaign",
+    "zh": "活动"
+  },
+  {
+    "id": "L07-V38",
+    "en": "ROI (return on investment)",
+    "zh": "投资回报"
+  },
+  {
+    "id": "L07-V39",
+    "en": "traffic boost",
+    "zh": "流量助推"
+  },
+  {
+    "id": "L07-V40",
+    "en": "local distributors",
+    "zh": "本地经销商"
+  },
+  {
+    "id": "L07-V41",
+    "en": "retailers",
+    "zh": "零售商"
+  },
+  {
+    "id": "L07-V42",
+    "en": "offline chain stores",
+    "zh": "线下连锁店"
+  },
+  {
+    "id": "L07-V43",
+    "en": "e-commerce platforms",
+    "zh": "电商平台"
+  },
+  {
+    "id": "L07-V44",
+    "en": "operators / carriers",
+    "zh": "运营商"
+  },
+  {
+    "id": "L07-V45",
+    "en": "after-sales service partners",
+    "zh": "售后服务合作伙伴"
+  },
+  {
+    "id": "L07-V46",
+    "en": "logistics partners",
+    "zh": "物流合作伙伴"
+  },
+  {
+    "id": "L07-V47",
+    "en": "Price",
+    "zh": "价格"
+  },
+  {
+    "id": "L07-V48",
+    "en": "Delivery",
+    "zh": "交付"
+  },
+  {
+    "id": "L07-V49",
+    "en": "Stock",
+    "zh": "库存"
+  },
+  {
+    "id": "L07-V50",
+    "en": "Promotion",
+    "zh": "促销"
+  },
+  {
+    "id": "L07-V51",
+    "en": "Sell-out target",
+    "zh": "终端销售目标"
+  },
+  {
+    "id": "L07-V52",
+    "en": "After-sales issues",
+    "zh": "售后问题"
+  },
+  {
+    "id": "L07-V53",
+    "en": "stock pressure",
+    "zh": "库存压力大"
+  }
+]

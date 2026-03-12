@@ -29,7 +29,7 @@ const ACHIEVEMENTS = [
   { id: 'vocab_200', title: '词汇大师', desc: '掌握200个词汇', icon: '👑', type: 'vocab', condition: s => countVocabStatus(s, 'mastered') >= 200 },
   { id: 'vocab_300', title: '词汇宗师', desc: '掌握300个词汇', icon: '🏅', type: 'vocab', condition: s => countVocabStatus(s, 'mastered') >= 300 },
   { id: 'vocab_500', title: '词汇达人', desc: '掌握500个词汇', icon: '🎖️', type: 'vocab', condition: s => countVocabStatus(s, 'mastered') >= 500 },
-  { id: 'vocab_all', title: '全词通关', desc: '掌握全部777个词汇', icon: '🏆', type: 'vocab', condition: s => countVocabStatus(s, 'mastered') >= 777 },
+  { id: 'vocab_all', title: '全词通关', desc: '掌握全部839个词汇', icon: '🏆', type: 'vocab', condition: s => countVocabStatus(s, 'mastered') >= 839 },
 
   // 练习相关
   { id: 'first_practice', title: '初次挑战', desc: '完成第一轮练习', icon: '🎮', type: 'practice', condition: s => s.practiceHistory.length >= 1 },

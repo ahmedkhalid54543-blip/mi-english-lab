@@ -1,0 +1,252 @@
+[
+  {
+    "id": "L08-P7",
+    "category": "创业叙事",
+    "template": "It was a bumpy ride, but we made it."
+  },
+  {
+    "id": "L08-P8",
+    "category": "价格沟通",
+    "template": "Your price is too low online. Please adjust it."
+  },
+  {
+    "id": "L08-P9",
+    "category": "资源协调",
+    "template": "We need more visibility for this launch."
+  },
+  {
+    "id": "L09-P0",
+    "category": "品牌表达",
+    "template": "We started with one simple idea in mind…"
+  },
+  {
+    "id": "L09-P1",
+    "category": "产品介绍",
+    "template": "What people really like about it is…"
+  },
+  {
+    "id": "L09-P2",
+    "category": "产品介绍",
+    "template": "The best part is probably…"
+  },
+  {
+    "id": "L09-P3",
+    "category": "产品介绍",
+    "template": "This is perfect if you're someone who…"
+  },
+  {
+    "id": "L09-P4",
+    "category": "客户互动",
+    "template": "What matters most to you here?"
+  },
+  {
+    "id": "L09-P5",
+    "category": "客户互动",
+    "template": "How does that sound to you?"
+  },
+  {
+    "id": "L09-P6",
+    "category": "会议收尾",
+    "template": "Sounds like we're on the same page."
+  },
+  {
+    "id": "L09-P7",
+    "category": "会议收尾",
+    "template": "Let's take this offline and follow up by email."
+  },
+  {
+    "id": "L10-P0",
+    "category": "委婉反对",
+    "template": "I see your point, but…"
+  },
+  {
+    "id": "L10-P1",
+    "category": "建议替代",
+    "template": "Perhaps we could consider…"
+  },
+  {
+    "id": "L10-P2",
+    "category": "建议替代",
+    "template": "What if we try…?"
+  },
+  {
+    "id": "L10-P3",
+    "category": "-ing结构",
+    "template": "It's worth…-ing"
+  },
+  {
+    "id": "L10-P4",
+    "category": "-ing结构",
+    "template": "There's no point in…-ing"
+  },
+  {
+    "id": "L10-P5",
+    "category": "跨文化会议",
+    "template": "From our perspective…"
+  },
+  {
+    "id": "L11-P0",
+    "category": "数据上升",
+    "template": "[Sth] rose by [数字] year over year."
+  },
+  {
+    "id": "L11-P1",
+    "category": "数据下降",
+    "template": "[Sth] fell to the lowest level in [时间]."
+  },
+  {
+    "id": "L11-P2",
+    "category": "数据对比",
+    "template": "[Sth] came in below/above expectations."
+  },
+  {
+    "id": "L11-P3",
+    "category": "数据稳定",
+    "template": "[Sth] remained stable / were roughly flat MoM."
+  },
+  {
+    "id": "L11-P4",
+    "category": "趋势判断",
+    "template": "This is a reassuring sign that…"
+  },
+  {
+    "id": "L11-P5",
+    "category": "综述",
+    "template": "Overall, performance was broadly stable."
+  },
+  {
+    "id": "L11-P6",
+    "category": "救场",
+    "template": "Let me put it simply."
+  },
+  {
+    "id": "L12-P0",
+    "category": "数据描述",
+    "template": "There is an increase of [数字] in [品类/市场]."
+  },
+  {
+    "id": "L12-P1",
+    "category": "数据描述",
+    "template": "[Sth] accounted for/took up [比例]."
+  },
+  {
+    "id": "L12-P2",
+    "category": "应对提问",
+    "template": "This is mainly because…"
+  },
+  {
+    "id": "L12-P3",
+    "category": "应对提问",
+    "template": "This has a lot to do with…"
+  },
+  {
+    "id": "L12-P4",
+    "category": "对比",
+    "template": "While [A] peaked in…, [B] reached its high point in…"
+  },
+  {
+    "id": "L13-P0",
+    "category": "数据描述",
+    "template": "There was a sharp increase between ___ and ___."
+  },
+  {
+    "id": "L13-P1",
+    "category": "数据描述",
+    "template": "The figure peaked in ___ at ___."
+  },
+  {
+    "id": "L13-P2",
+    "category": "同比增长",
+    "template": "___ grew by X% year-over-year."
+  },
+  {
+    "id": "L13-P3",
+    "category": "社媒评估",
+    "template": "I think ___ is quite successful because they use social media to…"
+  },
+  {
+    "id": "L13-P4",
+    "category": "正反论证",
+    "template": "On the one hand, ___ can help…. On the other hand, it might…"
+  },
+  {
+    "id": "L13-P5",
+    "category": "假设推理",
+    "template": "If a company ___, then…"
+  },
+  {
+    "id": "L13-P6",
+    "category": "问题复盘",
+    "template": "One problem was…. This caused…. A better approach would be…"
+  },
+  {
+    "id": "L13-P7",
+    "category": "策略结合",
+    "template": "You need to marry ___ with ___."
+  },
+  {
+    "id": "L14-P0",
+    "category": "介绍职责",
+    "template": "My role mainly focuses on…"
+  },
+  {
+    "id": "L14-P1",
+    "category": "划清边界",
+    "template": "I'm responsible for ___, but ___ is not on my side."
+  },
+  {
+    "id": "L14-P2",
+    "category": "报告进展",
+    "template": "Quick update on ___: we're on track / slightly behind due to…"
+  },
+  {
+    "id": "L14-P3",
+    "category": "招聘描述",
+    "template": "We need someone who can ___ and has ___ experience."
+  },
+  {
+    "id": "L14-P4",
+    "category": "行为面试",
+    "template": "Tell me about a time when you…"
+  },
+  {
+    "id": "L14-P5",
+    "category": "候选人评估",
+    "template": "Overall, I think the candidate is strong in…"
+  },
+  {
+    "id": "L14-P6",
+    "category": "绩效反馈",
+    "template": "I noticed… This has impacted…"
+  },
+  {
+    "id": "L14-P7",
+    "category": "达成一致",
+    "template": "Let's agree on next steps: ___ by (date)."
+  },
+  {
+    "id": "L15-P0",
+    "category": "招聘",
+    "template": "We're hiring for a role that focuses on…"
+  },
+  {
+    "id": "L15-P1",
+    "category": "招聘",
+    "template": "The must-haves are…"
+  },
+  {
+    "id": "L15-P2",
+    "category": "面试",
+    "template": "Can you walk me through your experience with…?"
+  },
+  {
+    "id": "L15-P3",
+    "category": "面试",
+    "template": "Tell me about a time when you…"
+  },
+  {
+    "id": "L15-P4",
+    "category": "绩效对齐",
+    "template": "The metric we'll use is…and it's defined as…"
+  }
+]

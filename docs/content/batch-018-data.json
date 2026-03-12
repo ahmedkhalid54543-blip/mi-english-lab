@@ -1,0 +1,252 @@
+[
+  {
+    "id": "L01-P0",
+    "category": "自我介绍",
+    "template": "I'm ___, but feel free to just call me ___."
+  },
+  {
+    "id": "L01-P1",
+    "category": "自我介绍",
+    "template": "I'm a ___ in ___, mainly focusing on ___."
+  },
+  {
+    "id": "L01-P2",
+    "category": "描述公司吸引力",
+    "template": "I think ___ would be the most attractive because ___."
+  },
+  {
+    "id": "L01-P3",
+    "category": "表达同意",
+    "template": "I partly/completely agree with ___ because ___."
+  },
+  {
+    "id": "L01-P4",
+    "category": "表达不同意",
+    "template": "I'm not so sure about ___, because ___."
+  },
+  {
+    "id": "L01-P5",
+    "category": "描述职责",
+    "template": "My main responsibilities are to ___."
+  },
+  {
+    "id": "L01-P6",
+    "category": "描述职责",
+    "template": "My job involves ___."
+  },
+  {
+    "id": "L01-P7",
+    "category": "描述职责",
+    "template": "I'm responsible for ___."
+  },
+  {
+    "id": "L01-P8",
+    "category": "描述职责",
+    "template": "I deal with ___."
+  },
+  {
+    "id": "L01-P9",
+    "category": "描述职责",
+    "template": "I look after ___."
+  },
+  {
+    "id": "L02-P0",
+    "category": "描述职责",
+    "template": "My main responsibilities are to ___."
+  },
+  {
+    "id": "L02-P1",
+    "category": "描述职责",
+    "template": "I look after ___ at my company."
+  },
+  {
+    "id": "L02-P2",
+    "category": "描述职责",
+    "template": "I work closely with ___ on projects."
+  },
+  {
+    "id": "L02-P3",
+    "category": "表达满意度",
+    "template": "I enjoy my job because ___."
+  },
+  {
+    "id": "L02-P4",
+    "category": "表达满意度",
+    "template": "I find it challenging but rewarding."
+  },
+  {
+    "id": "L03-P0",
+    "category": "表达想法",
+    "template": "I came up with this idea when…"
+  },
+  {
+    "id": "L03-P1",
+    "category": "突出特点",
+    "template": "What makes it different / unique is…"
+  },
+  {
+    "id": "L03-P2",
+    "category": "说明优点",
+    "template": "One advantage of ___ is that…"
+  },
+  {
+    "id": "L03-P3",
+    "category": "说明缺点",
+    "template": "The main disadvantage of ___ is that…"
+  },
+  {
+    "id": "L03-P4",
+    "category": "预测挑战",
+    "template": "One challenge could be…"
+  },
+  {
+    "id": "L03-P5",
+    "category": "提出建议",
+    "template": "To attract / retain ___, they should…"
+  },
+  {
+    "id": "L03-P6",
+    "category": "表达印象",
+    "template": "What impressed me was…"
+  },
+  {
+    "id": "L03-P7",
+    "category": "委婉建议",
+    "template": "I think we should also consider…"
+  },
+  {
+    "id": "L04-P0",
+    "category": "礼貌询问",
+    "template": "Could you tell me…?"
+  },
+  {
+    "id": "L04-P1",
+    "category": "正式请求",
+    "template": "We would appreciate it if you could…"
+  },
+  {
+    "id": "L04-P2",
+    "category": "强调性价比",
+    "template": "It's excellent value for money."
+  },
+  {
+    "id": "L04-P3",
+    "category": "强调创新",
+    "template": "It offers unique features that others don't."
+  },
+  {
+    "id": "L04-P4",
+    "category": "市场认可",
+    "template": "It's one of our bestsellers."
+  },
+  {
+    "id": "L04-P5",
+    "category": "条件报价",
+    "template": "If you order ___, we can offer a ___% discount."
+  },
+  {
+    "id": "L04-P6",
+    "category": "展台接待",
+    "template": "Hi, welcome to our stand! Let me show you around."
+  },
+  {
+    "id": "L04-P7",
+    "category": "成交推进",
+    "template": "So shall we go ahead with this order?"
+  },
+  {
+    "id": "L05-P0",
+    "category": "创业动机",
+    "template": "I spotted a gap in the market."
+  },
+  {
+    "id": "L05-P1",
+    "category": "创业叙事",
+    "template": "It all started with a simple idea."
+  },
+  {
+    "id": "L05-P2",
+    "category": "筹资表达",
+    "template": "To finance our start-up, we used a mix of ___ and ___."
+  },
+  {
+    "id": "L05-P3",
+    "category": "成本控制",
+    "template": "We'll do our best to keep costs down by…"
+  },
+  {
+    "id": "L05-P4",
+    "category": "盈亏平衡",
+    "template": "We managed to break even in…"
+  },
+  {
+    "id": "L05-P5",
+    "category": "独特卖点",
+    "template": "Our unique selling point is that…"
+  },
+  {
+    "id": "L05-P6",
+    "category": "虚拟语气建议",
+    "template": "If I were you, I'd try to…"
+  },
+  {
+    "id": "L05-P7",
+    "category": "询问方法",
+    "template": "How did you go about it?"
+  },
+  {
+    "id": "L06-P0",
+    "category": "选址-引出目的",
+    "template": "The purpose of this proposal is to ___."
+  },
+  {
+    "id": "L06-P1",
+    "category": "选址-关键因素",
+    "template": "One important factor is ___."
+  },
+  {
+    "id": "L06-P2",
+    "category": "选址-比较",
+    "template": "Compared with ___, ___ has ___."
+  },
+  {
+    "id": "L06-P3",
+    "category": "选址-建议",
+    "template": "On balance, we recommend choosing ___."
+  },
+  {
+    "id": "L06-P4",
+    "category": "差旅-目的",
+    "template": "The purpose of this trip is to ___."
+  },
+  {
+    "id": "L06-P5",
+    "category": "差旅-安排",
+    "template": "Our trip will take place from ___ to ___."
+  },
+  {
+    "id": "L06-P6",
+    "category": "逻辑衔接",
+    "template": "First and by far the most important, ___. Secondly, ___."
+  },
+  {
+    "id": "L07-P0",
+    "category": "Sell-in/Sell-out数据询问",
+    "template": "What's your sell-out number this week?"
+  },
+  {
+    "id": "L07-P1",
+    "category": "Sell-in/Sell-out问题指出",
+    "template": "Sell-in is high, but sell-out is low."
+  },
+  {
+    "id": "L07-P2",
+    "category": "数据透明度要求",
+    "template": "We need your weekly sell-out report."
+  },
+  {
+    "id": "L07-P3",
+    "category": "Sell-in/Sell-out差距分析",
+    "template": "Sell-out is not matching our sell-in."
+  }
+]

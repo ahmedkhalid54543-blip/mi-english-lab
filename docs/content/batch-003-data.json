@@ -1,0 +1,252 @@
+[
+  {
+    "id": "L03-V7",
+    "en": "remote working",
+    "zh": "远程办公"
+  },
+  {
+    "id": "L03-V8",
+    "en": "overtime",
+    "zh": "加班"
+  },
+  {
+    "id": "L03-V9",
+    "en": "colleague",
+    "zh": "同事"
+  },
+  {
+    "id": "L03-V10",
+    "en": "department",
+    "zh": "部门"
+  },
+  {
+    "id": "L03-V11",
+    "en": "headquarters",
+    "zh": "总部"
+  },
+  {
+    "id": "L03-V12",
+    "en": "branch office",
+    "zh": "分公司"
+  },
+  {
+    "id": "L03-V13",
+    "en": "subsidiary",
+    "zh": "子公司"
+  },
+  {
+    "id": "L03-V14",
+    "en": "multinational",
+    "zh": "跨国的"
+  },
+  {
+    "id": "L04-V0",
+    "en": "networking",
+    "zh": "社交/人脉拓展"
+  },
+  {
+    "id": "L04-V1",
+    "en": "small talk",
+    "zh": "闲聊/寒暄"
+  },
+  {
+    "id": "L04-V2",
+    "en": "business card",
+    "zh": "名片"
+  },
+  {
+    "id": "L04-V3",
+    "en": "hospitality",
+    "zh": "接待/款待"
+  },
+  {
+    "id": "L04-V4",
+    "en": "conference",
+    "zh": "会议/大会"
+  },
+  {
+    "id": "L04-V5",
+    "en": "agenda",
+    "zh": "议程"
+  },
+  {
+    "id": "L04-V6",
+    "en": "minutes",
+    "zh": "会议纪要"
+  },
+  {
+    "id": "L04-V7",
+    "en": "chairperson",
+    "zh": "会议主持人"
+  },
+  {
+    "id": "L04-V8",
+    "en": "brainstorming",
+    "zh": "头脑风暴"
+  },
+  {
+    "id": "L05-V0",
+    "en": "cross-cultural",
+    "zh": "跨文化的"
+  },
+  {
+    "id": "L05-V1",
+    "en": "etiquette",
+    "zh": "礼仪/礼节"
+  },
+  {
+    "id": "L05-V2",
+    "en": "gesture",
+    "zh": "手势/姿态"
+  },
+  {
+    "id": "L05-V3",
+    "en": "taboo",
+    "zh": "禁忌"
+  },
+  {
+    "id": "L05-V4",
+    "en": "stereotype",
+    "zh": "刻板印象"
+  },
+  {
+    "id": "L05-V5",
+    "en": "diversity",
+    "zh": "多样性"
+  },
+  {
+    "id": "L05-V6",
+    "en": "inclusion",
+    "zh": "包容性"
+  },
+  {
+    "id": "L05-V7",
+    "en": "hierarchy",
+    "zh": "等级制度"
+  },
+  {
+    "id": "L05-V8",
+    "en": "punctuality",
+    "zh": "守时"
+  },
+  {
+    "id": "L05-V9",
+    "en": "protocol",
+    "zh": "礼节/规矩"
+  },
+  {
+    "id": "L05-V10",
+    "en": "negotiate",
+    "zh": "谈判/协商"
+  },
+  {
+    "id": "L05-V11",
+    "en": "compromise",
+    "zh": "妥协/折中"
+  },
+  {
+    "id": "L05-V12",
+    "en": "rapport",
+    "zh": "融洽关系"
+  },
+  {
+    "id": "L05-V13",
+    "en": "misunderstanding",
+    "zh": "误解"
+  },
+  {
+    "id": "L06-V0",
+    "en": "a major move",
+    "zh": "重大举措"
+  },
+  {
+    "id": "L06-V1",
+    "en": "biotechnology",
+    "zh": "生物技术"
+  },
+  {
+    "id": "L06-V2",
+    "en": "the best brains",
+    "zh": "顶尖人才"
+  },
+  {
+    "id": "L06-V3",
+    "en": "draw / be drawn to",
+    "zh": "吸引"
+  },
+  {
+    "id": "L06-V4",
+    "en": "division",
+    "zh": "部门 / 分部"
+  },
+  {
+    "id": "L06-V5",
+    "en": "expansion",
+    "zh": "扩张"
+  },
+  {
+    "id": "L06-V6",
+    "en": "recruit",
+    "zh": "招聘"
+  },
+  {
+    "id": "L06-V7",
+    "en": "a bit of cross-fertilisation of ideas",
+    "zh": "思想交流融合"
+  },
+  {
+    "id": "L06-V8",
+    "en": "objectives",
+    "zh": "项目目标"
+  },
+  {
+    "id": "L06-V9",
+    "en": "head up the new venture",
+    "zh": "主导新业务"
+  },
+  {
+    "id": "L06-V10",
+    "en": "not too many strings attached",
+    "zh": "附加条件不多"
+  },
+  {
+    "id": "L06-V11",
+    "en": "get down to investigating",
+    "zh": "开始认真调查"
+  },
+  {
+    "id": "L06-V12",
+    "en": "get onto all this",
+    "zh": "开始处理这些事"
+  },
+  {
+    "id": "L06-V13",
+    "en": "existing ones / potential ones",
+    "zh": "现有/潜在客户"
+  },
+  {
+    "id": "L06-V14",
+    "en": "there's no way…",
+    "zh": "绝不可能…"
+  },
+  {
+    "id": "L06-V15",
+    "en": "the right sort of relationship",
+    "zh": "理想合作关系"
+  },
+  {
+    "id": "L06-V16",
+    "en": "persuade",
+    "zh": "说服"
+  },
+  {
+    "id": "L06-V19",
+    "en": "see the potential markets for yourself",
+    "zh": "实地考察潜在市场"
+  },
+  {
+    "id": "L06-V20",
+    "en": "spread over different countries",
+    "zh": "分布在不同国家"
+  }
+]

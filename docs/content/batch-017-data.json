@@ -1,0 +1,162 @@
+[
+  {
+    "id": "L19-V34",
+    "en": "As far as I'm concerned…",
+    "zh": "就我而言……"
+  },
+  {
+    "id": "L19-V35",
+    "en": "In my view…",
+    "zh": "在我看来……"
+  },
+  {
+    "id": "L19-V36",
+    "en": "Personally, I think…",
+    "zh": "我个人认为……"
+  },
+  {
+    "id": "L19-V37",
+    "en": "From what I've seen…",
+    "zh": "据我所见……"
+  },
+  {
+    "id": "L19-V38",
+    "en": "If you ask me…",
+    "zh": "如果你问我的话……"
+  },
+  {
+    "id": "L19-V39",
+    "en": "We've decided to…",
+    "zh": "我们决定了……（口头）"
+  },
+  {
+    "id": "L19-V40",
+    "en": "It was decided that…",
+    "zh": "已决定……（更正式）"
+  },
+  {
+    "id": "L19-V41",
+    "en": "Staff were encouraged to…",
+    "zh": "员工被鼓励……"
+  },
+  {
+    "id": "L20-V0",
+    "en": "follow up on the progress",
+    "zh": "跟进进展"
+  },
+  {
+    "id": "L20-V1",
+    "en": "chase for the data",
+    "zh": "追赶数据；催别人快点给数据"
+  },
+  {
+    "id": "L20-V2",
+    "en": "align on the timeline",
+    "zh": "对齐时间线；商量并确认时间安排"
+  },
+  {
+    "id": "L20-V3",
+    "en": "confirm the execution",
+    "zh": "确认执行；确定事情已按要求做了"
+  },
+  {
+    "id": "L20-V4",
+    "en": "launch a targeted promo",
+    "zh": "发起定向促销"
+  },
+  {
+    "id": "L20-V5",
+    "en": "adjust promo mechanics",
+    "zh": "调整促销机制；改变活动的规则/玩法"
+  },
+  {
+    "id": "L20-V6",
+    "en": "track promo performance",
+    "zh": "追踪促销表现；监测促销活动的效果数据"
+  },
+  {
+    "id": "L20-V7",
+    "en": "control promo discount",
+    "zh": "控制促销折扣；把控折扣力度，防止乱价"
+  },
+  {
+    "id": "L20-V8",
+    "en": "push SKUs to top stores",
+    "zh": "把SKU推到重点门店铺货"
+  },
+  {
+    "id": "L20-V9",
+    "en": "optimize store distribution",
+    "zh": "优化门店分布；调整铺货策略，让分布更合理"
+  },
+  {
+    "id": "L20-V10",
+    "en": "check in-store availability",
+    "zh": "检查店内可用性；核查门店有没有现货"
+  },
+  {
+    "id": "L20-V11",
+    "en": "avoid over-shipping to stores",
+    "zh": "避免超量发货给门店；不给门店发太多货，防止积压"
+  },
+  {
+    "id": "L20-V12",
+    "en": "re-allocate stock cross-region",
+    "zh": "重新分配库存跨区域；把库存从A区域调到B区域"
+  },
+  {
+    "id": "L20-V13",
+    "en": "prioritize stock allocation",
+    "zh": "优先库存分配；优先给某些区域/门店发货"
+  },
+  {
+    "id": "L20-V14",
+    "en": "confirm transfer ETA",
+    "zh": "确认调拨预计到达时间"
+  },
+  {
+    "id": "L20-V15",
+    "en": "do a stock swap between channels",
+    "zh": "做库存互换在渠道之间；线上线下/不同渠道之间互换库存"
+  },
+  {
+    "id": "L20-V16",
+    "en": "tie rebate to sell-out",
+    "zh": "把返利绑定到sell-out；返利发放以实际终端销售为依据"
+  },
+  {
+    "id": "L20-V17",
+    "en": "verify subsidy proof",
+    "zh": "核验补贴凭证；检查补贴申请的材料是否真实合规"
+  },
+  {
+    "id": "L20-V18",
+    "en": "apply subsidy to listed SKUs",
+    "zh": "补贴适用于清单上的SKU；只有指定单品才能享受补贴"
+  },
+  {
+    "id": "L20-V19",
+    "en": "reject out-of-policy claims",
+    "zh": "拒绝超规则申请；不符合政策的申请要退回/拒绝"
+  },
+  {
+    "id": "L20-V20",
+    "en": "explain the sales fluctuation",
+    "zh": "解释销售波动；说明销量为什么忽高忽低"
+  },
+  {
+    "id": "L20-V21",
+    "en": "negotiate a workable solution",
+    "zh": "协商一个可行的方案；和对方商量出双方都能接受的解决办法"
+  },
+  {
+    "id": "L20-V22",
+    "en": "reassure the channel partner",
+    "zh": "安抚渠道伙伴；让合作伙伴放心，别焦虑"
+  },
+  {
+    "id": "L20-V23",
+    "en": "push back on unreasonable requests",
+    "zh": "推回不合理诉求；拒绝对方提出的过分要求"
+  }
+]

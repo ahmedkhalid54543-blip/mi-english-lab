@@ -1,10 +1,10 @@
 /**
  * Mi English 词汇数据
- * 数据来源: 英语培训课件PDF (L01-L20) 语料汇总
- * 总计: 815词汇 + 192句式, 覆盖20课 (L01-L20)
+ * 数据来源: 英语培训课件PDF (L01-L21) 语料汇总
+ * 总计: 839词汇 + 207句式, 覆盖21课 (L01-L21)
  */
 const DATA = {
-  meta: { version: '2.3', updated: '2026-03-05', totalLessons: 20 },
+  meta: { version: '2.4', updated: '2026-03-12', totalLessons: 21 },
   lessons: [
     {
       id: 'L01', title: "自我介绍与公司吸引力", titleEn: "Self-Introduction & Company Appeal", date: "2025-09-23",
@@ -1151,6 +1151,52 @@ const DATA = {
         { id:'L20-P7', category:"对外沟通", template:"I understand your concern, but we can't…", explanation:"委婉推回不合理诉求", example:"I understand your concern, but we can't give an extra 5% discount." },
         { id:'L20-P8', category:"对外沟通", template:"Don't worry. We have enough stock for you. You're a priority for us.", explanation:"安抚渠道伙伴", example:"" },
         { id:'L20-P9', category:"对外沟通", template:"Let's sit down and figure out a plan that works for both of us.", explanation:"协商双赢方案", example:"" }
+      ]
+    },
+    {
+      id: 'L21', title: "渠道运营沟通 + 与客户往来沟通", titleEn: "Channel Ops Communication + Corresponding with Customers", date: "2026-03-12",
+      vocab: [
+        { id:'L21-V0', en:"care about after-sales service", zh:"重视售后服务", scene:'渠道运营复习' },
+        { id:'L21-V1', en:"optimize our after-sales process", zh:"优化我们的售后流程", scene:'渠道运营复习' },
+        { id:'L21-V2', en:"save on journey time", zh:"节省路途时间；缩短出行时间", scene:'渠道运营复习' },
+        { id:'L21-V3', en:"Tomorrow works for me", zh:"明天对我来说可以", scene:'渠道运营复习' },
+        { id:'L21-V4', en:"top 5 bestsellers", zh:"排名前5的畅销品", scene:'渠道运营复习' },
+        { id:'L21-V5', en:"Let's make this promo a success!", zh:"让我们把这次促销做成功！", scene:'渠道运营复习' },
+        { id:'L21-V6', en:"franchise stores", zh:"加盟店", scene:'渠道运营复习' },
+        { id:'L21-V7', en:"high inventory pressure", zh:"库存压力大", scene:'渠道运营复习' },
+        { id:'L21-V8', en:"promo stockup", zh:"经销商促销备货；促销前经销商集中囤货", scene:'Sellin/Sellout波动' },
+        { id:'L21-V9', en:"weak consumer demand", zh:"消费者需求走弱", scene:'Sellin/Sellout波动' },
+        { id:'L21-V10', en:"low promo compliance", zh:"促销执行到位率低；门店没按要求执行促销", scene:'Sellin/Sellout波动' },
+        { id:'L21-V11', en:"channel overstock", zh:"渠道库存堆积；渠道商手里货太多", scene:'Sellin/Sellout波动' },
+        { id:'L21-V12', en:"demand shift to online", zh:"需求向线上转移", scene:'Sellin/Sellout波动' },
+        { id:'L21-V13', en:"supply chain delay", zh:"供应链延迟", scene:'Sellin/Sellout波动' },
+        { id:'L21-V14', en:"complaint", zh:"投诉", scene:'与客户沟通' },
+        { id:'L21-V15', en:"express delivery", zh:"快递", scene:'与客户沟通' },
+        { id:'L21-V16', en:"rent / lease", zh:"租赁", scene:'与客户沟通' },
+        { id:'L21-V17', en:"premium customer", zh:"优质客户；高价值客户", scene:'与客户沟通' },
+        { id:'L21-V18', en:"latest / up-to-date", zh:"最新的", scene:'与客户沟通' },
+        { id:'L21-V19', en:"consequence", zh:"后果", scene:'与客户沟通' },
+        { id:'L21-V20', en:"hesitate", zh:"犹豫", scene:'与客户沟通' },
+        { id:'L21-V21', en:"on-site service", zh:"上门服务", scene:'与客户沟通' },
+        { id:'L21-V22', en:"efficiency", zh:"效率", scene:'与客户沟通' },
+        { id:'L21-V23', en:"innovation", zh:"创新", scene:'与客户沟通' }
+      ],
+      patterns: [
+        { id:'L21-P0', category:"万能句型", template:"Just to confirm, ___?", explanation:"确认信息；用于所有需要二次确认的场景", example:"Just to confirm, we tie rebate to sellout, right?" },
+        { id:'L21-P1', category:"万能句型", template:"Could you ___ by ___?", explanation:"提要求、要进度、要数据", example:"Could you share the distribution list by noon today?" },
+        { id:'L21-P2', category:"万能句型", template:"What's the main driver behind ___?", explanation:"追问原因、找问题", example:"What's the main driver behind the sellout drop in Tier 3?" },
+        { id:'L21-P3', category:"万能句型", template:"Let's ___ so that ___.", explanation:"推进动作、给方案", example:"Let's reallocate stock so that we solve the OOS risk in top stores." },
+        { id:'L21-P4', category:"对外沟通-拒绝", template:"I get the request, but I don't think that's workable.", explanation:"委婉表示方案不可行", example:"I get the request, but I don't think that's workable." },
+        { id:'L21-P5', category:"对外沟通-拒绝", template:"That's outside the policy, so we can't approve it.", explanation:"用政策为依据拒绝", example:"That's outside the policy, so we can't approve it." },
+        { id:'L21-P6', category:"对外沟通-拒绝", template:"We can't do a blanket discount, but we can do targeted support.", explanation:"拒绝普调但可定向支持", example:"We can't do a blanket discount, but we can do targeted support." },
+        { id:'L21-P7', category:"对外沟通-协商", template:"We can offer two options — which one do you prefer?", explanation:"给出选择让对方挑", example:"We can offer two options — which one do you prefer?" },
+        { id:'L21-P8', category:"对外沟通-协商", template:"If we do X, can you commit to Y?", explanation:"条件交换", example:"If we give you the subsidy, can you commit to 120% sellout target?" },
+        { id:'L21-P9', category:"对外沟通-协商", template:"Let's meet halfway and keep it sustainable.", explanation:"各退一步，保持可持续", example:"Let's meet halfway and keep it sustainable." },
+        { id:'L21-P10', category:"对外沟通-安抚", template:"I hear you. Let's work through it together.", explanation:"表示理解和支持", example:"I hear you. Let's work through it together." },
+        { id:'L21-P11', category:"对外沟通-安抚", template:"We're on it. I'll update you by EOD.", explanation:"承诺行动和回复时间", example:"We're on it. I'll update you by EOD." },
+        { id:'L21-P12', category:"与客户沟通", template:"What frustrates customers most is …", explanation:"描述客户痛点", example:"What frustrates customers most is delayed delivery with no updates." },
+        { id:'L21-P13', category:"与客户沟通", template:"If the company fails to …, customers are likely to …", explanation:"假设后果", example:"If the company fails to respond quickly, customers are likely to switch to competitors." },
+        { id:'L21-P14', category:"与客户沟通", template:"Compared with …, … has a bigger impact on …", explanation:"对比影响", example:"Compared with price, response speed has a bigger impact on customer loyalty." }
       ]
     }
   ]

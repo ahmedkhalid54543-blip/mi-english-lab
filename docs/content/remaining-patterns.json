@@ -1,0 +1,962 @@
+[
+  {
+    "id": "L01-P0",
+    "category": "自我介绍",
+    "template": "I'm ___, but feel free to just call me ___."
+  },
+  {
+    "id": "L01-P1",
+    "category": "自我介绍",
+    "template": "I'm a ___ in ___, mainly focusing on ___."
+  },
+  {
+    "id": "L01-P2",
+    "category": "描述公司吸引力",
+    "template": "I think ___ would be the most attractive because ___."
+  },
+  {
+    "id": "L01-P3",
+    "category": "表达同意",
+    "template": "I partly/completely agree with ___ because ___."
+  },
+  {
+    "id": "L01-P4",
+    "category": "表达不同意",
+    "template": "I'm not so sure about ___, because ___."
+  },
+  {
+    "id": "L01-P5",
+    "category": "描述职责",
+    "template": "My main responsibilities are to ___."
+  },
+  {
+    "id": "L01-P6",
+    "category": "描述职责",
+    "template": "My job involves ___."
+  },
+  {
+    "id": "L01-P7",
+    "category": "描述职责",
+    "template": "I'm responsible for ___."
+  },
+  {
+    "id": "L01-P8",
+    "category": "描述职责",
+    "template": "I deal with ___."
+  },
+  {
+    "id": "L01-P9",
+    "category": "描述职责",
+    "template": "I look after ___."
+  },
+  {
+    "id": "L02-P0",
+    "category": "描述职责",
+    "template": "My main responsibilities are to ___."
+  },
+  {
+    "id": "L02-P1",
+    "category": "描述职责",
+    "template": "I look after ___ at my company."
+  },
+  {
+    "id": "L02-P2",
+    "category": "描述职责",
+    "template": "I work closely with ___ on projects."
+  },
+  {
+    "id": "L02-P3",
+    "category": "表达满意度",
+    "template": "I enjoy my job because ___."
+  },
+  {
+    "id": "L02-P4",
+    "category": "表达满意度",
+    "template": "I find it challenging but rewarding."
+  },
+  {
+    "id": "L03-P0",
+    "category": "表达想法",
+    "template": "I came up with this idea when…"
+  },
+  {
+    "id": "L03-P1",
+    "category": "突出特点",
+    "template": "What makes it different / unique is…"
+  },
+  {
+    "id": "L03-P2",
+    "category": "说明优点",
+    "template": "One advantage of ___ is that…"
+  },
+  {
+    "id": "L03-P3",
+    "category": "说明缺点",
+    "template": "The main disadvantage of ___ is that…"
+  },
+  {
+    "id": "L03-P4",
+    "category": "预测挑战",
+    "template": "One challenge could be…"
+  },
+  {
+    "id": "L03-P5",
+    "category": "提出建议",
+    "template": "To attract / retain ___, they should…"
+  },
+  {
+    "id": "L03-P6",
+    "category": "表达印象",
+    "template": "What impressed me was…"
+  },
+  {
+    "id": "L03-P7",
+    "category": "委婉建议",
+    "template": "I think we should also consider…"
+  },
+  {
+    "id": "L04-P0",
+    "category": "礼貌询问",
+    "template": "Could you tell me…?"
+  },
+  {
+    "id": "L04-P1",
+    "category": "正式请求",
+    "template": "We would appreciate it if you could…"
+  },
+  {
+    "id": "L04-P2",
+    "category": "强调性价比",
+    "template": "It's excellent value for money."
+  },
+  {
+    "id": "L04-P3",
+    "category": "强调创新",
+    "template": "It offers unique features that others don't."
+  },
+  {
+    "id": "L04-P4",
+    "category": "市场认可",
+    "template": "It's one of our bestsellers."
+  },
+  {
+    "id": "L04-P5",
+    "category": "条件报价",
+    "template": "If you order ___, we can offer a ___% discount."
+  },
+  {
+    "id": "L04-P6",
+    "category": "展台接待",
+    "template": "Hi, welcome to our stand! Let me show you around."
+  },
+  {
+    "id": "L04-P7",
+    "category": "成交推进",
+    "template": "So shall we go ahead with this order?"
+  },
+  {
+    "id": "L05-P0",
+    "category": "创业动机",
+    "template": "I spotted a gap in the market."
+  },
+  {
+    "id": "L05-P1",
+    "category": "创业叙事",
+    "template": "It all started with a simple idea."
+  },
+  {
+    "id": "L05-P2",
+    "category": "筹资表达",
+    "template": "To finance our start-up, we used a mix of ___ and ___."
+  },
+  {
+    "id": "L05-P3",
+    "category": "成本控制",
+    "template": "We'll do our best to keep costs down by…"
+  },
+  {
+    "id": "L05-P4",
+    "category": "盈亏平衡",
+    "template": "We managed to break even in…"
+  },
+  {
+    "id": "L05-P5",
+    "category": "独特卖点",
+    "template": "Our unique selling point is that…"
+  },
+  {
+    "id": "L05-P6",
+    "category": "虚拟语气建议",
+    "template": "If I were you, I'd try to…"
+  },
+  {
+    "id": "L05-P7",
+    "category": "询问方法",
+    "template": "How did you go about it?"
+  },
+  {
+    "id": "L06-P0",
+    "category": "选址-引出目的",
+    "template": "The purpose of this proposal is to ___."
+  },
+  {
+    "id": "L06-P1",
+    "category": "选址-关键因素",
+    "template": "One important factor is ___."
+  },
+  {
+    "id": "L06-P2",
+    "category": "选址-比较",
+    "template": "Compared with ___, ___ has ___."
+  },
+  {
+    "id": "L06-P3",
+    "category": "选址-建议",
+    "template": "On balance, we recommend choosing ___."
+  },
+  {
+    "id": "L06-P4",
+    "category": "差旅-目的",
+    "template": "The purpose of this trip is to ___."
+  },
+  {
+    "id": "L06-P5",
+    "category": "差旅-安排",
+    "template": "Our trip will take place from ___ to ___."
+  },
+  {
+    "id": "L06-P6",
+    "category": "逻辑衔接",
+    "template": "First and by far the most important, ___. Secondly, ___."
+  },
+  {
+    "id": "L07-P0",
+    "category": "Sell-in/Sell-out数据询问",
+    "template": "What's your sell-out number this week?"
+  },
+  {
+    "id": "L07-P1",
+    "category": "Sell-in/Sell-out问题指出",
+    "template": "Sell-in is high, but sell-out is low."
+  },
+  {
+    "id": "L07-P2",
+    "category": "数据透明度要求",
+    "template": "We need your weekly sell-out report."
+  },
+  {
+    "id": "L07-P3",
+    "category": "Sell-in/Sell-out差距分析",
+    "template": "Sell-out is not matching our sell-in."
+  },
+  {
+    "id": "L07-P4",
+    "category": "出货与预期对齐",
+    "template": "Let's align sell-in with realistic sell-out expectations."
+  },
+  {
+    "id": "L07-P5",
+    "category": "预测差距分析",
+    "template": "We see a gap between your forecast and your actual sell-out."
+  },
+  {
+    "id": "L07-P6",
+    "category": "库存健康管理",
+    "template": "To ensure healthy inventory, we need more visibility on your sell-out performance."
+  },
+  {
+    "id": "L07-P7",
+    "category": "出货计划调整",
+    "template": "Let's adjust the sell-in plan to avoid stock pressure on your side."
+  },
+  {
+    "id": "L07-P8",
+    "category": "MAP价格提醒",
+    "template": "Please follow the MAP price."
+  },
+  {
+    "id": "L07-P9",
+    "category": "MAP价格提醒",
+    "template": "Your price is too low online."
+  },
+  {
+    "id": "L07-P10",
+    "category": "MAP违规纠正",
+    "template": "This listing is under MAP. Please adjust it."
+  },
+  {
+    "id": "L07-P11",
+    "category": "MAP违规后果",
+    "template": "If you go below MAP, other partners will complain."
+  },
+  {
+    "id": "L07-P12",
+    "category": "渠道冲突分析",
+    "template": "Selling below MAP will create channel conflicts."
+  },
+  {
+    "id": "L07-P13",
+    "category": "价格倒挂识别",
+    "template": "We're seeing price inversion in your market."
+  },
+  {
+    "id": "L07-P14",
+    "category": "品牌价值保护",
+    "template": "To protect the brand value, we strictly enforce MAP policies."
+  },
+  {
+    "id": "L07-P15",
+    "category": "价格混乱修正",
+    "template": "Let's correct the price disorder before the campaign goes live."
+  },
+  {
+    "id": "L07-P16",
+    "category": "Listing优化提醒",
+    "template": "Your listing needs better pictures."
+  },
+  {
+    "id": "L07-P17",
+    "category": "曝光提升要求",
+    "template": "You need higher visibility."
+  },
+  {
+    "id": "L07-P18",
+    "category": "页面更新推动",
+    "template": "Please update the listing with the new price."
+  },
+  {
+    "id": "L07-P19",
+    "category": "广告投放推动",
+    "template": "Let's run ads to boost visibility."
+  },
+  {
+    "id": "L07-P20",
+    "category": "页面质量诊断",
+    "template": "This listing is not attractive enough."
+  },
+  {
+    "id": "L07-P21",
+    "category": "流量诊断",
+    "template": "Your product is not getting enough traffic."
+  },
+  {
+    "id": "L07-P22",
+    "category": "转化率提升",
+    "template": "Improving listing quality will significantly increase conversion."
+  },
+  {
+    "id": "L07-P23",
+    "category": "曝光带动销售",
+    "template": "Let's invest in visibility to drive more sell-out."
+  },
+  {
+    "id": "L07-P24",
+    "category": "促销资源请求",
+    "template": "Can you support a promotion?"
+  },
+  {
+    "id": "L07-P25",
+    "category": "市场支持请求",
+    "template": "We need some marketing help."
+  },
+  {
+    "id": "L07-P26",
+    "category": "活动资源询问",
+    "template": "What resources can you provide for this campaign?"
+  },
+  {
+    "id": "L07-P27",
+    "category": "小促销提升销量",
+    "template": "Let's plan a small promotion to increase sell-out."
+  },
+  {
+    "id": "L07-P28",
+    "category": "新品曝光需求",
+    "template": "We need more visibility for this launch."
+  },
+  {
+    "id": "L07-P29",
+    "category": "预算驱动流量",
+    "template": "A small budget can help us drive more traffic."
+  },
+  {
+    "id": "L07-P30",
+    "category": "促销机制对齐",
+    "template": "Let's align on the promotion mechanics and expected ROI."
+  },
+  {
+    "id": "L07-P31",
+    "category": "资源协调最大化",
+    "template": "We need to coordinate resources to maximize impact."
+  },
+  {
+    "id": "L07-P32",
+    "category": "救命句-请求细节",
+    "template": "Could you share more details?"
+  },
+  {
+    "id": "L07-P33",
+    "category": "救命句-了解困难",
+    "template": "What's your main challenge right now?"
+  },
+  {
+    "id": "L07-P34",
+    "category": "救命句-制定计划",
+    "template": "Let's work on a realistic plan."
+  },
+  {
+    "id": "L07-P35",
+    "category": "救命句-要求透明",
+    "template": "To avoid stock pressure, we need more transparency."
+  },
+  {
+    "id": "L07-P36",
+    "category": "救命句-理解压力",
+    "template": "I understand your pressure, but..."
+  },
+  {
+    "id": "L07-P37",
+    "category": "救命句-价格恢复",
+    "template": "Can we bring the price back to MAP today?"
+  },
+  {
+    "id": "L07-P38",
+    "category": "救命句-避免冲突",
+    "template": "Let's avoid channel conflicts together."
+  },
+  {
+    "id": "L07-P39",
+    "category": "救命句-价格一致",
+    "template": "We need consistent pricing across partners."
+  },
+  {
+    "id": "L07-P40",
+    "category": "Listing优化-标题",
+    "template": "The title doesn't highlight the key features."
+  },
+  {
+    "id": "L07-P41",
+    "category": "Listing优化-视觉",
+    "template": "Can we improve the visuals?"
+  },
+  {
+    "id": "L07-P42",
+    "category": "Listing优化-主图",
+    "template": "A better hero image will help."
+  },
+  {
+    "id": "L07-P43",
+    "category": "Listing优化-时限",
+    "template": "Let's update the listing before Friday."
+  },
+  {
+    "id": "L07-P44",
+    "category": "资源谈判-双赢",
+    "template": "Let's make it a win-win."
+  },
+  {
+    "id": "L07-P45",
+    "category": "资源谈判-条件交换",
+    "template": "If you can increase visibility, we can support budget."
+  },
+  {
+    "id": "L07-P46",
+    "category": "资源谈判-细节对齐",
+    "template": "Let's align on the details later."
+  },
+  {
+    "id": "L08-P0",
+    "category": "创意提案",
+    "template": "I came up with this idea when ___."
+  },
+  {
+    "id": "L08-P1",
+    "category": "创意提案",
+    "template": "My target customers are ___."
+  },
+  {
+    "id": "L08-P2",
+    "category": "创意提案",
+    "template": "What makes it different / unique is ___."
+  },
+  {
+    "id": "L08-P3",
+    "category": "创意提案",
+    "template": "To launch it, I would ___."
+  },
+  {
+    "id": "L08-P4",
+    "category": "展会沟通",
+    "template": "Thanks for stopping by our stand."
+  },
+  {
+    "id": "L08-P5",
+    "category": "展会沟通",
+    "template": "Hope to keep in touch after the exhibition."
+  },
+  {
+    "id": "L08-P6",
+    "category": "创业叙事",
+    "template": "We started from scratch."
+  },
+  {
+    "id": "L08-P7",
+    "category": "创业叙事",
+    "template": "It was a bumpy ride, but we made it."
+  },
+  {
+    "id": "L08-P8",
+    "category": "价格沟通",
+    "template": "Your price is too low online. Please adjust it."
+  },
+  {
+    "id": "L08-P9",
+    "category": "资源协调",
+    "template": "We need more visibility for this launch."
+  },
+  {
+    "id": "L09-P0",
+    "category": "品牌表达",
+    "template": "We started with one simple idea in mind…"
+  },
+  {
+    "id": "L09-P1",
+    "category": "产品介绍",
+    "template": "What people really like about it is…"
+  },
+  {
+    "id": "L09-P2",
+    "category": "产品介绍",
+    "template": "The best part is probably…"
+  },
+  {
+    "id": "L09-P3",
+    "category": "产品介绍",
+    "template": "This is perfect if you're someone who…"
+  },
+  {
+    "id": "L09-P4",
+    "category": "客户互动",
+    "template": "What matters most to you here?"
+  },
+  {
+    "id": "L09-P5",
+    "category": "客户互动",
+    "template": "How does that sound to you?"
+  },
+  {
+    "id": "L09-P6",
+    "category": "会议收尾",
+    "template": "Sounds like we're on the same page."
+  },
+  {
+    "id": "L09-P7",
+    "category": "会议收尾",
+    "template": "Let's take this offline and follow up by email."
+  },
+  {
+    "id": "L10-P0",
+    "category": "委婉反对",
+    "template": "I see your point, but…"
+  },
+  {
+    "id": "L10-P1",
+    "category": "建议替代",
+    "template": "Perhaps we could consider…"
+  },
+  {
+    "id": "L10-P2",
+    "category": "建议替代",
+    "template": "What if we try…?"
+  },
+  {
+    "id": "L10-P3",
+    "category": "-ing结构",
+    "template": "It's worth…-ing"
+  },
+  {
+    "id": "L10-P4",
+    "category": "-ing结构",
+    "template": "There's no point in…-ing"
+  },
+  {
+    "id": "L10-P5",
+    "category": "跨文化会议",
+    "template": "From our perspective…"
+  },
+  {
+    "id": "L11-P0",
+    "category": "数据上升",
+    "template": "[Sth] rose by [数字] year over year."
+  },
+  {
+    "id": "L11-P1",
+    "category": "数据下降",
+    "template": "[Sth] fell to the lowest level in [时间]."
+  },
+  {
+    "id": "L11-P2",
+    "category": "数据对比",
+    "template": "[Sth] came in below/above expectations."
+  },
+  {
+    "id": "L11-P3",
+    "category": "数据稳定",
+    "template": "[Sth] remained stable / were roughly flat MoM."
+  },
+  {
+    "id": "L11-P4",
+    "category": "趋势判断",
+    "template": "This is a reassuring sign that…"
+  },
+  {
+    "id": "L11-P5",
+    "category": "综述",
+    "template": "Overall, performance was broadly stable."
+  },
+  {
+    "id": "L11-P6",
+    "category": "救场",
+    "template": "Let me put it simply."
+  },
+  {
+    "id": "L12-P0",
+    "category": "数据描述",
+    "template": "There is an increase of [数字] in [品类/市场]."
+  },
+  {
+    "id": "L12-P1",
+    "category": "数据描述",
+    "template": "[Sth] accounted for/took up [比例]."
+  },
+  {
+    "id": "L12-P2",
+    "category": "应对提问",
+    "template": "This is mainly because…"
+  },
+  {
+    "id": "L12-P3",
+    "category": "应对提问",
+    "template": "This has a lot to do with…"
+  },
+  {
+    "id": "L12-P4",
+    "category": "对比",
+    "template": "While [A] peaked in…, [B] reached its high point in…"
+  },
+  {
+    "id": "L13-P0",
+    "category": "数据描述",
+    "template": "There was a sharp increase between ___ and ___."
+  },
+  {
+    "id": "L13-P1",
+    "category": "数据描述",
+    "template": "The figure peaked in ___ at ___."
+  },
+  {
+    "id": "L13-P2",
+    "category": "同比增长",
+    "template": "___ grew by X% year-over-year."
+  },
+  {
+    "id": "L13-P3",
+    "category": "社媒评估",
+    "template": "I think ___ is quite successful because they use social media to…"
+  },
+  {
+    "id": "L13-P4",
+    "category": "正反论证",
+    "template": "On the one hand, ___ can help…. On the other hand, it might…"
+  },
+  {
+    "id": "L13-P5",
+    "category": "假设推理",
+    "template": "If a company ___, then…"
+  },
+  {
+    "id": "L13-P6",
+    "category": "问题复盘",
+    "template": "One problem was…. This caused…. A better approach would be…"
+  },
+  {
+    "id": "L13-P7",
+    "category": "策略结合",
+    "template": "You need to marry ___ with ___."
+  },
+  {
+    "id": "L14-P0",
+    "category": "介绍职责",
+    "template": "My role mainly focuses on…"
+  },
+  {
+    "id": "L14-P1",
+    "category": "划清边界",
+    "template": "I'm responsible for ___, but ___ is not on my side."
+  },
+  {
+    "id": "L14-P2",
+    "category": "报告进展",
+    "template": "Quick update on ___: we're on track / slightly behind due to…"
+  },
+  {
+    "id": "L14-P3",
+    "category": "招聘描述",
+    "template": "We need someone who can ___ and has ___ experience."
+  },
+  {
+    "id": "L14-P4",
+    "category": "行为面试",
+    "template": "Tell me about a time when you…"
+  },
+  {
+    "id": "L14-P5",
+    "category": "候选人评估",
+    "template": "Overall, I think the candidate is strong in…"
+  },
+  {
+    "id": "L14-P6",
+    "category": "绩效反馈",
+    "template": "I noticed… This has impacted…"
+  },
+  {
+    "id": "L14-P7",
+    "category": "达成一致",
+    "template": "Let's agree on next steps: ___ by (date)."
+  },
+  {
+    "id": "L15-P0",
+    "category": "招聘",
+    "template": "We're hiring for a role that focuses on…"
+  },
+  {
+    "id": "L15-P1",
+    "category": "招聘",
+    "template": "The must-haves are…"
+  },
+  {
+    "id": "L15-P2",
+    "category": "面试",
+    "template": "Can you walk me through your experience with…?"
+  },
+  {
+    "id": "L15-P3",
+    "category": "面试",
+    "template": "Tell me about a time when you…"
+  },
+  {
+    "id": "L15-P4",
+    "category": "绩效对齐",
+    "template": "The metric we'll use is…and it's defined as…"
+  },
+  {
+    "id": "L15-P5",
+    "category": "绩效反馈",
+    "template": "I noticed…(fact). This has impacted…(impact)."
+  },
+  {
+    "id": "L15-P6",
+    "category": "绩效反馈",
+    "template": "What support do you need from me?"
+  },
+  {
+    "id": "L16-P0",
+    "category": "报告句型",
+    "template": "The purpose of the [report] is to summarise…and make recommendations for…"
+  },
+  {
+    "id": "L16-P1",
+    "category": "图表句型",
+    "template": "As the charts show,…. However,…"
+  },
+  {
+    "id": "L16-P2",
+    "category": "决策句型",
+    "template": "Last year, it was decided that…"
+  },
+  {
+    "id": "L16-P3",
+    "category": "会议感悟",
+    "template": "What struck me most was…"
+  },
+  {
+    "id": "L16-P4",
+    "category": "会议建议",
+    "template": "Reach out to…in advance and suggest…"
+  },
+  {
+    "id": "L17-P0",
+    "category": "观察陈述",
+    "template": "I noticed that…"
+  },
+  {
+    "id": "L17-P1",
+    "category": "标准化建议",
+    "template": "We need to standardize ___ guidelines across all stores to ensure…"
+  },
+  {
+    "id": "L17-P2",
+    "category": "陈列规范",
+    "template": "Hero products should be placed at eye level with clear signage."
+  },
+  {
+    "id": "L17-P3",
+    "category": "品牌一致性",
+    "template": "A consistent shopping experience reinforces brand identity and builds trust."
+  },
+  {
+    "id": "L17-P4",
+    "category": "独家策略",
+    "template": "Exclusivity works because…. But the trade-off is…"
+  },
+  {
+    "id": "L17-P5",
+    "category": "趋势洞察",
+    "template": "We're seeing a trend: …. We'll adapt the product range by…"
+  },
+  {
+    "id": "L17-P6",
+    "category": "体验营销",
+    "template": "The goal is to create an immersive environment that builds an emotional connection with…"
+  },
+  {
+    "id": "L17-P7",
+    "category": "差异化价值",
+    "template": "This helps us differentiate in the market and increase in-store traffic."
+  },
+  {
+    "id": "L18-P0",
+    "category": "陈列问题",
+    "template": "The brand block feels fragmented."
+  },
+  {
+    "id": "L18-P1",
+    "category": "陈列问题",
+    "template": "This area looks cluttered and hard to scan."
+  },
+  {
+    "id": "L18-P2",
+    "category": "陈列问题",
+    "template": "The display is not compliant with the planogram."
+  },
+  {
+    "id": "L18-P3",
+    "category": "陈列指令",
+    "template": "Rebuild the brand block and keep the frontage consistent."
+  },
+  {
+    "id": "L18-P4",
+    "category": "陈列指令",
+    "template": "Move high-margin SKUs to eye-level placement."
+  },
+  {
+    "id": "L18-P5",
+    "category": "陈列指令",
+    "template": "Feature the hero product on the endcap with more facings."
+  },
+  {
+    "id": "L18-P6",
+    "category": "陈列指令",
+    "template": "Reset the promo zone according to the planogram."
+  },
+  {
+    "id": "L18-P7",
+    "category": "目标表达",
+    "template": "...to increase conversion during peak hours."
+  },
+  {
+    "id": "L18-P8",
+    "category": "目标表达",
+    "template": "...to make the customer journey smoother."
+  },
+  {
+    "id": "L19-P0",
+    "category": "观点表达",
+    "template": "In my view, ___ is most important because…"
+  },
+  {
+    "id": "L19-P1",
+    "category": "立场表态",
+    "template": "As far as I'm concerned, …"
+  },
+  {
+    "id": "L19-P2",
+    "category": "报告开篇",
+    "template": "The purpose of the ___ is to summarise ___ and make recommendations for…"
+  },
+  {
+    "id": "L19-P3",
+    "category": "数据分析转折",
+    "template": "As the charts show, …. However, …"
+  },
+  {
+    "id": "L19-P4",
+    "category": "决策回顾",
+    "template": "Last year, it was decided that…. ___ were encouraged to…as this was thought to be equally effective."
+  },
+  {
+    "id": "L19-P5",
+    "category": "建议方案",
+    "template": "Since it is clear that ___, I recommend…"
+  },
+  {
+    "id": "L19-P6",
+    "category": "客户需求",
+    "template": "What's your top priority right now?"
+  },
+  {
+    "id": "L19-P7",
+    "category": "捆绑销售",
+    "template": "We could bundle it with ___ — that's one relevant add-on that really boosts…"
+  },
+  {
+    "id": "L20-P0",
+    "category": "日常推进",
+    "template": "I'm calling to follow up on…. How's it going?"
+  },
+  {
+    "id": "L20-P1",
+    "category": "日常推进",
+    "template": "We need to chase for the data. Can you send it today?"
+  },
+  {
+    "id": "L20-P2",
+    "category": "促销管理",
+    "template": "We'll launch a targeted promo for…"
+  },
+  {
+    "id": "L20-P3",
+    "category": "促销管理",
+    "template": "We must control promo discount to avoid…"
+  },
+  {
+    "id": "L20-P4",
+    "category": "铺货调拨",
+    "template": "Let's push new SKUs to top ___ stores first."
+  },
+  {
+    "id": "L20-P5",
+    "category": "铺货调拨",
+    "template": "We'll re-allocate stock cross-region to solve…"
+  },
+  {
+    "id": "L20-P6",
+    "category": "返利补贴",
+    "template": "We tie all channel rebates to actual sell-out."
+  },
+  {
+    "id": "L20-P7",
+    "category": "对外沟通",
+    "template": "I understand your concern, but we can't…"
+  },
+  {
+    "id": "L20-P8",
+    "category": "对外沟通",
+    "template": "Don't worry. We have enough stock for you. You're a priority for us."
+  },
+  {
+    "id": "L20-P9",
+    "category": "对外沟通",
+    "template": "Let's sit down and figure out a plan that works for both of us."
+  }
+]

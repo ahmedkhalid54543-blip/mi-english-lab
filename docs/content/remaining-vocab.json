@@ -1,0 +1,3912 @@
+[
+  {
+    "id": "L01-V0",
+    "en": "a bonus scheme",
+    "zh": "奖金制度 / 奖金计划"
+  },
+  {
+    "id": "L01-V1",
+    "en": "responsibility",
+    "zh": "工作职责 / 责任"
+  },
+  {
+    "id": "L01-V2",
+    "en": "a high salary",
+    "zh": "高薪 / 薪水优厚"
+  },
+  {
+    "id": "L01-V3",
+    "en": "an in-house training scheme",
+    "zh": "内部培训计划 / 公司内部培训"
+  },
+  {
+    "id": "L01-V4",
+    "en": "the opportunity to travel",
+    "zh": "出差机会 / 旅游机会"
+  },
+  {
+    "id": "L01-V5",
+    "en": "a permanent contract",
+    "zh": "长期合同 / 正式合同"
+  },
+  {
+    "id": "L01-V6",
+    "en": "long holidays",
+    "zh": "长假期 / 休假时间多"
+  },
+  {
+    "id": "L01-V8",
+    "en": "a high-flier / high-flyer",
+    "zh": "职场精英 / 高潜人才"
+  },
+  {
+    "id": "L01-V9",
+    "en": "a clear upward path",
+    "zh": "明确的晋升通道 / 职业发展路线清晰"
+  },
+  {
+    "id": "L01-V13",
+    "en": "core skills",
+    "zh": "核心技能"
+  },
+  {
+    "id": "L01-V14",
+    "en": "material incentives",
+    "zh": "物质激励"
+  },
+  {
+    "id": "L01-V16",
+    "en": "rewarding",
+    "zh": "有回报的；值得的"
+  },
+  {
+    "id": "L01-V17",
+    "en": "priority",
+    "zh": "优先事项；重点"
+  },
+  {
+    "id": "L02-V0",
+    "en": "be responsible for",
+    "zh": "负责"
+  },
+  {
+    "id": "L02-V1",
+    "en": "deal with",
+    "zh": "处理"
+  },
+  {
+    "id": "L02-V2",
+    "en": "be in charge of",
+    "zh": "主管"
+  },
+  {
+    "id": "L02-V3",
+    "en": "my job involves",
+    "zh": "我的工作涉及"
+  },
+  {
+    "id": "L02-V4",
+    "en": "work as a",
+    "zh": "担任某职"
+  },
+  {
+    "id": "L02-V5",
+    "en": "take important decisions",
+    "zh": "做重要决策"
+  },
+  {
+    "id": "L02-V6",
+    "en": "write reports",
+    "zh": "写报告"
+  },
+  {
+    "id": "L02-V8",
+    "en": "attend meetings",
+    "zh": "参加会议"
+  },
+  {
+    "id": "L02-V9",
+    "en": "rewarding",
+    "zh": "有回报的；有成就感的"
+  },
+  {
+    "id": "L02-V10",
+    "en": "stressful",
+    "zh": "压力大的"
+  },
+  {
+    "id": "L02-V11",
+    "en": "monotonous",
+    "zh": "单调的"
+  },
+  {
+    "id": "L02-V12",
+    "en": "motivated",
+    "zh": "有动力的"
+  },
+  {
+    "id": "L02-V13",
+    "en": "supportive",
+    "zh": "支持性的"
+  },
+  {
+    "id": "L02-V14",
+    "en": "friendly",
+    "zh": "友好的"
+  },
+  {
+    "id": "L02-V15",
+    "en": "opportunity",
+    "zh": "机会"
+  },
+  {
+    "id": "L02-V16",
+    "en": "promotion",
+    "zh": "晋升"
+  },
+  {
+    "id": "L02-V17",
+    "en": "CV / resume",
+    "zh": "简历"
+  },
+  {
+    "id": "L02-V18",
+    "en": "job advert",
+    "zh": "招聘广告"
+  },
+  {
+    "id": "L02-V19",
+    "en": "interview",
+    "zh": "面试"
+  },
+  {
+    "id": "L02-V20",
+    "en": "candidate",
+    "zh": "候选人"
+  },
+  {
+    "id": "L02-V21",
+    "en": "skills",
+    "zh": "技能"
+  },
+  {
+    "id": "L02-V22",
+    "en": "experience",
+    "zh": "经验"
+  },
+  {
+    "id": "L02-V23",
+    "en": "strength",
+    "zh": "优势"
+  },
+  {
+    "id": "L02-V24",
+    "en": "weakness",
+    "zh": "弱点"
+  },
+  {
+    "id": "L02-V25",
+    "en": "call / ring",
+    "zh": "打电话"
+  },
+  {
+    "id": "L02-V26",
+    "en": "hold the line",
+    "zh": "请稍等（电话）"
+  },
+  {
+    "id": "L02-V27",
+    "en": "put through",
+    "zh": "转接（电话）"
+  },
+  {
+    "id": "L02-V28",
+    "en": "take a message",
+    "zh": "留言"
+  },
+  {
+    "id": "L02-V29",
+    "en": "confirm",
+    "zh": "确认"
+  },
+  {
+    "id": "L02-V30",
+    "en": "spell",
+    "zh": "拼写"
+  },
+  {
+    "id": "L02-V31",
+    "en": "receptionist",
+    "zh": "前台/接待员"
+  },
+  {
+    "id": "L03-V0",
+    "en": "work environment",
+    "zh": "工作环境"
+  },
+  {
+    "id": "L03-V1",
+    "en": "corporate culture",
+    "zh": "企业文化"
+  },
+  {
+    "id": "L03-V2",
+    "en": "flexible working hours",
+    "zh": "弹性工作时间"
+  },
+  {
+    "id": "L03-V3",
+    "en": "open-plan office",
+    "zh": "开放式办公室"
+  },
+  {
+    "id": "L03-V4",
+    "en": "dress code",
+    "zh": "着装要求"
+  },
+  {
+    "id": "L03-V5",
+    "en": "team building",
+    "zh": "团队建设"
+  },
+  {
+    "id": "L03-V7",
+    "en": "remote working",
+    "zh": "远程办公"
+  },
+  {
+    "id": "L03-V8",
+    "en": "overtime",
+    "zh": "加班"
+  },
+  {
+    "id": "L03-V9",
+    "en": "colleague",
+    "zh": "同事"
+  },
+  {
+    "id": "L03-V10",
+    "en": "department",
+    "zh": "部门"
+  },
+  {
+    "id": "L03-V11",
+    "en": "headquarters",
+    "zh": "总部"
+  },
+  {
+    "id": "L03-V12",
+    "en": "branch office",
+    "zh": "分公司"
+  },
+  {
+    "id": "L03-V13",
+    "en": "subsidiary",
+    "zh": "子公司"
+  },
+  {
+    "id": "L03-V14",
+    "en": "multinational",
+    "zh": "跨国的"
+  },
+  {
+    "id": "L04-V0",
+    "en": "networking",
+    "zh": "社交/人脉拓展"
+  },
+  {
+    "id": "L04-V1",
+    "en": "small talk",
+    "zh": "闲聊/寒暄"
+  },
+  {
+    "id": "L04-V2",
+    "en": "business card",
+    "zh": "名片"
+  },
+  {
+    "id": "L04-V3",
+    "en": "hospitality",
+    "zh": "接待/款待"
+  },
+  {
+    "id": "L04-V4",
+    "en": "conference",
+    "zh": "会议/大会"
+  },
+  {
+    "id": "L04-V5",
+    "en": "agenda",
+    "zh": "议程"
+  },
+  {
+    "id": "L04-V6",
+    "en": "minutes",
+    "zh": "会议纪要"
+  },
+  {
+    "id": "L04-V7",
+    "en": "chairperson",
+    "zh": "会议主持人"
+  },
+  {
+    "id": "L04-V8",
+    "en": "brainstorming",
+    "zh": "头脑风暴"
+  },
+  {
+    "id": "L05-V0",
+    "en": "cross-cultural",
+    "zh": "跨文化的"
+  },
+  {
+    "id": "L05-V1",
+    "en": "etiquette",
+    "zh": "礼仪/礼节"
+  },
+  {
+    "id": "L05-V2",
+    "en": "gesture",
+    "zh": "手势/姿态"
+  },
+  {
+    "id": "L05-V3",
+    "en": "taboo",
+    "zh": "禁忌"
+  },
+  {
+    "id": "L05-V4",
+    "en": "stereotype",
+    "zh": "刻板印象"
+  },
+  {
+    "id": "L05-V5",
+    "en": "diversity",
+    "zh": "多样性"
+  },
+  {
+    "id": "L05-V6",
+    "en": "inclusion",
+    "zh": "包容性"
+  },
+  {
+    "id": "L05-V7",
+    "en": "hierarchy",
+    "zh": "等级制度"
+  },
+  {
+    "id": "L05-V8",
+    "en": "punctuality",
+    "zh": "守时"
+  },
+  {
+    "id": "L05-V9",
+    "en": "protocol",
+    "zh": "礼节/规矩"
+  },
+  {
+    "id": "L05-V10",
+    "en": "negotiate",
+    "zh": "谈判/协商"
+  },
+  {
+    "id": "L05-V11",
+    "en": "compromise",
+    "zh": "妥协/折中"
+  },
+  {
+    "id": "L05-V12",
+    "en": "rapport",
+    "zh": "融洽关系"
+  },
+  {
+    "id": "L05-V13",
+    "en": "misunderstanding",
+    "zh": "误解"
+  },
+  {
+    "id": "L06-V0",
+    "en": "a major move",
+    "zh": "重大举措"
+  },
+  {
+    "id": "L06-V1",
+    "en": "biotechnology",
+    "zh": "生物技术"
+  },
+  {
+    "id": "L06-V2",
+    "en": "the best brains",
+    "zh": "顶尖人才"
+  },
+  {
+    "id": "L06-V3",
+    "en": "draw / be drawn to",
+    "zh": "吸引"
+  },
+  {
+    "id": "L06-V4",
+    "en": "division",
+    "zh": "部门 / 分部"
+  },
+  {
+    "id": "L06-V5",
+    "en": "expansion",
+    "zh": "扩张"
+  },
+  {
+    "id": "L06-V6",
+    "en": "recruit",
+    "zh": "招聘"
+  },
+  {
+    "id": "L06-V7",
+    "en": "a bit of cross-fertilisation of ideas",
+    "zh": "思想交流融合"
+  },
+  {
+    "id": "L06-V8",
+    "en": "objectives",
+    "zh": "项目目标"
+  },
+  {
+    "id": "L06-V9",
+    "en": "head up the new venture",
+    "zh": "主导新业务"
+  },
+  {
+    "id": "L06-V10",
+    "en": "not too many strings attached",
+    "zh": "附加条件不多"
+  },
+  {
+    "id": "L06-V11",
+    "en": "get down to investigating",
+    "zh": "开始认真调查"
+  },
+  {
+    "id": "L06-V12",
+    "en": "get onto all this",
+    "zh": "开始处理这些事"
+  },
+  {
+    "id": "L06-V13",
+    "en": "existing ones / potential ones",
+    "zh": "现有/潜在客户"
+  },
+  {
+    "id": "L06-V14",
+    "en": "there's no way…",
+    "zh": "绝不可能…"
+  },
+  {
+    "id": "L06-V15",
+    "en": "the right sort of relationship",
+    "zh": "理想合作关系"
+  },
+  {
+    "id": "L06-V16",
+    "en": "persuade",
+    "zh": "说服"
+  },
+  {
+    "id": "L06-V19",
+    "en": "see the potential markets for yourself",
+    "zh": "实地考察潜在市场"
+  },
+  {
+    "id": "L06-V20",
+    "en": "spread over different countries",
+    "zh": "分布在不同国家"
+  },
+  {
+    "id": "L06-V21",
+    "en": "team spirit",
+    "zh": "团队精神"
+  },
+  {
+    "id": "L06-V22",
+    "en": "communicate its values",
+    "zh": "传达公司价值观"
+  },
+  {
+    "id": "L06-V23",
+    "en": "well-planned / tightly budgeted",
+    "zh": "计划周密 / 预算紧"
+  },
+  {
+    "id": "L06-V24",
+    "en": "money well spent",
+    "zh": "值得的投入"
+  },
+  {
+    "id": "L07-V0",
+    "en": "slow sell-out",
+    "zh": "动销慢"
+  },
+  {
+    "id": "L07-V1",
+    "en": "forecast gap",
+    "zh": "预测与实际的差距"
+  },
+  {
+    "id": "L07-V2",
+    "en": "align on the sales target",
+    "zh": "对齐销售目标"
+  },
+  {
+    "id": "L07-V3",
+    "en": "weekly sell-out report",
+    "zh": "终端销售周报"
+  },
+  {
+    "id": "L07-V4",
+    "en": "slow-moving stock",
+    "zh": "滞销库存"
+  },
+  {
+    "id": "L07-V6",
+    "en": "realistic target",
+    "zh": "务实目标"
+  },
+  {
+    "id": "L07-V7",
+    "en": "performance gap",
+    "zh": "业绩缺口"
+  },
+  {
+    "id": "L07-V8",
+    "en": "monthly review",
+    "zh": "月度回顾"
+  },
+  {
+    "id": "L07-V9",
+    "en": "healthy inventory level",
+    "zh": "健康库存水平"
+  },
+  {
+    "id": "L07-V10",
+    "en": "demand planning",
+    "zh": "需求规划"
+  },
+  {
+    "id": "L07-V11",
+    "en": "sell-out push",
+    "zh": "拉动销售"
+  },
+  {
+    "id": "L07-V12",
+    "en": "MAP price",
+    "zh": "最低广告价"
+  },
+  {
+    "id": "L07-V13",
+    "en": "price inversion",
+    "zh": "价格倒挂"
+  },
+  {
+    "id": "L07-V14",
+    "en": "price drop",
+    "zh": "价格下调"
+  },
+  {
+    "id": "L07-V15",
+    "en": "unauthorized discount",
+    "zh": "未授权折扣"
+  },
+  {
+    "id": "L07-V16",
+    "en": "pricing violation",
+    "zh": "违规定价"
+  },
+  {
+    "id": "L07-V17",
+    "en": "enforce the policy",
+    "zh": "执行定价政策"
+  },
+  {
+    "id": "L07-V20",
+    "en": "pricing consistency",
+    "zh": "价格一致性"
+  },
+  {
+    "id": "L07-V21",
+    "en": "competitive pressure",
+    "zh": "竞争性调价压力"
+  },
+  {
+    "id": "L07-V22",
+    "en": "listing quality",
+    "zh": "商品页面质量"
+  },
+  {
+    "id": "L07-V24",
+    "en": "traffic",
+    "zh": "流量"
+  },
+  {
+    "id": "L07-V25",
+    "en": "hero image",
+    "zh": "主图"
+  },
+  {
+    "id": "L07-V26",
+    "en": "product description quality",
+    "zh": "文案质量"
+  },
+  {
+    "id": "L07-V30",
+    "en": "creative assets",
+    "zh": "创意素材"
+  },
+  {
+    "id": "L07-V31",
+    "en": "promotion",
+    "zh": "促销活动"
+  },
+  {
+    "id": "L07-V32",
+    "en": "budget",
+    "zh": "预算"
+  },
+  {
+    "id": "L07-V33",
+    "en": "banner position",
+    "zh": "广告位"
+  },
+  {
+    "id": "L07-V34",
+    "en": "homepage exposure",
+    "zh": "首页曝光"
+  },
+  {
+    "id": "L07-V36",
+    "en": "influencer collaboration",
+    "zh": "达人合作"
+  },
+  {
+    "id": "L07-V37",
+    "en": "campaign",
+    "zh": "活动"
+  },
+  {
+    "id": "L07-V38",
+    "en": "ROI (return on investment)",
+    "zh": "投资回报"
+  },
+  {
+    "id": "L07-V39",
+    "en": "traffic boost",
+    "zh": "流量助推"
+  },
+  {
+    "id": "L07-V40",
+    "en": "local distributors",
+    "zh": "本地经销商"
+  },
+  {
+    "id": "L07-V41",
+    "en": "retailers",
+    "zh": "零售商"
+  },
+  {
+    "id": "L07-V42",
+    "en": "offline chain stores",
+    "zh": "线下连锁店"
+  },
+  {
+    "id": "L07-V43",
+    "en": "e-commerce platforms",
+    "zh": "电商平台"
+  },
+  {
+    "id": "L07-V44",
+    "en": "operators / carriers",
+    "zh": "运营商"
+  },
+  {
+    "id": "L07-V45",
+    "en": "after-sales service partners",
+    "zh": "售后服务合作伙伴"
+  },
+  {
+    "id": "L07-V46",
+    "en": "logistics partners",
+    "zh": "物流合作伙伴"
+  },
+  {
+    "id": "L07-V47",
+    "en": "Price",
+    "zh": "价格"
+  },
+  {
+    "id": "L07-V48",
+    "en": "Delivery",
+    "zh": "交付"
+  },
+  {
+    "id": "L07-V49",
+    "en": "Stock",
+    "zh": "库存"
+  },
+  {
+    "id": "L07-V50",
+    "en": "Promotion",
+    "zh": "促销"
+  },
+  {
+    "id": "L07-V51",
+    "en": "Sell-out target",
+    "zh": "终端销售目标"
+  },
+  {
+    "id": "L07-V52",
+    "en": "After-sales issues",
+    "zh": "售后问题"
+  },
+  {
+    "id": "L07-V53",
+    "en": "stock pressure",
+    "zh": "库存压力大"
+  },
+  {
+    "id": "L07-V54",
+    "en": "low sell-out performance",
+    "zh": "终端销售差"
+  },
+  {
+    "id": "L07-V55",
+    "en": "realistic forecast",
+    "zh": "真实预测"
+  },
+  {
+    "id": "L07-V56",
+    "en": "sell-in",
+    "zh": "小米到合作商的出货"
+  },
+  {
+    "id": "L07-V57",
+    "en": "sell-out",
+    "zh": "合作商到消费者的销售"
+  },
+  {
+    "id": "L07-V58",
+    "en": "cross-channel conflict",
+    "zh": "跨渠道冲突"
+  },
+  {
+    "id": "L07-V59",
+    "en": "price disorder",
+    "zh": "价格混乱"
+  },
+  {
+    "id": "L07-V60",
+    "en": "coupon campaign",
+    "zh": "优惠券活动"
+  },
+  {
+    "id": "L07-V61",
+    "en": "cost-per-click",
+    "zh": "单次点击成本"
+  },
+  {
+    "id": "L07-V62",
+    "en": "return on ad spend",
+    "zh": "广告投入回报率"
+  },
+  {
+    "id": "L07-V63",
+    "en": "search ranking",
+    "zh": "搜索排名"
+  },
+  {
+    "id": "L07-V64",
+    "en": "product title clarity",
+    "zh": "产品标题清晰度"
+  },
+  {
+    "id": "L07-V65",
+    "en": "boost traffic",
+    "zh": "拉流量"
+  },
+  {
+    "id": "L07-V66",
+    "en": "transparency",
+    "zh": "信息透明度"
+  },
+  {
+    "id": "L08-V0",
+    "en": "free samples or gifts",
+    "zh": "免费试用或赠品"
+  },
+  {
+    "id": "L08-V1",
+    "en": "direct mail",
+    "zh": "直邮宣传"
+  },
+  {
+    "id": "L08-V2",
+    "en": "leaflets and brochures",
+    "zh": "传单和宣传册"
+  },
+  {
+    "id": "L08-V4",
+    "en": "sponsorship",
+    "zh": "赞助"
+  },
+  {
+    "id": "L08-V5",
+    "en": "website / online marketing",
+    "zh": "网站与网络营销"
+  },
+  {
+    "id": "L08-V6",
+    "en": "book a stand",
+    "zh": "预定展位"
+  },
+  {
+    "id": "L08-V8",
+    "en": "registration fee",
+    "zh": "注册费"
+  },
+  {
+    "id": "L08-V9",
+    "en": "come with",
+    "zh": "附带；配备"
+  },
+  {
+    "id": "L08-V10",
+    "en": "retail at",
+    "zh": "售价为"
+  },
+  {
+    "id": "L08-V11",
+    "en": "warranty",
+    "zh": "保修期"
+  },
+  {
+    "id": "L08-V12",
+    "en": "dispatch",
+    "zh": "发货"
+  },
+  {
+    "id": "L08-V13",
+    "en": "reach an agreement",
+    "zh": "达成协议"
+  },
+  {
+    "id": "L08-V14",
+    "en": "offer a discount",
+    "zh": "提供折扣"
+  },
+  {
+    "id": "L08-V15",
+    "en": "confirm the order",
+    "zh": "确认订单"
+  },
+  {
+    "id": "L08-V16",
+    "en": "partnership",
+    "zh": "长期合作"
+  },
+  {
+    "id": "L08-V17",
+    "en": "start your own business",
+    "zh": "创办公司"
+  },
+  {
+    "id": "L08-V18",
+    "en": "set up / launch a company",
+    "zh": "成立公司"
+  },
+  {
+    "id": "L08-V19",
+    "en": "be your own boss",
+    "zh": "当自己的老板"
+  },
+  {
+    "id": "L08-V20",
+    "en": "spot a gap in the market",
+    "zh": "发现市场空白"
+  },
+  {
+    "id": "L08-V21",
+    "en": "carry out market research",
+    "zh": "做市场调研"
+  },
+  {
+    "id": "L08-V22",
+    "en": "write a business plan",
+    "zh": "撰写商业计划书"
+  },
+  {
+    "id": "L08-V23",
+    "en": "break even",
+    "zh": "收支平衡"
+  },
+  {
+    "id": "L08-V24",
+    "en": "make a profit",
+    "zh": "获利"
+  },
+  {
+    "id": "L08-V25",
+    "en": "raise finance",
+    "zh": "筹集资金"
+  },
+  {
+    "id": "L08-V26",
+    "en": "take out a loan",
+    "zh": "借款 / 贷款"
+  },
+  {
+    "id": "L08-V27",
+    "en": "repay a loan",
+    "zh": "偿还贷款"
+  },
+  {
+    "id": "L08-V28",
+    "en": "cover overheads",
+    "zh": "支付运营成本"
+  },
+  {
+    "id": "L08-V29",
+    "en": "attract investors",
+    "zh": "吸引投资人"
+  },
+  {
+    "id": "L08-V30",
+    "en": "government grant",
+    "zh": "政府补助"
+  },
+  {
+    "id": "L08-V31",
+    "en": "venture capital",
+    "zh": "风险投资"
+  },
+  {
+    "id": "L08-V32",
+    "en": "invest in",
+    "zh": "投资于"
+  },
+  {
+    "id": "L08-V33",
+    "en": "take a risk",
+    "zh": "承担风险"
+  },
+  {
+    "id": "L08-V34",
+    "en": "return on investment",
+    "zh": "投资回报"
+  },
+  {
+    "id": "L08-V35",
+    "en": "price disorder",
+    "zh": "价格混乱"
+  },
+  {
+    "id": "L08-V36",
+    "en": "product title clarity",
+    "zh": "产品标题清晰度"
+  },
+  {
+    "id": "L08-V37",
+    "en": "boost traffic",
+    "zh": "拉流量"
+  },
+  {
+    "id": "L08-V38",
+    "en": "conversion",
+    "zh": "转化"
+  },
+  {
+    "id": "L09-V0",
+    "en": "Glad you could make it!",
+    "zh": "欢迎（地道开场）"
+  },
+  {
+    "id": "L09-V1",
+    "en": "How was the flight?",
+    "zh": "寒暄（地道开场）"
+  },
+  {
+    "id": "L09-V2",
+    "en": "Shall we dive in?",
+    "zh": "我们开始吧"
+  },
+  {
+    "id": "L09-V3",
+    "en": "Let's get the ball rolling.",
+    "zh": "我们开始吧"
+  },
+  {
+    "id": "L09-V4",
+    "en": "Hopefully the coffee's strong enough today.",
+    "zh": "缓解气氛的寒暄"
+  },
+  {
+    "id": "L09-V5",
+    "en": "Let me give you a quick overview first.",
+    "zh": "我先给你一个简要概述"
+  },
+  {
+    "id": "L09-V6",
+    "en": "We'll keep this short and focused.",
+    "zh": "我们会简短而高效地进行"
+  },
+  {
+    "id": "L09-V7",
+    "en": "We're a global tech company based in China.",
+    "zh": "我们是一家总部在中国的全球科技公司"
+  },
+  {
+    "id": "L09-V8",
+    "en": "We mainly focus on smart devices and everyday tech.",
+    "zh": "我们主要专注于智能设备和日常科技产品"
+  },
+  {
+    "id": "L09-V9",
+    "en": "We started with one simple idea in mind…",
+    "zh": "我们从一个简单的想法开始……"
+  },
+  {
+    "id": "L09-V10",
+    "en": "We saw a gap and decided to do things differently.",
+    "zh": "我们发现了一个缺口，决定用不同的方式做事"
+  },
+  {
+    "id": "L09-V11",
+    "en": "What if smart tech was for everyone?",
+    "zh": "如果智能科技是为每个人服务的呢？"
+  },
+  {
+    "id": "L09-V12",
+    "en": "We care a lot about user experience.",
+    "zh": "我们非常重视用户体验"
+  },
+  {
+    "id": "L09-V13",
+    "en": "Simplicity is kind of our thing.",
+    "zh": "简约是我们的特色"
+  },
+  {
+    "id": "L09-V14",
+    "en": "We're big on design, but also on practicality.",
+    "zh": "我们注重设计，但也注重实用性"
+  },
+  {
+    "id": "L09-V15",
+    "en": "We don't just build products, we build solutions.",
+    "zh": "我们不仅造产品，我们造解决方案"
+  },
+  {
+    "id": "L09-V16",
+    "en": "We invest heavily in R&D.",
+    "zh": "我们在研发上投入很大"
+  },
+  {
+    "id": "L09-V17",
+    "en": "We're expanding fast in overseas markets.",
+    "zh": "我们在海外市场快速扩张"
+  },
+  {
+    "id": "L09-V18",
+    "en": "A lot of people tell us that…",
+    "zh": "很多人告诉我们……（代替 problems 开头）"
+  },
+  {
+    "id": "L09-V19",
+    "en": "Many users struggle with…",
+    "zh": "很多用户在……方面有困难"
+  },
+  {
+    "id": "L09-V20",
+    "en": "One common pain point we hear about is…",
+    "zh": "我们常听到的一个痛点是……"
+  },
+  {
+    "id": "L09-V21",
+    "en": "We actually listen to what users say.",
+    "zh": "我们真的在听用户的声音"
+  },
+  {
+    "id": "L09-V22",
+    "en": "We're serious about making life easier.",
+    "zh": "我们认真地想让生活更简单"
+  },
+  {
+    "id": "L09-V23",
+    "en": "We want tech to feel simple, not stressful.",
+    "zh": "我们希望科技让人感到简单，而非压力"
+  },
+  {
+    "id": "L09-V24",
+    "en": "Long term, we want to change how people use tech at home.",
+    "zh": "长远来看，我们想改变人们在家使用科技的方式"
+  },
+  {
+    "id": "L09-V25",
+    "en": "It lasts all day without you worrying about charging.",
+    "zh": "用一整天不用担心充电（地道卖点表达）"
+  },
+  {
+    "id": "L09-V26",
+    "en": "The screen is super clear, even in bright sunlight.",
+    "zh": "屏幕超清晰，即使在强光下"
+  },
+  {
+    "id": "L09-V27",
+    "en": "What people really like about it is…",
+    "zh": "人们真正喜欢的是……"
+  },
+  {
+    "id": "L09-V28",
+    "en": "One thing customers love is…",
+    "zh": "客户最喜欢的一点是……"
+  },
+  {
+    "id": "L09-V29",
+    "en": "The best part is probably…",
+    "zh": "最好的部分可能是……"
+  },
+  {
+    "id": "L09-V30",
+    "en": "This is perfect if you're someone who…",
+    "zh": "如果你是那种……的人，这非常适合"
+  },
+  {
+    "id": "L09-V31",
+    "en": "Great for people who are always on the go.",
+    "zh": "非常适合经常在外奔波的人"
+  },
+  {
+    "id": "L09-V32",
+    "en": "Ideal for everyday use.",
+    "zh": "非常适合日常使用"
+  },
+  {
+    "id": "L09-V33",
+    "en": "Perfect if you want something reliable.",
+    "zh": "如果你想要可靠的东西，非常完美"
+  },
+  {
+    "id": "L09-V34",
+    "en": "What are you looking for exactly?",
+    "zh": "你具体在找什么？（代替 What is your requirement）"
+  },
+  {
+    "id": "L09-V35",
+    "en": "What matters most to you here?",
+    "zh": "对你来说最重要的是什么？"
+  },
+  {
+    "id": "L09-V36",
+    "en": "How does that sound to you?",
+    "zh": "你觉得怎么样？（代替 Do you like it）"
+  },
+  {
+    "id": "L09-V37",
+    "en": "Could you walk me through that a bit?",
+    "zh": "你能稍微给我讲讲吗？"
+  },
+  {
+    "id": "L09-V38",
+    "en": "What's driving that decision?",
+    "zh": "是什么驱动了这个决定？"
+  },
+  {
+    "id": "L09-V39",
+    "en": "What budget range are you working with?",
+    "zh": "你的预算范围是多少？"
+  },
+  {
+    "id": "L09-V40",
+    "en": "What matters most to you — price or long-term value?",
+    "zh": "对你来说最重要的是价格还是长期价值？"
+  },
+  {
+    "id": "L09-V41",
+    "en": "When would be a good time to follow up?",
+    "zh": "什么时候跟进比较合适？"
+  },
+  {
+    "id": "L09-V42",
+    "en": "I'm happy to join a call with your decision-maker if that helps.",
+    "zh": "如果有帮助，我可以和你的决策人一起开个电话会"
+  },
+  {
+    "id": "L09-V43",
+    "en": "That's a good point.",
+    "zh": "说得好"
+  },
+  {
+    "id": "L09-V44",
+    "en": "Let me show you something based on that.",
+    "zh": "让我根据这个给你展示一些东西"
+  },
+  {
+    "id": "L09-V45",
+    "en": "Just to recap…",
+    "zh": "简单总结一下……"
+  },
+  {
+    "id": "L09-V46",
+    "en": "The main takeaway is…",
+    "zh": "主要的收获是……"
+  },
+  {
+    "id": "L09-V47",
+    "en": "Here's what we've agreed on so far.",
+    "zh": "以下是我们目前达成一致的内容"
+  },
+  {
+    "id": "L09-V48",
+    "en": "Let's take this offline and follow up by email.",
+    "zh": "我们线下再跟进，通过邮件沟通"
+  },
+  {
+    "id": "L09-V49",
+    "en": "Let's stay in touch.",
+    "zh": "保持联系"
+  },
+  {
+    "id": "L09-V50",
+    "en": "Sounds like we're on the same page.",
+    "zh": "看来我们想法是一致的"
+  },
+  {
+    "id": "L09-V51",
+    "en": "Let's wrap it up here.",
+    "zh": "我们到这儿结束吧"
+  },
+  {
+    "id": "L09-V52",
+    "en": "We'll be in touch.",
+    "zh": "我们会保持联系"
+  },
+  {
+    "id": "L10-V0",
+    "en": "style mismatch",
+    "zh": "风格不匹配"
+  },
+  {
+    "id": "L10-V1",
+    "en": "Yes ≠ agreement",
+    "zh": "\\"
+  },
+  {
+    "id": "L10-V2",
+    "en": "Silence ≠ agreement",
+    "zh": "沉默不等于同意"
+  },
+  {
+    "id": "L10-V3",
+    "en": "Communication style mismatch ≠ incompetence",
+    "zh": "沟通风格不匹配≠能力不行"
+  },
+  {
+    "id": "L10-V4",
+    "en": "consensus building",
+    "zh": "共识构建"
+  },
+  {
+    "id": "L10-V5",
+    "en": "I see your point, but…",
+    "zh": "我理解你的观点，但是……（委婉反对）"
+  },
+  {
+    "id": "L10-V6",
+    "en": "I agree to some extent, but…",
+    "zh": "我在一定程度上同意，但是……"
+  },
+  {
+    "id": "L10-V7",
+    "en": "I'm afraid I don't fully agree because…",
+    "zh": "恐怕我不完全同意，因为……"
+  },
+  {
+    "id": "L10-V8",
+    "en": "The direction is right, but execution could be refined in…",
+    "zh": "方向是对的，但执行可以在……方面优化"
+  },
+  {
+    "id": "L10-V9",
+    "en": "Perhaps we could consider…",
+    "zh": "也许我们可以考虑……（建议替代方案）"
+  },
+  {
+    "id": "L10-V10",
+    "en": "What if we try…?",
+    "zh": "如果我们试试……呢？"
+  },
+  {
+    "id": "L10-V11",
+    "en": "One possibility is to…",
+    "zh": "一个可能是……"
+  },
+  {
+    "id": "L10-V12",
+    "en": "Have you considered…?",
+    "zh": "你有没有考虑过……？"
+  },
+  {
+    "id": "L10-V13",
+    "en": "to some extent",
+    "zh": "在一定程度上"
+  },
+  {
+    "id": "L10-V14",
+    "en": "one concern is…",
+    "zh": "一个顾虑是……"
+  },
+  {
+    "id": "L10-V15",
+    "en": "from our side…",
+    "zh": "从我们的角度来看……"
+  },
+  {
+    "id": "L10-V16",
+    "en": "It's worth…-ing",
+    "zh": "值得做……"
+  },
+  {
+    "id": "L10-V17",
+    "en": "There's no point in…-ing",
+    "zh": "做……没有意义"
+  },
+  {
+    "id": "L10-V18",
+    "en": "You'll have difficulty…-ing",
+    "zh": "你会在……方面有困难"
+  },
+  {
+    "id": "L10-V19",
+    "en": "It's worth building relationships before pushing decisions.",
+    "zh": "在推动决策前，先建立关系是值得的"
+  },
+  {
+    "id": "L10-V20",
+    "en": "There's no point in assuming things work the same in every market.",
+    "zh": "假设每个市场都一样运作是没有意义的"
+  },
+  {
+    "id": "L10-V21",
+    "en": "Let me walk you through our ideas.",
+    "zh": "让我给你介绍一下我们的想法"
+  },
+  {
+    "id": "L10-V22",
+    "en": "From our perspective…",
+    "zh": "从我们的角度来看……"
+  },
+  {
+    "id": "L10-V23",
+    "en": "I see value in that.",
+    "zh": "我看到其中的价值"
+  },
+  {
+    "id": "L10-V24",
+    "en": "That makes sense.",
+    "zh": "这说得通"
+  },
+  {
+    "id": "L10-V25",
+    "en": "I agree partially, yet…",
+    "zh": "我部分同意，但是……"
+  },
+  {
+    "id": "L10-V26",
+    "en": "One possible concern is that execution might be slow without support.",
+    "zh": "一个可能的顾虑是缺乏支持执行可能会慢"
+  },
+  {
+    "id": "L10-V27",
+    "en": "Maybe we should consider another approach…",
+    "zh": "也许我们应该考虑另一个方案……"
+  },
+  {
+    "id": "L10-V28",
+    "en": "From our side, one factor to think about is…",
+    "zh": "从我们这边来看，一个需要考虑的因素是……"
+  },
+  {
+    "id": "L10-V29",
+    "en": "To summarise…",
+    "zh": "总结一下……"
+  },
+  {
+    "id": "L10-V30",
+    "en": "Next steps could be…",
+    "zh": "下一步可以是……"
+  },
+  {
+    "id": "L11-V0",
+    "en": "rose by…",
+    "zh": "增长了……"
+  },
+  {
+    "id": "L11-V1",
+    "en": "increased by…",
+    "zh": "上升了……（中性、正式）"
+  },
+  {
+    "id": "L11-V2",
+    "en": "grew to…",
+    "zh": "增长至……"
+  },
+  {
+    "id": "L11-V3",
+    "en": "edged up",
+    "zh": "小幅上升（幅度不大，语气克制）"
+  },
+  {
+    "id": "L11-V4",
+    "en": "showed an upward trend",
+    "zh": "呈现上升趋势"
+  },
+  {
+    "id": "L11-V5",
+    "en": "a rise in…",
+    "zh": "……的上升"
+  },
+  {
+    "id": "L11-V6",
+    "en": "an increase in…",
+    "zh": "……的增加"
+  },
+  {
+    "id": "L11-V7",
+    "en": "growth in…",
+    "zh": "……的增长"
+  },
+  {
+    "id": "L11-V8",
+    "en": "an upward trend",
+    "zh": "上升趋势"
+  },
+  {
+    "id": "L11-V9",
+    "en": "a steady increase",
+    "zh": "稳步增长"
+  },
+  {
+    "id": "L11-V10",
+    "en": "fell by…",
+    "zh": "下降了……"
+  },
+  {
+    "id": "L11-V11",
+    "en": "declined to…",
+    "zh": "下降至……"
+  },
+  {
+    "id": "L11-V12",
+    "en": "dropped from A to B",
+    "zh": "从A降至B"
+  },
+  {
+    "id": "L11-V13",
+    "en": "fell to the lowest level in…",
+    "zh": "降至……以来最低水平"
+  },
+  {
+    "id": "L11-V14",
+    "en": "showed a downward trend",
+    "zh": "呈现下降趋势"
+  },
+  {
+    "id": "L11-V15",
+    "en": "a fall in…",
+    "zh": "……的下降"
+  },
+  {
+    "id": "L11-V16",
+    "en": "a decline in…",
+    "zh": "……的下滑（比fall更正式）"
+  },
+  {
+    "id": "L11-V17",
+    "en": "a drop in…",
+    "zh": "……的下跌（偏结果）"
+  },
+  {
+    "id": "L11-V18",
+    "en": "a sharp/slight decline",
+    "zh": "明显/小幅下滑"
+  },
+  {
+    "id": "L11-V19",
+    "en": "slightly / marginally",
+    "zh": "小幅地"
+  },
+  {
+    "id": "L11-V20",
+    "en": "moderately",
+    "zh": "适度地"
+  },
+  {
+    "id": "L11-V21",
+    "en": "gradually",
+    "zh": "逐步地"
+  },
+  {
+    "id": "L11-V22",
+    "en": "steadily",
+    "zh": "稳步地"
+  },
+  {
+    "id": "L11-V23",
+    "en": "year over year (YoY)",
+    "zh": "同比"
+  },
+  {
+    "id": "L11-V24",
+    "en": "month over month (MoM)",
+    "zh": "环比"
+  },
+  {
+    "id": "L11-V25",
+    "en": "quarter over quarter (QoQ)",
+    "zh": "季环比"
+  },
+  {
+    "id": "L11-V26",
+    "en": "versus…",
+    "zh": "相比……"
+  },
+  {
+    "id": "L11-V27",
+    "en": "compared with…",
+    "zh": "与……相比"
+  },
+  {
+    "id": "L11-V28",
+    "en": "lag behind…by…",
+    "zh": "比……滞后……"
+  },
+  {
+    "id": "L11-V29",
+    "en": "remained stable",
+    "zh": "保持稳定"
+  },
+  {
+    "id": "L11-V30",
+    "en": "roughly flat",
+    "zh": "基本持平"
+  },
+  {
+    "id": "L11-V31",
+    "en": "fluctuated slightly",
+    "zh": "小幅波动"
+  },
+  {
+    "id": "L11-V32",
+    "en": "showed mixed results",
+    "zh": "表现不一"
+  },
+  {
+    "id": "L11-V33",
+    "en": "a patchwork of results",
+    "zh": "参差不齐、好坏不一"
+  },
+  {
+    "id": "L11-V34",
+    "en": "the total size of…",
+    "zh": "……的整体规模"
+  },
+  {
+    "id": "L11-V35",
+    "en": "the number of…",
+    "zh": "……的数量"
+  },
+  {
+    "id": "L11-V36",
+    "en": "cumulative deliveries",
+    "zh": "累计交付量"
+  },
+  {
+    "id": "L11-V37",
+    "en": "received new orders totaling…",
+    "zh": "新接订单总额为……"
+  },
+  {
+    "id": "L11-V38",
+    "en": "had anticipated…",
+    "zh": "原本预计……"
+  },
+  {
+    "id": "L11-V39",
+    "en": "came in below/above expectations",
+    "zh": "低于/高于预期"
+  },
+  {
+    "id": "L11-V40",
+    "en": "fell short of expectations",
+    "zh": "未达预期"
+  },
+  {
+    "id": "L11-V41",
+    "en": "exceeded initial expectations",
+    "zh": "超出初期预期"
+  },
+  {
+    "id": "L11-V42",
+    "en": "a reassuring sign that…",
+    "zh": "一个令人安心的信号，表明……"
+  },
+  {
+    "id": "L11-V43",
+    "en": "a sign of weakening demand",
+    "zh": "需求走弱的迹象"
+  },
+  {
+    "id": "L11-V44",
+    "en": "raising concern that…",
+    "zh": "引发对……的担忧"
+  },
+  {
+    "id": "L11-V45",
+    "en": "suggests that…",
+    "zh": "表明……（比show更克制）"
+  },
+  {
+    "id": "L11-V46",
+    "en": "indicates a broader trend",
+    "zh": "反映更广泛的趋势"
+  },
+  {
+    "id": "L11-V47",
+    "en": "Overall, performance was broadly stable.",
+    "zh": "总体来看，表现较为稳定"
+  },
+  {
+    "id": "L11-V48",
+    "en": "Overall, results came in below expectations.",
+    "zh": "总体来看，结果低于预期"
+  },
+  {
+    "id": "L11-V49",
+    "en": "While some indicators improved, others raise concern.",
+    "zh": "尽管部分指标改善，但仍有数据引发担忧"
+  },
+  {
+    "id": "L11-V50",
+    "en": "Thank you for making the time to join us today.",
+    "zh": "感谢大家抽时间参会"
+  },
+  {
+    "id": "L11-V51",
+    "en": "Before we move into the business details, let me briefly set the context.",
+    "zh": "在进入业务细节前，我先简单介绍背景"
+  },
+  {
+    "id": "L11-V52",
+    "en": "so far",
+    "zh": "到目前为止"
+  },
+  {
+    "id": "L11-V53",
+    "en": "on track",
+    "zh": "进度正常"
+  },
+  {
+    "id": "L11-V54",
+    "en": "expected to be completed by…",
+    "zh": "预计完成时间"
+  },
+  {
+    "id": "L11-V55",
+    "en": "has prolonged…",
+    "zh": "拉长了……"
+  },
+  {
+    "id": "L11-V56",
+    "en": "is still catching up from…",
+    "zh": "仍在恢复……"
+  },
+  {
+    "id": "L11-V57",
+    "en": "reassuring",
+    "zh": "令人安心的"
+  },
+  {
+    "id": "L11-V58",
+    "en": "optimistic",
+    "zh": "积极的"
+  },
+  {
+    "id": "L11-V59",
+    "en": "stable",
+    "zh": "稳定"
+  },
+  {
+    "id": "L11-V60",
+    "en": "mixed",
+    "zh": "有好有坏"
+  },
+  {
+    "id": "L11-V61",
+    "en": "more fragile",
+    "zh": "更不稳定"
+  },
+  {
+    "id": "L11-V62",
+    "en": "Let me put it simply.",
+    "zh": "让我简单说"
+  },
+  {
+    "id": "L11-V63",
+    "en": "In simple terms…",
+    "zh": "简单来说……"
+  },
+  {
+    "id": "L11-V64",
+    "en": "Overall speaking…",
+    "zh": "总体来说……"
+  },
+  {
+    "id": "L11-V65",
+    "en": "revenue",
+    "zh": "营收"
+  },
+  {
+    "id": "L11-V66",
+    "en": "year-on-year growth",
+    "zh": "同比增长"
+  },
+  {
+    "id": "L11-V67",
+    "en": "market share",
+    "zh": "市场份额"
+  },
+  {
+    "id": "L11-V68",
+    "en": "product portfolio",
+    "zh": "产品组合"
+  },
+  {
+    "id": "L12-V0",
+    "en": "Ideal for everyday use.",
+    "zh": "非常适合日常使用"
+  },
+  {
+    "id": "L12-V1",
+    "en": "long-term performance",
+    "zh": "长期性能"
+  },
+  {
+    "id": "L12-V2",
+    "en": "takeaway",
+    "zh": "要点/核心收获/关键信息"
+  },
+  {
+    "id": "L12-V3",
+    "en": "Sounds like we're on the same page.",
+    "zh": "看来我们想法是一致的"
+  },
+  {
+    "id": "L12-V4",
+    "en": "Let's stay in touch.",
+    "zh": "我们保持联系"
+  },
+  {
+    "id": "L12-V5",
+    "en": "grow steadily",
+    "zh": "稳步增长"
+  },
+  {
+    "id": "L12-V6",
+    "en": "revenue",
+    "zh": "营收"
+  },
+  {
+    "id": "L12-V7",
+    "en": "a year-on-year growth of…",
+    "zh": "同比增长……"
+  },
+  {
+    "id": "L12-V8",
+    "en": "a MoM growth of…",
+    "zh": "环比增长……"
+  },
+  {
+    "id": "L12-V9",
+    "en": "consistent global growth",
+    "zh": "持续的全球化增长"
+  },
+  {
+    "id": "L12-V10",
+    "en": "we were listed in…",
+    "zh": "入选……"
+  },
+  {
+    "id": "L12-V11",
+    "en": "a very broad and competitive product",
+    "zh": "非常丰富且有竞争力的产品"
+  },
+  {
+    "id": "L12-V12",
+    "en": "gadgets",
+    "zh": "小配件；小工具"
+  },
+  {
+    "id": "L12-V13",
+    "en": "dropped from A to B",
+    "zh": "从A降到B"
+  },
+  {
+    "id": "L12-V14",
+    "en": "were roughly flat MoM",
+    "zh": "环比持平"
+  },
+  {
+    "id": "L12-V15",
+    "en": "Sth. came in below expectations",
+    "zh": "低于预期"
+  },
+  {
+    "id": "L12-V16",
+    "en": "the same period last year",
+    "zh": "去年同期"
+  },
+  {
+    "id": "L12-V17",
+    "en": "cumulative deliveries",
+    "zh": "累计交付"
+  },
+  {
+    "id": "L12-V18",
+    "en": "There is an increase of [数字] in [品类/市场].",
+    "zh": "某品类/市场增长了[数字]"
+  },
+  {
+    "id": "L12-V19",
+    "en": "[Sth] saw/recorded an increase of [数字].",
+    "zh": "某物录得[数字]的增长"
+  },
+  {
+    "id": "L12-V20",
+    "en": "[Sth] saw a jump/surge/leap of [数字].",
+    "zh": "某物出现了[数字]的跳升/激增"
+  },
+  {
+    "id": "L12-V21",
+    "en": "[Sth] accounted for/took up/made up [比例] in [时间].",
+    "zh": "某物在某时间占比[比例]"
+  },
+  {
+    "id": "L12-V22",
+    "en": "The figure peaked in August at just over xx million units.",
+    "zh": "数据在8月达到峰值，略超xx百万台"
+  },
+  {
+    "id": "L12-V23",
+    "en": "Growth started to slow down after July.",
+    "zh": "7月之后增长开始放缓"
+  },
+  {
+    "id": "L12-V24",
+    "en": "The drop in Q4 was noticeable but not dramatic.",
+    "zh": "第四季度的下降明显但不剧烈"
+  },
+  {
+    "id": "L12-V25",
+    "en": "Q4 softness may be related to seasonality.",
+    "zh": "第四季度的疲软可能与季节性因素有关"
+  },
+  {
+    "id": "L12-V26",
+    "en": "Despite the dip, full-year shipments remained at a healthy level.",
+    "zh": "尽管有所下降，全年出货量仍处于健康水平"
+  },
+  {
+    "id": "L12-V27",
+    "en": "That's a good question. I was about to explain that later.",
+    "zh": "好问题，我稍后正要解释"
+  },
+  {
+    "id": "L12-V28",
+    "en": "This is mainly because…",
+    "zh": "主要是因为……"
+  },
+  {
+    "id": "L12-V29",
+    "en": "This is partly due to…",
+    "zh": "部分原因在于……"
+  },
+  {
+    "id": "L12-V30",
+    "en": "One reason could be that…",
+    "zh": "一个可能的原因是……"
+  },
+  {
+    "id": "L12-V31",
+    "en": "This may reflect…",
+    "zh": "这可能反映了……"
+  },
+  {
+    "id": "L12-V32",
+    "en": "This has a lot to do with…",
+    "zh": "这和……有很大关系"
+  },
+  {
+    "id": "L12-V33",
+    "en": "While shipments in China peaked in…, India reached its high point in…",
+    "zh": "中国出货量在……达到峰值，而印度在……达到高点"
+  },
+  {
+    "id": "L12-V34",
+    "en": "By contrast,…",
+    "zh": "相比之下，……"
+  },
+  {
+    "id": "L12-V35",
+    "en": "Unlike A which…, B…",
+    "zh": "与A不同的是……B……"
+  },
+  {
+    "id": "L12-V36",
+    "en": "This may suggest differences in market maturity.",
+    "zh": "这可能暗示了市场成熟度的差异"
+  },
+  {
+    "id": "L12-V37",
+    "en": "actual shipments were below target",
+    "zh": "实际出货低于目标"
+  },
+  {
+    "id": "L12-V38",
+    "en": "exceeded the original target",
+    "zh": "超出原目标"
+  },
+  {
+    "id": "L12-V39",
+    "en": "performed better than expected",
+    "zh": "表现优于预期"
+  },
+  {
+    "id": "L12-V40",
+    "en": "fell short of the target",
+    "zh": "未达目标"
+  },
+  {
+    "id": "L12-V41",
+    "en": "underperformed",
+    "zh": "表现不佳"
+  },
+  {
+    "id": "L12-V42",
+    "en": "outperformed",
+    "zh": "表现优异"
+  },
+  {
+    "id": "L12-V43",
+    "en": "contract signing",
+    "zh": "合同签署"
+  },
+  {
+    "id": "L12-V44",
+    "en": "archiving",
+    "zh": "归档"
+  },
+  {
+    "id": "L12-V45",
+    "en": "clause",
+    "zh": "条款"
+  },
+  {
+    "id": "L12-V46",
+    "en": "under internal review",
+    "zh": "内部审核中"
+  },
+  {
+    "id": "L12-V47",
+    "en": "pulled back at the final stage",
+    "zh": "在最后阶段退出"
+  },
+  {
+    "id": "L12-V48",
+    "en": "put the project on hold",
+    "zh": "项目暂停"
+  },
+  {
+    "id": "L12-V49",
+    "en": "stuck in the approval system",
+    "zh": "卡在审批系统里"
+  },
+  {
+    "id": "L12-V50",
+    "en": "contract clause revisions",
+    "zh": "合同条款修订"
+  },
+  {
+    "id": "L12-V51",
+    "en": "risk-related terms",
+    "zh": "风险相关条款"
+  },
+  {
+    "id": "L12-V52",
+    "en": "liability and delivery timelines",
+    "zh": "责任和交付时间线"
+  },
+  {
+    "id": "L12-V53",
+    "en": "fine-tuning",
+    "zh": "微调"
+  },
+  {
+    "id": "L12-V54",
+    "en": "spot a gap in the market",
+    "zh": "发现市场缺口"
+  },
+  {
+    "id": "L12-V55",
+    "en": "start from scratch",
+    "zh": "从零开始"
+  },
+  {
+    "id": "L12-V56",
+    "en": "break even",
+    "zh": "收支平衡"
+  },
+  {
+    "id": "L12-V57",
+    "en": "unique selling point",
+    "zh": "独特卖点"
+  },
+  {
+    "id": "L12-V58",
+    "en": "market potential",
+    "zh": "市场潜力"
+  },
+  {
+    "id": "L12-V59",
+    "en": "workforce / talent pool",
+    "zh": "劳动力/人才库"
+  },
+  {
+    "id": "L12-V60",
+    "en": "tax incentives",
+    "zh": "税收优惠"
+  },
+  {
+    "id": "L12-V61",
+    "en": "proposal",
+    "zh": "提案/方案"
+  },
+  {
+    "id": "L12-V62",
+    "en": "sell-in / sell-out",
+    "zh": "渠道进货/终端销售"
+  },
+  {
+    "id": "L12-V63",
+    "en": "stock pressure",
+    "zh": "库存压力"
+  },
+  {
+    "id": "L12-V65",
+    "en": "grey market products",
+    "zh": "水货"
+  },
+  {
+    "id": "L12-V66",
+    "en": "pricing consistency",
+    "zh": "价格一致性"
+  },
+  {
+    "id": "L12-V67",
+    "en": "cross-channel selling",
+    "zh": "窜货"
+  },
+  {
+    "id": "L12-V68",
+    "en": "clear inventory / inventory clearance",
+    "zh": "清库存"
+  },
+  {
+    "id": "L12-V69",
+    "en": "overselling / oversold",
+    "zh": "超售"
+  },
+  {
+    "id": "L12-V70",
+    "en": "value for money",
+    "zh": "性价比高"
+  },
+  {
+    "id": "L13-V0",
+    "en": "purchase",
+    "zh": "购买"
+  },
+  {
+    "id": "L13-V2",
+    "en": "comments",
+    "zh": "评论"
+  },
+  {
+    "id": "L13-V3",
+    "en": "honest and approachable",
+    "zh": "真诚且容易亲近的"
+  },
+  {
+    "id": "L13-V4",
+    "en": "loyalty",
+    "zh": "忠诚度"
+  },
+  {
+    "id": "L13-V5",
+    "en": "tweet",
+    "zh": "推文；发推"
+  },
+  {
+    "id": "L13-V6",
+    "en": "pitfalls",
+    "zh": "陷阱或隐患"
+  },
+  {
+    "id": "L13-V7",
+    "en": "hurt the budgets",
+    "zh": "对预算造成压力 / 超出预算"
+  },
+  {
+    "id": "L13-V8",
+    "en": "run or monitor the media",
+    "zh": "管理媒体渠道 / 监测"
+  },
+  {
+    "id": "L13-V9",
+    "en": "provoke a negative reaction",
+    "zh": "引发负面反应"
+  },
+  {
+    "id": "L13-V10",
+    "en": "put up the brand message",
+    "zh": "展示 / 传达品牌信息"
+  },
+  {
+    "id": "L13-V11",
+    "en": "counter-productive",
+    "zh": "适得其反或产生反效果"
+  },
+  {
+    "id": "L13-V12",
+    "en": "unofficial page",
+    "zh": "非官方页面"
+  },
+  {
+    "id": "L13-V13",
+    "en": "in an official capacity",
+    "zh": "以正式身份 / 以官方身份"
+  },
+  {
+    "id": "L13-V14",
+    "en": "phenomenal",
+    "zh": "非凡的或现象级的"
+  },
+  {
+    "id": "L13-V15",
+    "en": "at the last count",
+    "zh": "据最新统计"
+  },
+  {
+    "id": "L13-V16",
+    "en": "a special offer",
+    "zh": "特别优惠或特价活动"
+  },
+  {
+    "id": "L13-V17",
+    "en": "Employ",
+    "zh": "应用；运用；使用"
+  },
+  {
+    "id": "L13-V18",
+    "en": "admit errors",
+    "zh": "承认错误"
+  },
+  {
+    "id": "L13-V19",
+    "en": "eye-catching",
+    "zh": "引人注目的"
+  },
+  {
+    "id": "L13-V20",
+    "en": "catch attention",
+    "zh": "吸引注意力"
+  },
+  {
+    "id": "L13-V21",
+    "en": "word of mouth",
+    "zh": "口碑传播"
+  },
+  {
+    "id": "L13-V22",
+    "en": "combine a with b",
+    "zh": "将A 与B 结合"
+  },
+  {
+    "id": "L13-V23",
+    "en": "a range of",
+    "zh": "多种多样的"
+  },
+  {
+    "id": "L13-V24",
+    "en": "persuasive people",
+    "zh": "有说服力的人"
+  },
+  {
+    "id": "L13-V25",
+    "en": "current conversations",
+    "zh": "当前的讨论话题"
+  },
+  {
+    "id": "L13-V26",
+    "en": "objective",
+    "zh": "目标；客观的"
+  },
+  {
+    "id": "L13-V27",
+    "en": "get engaged with",
+    "zh": "与……产生互动；参与到"
+  },
+  {
+    "id": "L13-V28",
+    "en": "marry a with b",
+    "zh": "将A 与B巧妙结合"
+  },
+  {
+    "id": "L13-V29",
+    "en": "insight",
+    "zh": "深刻见解；洞察"
+  },
+  {
+    "id": "L13-V30",
+    "en": "competitive advantage",
+    "zh": "竞争优势"
+  },
+  {
+    "id": "L13-V31",
+    "en": "modification",
+    "zh": "调整；修改"
+  },
+  {
+    "id": "L13-V32",
+    "en": "conduct a survey",
+    "zh": "开展一项调查"
+  },
+  {
+    "id": "L13-V33",
+    "en": "make the cuts",
+    "zh": "削减开支；裁减"
+  },
+  {
+    "id": "L13-V34",
+    "en": "our financial situation",
+    "zh": "我们的财务状况"
+  },
+  {
+    "id": "L14-V0",
+    "en": "run a course",
+    "zh": "开设/负责一门课程"
+  },
+  {
+    "id": "L14-V1",
+    "en": "hold a meeting",
+    "zh": "召开会议/开会"
+  },
+  {
+    "id": "L14-V2",
+    "en": "place an order",
+    "zh": "下单/订购"
+  },
+  {
+    "id": "L14-V3",
+    "en": "make some modifications",
+    "zh": "做一些修改/调整"
+  },
+  {
+    "id": "L14-V4",
+    "en": "conduct a customer survey",
+    "zh": "开展客户调研/进行用户调查"
+  },
+  {
+    "id": "L14-V5",
+    "en": "make the cuts",
+    "zh": "削减开支/裁减"
+  },
+  {
+    "id": "L14-V6",
+    "en": "make suggestions",
+    "zh": "提出建议"
+  },
+  {
+    "id": "L14-V7",
+    "en": "all departments of the company",
+    "zh": "公司各部门"
+  },
+  {
+    "id": "L14-V8",
+    "en": "worldwide",
+    "zh": "全球范围"
+  },
+  {
+    "id": "L14-V9",
+    "en": "overall business objectives",
+    "zh": "整体业务目标"
+  },
+  {
+    "id": "L14-V10",
+    "en": "extensive employee training",
+    "zh": "全面的员工培训"
+  },
+  {
+    "id": "L14-V11",
+    "en": "doable",
+    "zh": "可行的"
+  },
+  {
+    "id": "L14-V12",
+    "en": "a big win",
+    "zh": "重大成果/一场大胜"
+  },
+  {
+    "id": "L14-V13",
+    "en": "hands-on classroom work",
+    "zh": "实操课堂练习"
+  },
+  {
+    "id": "L14-V14",
+    "en": "efforts",
+    "zh": "努力/投入"
+  },
+  {
+    "id": "L14-V15",
+    "en": "make a huge difference to sth",
+    "zh": "对...产生巨大影响"
+  },
+  {
+    "id": "L14-V16",
+    "en": "seminar",
+    "zh": "专题研讨会"
+  },
+  {
+    "id": "L14-V17",
+    "en": "terminate",
+    "zh": "终止/解约"
+  },
+  {
+    "id": "L14-V18",
+    "en": "haters",
+    "zh": "恶意批评者/黑粉"
+  },
+  {
+    "id": "L14-V19",
+    "en": "external influencers",
+    "zh": "外部自媒体人士"
+  },
+  {
+    "id": "L14-V20",
+    "en": "spread",
+    "zh": "传播/扩散"
+  },
+  {
+    "id": "L14-V21",
+    "en": "approach",
+    "zh": "方法/路径"
+  },
+  {
+    "id": "L14-V22",
+    "en": "top priority",
+    "zh": "最高优先级"
+  },
+  {
+    "id": "L14-V23",
+    "en": "from start to finish",
+    "zh": "从头到尾/全程"
+  },
+  {
+    "id": "L14-V24",
+    "en": "the final decision maker",
+    "zh": "最终决策人"
+  },
+  {
+    "id": "L14-V25",
+    "en": "deliver",
+    "zh": "交付/达成"
+  },
+  {
+    "id": "L14-V26",
+    "en": "update",
+    "zh": "更新/同步进展"
+  },
+  {
+    "id": "L14-V27",
+    "en": "be on track",
+    "zh": "按计划进行"
+  },
+  {
+    "id": "L14-V28",
+    "en": "be slightly behind",
+    "zh": "略有延迟"
+  },
+  {
+    "id": "L14-V29",
+    "en": "trade-off",
+    "zh": "权衡/取舍"
+  },
+  {
+    "id": "L14-V30",
+    "en": "basic principles",
+    "zh": "基本原则"
+  },
+  {
+    "id": "L14-V31",
+    "en": "acknowledge your mistakes",
+    "zh": "承认错误"
+  },
+  {
+    "id": "L14-V32",
+    "en": "differentiate ... from",
+    "zh": "将...与...区分开"
+  },
+  {
+    "id": "L14-V33",
+    "en": "a range of",
+    "zh": "一系列/各种"
+  },
+  {
+    "id": "L14-V34",
+    "en": "spread rumors",
+    "zh": "散播谣言"
+  },
+  {
+    "id": "L15-V0",
+    "en": "make some modifications",
+    "zh": "做一些修改/调整"
+  },
+  {
+    "id": "L15-V1",
+    "en": "doable",
+    "zh": "可行的"
+  },
+  {
+    "id": "L15-V2",
+    "en": "terminate",
+    "zh": "终止/解约"
+  },
+  {
+    "id": "L15-V3",
+    "en": "top priority",
+    "zh": "最高优先级"
+  },
+  {
+    "id": "L15-V4",
+    "en": "be on track",
+    "zh": "按计划进行"
+  },
+  {
+    "id": "L15-V5",
+    "en": "trade-off",
+    "zh": "权衡/取舍"
+  },
+  {
+    "id": "L15-V6",
+    "en": "spread rumors",
+    "zh": "散播谣言"
+  },
+  {
+    "id": "L15-V7",
+    "en": "deliver",
+    "zh": "交付/达成"
+  },
+  {
+    "id": "L15-V8",
+    "en": "from start to finish",
+    "zh": "从头到尾/全程"
+  },
+  {
+    "id": "L15-V9",
+    "en": "insight",
+    "zh": "深刻见解；洞察"
+  },
+  {
+    "id": "L15-V10",
+    "en": "our financial situation",
+    "zh": "我们的财务状况"
+  },
+  {
+    "id": "L15-V11",
+    "en": "estimated cost",
+    "zh": "预估成本"
+  },
+  {
+    "id": "L15-V12",
+    "en": "approach",
+    "zh": "方式；方法"
+  },
+  {
+    "id": "L15-V13",
+    "en": "must-haves",
+    "zh": "必备条件"
+  },
+  {
+    "id": "L15-V14",
+    "en": "nice-to-haves",
+    "zh": "加分项"
+  },
+  {
+    "id": "L15-V15",
+    "en": "We're hiring for a role that focuses on…",
+    "zh": "我们在招聘一个专注于……的岗位"
+  },
+  {
+    "id": "L15-V16",
+    "en": "We need someone who can…and has…experience.",
+    "zh": "我们需要一个能……且有……经验的人"
+  },
+  {
+    "id": "L15-V17",
+    "en": "The key success factor in this role is…",
+    "zh": "这个岗位的关键成功因素是……"
+  },
+  {
+    "id": "L15-V19",
+    "en": "store operations",
+    "zh": "门店运营"
+  },
+  {
+    "id": "L15-V20",
+    "en": "front-line teams",
+    "zh": "一线团队"
+  },
+  {
+    "id": "L15-V21",
+    "en": "hands-on experience",
+    "zh": "实操经验"
+  },
+  {
+    "id": "L15-V22",
+    "en": "multi-store operations",
+    "zh": "多店运营"
+  },
+  {
+    "id": "L15-V23",
+    "en": "cross-functional stakeholders",
+    "zh": "跨职能相关方"
+  },
+  {
+    "id": "L15-V24",
+    "en": "merchandising guidelines",
+    "zh": "陈列规范"
+  },
+  {
+    "id": "L15-V25",
+    "en": "POSM implementation",
+    "zh": "终端物料执行"
+  },
+  {
+    "id": "L15-V26",
+    "en": "Can you walk me through your experience with…?",
+    "zh": "能介绍一下你在……方面的经验吗？"
+  },
+  {
+    "id": "L15-V27",
+    "en": "Tell me about a time when you…",
+    "zh": "讲一个你……的经历"
+  },
+  {
+    "id": "L15-V28",
+    "en": "What was the outcome, and how did you measure it?",
+    "zh": "结果是什么，你是怎么衡量的？"
+  },
+  {
+    "id": "L15-V29",
+    "en": "If you faced…again, what would you do differently?",
+    "zh": "如果再遇到……你会怎么做？"
+  },
+  {
+    "id": "L15-V30",
+    "en": "Let me ask a follow-up…",
+    "zh": "我再追问一下……"
+  },
+  {
+    "id": "L15-V31",
+    "en": "Overall, I think the candidate is strong in…",
+    "zh": "总体来看，候选人在……方面很强"
+  },
+  {
+    "id": "L15-V32",
+    "en": "One concern I have is…",
+    "zh": "我的一个顾虑是……"
+  },
+  {
+    "id": "L15-V33",
+    "en": "Based on the interview, his experience seems limited in…",
+    "zh": "根据面试，他在……方面经验有限"
+  },
+  {
+    "id": "L15-V34",
+    "en": "move forward / keep as backup / pass",
+    "zh": "继续推进/留作候补/淘汰"
+  },
+  {
+    "id": "L15-V35",
+    "en": "Let's align on the targets for this period.",
+    "zh": "我们来对齐本期目标"
+  },
+  {
+    "id": "L15-V36",
+    "en": "The metric we'll use is…and it's defined as…",
+    "zh": "我们使用的指标是……定义是……"
+  },
+  {
+    "id": "L15-V37",
+    "en": "The baseline is…, and the target is…",
+    "zh": "基线是……目标是……"
+  },
+  {
+    "id": "L15-V38",
+    "en": "Success looks like…by (date).",
+    "zh": "成功意味着在（日期）前达到……"
+  },
+  {
+    "id": "L15-V39",
+    "en": "If priorities change, we'll revisit the target.",
+    "zh": "如果优先级变了，我们会重新审视目标"
+  },
+  {
+    "id": "L15-V41",
+    "en": "gross margin (GM%)",
+    "zh": "毛利率"
+  },
+  {
+    "id": "L15-V42",
+    "en": "sell-out volume",
+    "zh": "终端销量"
+  },
+  {
+    "id": "L15-V43",
+    "en": "I noticed…(fact/observation).",
+    "zh": "我注意到……（事实/观察）"
+  },
+  {
+    "id": "L15-V44",
+    "en": "This has impacted…(impact).",
+    "zh": "这影响了……（影响）"
+  },
+  {
+    "id": "L15-V45",
+    "en": "What's getting in the way?",
+    "zh": "什么在阻碍？"
+  },
+  {
+    "id": "L15-V46",
+    "en": "What's driving this?",
+    "zh": "是什么在驱动这个？"
+  },
+  {
+    "id": "L15-V47",
+    "en": "One area to improve is…",
+    "zh": "一个需要改进的地方是……"
+  },
+  {
+    "id": "L15-V48",
+    "en": "What support do you need from me?",
+    "zh": "你需要我提供什么支持？"
+  },
+  {
+    "id": "L15-V49",
+    "en": "Let's agree on next steps:…by (date).",
+    "zh": "我们达成一致下一步：在（日期）前……"
+  },
+  {
+    "id": "L15-V50",
+    "en": "registration",
+    "zh": "签到/注册"
+  },
+  {
+    "id": "L15-V51",
+    "en": "keynote speech",
+    "zh": "主旨演讲"
+  },
+  {
+    "id": "L15-V52",
+    "en": "panel discussion",
+    "zh": "圆桌讨论"
+  },
+  {
+    "id": "L15-V53",
+    "en": "networking break",
+    "zh": "交流休息"
+  },
+  {
+    "id": "L15-V54",
+    "en": "Q&A",
+    "zh": "问答环节"
+  },
+  {
+    "id": "L15-V55",
+    "en": "gala dinner",
+    "zh": "晚宴"
+  },
+  {
+    "id": "L15-V56",
+    "en": "opening session",
+    "zh": "开场环节"
+  },
+  {
+    "id": "L15-V57",
+    "en": "breakout session",
+    "zh": "分组讨论"
+  },
+  {
+    "id": "L16-V0",
+    "en": "terminate",
+    "zh": "终止/解约"
+  },
+  {
+    "id": "L16-V1",
+    "en": "must-haves",
+    "zh": "必备条件"
+  },
+  {
+    "id": "L16-V2",
+    "en": "be on track",
+    "zh": "按计划进行"
+  },
+  {
+    "id": "L16-V3",
+    "en": "Let me ask a follow-up question.",
+    "zh": "我再追问一句"
+  },
+  {
+    "id": "L16-V5",
+    "en": "trade-off",
+    "zh": "权衡/取舍"
+  },
+  {
+    "id": "L16-V6",
+    "en": "refreshments",
+    "zh": "茶歇点心"
+  },
+  {
+    "id": "L16-V7",
+    "en": "delegates",
+    "zh": "与会代表"
+  },
+  {
+    "id": "L16-V8",
+    "en": "flipchart",
+    "zh": "会议挂纸板"
+  },
+  {
+    "id": "L16-V9",
+    "en": "opening ceremony",
+    "zh": "开幕式"
+  },
+  {
+    "id": "L16-V10",
+    "en": "liaise",
+    "zh": "对接沟通"
+  },
+  {
+    "id": "L16-V11",
+    "en": "in-store experience",
+    "zh": "店内体验"
+  },
+  {
+    "id": "L16-V12",
+    "en": "front-line teams",
+    "zh": "一线团队"
+  },
+  {
+    "id": "L16-V13",
+    "en": "guest speaker",
+    "zh": "特邀嘉宾"
+  },
+  {
+    "id": "L16-V14",
+    "en": "deliver",
+    "zh": "交付/达成"
+  },
+  {
+    "id": "L16-V15",
+    "en": "queries",
+    "zh": "询问"
+  },
+  {
+    "id": "L16-V16",
+    "en": "actionable plans",
+    "zh": "可落地的行动方案"
+  },
+  {
+    "id": "L16-V17",
+    "en": "hands-on experience",
+    "zh": "实操经验"
+  },
+  {
+    "id": "L16-V18",
+    "en": "estimated cost",
+    "zh": "预估成本"
+  },
+  {
+    "id": "L16-V19",
+    "en": "keep as backup",
+    "zh": "留作候补/作为备选方案"
+  },
+  {
+    "id": "L16-V20",
+    "en": "What struck me most was…",
+    "zh": "最打动我的是……"
+  },
+  {
+    "id": "L16-V21",
+    "en": "…could make all the difference.",
+    "zh": "……可能会带来决定性影响"
+  },
+  {
+    "id": "L16-V22",
+    "en": "So don't feel pressured by…",
+    "zh": "所以别被……搞得有压力"
+  },
+  {
+    "id": "L16-V23",
+    "en": "…is (especially) fertile ground for…",
+    "zh": "……是……的沃土/好环境"
+  },
+  {
+    "id": "L16-V24",
+    "en": "…are more than just…; they are…",
+    "zh": "……不只是……；更是……"
+  },
+  {
+    "id": "L16-V25",
+    "en": "Reach out to…in advance and suggest…",
+    "zh": "提前联系……并提议……"
+  },
+  {
+    "id": "L16-V26",
+    "en": "A simple way to…is to…",
+    "zh": "一个简单办法是……"
+  },
+  {
+    "id": "L16-V27",
+    "en": "intractable",
+    "zh": "棘手的；难以解决的"
+  },
+  {
+    "id": "L16-V28",
+    "en": "implications",
+    "zh": "影响；含义"
+  },
+  {
+    "id": "L16-V29",
+    "en": "sort out",
+    "zh": "解决；处理"
+  },
+  {
+    "id": "L16-V30",
+    "en": "neat",
+    "zh": "巧妙的；整洁的"
+  },
+  {
+    "id": "L16-V31",
+    "en": "profitable",
+    "zh": "有利可图的"
+  },
+  {
+    "id": "L16-V32",
+    "en": "destination management company (DMC)",
+    "zh": "目的地管理公司"
+  },
+  {
+    "id": "L16-V33",
+    "en": "venue",
+    "zh": "场地"
+  },
+  {
+    "id": "L16-V34",
+    "en": "incentive",
+    "zh": "奖励/激励活动"
+  },
+  {
+    "id": "L16-V35",
+    "en": "corporate",
+    "zh": "企业的/公司的"
+  },
+  {
+    "id": "L16-V36",
+    "en": "proximity",
+    "zh": "邻近；接近"
+  },
+  {
+    "id": "L16-V37",
+    "en": "convention centre",
+    "zh": "会展中心"
+  },
+  {
+    "id": "L16-V38",
+    "en": "facilities",
+    "zh": "设施"
+  },
+  {
+    "id": "L16-V39",
+    "en": "The purpose of the [report] is to summarise…and make recommendations for…",
+    "zh": "这份[报告]的目的是总结……并为……提出建议"
+  },
+  {
+    "id": "L16-V40",
+    "en": "As the charts show,…. However,…",
+    "zh": "从图表来看，……但是，……"
+  },
+  {
+    "id": "L16-V41",
+    "en": "Last year, it was decided that…",
+    "zh": "去年决定了……"
+  },
+  {
+    "id": "L16-V42",
+    "en": "…were encouraged to…as this was thought to be equally effective.",
+    "zh": "鼓励……因为认为同样有效"
+  },
+  {
+    "id": "L16-V43",
+    "en": "Meanwhile,…was given a higher share of the budget, on the basis that…",
+    "zh": "同时，……获得了更高的预算份额，理由是……"
+  },
+  {
+    "id": "L16-V44",
+    "en": "footfall",
+    "zh": "客流量；到店人数"
+  },
+  {
+    "id": "L16-V45",
+    "en": "OOS rate (out-of-stock rate)",
+    "zh": "缺货率"
+  },
+  {
+    "id": "L16-V46",
+    "en": "hero SKU",
+    "zh": "主推款/爆品"
+  },
+  {
+    "id": "L16-V47",
+    "en": "promo zone",
+    "zh": "促销区"
+  },
+  {
+    "id": "L16-V48",
+    "en": "ticketing",
+    "zh": "价签执行"
+  },
+  {
+    "id": "L16-V49",
+    "en": "pricing guardrails",
+    "zh": "定价护栏/价格底线"
+  },
+  {
+    "id": "L16-V50",
+    "en": "digital screens",
+    "zh": "电子屏/数字显示屏"
+  },
+  {
+    "id": "L16-V51",
+    "en": "e-price tags",
+    "zh": "电子价签"
+  },
+  {
+    "id": "L16-V52",
+    "en": "printed POSM",
+    "zh": "印刷类终端物料"
+  },
+  {
+    "id": "L16-V53",
+    "en": "social media spend",
+    "zh": "社媒投放"
+  },
+  {
+    "id": "L16-V54",
+    "en": "drives more targeted traffic",
+    "zh": "带来更精准的客流"
+  },
+  {
+    "id": "L16-V55",
+    "en": "measurable ROI",
+    "zh": "可量化的投资回报率"
+  },
+  {
+    "id": "L17-V0",
+    "en": "retail merchandising",
+    "zh": "零售陈列与商品呈现策略"
+  },
+  {
+    "id": "L17-V1",
+    "en": "store performance",
+    "zh": "门店业绩/门店表现"
+  },
+  {
+    "id": "L17-V2",
+    "en": "product assortment",
+    "zh": "商品组合/品类组合"
+  },
+  {
+    "id": "L17-V3",
+    "en": "store layout",
+    "zh": "门店布局"
+  },
+  {
+    "id": "L17-V4",
+    "en": "shelf and window displays",
+    "zh": "货架与橱窗陈列"
+  },
+  {
+    "id": "L17-V6",
+    "en": "create a consistent shopping experience",
+    "zh": "打造一致的购物体验"
+  },
+  {
+    "id": "L17-V7",
+    "en": "optimize product displays",
+    "zh": "优化产品陈列呈现"
+  },
+  {
+    "id": "L17-V8",
+    "en": "streamline the in-store image",
+    "zh": "统一并简化门店形象呈现"
+  },
+  {
+    "id": "L17-V9",
+    "en": "improve consistency across stores",
+    "zh": "提升门店间一致性"
+  },
+  {
+    "id": "L17-V10",
+    "en": "distribution network",
+    "zh": "渠道/门店分销网络"
+  },
+  {
+    "id": "L17-V11",
+    "en": "product placements",
+    "zh": "陈列位置规划/货品摆位"
+  },
+  {
+    "id": "L17-V12",
+    "en": "planned months ahead",
+    "zh": "提前几个月规划"
+  },
+  {
+    "id": "L17-V13",
+    "en": "in line with marketing campaigns",
+    "zh": "与营销活动节奏对齐"
+  },
+  {
+    "id": "L17-V14",
+    "en": "standardized guidelines",
+    "zh": "标准化指引/规范"
+  },
+  {
+    "id": "L17-V15",
+    "en": "clear instructions for store teams",
+    "zh": "给门店团队清晰指令"
+  },
+  {
+    "id": "L17-V16",
+    "en": "make the setup process smoother",
+    "zh": "让上架/布置更顺畅"
+  },
+  {
+    "id": "L17-V17",
+    "en": "transform the in-store experience",
+    "zh": "改造门店体验"
+  },
+  {
+    "id": "L17-V18",
+    "en": "guide customers to the right items",
+    "zh": "引导顾客找到合适商品"
+  },
+  {
+    "id": "L17-V19",
+    "en": "create an atmosphere aligned with our brand",
+    "zh": "形成与品牌一致的氛围"
+  },
+  {
+    "id": "L17-V20",
+    "en": "immersive shopping environment",
+    "zh": "沉浸式购物环境"
+  },
+  {
+    "id": "L17-V21",
+    "en": "reinforce core values",
+    "zh": "强化核心价值观"
+  },
+  {
+    "id": "L17-V22",
+    "en": "redesign the customer journey",
+    "zh": "重塑顾客动线/旅程"
+  },
+  {
+    "id": "L17-V23",
+    "en": "a refreshed color scheme",
+    "zh": "全新的配色体系"
+  },
+  {
+    "id": "L17-V24",
+    "en": "strengthen customer identification",
+    "zh": "增强顾客认同感"
+  },
+  {
+    "id": "L17-V26",
+    "en": "combine tech innovation with customer experience",
+    "zh": "技术创新与体验结合"
+  },
+  {
+    "id": "L17-V27",
+    "en": "mobile checkout",
+    "zh": "移动收银"
+  },
+  {
+    "id": "L17-V28",
+    "en": "interactive kiosks",
+    "zh": "互动自助终端"
+  },
+  {
+    "id": "L17-V29",
+    "en": "connected to our app ecosystem",
+    "zh": "与自有App生态打通"
+  },
+  {
+    "id": "L17-V30",
+    "en": "adjustable lighting in fitting rooms",
+    "zh": "试衣间可调光"
+  },
+  {
+    "id": "L17-V31",
+    "en": "invest in staff training",
+    "zh": "加大员工培训投入"
+  },
+  {
+    "id": "L17-V32",
+    "en": "on-site training",
+    "zh": "实地/在岗培训"
+  },
+  {
+    "id": "L17-V33",
+    "en": "boost product knowledge",
+    "zh": "提升产品知识"
+  },
+  {
+    "id": "L17-V34",
+    "en": "sales expertise",
+    "zh": "销售专业能力"
+  },
+  {
+    "id": "L17-V35",
+    "en": "capitalize on product exclusivity",
+    "zh": "利用产品独家性做增长"
+  },
+  {
+    "id": "L17-V36",
+    "en": "exclusive items / exclusive collection",
+    "zh": "独家产品/独家系列"
+  },
+  {
+    "id": "L17-V37",
+    "en": "official branded products",
+    "zh": "官方联名/授权产品"
+  },
+  {
+    "id": "L17-V38",
+    "en": "a strategic partnership",
+    "zh": "战略合作"
+  },
+  {
+    "id": "L17-V39",
+    "en": "position the brand as a key player",
+    "zh": "把品牌定位成关键玩家"
+  },
+  {
+    "id": "L17-V40",
+    "en": "draw in enthusiasts",
+    "zh": "吸引核心爱好者人群"
+  },
+  {
+    "id": "L17-V41",
+    "en": "add value to customers",
+    "zh": "给顾客提供额外价值"
+  },
+  {
+    "id": "L17-V42",
+    "en": "generate positive buzz",
+    "zh": "带来正向口碑与讨论热度"
+  },
+  {
+    "id": "L17-V43",
+    "en": "increase in-store traffic",
+    "zh": "提升进店客流"
+  },
+  {
+    "id": "L17-V44",
+    "en": "higher customer loyalty",
+    "zh": "更高的客户忠诚度"
+  },
+  {
+    "id": "L17-V45",
+    "en": "willing to spend more",
+    "zh": "更愿意为独特性支付溢价"
+  },
+  {
+    "id": "L17-V46",
+    "en": "stay ahead of consumer trends",
+    "zh": "领先消费者趋势"
+  },
+  {
+    "id": "L17-V47",
+    "en": "anticipate growing demand",
+    "zh": "预判需求增长"
+  },
+  {
+    "id": "L17-V48",
+    "en": "adapt the product range",
+    "zh": "调整/扩充产品线"
+  },
+  {
+    "id": "L17-V49",
+    "en": "attract a broader customer base",
+    "zh": "吸引更广的客群"
+  },
+  {
+    "id": "L17-V50",
+    "en": "eco-responsibility",
+    "zh": "环保责任/可持续理念"
+  },
+  {
+    "id": "L17-V51",
+    "en": "recycled and eco-friendly materials",
+    "zh": "再生与环保材料"
+  },
+  {
+    "id": "L17-V52",
+    "en": "differentiate in the market",
+    "zh": "在市场中形成差异化"
+  },
+  {
+    "id": "L17-V53",
+    "en": "build a strong connection with customers",
+    "zh": "与顾客建立强连接"
+  },
+  {
+    "id": "L18-V0",
+    "en": "merchandising",
+    "zh": "陈列"
+  },
+  {
+    "id": "L18-V1",
+    "en": "brand block",
+    "zh": "品牌陈列区"
+  },
+  {
+    "id": "L18-V2",
+    "en": "planogram",
+    "zh": "陈列图/陈列标准"
+  },
+  {
+    "id": "L18-V3",
+    "en": "eye-level placement",
+    "zh": "视线高度陈列"
+  },
+  {
+    "id": "L18-V4",
+    "en": "hero product",
+    "zh": "主推品"
+  },
+  {
+    "id": "L18-V5",
+    "en": "endcap",
+    "zh": "端架"
+  },
+  {
+    "id": "L18-V6",
+    "en": "entry zone",
+    "zh": "门店入口区域"
+  },
+  {
+    "id": "L18-V7",
+    "en": "key SKU",
+    "zh": "核心SKU"
+  },
+  {
+    "id": "L18-V8",
+    "en": "frontage / front-facing",
+    "zh": "商品正面朝向"
+  },
+  {
+    "id": "L18-V9",
+    "en": "spacing",
+    "zh": "间距"
+  },
+  {
+    "id": "L18-V10",
+    "en": "price tag / ticketing",
+    "zh": "价签/贴价签"
+  },
+  {
+    "id": "L18-V11",
+    "en": "visual hierarchy",
+    "zh": "视觉层次"
+  },
+  {
+    "id": "L18-V12",
+    "en": "demo unit",
+    "zh": "样机/演示机"
+  },
+  {
+    "id": "L18-V13",
+    "en": "demo engagement",
+    "zh": "试用互动（指标）"
+  },
+  {
+    "id": "L18-V14",
+    "en": "cluttered",
+    "zh": "杂乱的"
+  },
+  {
+    "id": "L18-V15",
+    "en": "compliant",
+    "zh": "符合标准的/合规的"
+  },
+  {
+    "id": "L18-V16",
+    "en": "store standards",
+    "zh": "门店标准"
+  },
+  {
+    "id": "L18-V17",
+    "en": "action plan",
+    "zh": "行动计划"
+  },
+  {
+    "id": "L18-V18",
+    "en": "guideline",
+    "zh": "指引/规范"
+  },
+  {
+    "id": "L18-V19",
+    "en": "rollout",
+    "zh": "推行/宣贯落地"
+  },
+  {
+    "id": "L18-V20",
+    "en": "enforce",
+    "zh": "执行/落实（政策/标准）"
+  },
+  {
+    "id": "L18-V21",
+    "en": "spot check",
+    "zh": "抽查"
+  },
+  {
+    "id": "L18-V22",
+    "en": "peak hours",
+    "zh": "高峰时段"
+  },
+  {
+    "id": "L18-V23",
+    "en": "assign an owner",
+    "zh": "指定负责人"
+  },
+  {
+    "id": "L18-V24",
+    "en": "POS system",
+    "zh": "收银系统"
+  },
+  {
+    "id": "L18-V25",
+    "en": "downtime",
+    "zh": "故障停机时间"
+  },
+  {
+    "id": "L18-V26",
+    "en": "manual logging",
+    "zh": "手工记录"
+  },
+  {
+    "id": "L18-V27",
+    "en": "incident log",
+    "zh": "事故日志"
+  },
+  {
+    "id": "L18-V28",
+    "en": "reconcile records",
+    "zh": "核对记录"
+  },
+  {
+    "id": "L18-V29",
+    "en": "month-end stocktake",
+    "zh": "月末盘点"
+  },
+  {
+    "id": "L18-V30",
+    "en": "discrepancy / variance",
+    "zh": "差异/不符之处"
+  },
+  {
+    "id": "L18-V31",
+    "en": "flag immediately",
+    "zh": "立即标记/立即上报"
+  },
+  {
+    "id": "L18-V32",
+    "en": "staff coverage / manpower gap",
+    "zh": "人员覆盖/人力缺口"
+  },
+  {
+    "id": "L18-V33",
+    "en": "short-staffed / understaffed",
+    "zh": "人手不足"
+  },
+  {
+    "id": "L18-V34",
+    "en": "adjust roster",
+    "zh": "调整排班表"
+  },
+  {
+    "id": "L18-V35",
+    "en": "shift swap",
+    "zh": "换班"
+  },
+  {
+    "id": "L18-V36",
+    "en": "EOD deadline",
+    "zh": "截止时间为今日下班前"
+  },
+  {
+    "id": "L18-V37",
+    "en": "promo zone",
+    "zh": "促销区"
+  },
+  {
+    "id": "L18-V38",
+    "en": "high-margin SKUs",
+    "zh": "高毛利单品"
+  },
+  {
+    "id": "L18-V39",
+    "en": "increase conversion during peak hours",
+    "zh": "提高高峰时段转化率"
+  },
+  {
+    "id": "L18-V40",
+    "en": "customer journey",
+    "zh": "顾客旅程"
+  },
+  {
+    "id": "L18-V41",
+    "en": "hands-on demo",
+    "zh": "上手体验/演示"
+  },
+  {
+    "id": "L18-V42",
+    "en": "recommend",
+    "zh": "推荐"
+  },
+  {
+    "id": "L18-V43",
+    "en": "value for money",
+    "zh": "性价比"
+  },
+  {
+    "id": "L18-V44",
+    "en": "use case",
+    "zh": "使用场景/用途"
+  },
+  {
+    "id": "L18-V45",
+    "en": "budget range",
+    "zh": "预算范围"
+  },
+  {
+    "id": "L18-V46",
+    "en": "shortlist",
+    "zh": "缩小到少数选项"
+  },
+  {
+    "id": "L18-V47",
+    "en": "narrow down",
+    "zh": "缩小范围"
+  },
+  {
+    "id": "L18-V48",
+    "en": "compare",
+    "zh": "对比"
+  },
+  {
+    "id": "L18-V49",
+    "en": "upsell",
+    "zh": "引导买更高配"
+  },
+  {
+    "id": "L18-V50",
+    "en": "cross-sell",
+    "zh": "关联销售"
+  },
+  {
+    "id": "L18-V51",
+    "en": "limited-time offer",
+    "zh": "限时优惠"
+  },
+  {
+    "id": "L18-V52",
+    "en": "gift with purchase",
+    "zh": "购赠"
+  },
+  {
+    "id": "L18-V53",
+    "en": "inventory turnover",
+    "zh": "库存周转"
+  },
+  {
+    "id": "L18-V54",
+    "en": "OOS / out of stock",
+    "zh": "缺货"
+  },
+  {
+    "id": "L18-V55",
+    "en": "OOS rate",
+    "zh": "缺货率"
+  },
+  {
+    "id": "L18-V56",
+    "en": "backroom stock",
+    "zh": "后仓库存"
+  },
+  {
+    "id": "L18-V57",
+    "en": "sell-out",
+    "zh": "动销/售出"
+  },
+  {
+    "id": "L18-V58",
+    "en": "resolution time",
+    "zh": "处理时效"
+  },
+  {
+    "id": "L18-V59",
+    "en": "close the loop",
+    "zh": "闭环跟进"
+  },
+  {
+    "id": "L18-V60",
+    "en": "success metric",
+    "zh": "成功指标"
+  },
+  {
+    "id": "L19-V0",
+    "en": "build a better customer relationship",
+    "zh": "建立更良好的客户关系"
+  },
+  {
+    "id": "L19-V1",
+    "en": "compete on quality",
+    "zh": "以品质取胜"
+  },
+  {
+    "id": "L19-V2",
+    "en": "rhythm",
+    "zh": "节奏；频次"
+  },
+  {
+    "id": "L19-V3",
+    "en": "serve the purpose",
+    "zh": "达到目的；管用"
+  },
+  {
+    "id": "L19-V4",
+    "en": "key customers",
+    "zh": "核心客户；重点客户"
+  },
+  {
+    "id": "L19-V5",
+    "en": "by means of",
+    "zh": "通过；借助于"
+  },
+  {
+    "id": "L19-V6",
+    "en": "evolve",
+    "zh": "发展；逐步形成；进化"
+  },
+  {
+    "id": "L19-V7",
+    "en": "a correlation between A and B",
+    "zh": "A与B之间的关联/相关性"
+  },
+  {
+    "id": "L19-V8",
+    "en": "attention to customers",
+    "zh": "重视客户；对客户的关注"
+  },
+  {
+    "id": "L19-V9",
+    "en": "over the period",
+    "zh": "在此期间；在这一阶段"
+  },
+  {
+    "id": "L19-V10",
+    "en": "make recommendations",
+    "zh": "提出建议；给出方案"
+  },
+  {
+    "id": "L19-V11",
+    "en": "regarding",
+    "zh": "关于；有关"
+  },
+  {
+    "id": "L19-V12",
+    "en": "future sales strategy",
+    "zh": "未来销售策略"
+  },
+  {
+    "id": "L19-V13",
+    "en": "overseas customers",
+    "zh": "海外客户"
+  },
+  {
+    "id": "L19-V14",
+    "en": "equally effective",
+    "zh": "效果相当；同样有效"
+  },
+  {
+    "id": "L19-V15",
+    "en": "a lucrative market",
+    "zh": "利润丰厚的市场；高收益市场"
+  },
+  {
+    "id": "L19-V16",
+    "en": "maintain contact with",
+    "zh": "与……保持联系"
+  },
+  {
+    "id": "L19-V17",
+    "en": "competitor check summary",
+    "zh": "竞品巡店总结"
+  },
+  {
+    "id": "L19-V18",
+    "en": "a quick reset",
+    "zh": "快速调整；快速重启"
+  },
+  {
+    "id": "L19-V19",
+    "en": "weekend flash sale",
+    "zh": "周末限时特惠；周末闪购"
+  },
+  {
+    "id": "L19-V20",
+    "en": "footfall",
+    "zh": "客流量；到店人数"
+  },
+  {
+    "id": "L19-V21",
+    "en": "digital screens",
+    "zh": "电子屏；数字显示屏"
+  },
+  {
+    "id": "L19-V22",
+    "en": "e-price tags",
+    "zh": "电子价签"
+  },
+  {
+    "id": "L19-V23",
+    "en": "drives more targeted traffic",
+    "zh": "带来更精准的客流"
+  },
+  {
+    "id": "L19-V24",
+    "en": "measurable ROI",
+    "zh": "可量化的投资回报率"
+  },
+  {
+    "id": "L19-V25",
+    "en": "retain customers",
+    "zh": "留住顾客"
+  },
+  {
+    "id": "L19-V26",
+    "en": "feature (n./v.)",
+    "zh": "功能点/主打功能"
+  },
+  {
+    "id": "L19-V27",
+    "en": "foster customer loyalty",
+    "zh": "培养客户忠诚度"
+  },
+  {
+    "id": "L19-V28",
+    "en": "bundle it with a case",
+    "zh": "搭配手机壳一起购买"
+  },
+  {
+    "id": "L19-V29",
+    "en": "offer a quick demo",
+    "zh": "提供快速演示"
+  },
+  {
+    "id": "L19-V30",
+    "en": "one relevant add-on",
+    "zh": "一个相关配件"
+  },
+  {
+    "id": "L19-V31",
+    "en": "What's your top priority?",
+    "zh": "您最看重什么？"
+  },
+  {
+    "id": "L19-V32",
+    "en": "keep an eye on",
+    "zh": "关注"
+  },
+  {
+    "id": "L19-V33",
+    "en": "churn out",
+    "zh": "大量生产"
+  },
+  {
+    "id": "L19-V34",
+    "en": "As far as I'm concerned…",
+    "zh": "就我而言……"
+  },
+  {
+    "id": "L19-V35",
+    "en": "In my view…",
+    "zh": "在我看来……"
+  },
+  {
+    "id": "L19-V36",
+    "en": "Personally, I think…",
+    "zh": "我个人认为……"
+  },
+  {
+    "id": "L19-V37",
+    "en": "From what I've seen…",
+    "zh": "据我所见……"
+  },
+  {
+    "id": "L19-V38",
+    "en": "If you ask me…",
+    "zh": "如果你问我的话……"
+  },
+  {
+    "id": "L19-V39",
+    "en": "We've decided to…",
+    "zh": "我们决定了……（口头）"
+  },
+  {
+    "id": "L19-V40",
+    "en": "It was decided that…",
+    "zh": "已决定……（更正式）"
+  },
+  {
+    "id": "L19-V41",
+    "en": "Staff were encouraged to…",
+    "zh": "员工被鼓励……"
+  },
+  {
+    "id": "L20-V0",
+    "en": "follow up on the progress",
+    "zh": "跟进进展"
+  },
+  {
+    "id": "L20-V1",
+    "en": "chase for the data",
+    "zh": "追赶数据；催别人快点给数据"
+  },
+  {
+    "id": "L20-V2",
+    "en": "align on the timeline",
+    "zh": "对齐时间线；商量并确认时间安排"
+  },
+  {
+    "id": "L20-V3",
+    "en": "confirm the execution",
+    "zh": "确认执行；确定事情已按要求做了"
+  },
+  {
+    "id": "L20-V4",
+    "en": "launch a targeted promo",
+    "zh": "发起定向促销"
+  },
+  {
+    "id": "L20-V5",
+    "en": "adjust promo mechanics",
+    "zh": "调整促销机制；改变活动的规则/玩法"
+  },
+  {
+    "id": "L20-V6",
+    "en": "track promo performance",
+    "zh": "追踪促销表现；监测促销活动的效果数据"
+  },
+  {
+    "id": "L20-V7",
+    "en": "control promo discount",
+    "zh": "控制促销折扣；把控折扣力度，防止乱价"
+  },
+  {
+    "id": "L20-V8",
+    "en": "push SKUs to top stores",
+    "zh": "把SKU推到重点门店铺货"
+  },
+  {
+    "id": "L20-V9",
+    "en": "optimize store distribution",
+    "zh": "优化门店分布；调整铺货策略，让分布更合理"
+  },
+  {
+    "id": "L20-V10",
+    "en": "check in-store availability",
+    "zh": "检查店内可用性；核查门店有没有现货"
+  },
+  {
+    "id": "L20-V11",
+    "en": "avoid over-shipping to stores",
+    "zh": "避免超量发货给门店；不给门店发太多货，防止积压"
+  },
+  {
+    "id": "L20-V12",
+    "en": "re-allocate stock cross-region",
+    "zh": "重新分配库存跨区域；把库存从A区域调到B区域"
+  },
+  {
+    "id": "L20-V13",
+    "en": "prioritize stock allocation",
+    "zh": "优先库存分配；优先给某些区域/门店发货"
+  },
+  {
+    "id": "L20-V14",
+    "en": "confirm transfer ETA",
+    "zh": "确认调拨预计到达时间"
+  },
+  {
+    "id": "L20-V15",
+    "en": "do a stock swap between channels",
+    "zh": "做库存互换在渠道之间；线上线下/不同渠道之间互换库存"
+  },
+  {
+    "id": "L20-V16",
+    "en": "tie rebate to sell-out",
+    "zh": "把返利绑定到sell-out；返利发放以实际终端销售为依据"
+  },
+  {
+    "id": "L20-V17",
+    "en": "verify subsidy proof",
+    "zh": "核验补贴凭证；检查补贴申请的材料是否真实合规"
+  },
+  {
+    "id": "L20-V18",
+    "en": "apply subsidy to listed SKUs",
+    "zh": "补贴适用于清单上的SKU；只有指定单品才能享受补贴"
+  },
+  {
+    "id": "L20-V19",
+    "en": "reject out-of-policy claims",
+    "zh": "拒绝超规则申请；不符合政策的申请要退回/拒绝"
+  },
+  {
+    "id": "L20-V20",
+    "en": "explain the sales fluctuation",
+    "zh": "解释销售波动；说明销量为什么忽高忽低"
+  },
+  {
+    "id": "L20-V21",
+    "en": "negotiate a workable solution",
+    "zh": "协商一个可行的方案；和对方商量出双方都能接受的解决办法"
+  },
+  {
+    "id": "L20-V22",
+    "en": "reassure the channel partner",
+    "zh": "安抚渠道伙伴；让合作伙伴放心，别焦虑"
+  },
+  {
+    "id": "L20-V23",
+    "en": "push back on unreasonable requests",
+    "zh": "推回不合理诉求；拒绝对方提出的过分要求"
+  }
+]

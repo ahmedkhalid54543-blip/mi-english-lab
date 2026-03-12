@@ -7,9 +7,9 @@ const vm = require('vm');
 
 const DATA_FILE = path.resolve(__dirname, '../js/data.js');
 const BASELINE = {
-  lessons: 20,
-  vocab: 815,
-  patterns: 192
+  lessons: 21,
+  vocab: 839,
+  patterns: 207
 };
 
 const allowBaselineDrift = process.argv.includes('--allow-baseline-drift');

@@ -1,0 +1,252 @@
+[
+  {
+    "id": "L01-V0",
+    "en": "a bonus scheme",
+    "zh": "奖金制度 / 奖金计划"
+  },
+  {
+    "id": "L01-V1",
+    "en": "responsibility",
+    "zh": "工作职责 / 责任"
+  },
+  {
+    "id": "L01-V2",
+    "en": "a high salary",
+    "zh": "高薪 / 薪水优厚"
+  },
+  {
+    "id": "L01-V3",
+    "en": "an in-house training scheme",
+    "zh": "内部培训计划 / 公司内部培训"
+  },
+  {
+    "id": "L01-V4",
+    "en": "the opportunity to travel",
+    "zh": "出差机会 / 旅游机会"
+  },
+  {
+    "id": "L01-V5",
+    "en": "a permanent contract",
+    "zh": "长期合同 / 正式合同"
+  },
+  {
+    "id": "L01-V6",
+    "en": "long holidays",
+    "zh": "长假期 / 休假时间多"
+  },
+  {
+    "id": "L01-V8",
+    "en": "a high-flier / high-flyer",
+    "zh": "职场精英 / 高潜人才"
+  },
+  {
+    "id": "L01-V9",
+    "en": "a clear upward path",
+    "zh": "明确的晋升通道 / 职业发展路线清晰"
+  },
+  {
+    "id": "L01-V13",
+    "en": "core skills",
+    "zh": "核心技能"
+  },
+  {
+    "id": "L01-V14",
+    "en": "material incentives",
+    "zh": "物质激励"
+  },
+  {
+    "id": "L01-V16",
+    "en": "rewarding",
+    "zh": "有回报的；值得的"
+  },
+  {
+    "id": "L01-V17",
+    "en": "priority",
+    "zh": "优先事项；重点"
+  },
+  {
+    "id": "L02-V0",
+    "en": "be responsible for",
+    "zh": "负责"
+  },
+  {
+    "id": "L02-V1",
+    "en": "deal with",
+    "zh": "处理"
+  },
+  {
+    "id": "L02-V2",
+    "en": "be in charge of",
+    "zh": "主管"
+  },
+  {
+    "id": "L02-V3",
+    "en": "my job involves",
+    "zh": "我的工作涉及"
+  },
+  {
+    "id": "L02-V4",
+    "en": "work as a",
+    "zh": "担任某职"
+  },
+  {
+    "id": "L02-V5",
+    "en": "take important decisions",
+    "zh": "做重要决策"
+  },
+  {
+    "id": "L02-V6",
+    "en": "write reports",
+    "zh": "写报告"
+  },
+  {
+    "id": "L02-V8",
+    "en": "attend meetings",
+    "zh": "参加会议"
+  },
+  {
+    "id": "L02-V9",
+    "en": "rewarding",
+    "zh": "有回报的；有成就感的"
+  },
+  {
+    "id": "L02-V10",
+    "en": "stressful",
+    "zh": "压力大的"
+  },
+  {
+    "id": "L02-V11",
+    "en": "monotonous",
+    "zh": "单调的"
+  },
+  {
+    "id": "L02-V12",
+    "en": "motivated",
+    "zh": "有动力的"
+  },
+  {
+    "id": "L02-V13",
+    "en": "supportive",
+    "zh": "支持性的"
+  },
+  {
+    "id": "L02-V14",
+    "en": "friendly",
+    "zh": "友好的"
+  },
+  {
+    "id": "L02-V15",
+    "en": "opportunity",
+    "zh": "机会"
+  },
+  {
+    "id": "L02-V16",
+    "en": "promotion",
+    "zh": "晋升"
+  },
+  {
+    "id": "L02-V17",
+    "en": "CV / resume",
+    "zh": "简历"
+  },
+  {
+    "id": "L02-V18",
+    "en": "job advert",
+    "zh": "招聘广告"
+  },
+  {
+    "id": "L02-V19",
+    "en": "interview",
+    "zh": "面试"
+  },
+  {
+    "id": "L02-V20",
+    "en": "candidate",
+    "zh": "候选人"
+  },
+  {
+    "id": "L02-V21",
+    "en": "skills",
+    "zh": "技能"
+  },
+  {
+    "id": "L02-V22",
+    "en": "experience",
+    "zh": "经验"
+  },
+  {
+    "id": "L02-V23",
+    "en": "strength",
+    "zh": "优势"
+  },
+  {
+    "id": "L02-V24",
+    "en": "weakness",
+    "zh": "弱点"
+  },
+  {
+    "id": "L02-V25",
+    "en": "call / ring",
+    "zh": "打电话"
+  },
+  {
+    "id": "L02-V26",
+    "en": "hold the line",
+    "zh": "请稍等（电话）"
+  },
+  {
+    "id": "L02-V27",
+    "en": "put through",
+    "zh": "转接（电话）"
+  },
+  {
+    "id": "L02-V28",
+    "en": "take a message",
+    "zh": "留言"
+  },
+  {
+    "id": "L02-V29",
+    "en": "confirm",
+    "zh": "确认"
+  },
+  {
+    "id": "L02-V30",
+    "en": "spell",
+    "zh": "拼写"
+  },
+  {
+    "id": "L02-V31",
+    "en": "receptionist",
+    "zh": "前台/接待员"
+  },
+  {
+    "id": "L03-V0",
+    "en": "work environment",
+    "zh": "工作环境"
+  },
+  {
+    "id": "L03-V1",
+    "en": "corporate culture",
+    "zh": "企业文化"
+  },
+  {
+    "id": "L03-V2",
+    "en": "flexible working hours",
+    "zh": "弹性工作时间"
+  },
+  {
+    "id": "L03-V3",
+    "en": "open-plan office",
+    "zh": "开放式办公室"
+  },
+  {
+    "id": "L03-V4",
+    "en": "dress code",
+    "zh": "着装要求"
+  },
+  {
+    "id": "L03-V5",
+    "en": "team building",
+    "zh": "团队建设"
+  }
+]

@@ -1,0 +1,252 @@
+[
+  {
+    "id": "L09-V50",
+    "en": "Sounds like we're on the same page.",
+    "zh": "看来我们想法是一致的"
+  },
+  {
+    "id": "L09-V51",
+    "en": "Let's wrap it up here.",
+    "zh": "我们到这儿结束吧"
+  },
+  {
+    "id": "L09-V52",
+    "en": "We'll be in touch.",
+    "zh": "我们会保持联系"
+  },
+  {
+    "id": "L10-V0",
+    "en": "style mismatch",
+    "zh": "风格不匹配"
+  },
+  {
+    "id": "L10-V1",
+    "en": "Yes ≠ agreement",
+    "zh": "\\"
+  },
+  {
+    "id": "L10-V2",
+    "en": "Silence ≠ agreement",
+    "zh": "沉默不等于同意"
+  },
+  {
+    "id": "L10-V3",
+    "en": "Communication style mismatch ≠ incompetence",
+    "zh": "沟通风格不匹配≠能力不行"
+  },
+  {
+    "id": "L10-V4",
+    "en": "consensus building",
+    "zh": "共识构建"
+  },
+  {
+    "id": "L10-V5",
+    "en": "I see your point, but…",
+    "zh": "我理解你的观点，但是……（委婉反对）"
+  },
+  {
+    "id": "L10-V6",
+    "en": "I agree to some extent, but…",
+    "zh": "我在一定程度上同意，但是……"
+  },
+  {
+    "id": "L10-V7",
+    "en": "I'm afraid I don't fully agree because…",
+    "zh": "恐怕我不完全同意，因为……"
+  },
+  {
+    "id": "L10-V8",
+    "en": "The direction is right, but execution could be refined in…",
+    "zh": "方向是对的，但执行可以在……方面优化"
+  },
+  {
+    "id": "L10-V9",
+    "en": "Perhaps we could consider…",
+    "zh": "也许我们可以考虑……（建议替代方案）"
+  },
+  {
+    "id": "L10-V10",
+    "en": "What if we try…?",
+    "zh": "如果我们试试……呢？"
+  },
+  {
+    "id": "L10-V11",
+    "en": "One possibility is to…",
+    "zh": "一个可能是……"
+  },
+  {
+    "id": "L10-V12",
+    "en": "Have you considered…?",
+    "zh": "你有没有考虑过……？"
+  },
+  {
+    "id": "L10-V13",
+    "en": "to some extent",
+    "zh": "在一定程度上"
+  },
+  {
+    "id": "L10-V14",
+    "en": "one concern is…",
+    "zh": "一个顾虑是……"
+  },
+  {
+    "id": "L10-V15",
+    "en": "from our side…",
+    "zh": "从我们的角度来看……"
+  },
+  {
+    "id": "L10-V16",
+    "en": "It's worth…-ing",
+    "zh": "值得做……"
+  },
+  {
+    "id": "L10-V17",
+    "en": "There's no point in…-ing",
+    "zh": "做……没有意义"
+  },
+  {
+    "id": "L10-V18",
+    "en": "You'll have difficulty…-ing",
+    "zh": "你会在……方面有困难"
+  },
+  {
+    "id": "L10-V19",
+    "en": "It's worth building relationships before pushing decisions.",
+    "zh": "在推动决策前，先建立关系是值得的"
+  },
+  {
+    "id": "L10-V20",
+    "en": "There's no point in assuming things work the same in every market.",
+    "zh": "假设每个市场都一样运作是没有意义的"
+  },
+  {
+    "id": "L10-V21",
+    "en": "Let me walk you through our ideas.",
+    "zh": "让我给你介绍一下我们的想法"
+  },
+  {
+    "id": "L10-V22",
+    "en": "From our perspective…",
+    "zh": "从我们的角度来看……"
+  },
+  {
+    "id": "L10-V23",
+    "en": "I see value in that.",
+    "zh": "我看到其中的价值"
+  },
+  {
+    "id": "L10-V24",
+    "en": "That makes sense.",
+    "zh": "这说得通"
+  },
+  {
+    "id": "L10-V25",
+    "en": "I agree partially, yet…",
+    "zh": "我部分同意，但是……"
+  },
+  {
+    "id": "L10-V26",
+    "en": "One possible concern is that execution might be slow without support.",
+    "zh": "一个可能的顾虑是缺乏支持执行可能会慢"
+  },
+  {
+    "id": "L10-V27",
+    "en": "Maybe we should consider another approach…",
+    "zh": "也许我们应该考虑另一个方案……"
+  },
+  {
+    "id": "L10-V28",
+    "en": "From our side, one factor to think about is…",
+    "zh": "从我们这边来看，一个需要考虑的因素是……"
+  },
+  {
+    "id": "L10-V29",
+    "en": "To summarise…",
+    "zh": "总结一下……"
+  },
+  {
+    "id": "L10-V30",
+    "en": "Next steps could be…",
+    "zh": "下一步可以是……"
+  },
+  {
+    "id": "L11-V0",
+    "en": "rose by…",
+    "zh": "增长了……"
+  },
+  {
+    "id": "L11-V1",
+    "en": "increased by…",
+    "zh": "上升了……（中性、正式）"
+  },
+  {
+    "id": "L11-V2",
+    "en": "grew to…",
+    "zh": "增长至……"
+  },
+  {
+    "id": "L11-V3",
+    "en": "edged up",
+    "zh": "小幅上升（幅度不大，语气克制）"
+  },
+  {
+    "id": "L11-V4",
+    "en": "showed an upward trend",
+    "zh": "呈现上升趋势"
+  },
+  {
+    "id": "L11-V5",
+    "en": "a rise in…",
+    "zh": "……的上升"
+  },
+  {
+    "id": "L11-V6",
+    "en": "an increase in…",
+    "zh": "……的增加"
+  },
+  {
+    "id": "L11-V7",
+    "en": "growth in…",
+    "zh": "……的增长"
+  },
+  {
+    "id": "L11-V8",
+    "en": "an upward trend",
+    "zh": "上升趋势"
+  },
+  {
+    "id": "L11-V9",
+    "en": "a steady increase",
+    "zh": "稳步增长"
+  },
+  {
+    "id": "L11-V10",
+    "en": "fell by…",
+    "zh": "下降了……"
+  },
+  {
+    "id": "L11-V11",
+    "en": "declined to…",
+    "zh": "下降至……"
+  },
+  {
+    "id": "L11-V12",
+    "en": "dropped from A to B",
+    "zh": "从A降至B"
+  },
+  {
+    "id": "L11-V13",
+    "en": "fell to the lowest level in…",
+    "zh": "降至……以来最低水平"
+  },
+  {
+    "id": "L11-V14",
+    "en": "showed a downward trend",
+    "zh": "呈现下降趋势"
+  },
+  {
+    "id": "L11-V15",
+    "en": "a fall in…",
+    "zh": "……的下降"
+  }
+]

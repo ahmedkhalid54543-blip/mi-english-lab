@@ -122,6 +122,21 @@
     return updateUser({ password: password });
   }
 
+  async function resetPassword(email) {
+    var setup = ensureClient();
+    if (!setup.ok) return { ok: false, error: setup.error };
+
+    try {
+      var result = await setup.client.auth.resetPasswordForEmail(email, {
+        redirectTo: location.origin + '/account.html'
+      });
+      if (result.error) return { ok: false, error: result.error.message };
+      return { ok: true };
+    } catch (err) {
+      return { ok: false, error: err.message || '网络错误' };
+    }
+  }
+
   async function getSession() {
     var setup = ensureClient();
     if (!setup.ok) return { ok: false, error: setup.error, session: null };
@@ -182,6 +197,7 @@
     updateProfileMetadata: updateProfileMetadata,
     updateEmail: updateEmail,
     updatePassword: updatePassword,
+    resetPassword: resetPassword,
     getSession: getSession,
     getUser: getUser,
     onAuthStateChange: onAuthStateChange,

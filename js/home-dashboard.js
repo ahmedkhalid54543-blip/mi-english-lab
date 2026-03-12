@@ -35,7 +35,7 @@
       href: 'progress.html',
       icon: 'fa-chart-line',
       title: '学习进度',
-      desc: 'streak / XP / 成就'
+      desc: '统计 / 等级 / 成就'
     }
   ];
 
@@ -575,7 +575,7 @@
 
     $('streakCount').textContent = state.streak || 0;
     $('levelBadge').textContent = 'Lv.' + state.level + ' ' + getLevelName(state.level);
-    $('homeStreakValue').textContent = state.streak || 0;
+    $('homeStreakValue').textContent = (state.streak || 0) + ' 天';
     $('homeXPValue').textContent = state.xp || 0;
     $('homeLevelValue').textContent = 'Lv.' + state.level;
     $('homeProgressPct').textContent = mastery.percent + '%';

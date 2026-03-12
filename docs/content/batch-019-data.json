@@ -1,0 +1,252 @@
+[
+  {
+    "id": "L07-P4",
+    "category": "出货与预期对齐",
+    "template": "Let's align sell-in with realistic sell-out expectations."
+  },
+  {
+    "id": "L07-P5",
+    "category": "预测差距分析",
+    "template": "We see a gap between your forecast and your actual sell-out."
+  },
+  {
+    "id": "L07-P6",
+    "category": "库存健康管理",
+    "template": "To ensure healthy inventory, we need more visibility on your sell-out performance."
+  },
+  {
+    "id": "L07-P7",
+    "category": "出货计划调整",
+    "template": "Let's adjust the sell-in plan to avoid stock pressure on your side."
+  },
+  {
+    "id": "L07-P8",
+    "category": "MAP价格提醒",
+    "template": "Please follow the MAP price."
+  },
+  {
+    "id": "L07-P9",
+    "category": "MAP价格提醒",
+    "template": "Your price is too low online."
+  },
+  {
+    "id": "L07-P10",
+    "category": "MAP违规纠正",
+    "template": "This listing is under MAP. Please adjust it."
+  },
+  {
+    "id": "L07-P11",
+    "category": "MAP违规后果",
+    "template": "If you go below MAP, other partners will complain."
+  },
+  {
+    "id": "L07-P12",
+    "category": "渠道冲突分析",
+    "template": "Selling below MAP will create channel conflicts."
+  },
+  {
+    "id": "L07-P13",
+    "category": "价格倒挂识别",
+    "template": "We're seeing price inversion in your market."
+  },
+  {
+    "id": "L07-P14",
+    "category": "品牌价值保护",
+    "template": "To protect the brand value, we strictly enforce MAP policies."
+  },
+  {
+    "id": "L07-P15",
+    "category": "价格混乱修正",
+    "template": "Let's correct the price disorder before the campaign goes live."
+  },
+  {
+    "id": "L07-P16",
+    "category": "Listing优化提醒",
+    "template": "Your listing needs better pictures."
+  },
+  {
+    "id": "L07-P17",
+    "category": "曝光提升要求",
+    "template": "You need higher visibility."
+  },
+  {
+    "id": "L07-P18",
+    "category": "页面更新推动",
+    "template": "Please update the listing with the new price."
+  },
+  {
+    "id": "L07-P19",
+    "category": "广告投放推动",
+    "template": "Let's run ads to boost visibility."
+  },
+  {
+    "id": "L07-P20",
+    "category": "页面质量诊断",
+    "template": "This listing is not attractive enough."
+  },
+  {
+    "id": "L07-P21",
+    "category": "流量诊断",
+    "template": "Your product is not getting enough traffic."
+  },
+  {
+    "id": "L07-P22",
+    "category": "转化率提升",
+    "template": "Improving listing quality will significantly increase conversion."
+  },
+  {
+    "id": "L07-P23",
+    "category": "曝光带动销售",
+    "template": "Let's invest in visibility to drive more sell-out."
+  },
+  {
+    "id": "L07-P24",
+    "category": "促销资源请求",
+    "template": "Can you support a promotion?"
+  },
+  {
+    "id": "L07-P25",
+    "category": "市场支持请求",
+    "template": "We need some marketing help."
+  },
+  {
+    "id": "L07-P26",
+    "category": "活动资源询问",
+    "template": "What resources can you provide for this campaign?"
+  },
+  {
+    "id": "L07-P27",
+    "category": "小促销提升销量",
+    "template": "Let's plan a small promotion to increase sell-out."
+  },
+  {
+    "id": "L07-P28",
+    "category": "新品曝光需求",
+    "template": "We need more visibility for this launch."
+  },
+  {
+    "id": "L07-P29",
+    "category": "预算驱动流量",
+    "template": "A small budget can help us drive more traffic."
+  },
+  {
+    "id": "L07-P30",
+    "category": "促销机制对齐",
+    "template": "Let's align on the promotion mechanics and expected ROI."
+  },
+  {
+    "id": "L07-P31",
+    "category": "资源协调最大化",
+    "template": "We need to coordinate resources to maximize impact."
+  },
+  {
+    "id": "L07-P32",
+    "category": "救命句-请求细节",
+    "template": "Could you share more details?"
+  },
+  {
+    "id": "L07-P33",
+    "category": "救命句-了解困难",
+    "template": "What's your main challenge right now?"
+  },
+  {
+    "id": "L07-P34",
+    "category": "救命句-制定计划",
+    "template": "Let's work on a realistic plan."
+  },
+  {
+    "id": "L07-P35",
+    "category": "救命句-要求透明",
+    "template": "To avoid stock pressure, we need more transparency."
+  },
+  {
+    "id": "L07-P36",
+    "category": "救命句-理解压力",
+    "template": "I understand your pressure, but..."
+  },
+  {
+    "id": "L07-P37",
+    "category": "救命句-价格恢复",
+    "template": "Can we bring the price back to MAP today?"
+  },
+  {
+    "id": "L07-P38",
+    "category": "救命句-避免冲突",
+    "template": "Let's avoid channel conflicts together."
+  },
+  {
+    "id": "L07-P39",
+    "category": "救命句-价格一致",
+    "template": "We need consistent pricing across partners."
+  },
+  {
+    "id": "L07-P40",
+    "category": "Listing优化-标题",
+    "template": "The title doesn't highlight the key features."
+  },
+  {
+    "id": "L07-P41",
+    "category": "Listing优化-视觉",
+    "template": "Can we improve the visuals?"
+  },
+  {
+    "id": "L07-P42",
+    "category": "Listing优化-主图",
+    "template": "A better hero image will help."
+  },
+  {
+    "id": "L07-P43",
+    "category": "Listing优化-时限",
+    "template": "Let's update the listing before Friday."
+  },
+  {
+    "id": "L07-P44",
+    "category": "资源谈判-双赢",
+    "template": "Let's make it a win-win."
+  },
+  {
+    "id": "L07-P45",
+    "category": "资源谈判-条件交换",
+    "template": "If you can increase visibility, we can support budget."
+  },
+  {
+    "id": "L07-P46",
+    "category": "资源谈判-细节对齐",
+    "template": "Let's align on the details later."
+  },
+  {
+    "id": "L08-P0",
+    "category": "创意提案",
+    "template": "I came up with this idea when ___."
+  },
+  {
+    "id": "L08-P1",
+    "category": "创意提案",
+    "template": "My target customers are ___."
+  },
+  {
+    "id": "L08-P2",
+    "category": "创意提案",
+    "template": "What makes it different / unique is ___."
+  },
+  {
+    "id": "L08-P3",
+    "category": "创意提案",
+    "template": "To launch it, I would ___."
+  },
+  {
+    "id": "L08-P4",
+    "category": "展会沟通",
+    "template": "Thanks for stopping by our stand."
+  },
+  {
+    "id": "L08-P5",
+    "category": "展会沟通",
+    "template": "Hope to keep in touch after the exhibition."
+  },
+  {
+    "id": "L08-P6",
+    "category": "创业叙事",
+    "template": "We started from scratch."
+  }
+]

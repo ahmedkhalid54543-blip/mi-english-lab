@@ -1,0 +1,212 @@
+[
+  {
+    "id": "L15-P5",
+    "category": "绩效反馈",
+    "template": "I noticed…(fact). This has impacted…(impact)."
+  },
+  {
+    "id": "L15-P6",
+    "category": "绩效反馈",
+    "template": "What support do you need from me?"
+  },
+  {
+    "id": "L16-P0",
+    "category": "报告句型",
+    "template": "The purpose of the [report] is to summarise…and make recommendations for…"
+  },
+  {
+    "id": "L16-P1",
+    "category": "图表句型",
+    "template": "As the charts show,…. However,…"
+  },
+  {
+    "id": "L16-P2",
+    "category": "决策句型",
+    "template": "Last year, it was decided that…"
+  },
+  {
+    "id": "L16-P3",
+    "category": "会议感悟",
+    "template": "What struck me most was…"
+  },
+  {
+    "id": "L16-P4",
+    "category": "会议建议",
+    "template": "Reach out to…in advance and suggest…"
+  },
+  {
+    "id": "L17-P0",
+    "category": "观察陈述",
+    "template": "I noticed that…"
+  },
+  {
+    "id": "L17-P1",
+    "category": "标准化建议",
+    "template": "We need to standardize ___ guidelines across all stores to ensure…"
+  },
+  {
+    "id": "L17-P2",
+    "category": "陈列规范",
+    "template": "Hero products should be placed at eye level with clear signage."
+  },
+  {
+    "id": "L17-P3",
+    "category": "品牌一致性",
+    "template": "A consistent shopping experience reinforces brand identity and builds trust."
+  },
+  {
+    "id": "L17-P4",
+    "category": "独家策略",
+    "template": "Exclusivity works because…. But the trade-off is…"
+  },
+  {
+    "id": "L17-P5",
+    "category": "趋势洞察",
+    "template": "We're seeing a trend: …. We'll adapt the product range by…"
+  },
+  {
+    "id": "L17-P6",
+    "category": "体验营销",
+    "template": "The goal is to create an immersive environment that builds an emotional connection with…"
+  },
+  {
+    "id": "L17-P7",
+    "category": "差异化价值",
+    "template": "This helps us differentiate in the market and increase in-store traffic."
+  },
+  {
+    "id": "L18-P0",
+    "category": "陈列问题",
+    "template": "The brand block feels fragmented."
+  },
+  {
+    "id": "L18-P1",
+    "category": "陈列问题",
+    "template": "This area looks cluttered and hard to scan."
+  },
+  {
+    "id": "L18-P2",
+    "category": "陈列问题",
+    "template": "The display is not compliant with the planogram."
+  },
+  {
+    "id": "L18-P3",
+    "category": "陈列指令",
+    "template": "Rebuild the brand block and keep the frontage consistent."
+  },
+  {
+    "id": "L18-P4",
+    "category": "陈列指令",
+    "template": "Move high-margin SKUs to eye-level placement."
+  },
+  {
+    "id": "L18-P5",
+    "category": "陈列指令",
+    "template": "Feature the hero product on the endcap with more facings."
+  },
+  {
+    "id": "L18-P6",
+    "category": "陈列指令",
+    "template": "Reset the promo zone according to the planogram."
+  },
+  {
+    "id": "L18-P7",
+    "category": "目标表达",
+    "template": "...to increase conversion during peak hours."
+  },
+  {
+    "id": "L18-P8",
+    "category": "目标表达",
+    "template": "...to make the customer journey smoother."
+  },
+  {
+    "id": "L19-P0",
+    "category": "观点表达",
+    "template": "In my view, ___ is most important because…"
+  },
+  {
+    "id": "L19-P1",
+    "category": "立场表态",
+    "template": "As far as I'm concerned, …"
+  },
+  {
+    "id": "L19-P2",
+    "category": "报告开篇",
+    "template": "The purpose of the ___ is to summarise ___ and make recommendations for…"
+  },
+  {
+    "id": "L19-P3",
+    "category": "数据分析转折",
+    "template": "As the charts show, …. However, …"
+  },
+  {
+    "id": "L19-P4",
+    "category": "决策回顾",
+    "template": "Last year, it was decided that…. ___ were encouraged to…as this was thought to be equally effective."
+  },
+  {
+    "id": "L19-P5",
+    "category": "建议方案",
+    "template": "Since it is clear that ___, I recommend…"
+  },
+  {
+    "id": "L19-P6",
+    "category": "客户需求",
+    "template": "What's your top priority right now?"
+  },
+  {
+    "id": "L19-P7",
+    "category": "捆绑销售",
+    "template": "We could bundle it with ___ — that's one relevant add-on that really boosts…"
+  },
+  {
+    "id": "L20-P0",
+    "category": "日常推进",
+    "template": "I'm calling to follow up on…. How's it going?"
+  },
+  {
+    "id": "L20-P1",
+    "category": "日常推进",
+    "template": "We need to chase for the data. Can you send it today?"
+  },
+  {
+    "id": "L20-P2",
+    "category": "促销管理",
+    "template": "We'll launch a targeted promo for…"
+  },
+  {
+    "id": "L20-P3",
+    "category": "促销管理",
+    "template": "We must control promo discount to avoid…"
+  },
+  {
+    "id": "L20-P4",
+    "category": "铺货调拨",
+    "template": "Let's push new SKUs to top ___ stores first."
+  },
+  {
+    "id": "L20-P5",
+    "category": "铺货调拨",
+    "template": "We'll re-allocate stock cross-region to solve…"
+  },
+  {
+    "id": "L20-P6",
+    "category": "返利补贴",
+    "template": "We tie all channel rebates to actual sell-out."
+  },
+  {
+    "id": "L20-P7",
+    "category": "对外沟通",
+    "template": "I understand your concern, but we can't…"
+  },
+  {
+    "id": "L20-P8",
+    "category": "对外沟通",
+    "template": "Don't worry. We have enough stock for you. You're a priority for us."
+  },
+  {
+    "id": "L20-P9",
+    "category": "对外沟通",
+    "template": "Let's sit down and figure out a plan that works for both of us."
+  }
+]

@@ -45,22 +45,17 @@
         <div class="memory-breakdown-list">${buildBreakdown(entry)}</div>
       </section>
       <section class="memory-section">
-        <div class="memory-section-title">幽默联想</div>
-        <div class="memory-hook">${safeHTML(entry.hook || '')}</div>
-      </section>
-      <section class="memory-section">
-        <div class="memory-section-title">Lovart 图像</div>
+        <div class="memory-section-title">记忆图像</div>
         <div class="memory-visual is-pending">
           <img
             class="memory-image hidden"
             data-memory-image
             src="${safeHTML(imagePath)}"
             alt="${safeHTML(entry.imageTitle || entry.en || '')}"
-            loading="lazy"
           >
           <div class="memory-visual-placeholder" data-memory-placeholder>
             <i class="fas fa-image"></i>
-            <span>图片待补：${safeHTML(entry.assetBaseName)}.png</span>
+            <span>图片待补：${safeHTML(entry.assetBaseName)}.webp</span>
           </div>
         </div>
       </section>
@@ -83,7 +78,10 @@
     const image = layer.querySelector('[data-memory-image]');
     if (!image) return;
 
-    image.addEventListener('load', () => toggleImageState(layer, true), { once: true });
+    image.addEventListener('load', () => {
+      toggleImageState(layer, true);
+      if (typeof root.autoSizeFlashcard === 'function') root.autoSizeFlashcard();
+    }, { once: true });
     image.addEventListener('error', () => toggleImageState(layer, false), { once: true });
 
     if (image.complete) {
@@ -92,7 +90,7 @@
   }
 
   function getEntry(card) {
-    if (!card || card.type !== 'vocab' || !root.MiMemoryData) return null;
+    if (!card || (card.type !== 'vocab' && card.type !== 'pattern') || !root.MiMemoryData) return null;
     if (typeof root.MiMemoryData.getByVocabId !== 'function') return null;
     return root.MiMemoryData.getByVocabId(card.id);
   }

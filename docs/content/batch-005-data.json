@@ -1,0 +1,252 @@
+[
+  {
+    "id": "L07-V54",
+    "en": "low sell-out performance",
+    "zh": "终端销售差"
+  },
+  {
+    "id": "L07-V55",
+    "en": "realistic forecast",
+    "zh": "真实预测"
+  },
+  {
+    "id": "L07-V56",
+    "en": "sell-in",
+    "zh": "小米到合作商的出货"
+  },
+  {
+    "id": "L07-V57",
+    "en": "sell-out",
+    "zh": "合作商到消费者的销售"
+  },
+  {
+    "id": "L07-V58",
+    "en": "cross-channel conflict",
+    "zh": "跨渠道冲突"
+  },
+  {
+    "id": "L07-V59",
+    "en": "price disorder",
+    "zh": "价格混乱"
+  },
+  {
+    "id": "L07-V60",
+    "en": "coupon campaign",
+    "zh": "优惠券活动"
+  },
+  {
+    "id": "L07-V61",
+    "en": "cost-per-click",
+    "zh": "单次点击成本"
+  },
+  {
+    "id": "L07-V62",
+    "en": "return on ad spend",
+    "zh": "广告投入回报率"
+  },
+  {
+    "id": "L07-V63",
+    "en": "search ranking",
+    "zh": "搜索排名"
+  },
+  {
+    "id": "L07-V64",
+    "en": "product title clarity",
+    "zh": "产品标题清晰度"
+  },
+  {
+    "id": "L07-V65",
+    "en": "boost traffic",
+    "zh": "拉流量"
+  },
+  {
+    "id": "L07-V66",
+    "en": "transparency",
+    "zh": "信息透明度"
+  },
+  {
+    "id": "L08-V0",
+    "en": "free samples or gifts",
+    "zh": "免费试用或赠品"
+  },
+  {
+    "id": "L08-V1",
+    "en": "direct mail",
+    "zh": "直邮宣传"
+  },
+  {
+    "id": "L08-V2",
+    "en": "leaflets and brochures",
+    "zh": "传单和宣传册"
+  },
+  {
+    "id": "L08-V4",
+    "en": "sponsorship",
+    "zh": "赞助"
+  },
+  {
+    "id": "L08-V5",
+    "en": "website / online marketing",
+    "zh": "网站与网络营销"
+  },
+  {
+    "id": "L08-V6",
+    "en": "book a stand",
+    "zh": "预定展位"
+  },
+  {
+    "id": "L08-V8",
+    "en": "registration fee",
+    "zh": "注册费"
+  },
+  {
+    "id": "L08-V9",
+    "en": "come with",
+    "zh": "附带；配备"
+  },
+  {
+    "id": "L08-V10",
+    "en": "retail at",
+    "zh": "售价为"
+  },
+  {
+    "id": "L08-V11",
+    "en": "warranty",
+    "zh": "保修期"
+  },
+  {
+    "id": "L08-V12",
+    "en": "dispatch",
+    "zh": "发货"
+  },
+  {
+    "id": "L08-V13",
+    "en": "reach an agreement",
+    "zh": "达成协议"
+  },
+  {
+    "id": "L08-V14",
+    "en": "offer a discount",
+    "zh": "提供折扣"
+  },
+  {
+    "id": "L08-V15",
+    "en": "confirm the order",
+    "zh": "确认订单"
+  },
+  {
+    "id": "L08-V16",
+    "en": "partnership",
+    "zh": "长期合作"
+  },
+  {
+    "id": "L08-V17",
+    "en": "start your own business",
+    "zh": "创办公司"
+  },
+  {
+    "id": "L08-V18",
+    "en": "set up / launch a company",
+    "zh": "成立公司"
+  },
+  {
+    "id": "L08-V19",
+    "en": "be your own boss",
+    "zh": "当自己的老板"
+  },
+  {
+    "id": "L08-V20",
+    "en": "spot a gap in the market",
+    "zh": "发现市场空白"
+  },
+  {
+    "id": "L08-V21",
+    "en": "carry out market research",
+    "zh": "做市场调研"
+  },
+  {
+    "id": "L08-V22",
+    "en": "write a business plan",
+    "zh": "撰写商业计划书"
+  },
+  {
+    "id": "L08-V23",
+    "en": "break even",
+    "zh": "收支平衡"
+  },
+  {
+    "id": "L08-V24",
+    "en": "make a profit",
+    "zh": "获利"
+  },
+  {
+    "id": "L08-V25",
+    "en": "raise finance",
+    "zh": "筹集资金"
+  },
+  {
+    "id": "L08-V26",
+    "en": "take out a loan",
+    "zh": "借款 / 贷款"
+  },
+  {
+    "id": "L08-V27",
+    "en": "repay a loan",
+    "zh": "偿还贷款"
+  },
+  {
+    "id": "L08-V28",
+    "en": "cover overheads",
+    "zh": "支付运营成本"
+  },
+  {
+    "id": "L08-V29",
+    "en": "attract investors",
+    "zh": "吸引投资人"
+  },
+  {
+    "id": "L08-V30",
+    "en": "government grant",
+    "zh": "政府补助"
+  },
+  {
+    "id": "L08-V31",
+    "en": "venture capital",
+    "zh": "风险投资"
+  },
+  {
+    "id": "L08-V32",
+    "en": "invest in",
+    "zh": "投资于"
+  },
+  {
+    "id": "L08-V33",
+    "en": "take a risk",
+    "zh": "承担风险"
+  },
+  {
+    "id": "L08-V34",
+    "en": "return on investment",
+    "zh": "投资回报"
+  },
+  {
+    "id": "L08-V35",
+    "en": "price disorder",
+    "zh": "价格混乱"
+  },
+  {
+    "id": "L08-V36",
+    "en": "product title clarity",
+    "zh": "产品标题清晰度"
+  },
+  {
+    "id": "L08-V37",
+    "en": "boost traffic",
+    "zh": "拉流量"
+  },
+  {
+    "id": "L08-V38",
+    "en": "conversion",
+    "zh": "转化"
+  }
+]

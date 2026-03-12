@@ -1,0 +1,252 @@
+[
+  {
+    "id": "L18-V45",
+    "en": "budget range",
+    "zh": "预算范围"
+  },
+  {
+    "id": "L18-V46",
+    "en": "shortlist",
+    "zh": "缩小到少数选项"
+  },
+  {
+    "id": "L18-V47",
+    "en": "narrow down",
+    "zh": "缩小范围"
+  },
+  {
+    "id": "L18-V48",
+    "en": "compare",
+    "zh": "对比"
+  },
+  {
+    "id": "L18-V49",
+    "en": "upsell",
+    "zh": "引导买更高配"
+  },
+  {
+    "id": "L18-V50",
+    "en": "cross-sell",
+    "zh": "关联销售"
+  },
+  {
+    "id": "L18-V51",
+    "en": "limited-time offer",
+    "zh": "限时优惠"
+  },
+  {
+    "id": "L18-V52",
+    "en": "gift with purchase",
+    "zh": "购赠"
+  },
+  {
+    "id": "L18-V53",
+    "en": "inventory turnover",
+    "zh": "库存周转"
+  },
+  {
+    "id": "L18-V54",
+    "en": "OOS / out of stock",
+    "zh": "缺货"
+  },
+  {
+    "id": "L18-V55",
+    "en": "OOS rate",
+    "zh": "缺货率"
+  },
+  {
+    "id": "L18-V56",
+    "en": "backroom stock",
+    "zh": "后仓库存"
+  },
+  {
+    "id": "L18-V57",
+    "en": "sell-out",
+    "zh": "动销/售出"
+  },
+  {
+    "id": "L18-V58",
+    "en": "resolution time",
+    "zh": "处理时效"
+  },
+  {
+    "id": "L18-V59",
+    "en": "close the loop",
+    "zh": "闭环跟进"
+  },
+  {
+    "id": "L18-V60",
+    "en": "success metric",
+    "zh": "成功指标"
+  },
+  {
+    "id": "L19-V0",
+    "en": "build a better customer relationship",
+    "zh": "建立更良好的客户关系"
+  },
+  {
+    "id": "L19-V1",
+    "en": "compete on quality",
+    "zh": "以品质取胜"
+  },
+  {
+    "id": "L19-V2",
+    "en": "rhythm",
+    "zh": "节奏；频次"
+  },
+  {
+    "id": "L19-V3",
+    "en": "serve the purpose",
+    "zh": "达到目的；管用"
+  },
+  {
+    "id": "L19-V4",
+    "en": "key customers",
+    "zh": "核心客户；重点客户"
+  },
+  {
+    "id": "L19-V5",
+    "en": "by means of",
+    "zh": "通过；借助于"
+  },
+  {
+    "id": "L19-V6",
+    "en": "evolve",
+    "zh": "发展；逐步形成；进化"
+  },
+  {
+    "id": "L19-V7",
+    "en": "a correlation between A and B",
+    "zh": "A与B之间的关联/相关性"
+  },
+  {
+    "id": "L19-V8",
+    "en": "attention to customers",
+    "zh": "重视客户；对客户的关注"
+  },
+  {
+    "id": "L19-V9",
+    "en": "over the period",
+    "zh": "在此期间；在这一阶段"
+  },
+  {
+    "id": "L19-V10",
+    "en": "make recommendations",
+    "zh": "提出建议；给出方案"
+  },
+  {
+    "id": "L19-V11",
+    "en": "regarding",
+    "zh": "关于；有关"
+  },
+  {
+    "id": "L19-V12",
+    "en": "future sales strategy",
+    "zh": "未来销售策略"
+  },
+  {
+    "id": "L19-V13",
+    "en": "overseas customers",
+    "zh": "海外客户"
+  },
+  {
+    "id": "L19-V14",
+    "en": "equally effective",
+    "zh": "效果相当；同样有效"
+  },
+  {
+    "id": "L19-V15",
+    "en": "a lucrative market",
+    "zh": "利润丰厚的市场；高收益市场"
+  },
+  {
+    "id": "L19-V16",
+    "en": "maintain contact with",
+    "zh": "与……保持联系"
+  },
+  {
+    "id": "L19-V17",
+    "en": "competitor check summary",
+    "zh": "竞品巡店总结"
+  },
+  {
+    "id": "L19-V18",
+    "en": "a quick reset",
+    "zh": "快速调整；快速重启"
+  },
+  {
+    "id": "L19-V19",
+    "en": "weekend flash sale",
+    "zh": "周末限时特惠；周末闪购"
+  },
+  {
+    "id": "L19-V20",
+    "en": "footfall",
+    "zh": "客流量；到店人数"
+  },
+  {
+    "id": "L19-V21",
+    "en": "digital screens",
+    "zh": "电子屏；数字显示屏"
+  },
+  {
+    "id": "L19-V22",
+    "en": "e-price tags",
+    "zh": "电子价签"
+  },
+  {
+    "id": "L19-V23",
+    "en": "drives more targeted traffic",
+    "zh": "带来更精准的客流"
+  },
+  {
+    "id": "L19-V24",
+    "en": "measurable ROI",
+    "zh": "可量化的投资回报率"
+  },
+  {
+    "id": "L19-V25",
+    "en": "retain customers",
+    "zh": "留住顾客"
+  },
+  {
+    "id": "L19-V26",
+    "en": "feature (n./v.)",
+    "zh": "功能点/主打功能"
+  },
+  {
+    "id": "L19-V27",
+    "en": "foster customer loyalty",
+    "zh": "培养客户忠诚度"
+  },
+  {
+    "id": "L19-V28",
+    "en": "bundle it with a case",
+    "zh": "搭配手机壳一起购买"
+  },
+  {
+    "id": "L19-V29",
+    "en": "offer a quick demo",
+    "zh": "提供快速演示"
+  },
+  {
+    "id": "L19-V30",
+    "en": "one relevant add-on",
+    "zh": "一个相关配件"
+  },
+  {
+    "id": "L19-V31",
+    "en": "What's your top priority?",
+    "zh": "您最看重什么？"
+  },
+  {
+    "id": "L19-V32",
+    "en": "keep an eye on",
+    "zh": "关注"
+  },
+  {
+    "id": "L19-V33",
+    "en": "churn out",
+    "zh": "大量生产"
+  }
+]

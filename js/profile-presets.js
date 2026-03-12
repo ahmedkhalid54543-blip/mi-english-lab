@@ -2,157 +2,29 @@
   'use strict';
 
   var PRESETS = [
-    {
-      id: 'sunbeam',
-      name: '橙光队长',
-      bg: '#FFF3E8',
-      frame: '#FB923C',
-      colors: {
-        h: '#6B3E22',
-        s: '#F6D2B5',
-        e: '#1F2937',
-        c: '#F59E0B',
-        m: '#9A3412',
-        t: '#F97316',
-        a: '#FDBA74'
-      },
-      matrix: [
-        '..aaaa..',
-        '.ahhhha.',
-        '.hsssshh',
-        '.hsesesh',
-        '.hsssssh',
-        '.scssmsc',
-        '..tttt..',
-        '.tt..tt.'
-      ]
-    },
-    {
-      id: 'minty',
-      name: '薄荷同学',
-      bg: '#ECFDF5',
-      frame: '#34D399',
-      colors: {
-        h: '#0F766E',
-        s: '#F3D5B3',
-        e: '#0F172A',
-        c: '#22C55E',
-        m: '#166534',
-        t: '#10B981',
-        a: '#A7F3D0'
-      },
-      matrix: [
-        '...aa...',
-        '..ahha..',
-        '.hhsshh.',
-        '.hsesesh',
-        '.hsssssh',
-        '.scssmsc',
-        '..tttt..',
-        '.tt..tt.'
-      ]
-    },
-    {
-      id: 'stellar',
-      name: '银河玩家',
-      bg: '#EFF6FF',
-      frame: '#60A5FA',
-      colors: {
-        h: '#1D4ED8',
-        s: '#F1CCAA',
-        e: '#111827',
-        c: '#93C5FD',
-        m: '#1E3A8A',
-        t: '#3B82F6',
-        a: '#BFDBFE'
-      },
-      matrix: [
-        '..aaaa..',
-        '.aahhaa.',
-        '.hhsshh.',
-        '.hsesesh',
-        '.hsssssh',
-        '.scssmsc',
-        '..tttt..',
-        '.tttttt.'
-      ]
-    },
-    {
-      id: 'berry',
-      name: '莓果特工',
-      bg: '#FDF2F8',
-      frame: '#F472B6',
-      colors: {
-        h: '#9D174D',
-        s: '#F4D1B0',
-        e: '#111827',
-        c: '#FB7185',
-        m: '#831843',
-        t: '#EC4899',
-        a: '#FBCFE8'
-      },
-      matrix: [
-        '.aaaaaa.',
-        '.ahhhha.',
-        '.hhsshhh',
-        '.hsesesh',
-        '.hsssssh',
-        '.scssmsc',
-        '..tttt..',
-        '.tt..tt.'
-      ]
-    },
-    {
-      id: 'volt',
-      name: '电波学员',
-      bg: '#FFFBEB',
-      frame: '#FACC15',
-      colors: {
-        h: '#713F12',
-        s: '#F5D5B6',
-        e: '#0F172A',
-        c: '#FDE047',
-        m: '#92400E',
-        t: '#EAB308',
-        a: '#FDE68A'
-      },
-      matrix: [
-        '...aa...',
-        '..ahha..',
-        '.hhsshh.',
-        '.hsesesh',
-        '.hsssssh',
-        '.scssmsc',
-        '..tttt..',
-        '.tttttt.'
-      ]
-    },
-    {
-      id: 'night',
-      name: '夜跑选手',
-      bg: '#EEF2FF',
-      frame: '#818CF8',
-      colors: {
-        h: '#312E81',
-        s: '#F1CFAD',
-        e: '#111827',
-        c: '#A5B4FC',
-        m: '#4338CA',
-        t: '#6366F1',
-        a: '#C7D2FE'
-      },
-      matrix: [
-        '..aaaa..',
-        '.ahhhha.',
-        '.hhsshh.',
-        '.hsesesh',
-        '.hsssssh',
-        '.scssmsc',
-        '..tttt..',
-        '.tt..tt.'
-      ]
-    }
+    { id: 'shiba',    name: '橙柴队长', bg: '#FFF3E8', frame: '#FB923C' },
+    { id: 'cat',      name: '薄荷喵',   bg: '#ECFDF5', frame: '#34D399' },
+    { id: 'bunny',    name: '星光兔',   bg: '#EFF6FF', frame: '#60A5FA' },
+    { id: 'panda',    name: '莓果熊猫', bg: '#FDF2F8', frame: '#F472B6' },
+    { id: 'chick',    name: '电波小鸡', bg: '#FFFBEB', frame: '#FACC15' },
+    { id: 'penguin',  name: '夜行企鹅', bg: '#EEF2FF', frame: '#818CF8' },
+    { id: 'fox',      name: '暖阳狐',   bg: '#FEF3C7', frame: '#F59E0B' },
+    { id: 'koala',    name: '云朵考拉', bg: '#F0F9FF', frame: '#7DD3FC' },
+    { id: 'squirrel', name: '坚果松鼠', bg: '#FEF7ED', frame: '#D97706' },
+    { id: 'otter',    name: '浪花水獭', bg: '#F0FDFA', frame: '#2DD4BF' }
   ];
+
+  var AVATAR_BASE_PATH = 'assets/avatars/avatar-';
+
+  // Legacy ID mapping — old pixel-avatar IDs resolve to new animal IDs
+  var LEGACY_MAP = {
+    sunbeam: 'shiba',
+    minty:   'cat',
+    stellar: 'bunny',
+    berry:   'panda',
+    volt:    'chick',
+    night:   'penguin'
+  };
 
   function escapeHTML(value) {
     return String(value || '')
@@ -163,17 +35,23 @@
       .replace(/'/g, '&#39;');
   }
 
+  function resolveId(id) {
+    if (typeof id === 'string' && LEGACY_MAP[id]) return LEGACY_MAP[id];
+    return id;
+  }
+
   function getPresetById(id) {
-    if (typeof id === 'string') {
+    var resolved = resolveId(id);
+    if (typeof resolved === 'string') {
       for (var i = 0; i < PRESETS.length; i += 1) {
-        if (PRESETS[i].id === id) return PRESETS[i];
+        if (PRESETS[i].id === resolved) return PRESETS[i];
       }
     }
     return PRESETS[0];
   }
 
   function hasPreset(id) {
-    return Boolean(id && getPresetById(id).id === id);
+    return Boolean(id && getPresetById(id).id === resolveId(id));
   }
 
   function normalizePresetId(id) {
@@ -190,15 +68,10 @@
       classes.push(options.className);
     }
 
+    var imgSrc = AVATAR_BASE_PATH + preset.id + '.webp';
+
     var html = '<span class="' + classes.join(' ') + '" style="--avatar-bg:' + preset.bg + ';--avatar-frame:' + preset.frame + ';" aria-label="' + escapeHTML(label) + '" title="' + escapeHTML(label) + '">';
-
-    preset.matrix.forEach(function eachRow(row) {
-      row.split('').forEach(function eachToken(token) {
-        var color = preset.colors[token] || 'transparent';
-        html += '<span class="pixel-avatar__cell' + (color === 'transparent' ? ' is-empty' : '') + '" style="background:' + color + ';"></span>';
-      });
-    });
-
+    html += '<img class="pixel-avatar__img" src="' + imgSrc + '" alt="' + escapeHTML(label) + '" draggable="false">';
     html += '</span>';
     return html;
   }

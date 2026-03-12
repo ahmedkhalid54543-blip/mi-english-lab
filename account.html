@@ -6,363 +6,333 @@
   <meta name="mi-supabase-url" content="">
   <meta name="mi-supabase-anon-key" content="">
   <title>Mi English - 账号设置</title>
-  <link rel="stylesheet" href="css/style.css?v=3.0">
+  <link rel="stylesheet" href="css/style.css?v=3.1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
-    body.account-page {
-      background:
-        radial-gradient(circle at top right, rgba(255, 105, 0, 0.12), transparent 24%),
-        radial-gradient(circle at left center, rgba(16, 185, 129, 0.09), transparent 18%),
-        linear-gradient(180deg, #fafaf8 0%, #f7f5f2 100%);
-    }
-    .account-shell {
-      max-width: 1120px;
+    /* ── Account Page ── */
+    .acct-wrapper {
+      max-width: 640px;
       margin: 0 auto;
-      padding: 20px 16px 112px;
+      padding: 16px 16px 100px;
       display: grid;
-      gap: 18px;
+      gap: 14px;
     }
-    .account-hero,
-    .account-card {
-      background: rgba(255, 255, 255, 0.9);
-      border: 1px solid rgba(255, 255, 255, 0.7);
-      border-radius: 28px;
-      box-shadow: 0 18px 48px rgba(26, 26, 46, 0.08);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    .account-hero {
+
+    /* ── Profile Banner ── */
+    .acct-banner {
+      position: relative;
       overflow: hidden;
-      position: relative;
-      padding: 22px;
-      display: grid;
-      gap: 18px;
-    }
-    .account-hero::after {
-      content: '';
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      right: -80px;
-      top: -70px;
-      background: radial-gradient(circle, rgba(255, 105, 0, 0.18) 0%, rgba(255, 105, 0, 0) 70%);
-      pointer-events: none;
-    }
-    .account-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      width: fit-content;
-      padding: 6px 10px;
-      border-radius: 999px;
-      background: rgba(255, 105, 0, 0.1);
-      color: var(--mi-orange-dark);
-      font-size: 0.75rem;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .account-hero-title {
-      font-size: clamp(1.85rem, 5vw, 3.1rem);
-      line-height: 1.02;
-      letter-spacing: -0.04em;
-      max-width: 12ch;
-    }
-    .account-hero-copy {
-      color: var(--text-secondary);
-      max-width: 54ch;
-      font-size: 0.95rem;
-    }
-    .account-hero-grid {
-      display: grid;
-      gap: 14px;
-      grid-template-columns: minmax(0, 1.2fr) minmax(260px, 0.8fr);
-      align-items: stretch;
-      position: relative;
-      z-index: 1;
-    }
-    .account-profile-card,
-    .account-stat-card {
-      padding: 18px;
       border-radius: 22px;
-      background: rgba(255, 255, 255, 0.84);
-      border: 1px solid var(--border-light);
+      padding: 22px 20px 20px;
+      color: var(--text-inverse);
+      background:
+        radial-gradient(circle at top right, rgba(255,255,255,0.16), transparent 28%),
+        linear-gradient(135deg, #ff6900 0%, #ff7b1b 42%, #ffb347 100%);
+      box-shadow: var(--shadow-lg);
     }
-    .account-profile-card {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-    .account-profile-copy strong {
-      display: block;
-      font-size: 1rem;
-      margin-bottom: 4px;
-    }
-    .account-profile-copy span {
-      display: block;
-      font-size: 0.8125rem;
-      color: var(--text-muted);
-      line-height: 1.5;
-      word-break: break-all;
-    }
-    .account-avatar-copy strong {
-      display: block;
-      font-size: 0.8125rem;
-      line-height: 1.1;
-    }
-    .account-avatar-copy span {
-      display: block;
-      font-size: 0.6875rem;
-      color: var(--text-muted);
-      line-height: 1.4;
-    }
-    .account-stat-card strong {
-      display: block;
-      font-size: 0.8125rem;
-      color: var(--text-muted);
-      margin-bottom: 8px;
-    }
-    .account-stat-value {
-      font-size: 1.4rem;
-      font-weight: 800;
-      margin-bottom: 4px;
-    }
-    .account-stat-note {
-      color: var(--text-secondary);
-      font-size: 0.8125rem;
-      line-height: 1.55;
-    }
-    .account-access-card {
-      padding: 22px;
-      display: grid;
-      gap: 14px;
-    }
-    .account-access-card h2 {
-      font-size: 1.375rem;
-    }
-    .account-access-card p {
-      font-size: 0.9375rem;
-      color: var(--text-secondary);
-      max-width: 46ch;
-    }
-    .account-access-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-    .account-grid {
-      display: grid;
-      gap: 18px;
-      grid-template-columns: minmax(0, 1.02fr) minmax(280px, 0.98fr);
-    }
-    .account-stack {
-      display: grid;
-      gap: 18px;
-    }
-    .account-card {
-      padding: 20px;
-      display: grid;
-      gap: 16px;
-    }
-    .account-card-head h2 {
-      font-size: 1.15rem;
-      margin-bottom: 4px;
-    }
-    .account-card-head p {
-      font-size: 0.84rem;
-      color: var(--text-muted);
-      line-height: 1.6;
-    }
-    .account-form {
-      display: grid;
-      gap: 14px;
-    }
-    .account-field {
-      display: grid;
-      gap: 8px;
-    }
-    .account-field label {
-      font-size: 0.8125rem;
-      font-weight: 700;
-      color: var(--text-primary);
-    }
-    .account-field-note {
-      font-size: 0.75rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
-    .account-input {
-      width: 100%;
-      border: 1px solid rgba(221, 214, 206, 0.95);
-      border-radius: 16px;
-      padding: 14px 15px;
-      font-size: 0.9375rem;
-      font-family: inherit;
-      background: rgba(255, 255, 255, 0.95);
-      transition: border-color var(--duration-fast), box-shadow var(--duration-fast), transform var(--duration-fast);
-    }
-    .account-input:focus {
-      outline: none;
-      border-color: rgba(255, 105, 0, 0.35);
-      box-shadow: 0 0 0 4px rgba(255, 105, 0, 0.1);
-      transform: translateY(-1px);
-    }
-    .account-current-row {
+    .acct-banner-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
-      padding: 14px 16px;
-      border-radius: 18px;
-      background: rgba(247, 245, 242, 0.86);
-      border: 1px solid var(--border-light);
-      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 16px;
     }
-    .account-current-row strong {
+    .acct-banner-user {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+    .acct-banner-name {
+      font-size: 1.125rem;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+    .acct-banner-email {
+      font-size: 0.75rem;
+      opacity: 0.85;
+      word-break: break-all;
+    }
+    .acct-banner-badge {
+      flex: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.25);
+      font-size: 0.6875rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .acct-banner-hint {
+      font-size: 0.8125rem;
+      opacity: 0.9;
+      line-height: 1.55;
+    }
+
+    /* ── Guest Card ── */
+    .acct-guest {
+      border-radius: 22px;
+      padding: 24px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+      text-align: center;
+    }
+    .acct-guest-icon {
+      font-size: 2rem;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+    .acct-guest h2 {
+      font-size: 1.125rem;
+      margin-bottom: 6px;
+    }
+    .acct-guest p {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .acct-guest-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+    }
+
+    /* ── Section Card ── */
+    .acct-section {
+      border-radius: 20px;
+      padding: 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-light);
+      box-shadow: var(--shadow-sm);
+    }
+    .acct-section-head {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .acct-section-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.875rem;
+      flex: none;
+    }
+    .acct-section-icon.orange { background: var(--mi-orange-light); color: var(--mi-orange); }
+    .acct-section-icon.blue   { background: var(--mi-blue-light);   color: var(--mi-blue); }
+    .acct-section-icon.purple { background: #F3E8FF; color: var(--mi-purple); }
+    .acct-section-icon.red    { background: var(--mi-red-light);    color: var(--mi-red); }
+    .acct-section-head h2 {
+      font-size: 1rem;
+      font-weight: 800;
+    }
+    .acct-section-head p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Form Elements ── */
+    .acct-field {
+      margin-bottom: 14px;
+    }
+    .acct-field:last-child {
+      margin-bottom: 0;
+    }
+    .acct-label {
       display: block;
       font-size: 0.8125rem;
-      color: var(--text-muted);
-      margin-bottom: 4px;
+      font-weight: 700;
+      margin-bottom: 6px;
     }
-    .account-current-row span {
-      font-size: 0.95rem;
+    .acct-input {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 14px;
+      font-size: 0.9375rem;
+      font-family: inherit;
+      background: var(--bg-card);
+      transition: border-color var(--duration-fast), box-shadow var(--duration-fast);
+    }
+    .acct-input:focus {
+      outline: none;
+      border-color: rgba(255,105,0,0.4);
+      box-shadow: 0 0 0 3px rgba(255,105,0,0.1);
+    }
+    .acct-hint {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+    .acct-current {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: var(--bg-soft);
+      border: 1px solid var(--border-light);
+      margin-bottom: 14px;
+    }
+    .acct-current-label {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      margin-bottom: 2px;
+    }
+    .acct-current-value {
+      font-size: 0.9375rem;
       font-weight: 700;
       word-break: break-all;
     }
-    .account-avatar-picker {
+
+    /* ── Avatar Picker Area ── */
+    .acct-avatar-zone {
       padding: 16px;
-      border-radius: 20px;
-      background: linear-gradient(180deg, rgba(247, 245, 242, 0.9), rgba(255, 255, 255, 0.95));
+      border-radius: 16px;
+      background: var(--bg-soft);
       border: 1px solid var(--border-light);
+      margin-bottom: 14px;
     }
-    .account-avatar-head {
+    .acct-avatar-top {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
-      gap: 14px;
+      gap: 12px;
       margin-bottom: 12px;
     }
-    .account-avatar-preview {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 12px 8px 8px;
-      background: #fff;
-      border: 1px solid var(--border-light);
-      border-radius: 16px;
-      box-shadow: var(--shadow-sm);
-    }
-    .account-avatar-preview strong {
+    .acct-avatar-top-text strong {
       display: block;
       font-size: 0.8125rem;
-      line-height: 1.1;
+      font-weight: 700;
+      margin-bottom: 2px;
     }
-    .account-avatar-preview span {
-      font-size: 0.6875rem;
+    .acct-avatar-top-text span {
+      font-size: 0.75rem;
       color: var(--text-muted);
     }
-    .account-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
+    .acct-avatar-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 10px 6px 6px;
+      background: #fff;
+      border: 1px solid var(--border-light);
+      border-radius: 14px;
+      box-shadow: var(--shadow-sm);
+      flex: none;
     }
-    .account-btn {
+    .acct-avatar-chip .pixel-avatar {
+      width: max-content;
+      min-width: max-content;
+    }
+    .acct-avatar-chip > div strong {
+      display: block;
+      font-size: 0.75rem;
+      line-height: 1.1;
+    }
+    .acct-avatar-chip > div span {
+      display: block;
+      font-size: 0.625rem;
+      color: var(--text-muted);
+    }
+
+    /* ── Buttons ── */
+    .acct-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
       border: none;
-      border-radius: 16px;
-      padding: 12px 14px;
-      font-weight: 800;
-      font-size: 0.9375rem;
+      border-radius: 14px;
+      padding: 11px 18px;
+      font-weight: 700;
+      font-size: 0.875rem;
       font-family: inherit;
       cursor: pointer;
-      transition: transform var(--duration-fast), box-shadow var(--duration-fast), background var(--duration-fast);
+      text-decoration: none;
+      transition: transform var(--duration-fast), box-shadow var(--duration-fast);
     }
-    .account-btn:hover {
+    .acct-btn:hover {
       transform: translateY(-1px);
       box-shadow: var(--shadow-sm);
     }
-    .account-btn.primary {
+    .acct-btn:active {
+      transform: scale(0.98);
+    }
+    .acct-btn.primary {
       background: linear-gradient(135deg, #FF6900, #FF8A24);
       color: #fff;
     }
-    .account-btn.secondary {
-      background: #fff;
+    .acct-btn.secondary {
+      background: var(--bg-card);
       color: var(--text-primary);
-      border: 1px solid rgba(59, 130, 246, 0.3);
+      border: 1px solid var(--border);
     }
-    .account-btn.ghost {
-      background: rgba(255, 255, 255, 0.72);
-      color: var(--text-primary);
-      border: 1px solid var(--border-light);
-    }
-    .account-btn.danger {
+    .acct-btn.danger {
       background: #FEF2F2;
       color: #B91C1C;
       border: 1px solid #FECACA;
     }
-    .account-status {
-      font-size: 0.8125rem;
-      border-radius: 16px;
-      padding: 12px 14px;
+    .acct-btn.ghost {
+      background: var(--bg-soft);
+      color: var(--text-secondary);
       border: 1px solid var(--border-light);
-      background: rgba(247, 245, 242, 0.9);
+    }
+    .acct-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    /* ── Status Toast ── */
+    .acct-status {
+      font-size: 0.8125rem;
+      border-radius: 14px;
+      padding: 10px 14px;
+      border: 1px solid var(--border-light);
+      background: var(--bg-soft);
       color: var(--text-secondary);
       line-height: 1.55;
-      min-height: 48px;
+      margin-top: 12px;
     }
-    .account-status.success {
+    .acct-status:empty {
+      display: none;
+    }
+    .acct-status.success {
       border-color: #BBF7D0;
       background: #F0FDF4;
       color: #166534;
     }
-    .account-status.error {
+    .acct-status.error {
       border-color: #FECACA;
       background: #FEF2F2;
       color: #991B1B;
     }
-    .account-status.offline {
-      border-color: #FDE68A;
-      background: #FFFBEB;
-      color: #92400E;
-    }
-    .account-side-note {
-      padding: 16px;
-      border-radius: 20px;
-      border: 1px solid var(--border-light);
-      background: rgba(247, 245, 242, 0.88);
-      color: var(--text-secondary);
-      font-size: 0.84rem;
-      line-height: 1.7;
-    }
-    .account-side-note strong {
-      display: block;
-      color: var(--text-primary);
-      margin-bottom: 8px;
-    }
-    @media (max-width: 940px) {
-      .account-hero-grid,
-      .account-grid {
-        grid-template-columns: 1fr;
-      }
-    }
-    @media (max-width: 640px) {
-      .account-shell {
-        padding-inline: 12px;
-        gap: 14px;
-      }
-      .account-hero,
-      .account-card {
-        border-radius: 24px;
-        padding: 18px;
-      }
-      .account-profile-card,
-      .account-current-row,
-      .account-avatar-head {
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .acct-banner-top {
         flex-direction: column;
         align-items: flex-start;
       }
-      .account-actions,
-      .account-access-actions {
-        display: grid;
+      .acct-avatar-top {
+        flex-direction: column;
+      }
+      .acct-guest-actions {
+        flex-direction: column;
+      }
+      .acct-guest-actions .acct-btn {
+        width: 100%;
       }
       .profile-avatar-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -370,178 +340,132 @@
     }
   </style>
 </head>
-<body class="account-page">
+<body>
   <nav class="nav-header">
     <div class="nav-inner">
       <a class="nav-brand" href="index.html">
         <div class="nav-logo">Mi</div>
         <div>
           <span class="nav-title">Mi English</span>
-          <span class="nav-subtitle">账号设置</span>
+          <span class="nav-subtitle">账号</span>
         </div>
       </a>
       <div class="nav-stats">
-        <a href="index.html" class="level-badge" style="text-decoration:none;">返回首页</a>
+        <a href="index.html" class="level-badge" style="text-decoration:none;">
+          <i class="fas fa-arrow-left" style="font-size:0.625rem;"></i> 首页
+        </a>
       </div>
     </div>
   </nav>
 
-  <main class="account-shell">
-    <section class="account-hero">
-      <div>
-        <span class="account-kicker"><i class="fas fa-user-gear"></i> Account</span>
-        <h1 class="account-hero-title">把你的账号资料收拾干净。</h1>
-        <p class="account-hero-copy">这里专门处理头像、昵称、邮箱、密码这些账号相关内容。用户改完之后，首页会直接显示新的资料。</p>
-      </div>
-
-      <div class="account-hero-grid">
-        <div class="account-profile-card">
+  <main class="acct-wrapper">
+    <!-- ── Banner ── -->
+    <section class="acct-banner">
+      <div class="acct-banner-top">
+        <div class="acct-banner-user">
           <div id="accountHeroAvatar"></div>
-          <div class="account-profile-copy">
-            <strong id="accountHeroName">学习者</strong>
-            <span id="accountHeroEmail">请先登录账号</span>
+          <div>
+            <div class="acct-banner-name" id="accountHeroName">学习者</div>
+            <div class="acct-banner-email" id="accountHeroEmail">未登录</div>
           </div>
         </div>
-        <div class="account-stat-card">
-          <strong>账号状态</strong>
-          <div class="account-stat-value" id="accountHeroStatus">未登录</div>
-          <div class="account-stat-note" id="accountHeroNote">登录后可以修改昵称、头像、邮箱和密码。</div>
+        <div class="acct-banner-badge" id="accountHeroBadge">
+          <i class="fas fa-circle" style="font-size:6px;"></i>
+          <span id="accountHeroStatus">未登录</span>
         </div>
       </div>
+      <div class="acct-banner-hint" id="accountHeroNote">登录后可以修改昵称、头像或密码</div>
     </section>
 
-    <section id="accountGuestCard" class="account-card account-access-card hidden">
-      <h2>先登录，才能编辑账号信息</h2>
-      <p>你现在还没有登录状态。先去登录页完成登录或注册，回来之后这里就会显示完整的设置项。</p>
-      <div class="account-access-actions">
-        <a href="login.html" class="account-btn primary" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">去登录</a>
-        <a href="index.html" class="account-btn ghost" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">先回首页</a>
+    <!-- ── Guest Card (未登录时显示) ── -->
+    <section id="accountGuestCard" class="acct-guest hidden">
+      <div class="acct-guest-icon"><i class="fas fa-user-lock"></i></div>
+      <h2>还没登录</h2>
+      <p>登录后才能修改个人资料，去登录页完成登录或注册吧。</p>
+      <div class="acct-guest-actions">
+        <a href="login.html" class="acct-btn primary">去登录</a>
+        <a href="index.html" class="acct-btn ghost">回首页</a>
       </div>
     </section>
 
-    <div id="accountContent" class="account-grid hidden">
-      <div class="account-stack">
-        <section class="account-card">
-          <div class="account-card-head">
+    <!-- ── Logged-in Content ── -->
+    <div id="accountContent" class="hidden" style="display:grid;gap:14px;">
+      <!-- 个人资料 -->
+      <section class="acct-section">
+        <div class="acct-section-head">
+          <div class="acct-section-icon orange"><i class="fas fa-user-pen"></i></div>
+          <div>
             <h2>个人资料</h2>
-            <p>头像和昵称会显示在首页，也会跟着学习记录一起同步。</p>
+            <p>昵称和头像会显示在首页</p>
           </div>
+        </div>
 
-          <div class="account-form">
-            <div class="account-field">
-              <label for="accountProfileName">昵称</label>
-              <input id="accountProfileName" class="account-input" type="text" maxlength="16" placeholder="比如：Jason / Amy / 门店冠军" autocomplete="nickname">
-              <div class="account-field-note">建议填一个好记又不尴尬的名字，首页以后就直接这样叫你。</div>
+        <div class="acct-field">
+          <label class="acct-label" for="accountProfileName">昵称</label>
+          <input id="accountProfileName" class="acct-input" type="text" maxlength="16" placeholder="例：Jason / Amy" autocomplete="nickname">
+          <div class="acct-hint">首页会直接用这个名字称呼你</div>
+        </div>
+
+        <div class="acct-avatar-zone">
+          <div class="acct-avatar-top">
+            <div class="acct-avatar-top-text">
+              <strong>头像</strong>
+              <span>选一个小动物头像</span>
             </div>
+            <div class="acct-avatar-chip" id="accountAvatarPreview"></div>
+          </div>
+          <div id="accountAvatarPicker" class="profile-avatar-grid"></div>
+        </div>
 
-            <div class="account-avatar-picker">
-              <div class="account-avatar-head">
-                <div>
-                  <strong>头像选择</strong>
-                  <div class="account-field-note">选一个像素头像，和昵称一起显示在首页入口上。</div>
-                </div>
-                <div class="account-avatar-preview" id="accountAvatarPreview"></div>
-              </div>
-              <div id="accountAvatarPicker" class="profile-avatar-grid"></div>
-            </div>
-          </div>
+        <div class="acct-actions">
+          <button id="saveProfileBtn" class="acct-btn primary" type="button"><i class="fas fa-check"></i> 保存</button>
+        </div>
+        <div id="profileStatus" class="acct-status"></div>
+      </section>
 
-          <div class="account-actions">
-            <button id="saveProfileBtn" class="account-btn primary" type="button">保存资料</button>
+      <!-- 密码 -->
+      <section class="acct-section">
+        <div class="acct-section-head">
+          <div class="acct-section-icon purple"><i class="fas fa-lock"></i></div>
+          <div>
+            <h2>修改密码</h2>
+            <p>修改后立即生效，请牢记新密码</p>
           </div>
-          <div id="profileStatus" class="account-status">改完后点保存，首页的名字和头像就会一起更新。</div>
-        </section>
+        </div>
 
-        <section class="account-card">
-          <div class="account-card-head">
-            <h2>邮箱</h2>
-            <p>如果你要换登录邮箱，在这里提交新的邮箱地址。</p>
-          </div>
+        <div class="acct-field">
+          <label class="acct-label" for="accountPasswordInput">新密码</label>
+          <input id="accountPasswordInput" class="acct-input" type="password" placeholder="至少 6 位" autocomplete="new-password">
+        </div>
+        <div class="acct-field">
+          <label class="acct-label" for="accountPasswordConfirmInput">确认密码</label>
+          <input id="accountPasswordConfirmInput" class="acct-input" type="password" placeholder="再输入一次" autocomplete="new-password">
+        </div>
 
-          <div class="account-current-row">
-            <div>
-              <strong>当前邮箱</strong>
-              <span id="currentEmailValue">-</span>
-            </div>
-          </div>
+        <div class="acct-actions">
+          <button id="updatePasswordBtn" class="acct-btn secondary" type="button">更新密码</button>
+        </div>
+        <div id="passwordStatus" class="acct-status"></div>
+      </section>
 
-          <div class="account-form">
-            <div class="account-field">
-              <label for="accountEmailInput">新的邮箱</label>
-              <input id="accountEmailInput" class="account-input" type="email" placeholder="请输入新的邮箱地址" autocomplete="email">
-              <div class="account-field-note">提交后系统可能会要求你按邮件流程完成确认。</div>
-            </div>
+      <!-- 退出登录 -->
+      <section class="acct-section">
+        <div class="acct-section-head">
+          <div class="acct-section-icon red"><i class="fas fa-right-from-bracket"></i></div>
+          <div>
+            <h2>退出登录</h2>
+            <p>退出后需要重新登录才能同步数据</p>
           </div>
-
-          <div class="account-actions">
-            <button id="updateEmailBtn" class="account-btn secondary" type="button">更新邮箱</button>
-          </div>
-          <div id="emailStatus" class="account-status">如果你暂时不需要换邮箱，这块可以先不用动。</div>
-        </section>
-
-        <section class="account-card">
-          <div class="account-card-head">
-            <h2>密码</h2>
-            <p>想换密码的话，直接设一个新的就行。</p>
-          </div>
-
-          <div class="account-form">
-            <div class="account-field">
-              <label for="accountPasswordInput">新密码</label>
-              <input id="accountPasswordInput" class="account-input" type="password" placeholder="至少 6 位" autocomplete="new-password">
-            </div>
-            <div class="account-field">
-              <label for="accountPasswordConfirmInput">确认新密码</label>
-              <input id="accountPasswordConfirmInput" class="account-input" type="password" placeholder="再输入一次新密码" autocomplete="new-password">
-            </div>
-          </div>
-
-          <div class="account-actions">
-            <button id="updatePasswordBtn" class="account-btn secondary" type="button">更新密码</button>
-          </div>
-          <div id="passwordStatus" class="account-status">建议使用你自己能记住、但不容易被猜到的密码。</div>
-        </section>
-      </div>
-
-      <div class="account-stack">
-        <section class="account-card">
-          <div class="account-card-head">
-            <h2>当前账号</h2>
-            <p>这里显示的是这台设备上正在使用的账号。</p>
-          </div>
-
-          <div class="account-current-row">
-            <div>
-              <strong>昵称</strong>
-              <span id="accountSideName">学习者</span>
-            </div>
-          </div>
-          <div class="account-current-row">
-            <div>
-              <strong>邮箱</strong>
-              <span id="accountSideEmail">-</span>
-            </div>
-          </div>
-        </section>
-
-        <section class="account-card">
-          <div class="account-card-head">
-            <h2>登录状态</h2>
-            <p>如果你要换账号，先退出，再去登录页切换。</p>
-          </div>
-          <div class="account-actions">
-            <a href="login.html" class="account-btn ghost" style="text-decoration:none;display:inline-flex;align-items:center;justify-content:center;">打开登录页</a>
-            <button id="signOutAccountBtn" class="account-btn danger" type="button">退出登录</button>
-          </div>
-          <div id="sessionStatus" class="account-status">已登录时可以直接修改资料；退出后这里会变成登录引导。</div>
-        </section>
-
-        <aside class="account-side-note">
-          <strong>小提示</strong>
-          头像和昵称是最推荐先设好的，因为它们会直接影响首页的状态感知。邮箱和密码属于低频操作，只有需要时再改就行。
-        </aside>
-      </div>
+        </div>
+        <div class="acct-actions" style="margin-top:0;">
+          <button id="signOutAccountBtn" class="acct-btn danger" type="button"><i class="fas fa-right-from-bracket"></i> 退出登录</button>
+          <a href="login.html" class="acct-btn ghost" style="text-decoration:none;">切换账号</a>
+        </div>
+        <div id="sessionStatus" class="acct-status"></div>
+      </section>
     </div>
+
+    <div class="footer-v2">小米国际部英语培训专用</div>
   </main>
 
   <nav class="tab-bar">
@@ -553,8 +477,8 @@
   </nav>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script src="js/data.js?v=3.0"></script>
-  <script src="js/profile-presets.js?v=3.0"></script>
+  <script src="js/data.js?v=3.1"></script>
+  <script src="js/profile-presets.js?v=3.1"></script>
   <script src="js/sync-meta.js?v=3.0"></script>
   <script src="js/storage.js?v=3.0"></script>
   <script src="js/supabase-config.js?v=3.0"></script>
@@ -569,24 +493,19 @@
       var heroName = document.getElementById('accountHeroName');
       var heroEmail = document.getElementById('accountHeroEmail');
       var heroStatus = document.getElementById('accountHeroStatus');
+      var heroBadge = document.getElementById('accountHeroBadge');
       var heroNote = document.getElementById('accountHeroNote');
       var profileNameInput = document.getElementById('accountProfileName');
       var avatarPreview = document.getElementById('accountAvatarPreview');
       var avatarPicker = document.getElementById('accountAvatarPicker');
-      var currentEmailValue = document.getElementById('currentEmailValue');
-      var emailInput = document.getElementById('accountEmailInput');
       var passwordInput = document.getElementById('accountPasswordInput');
       var passwordConfirmInput = document.getElementById('accountPasswordConfirmInput');
       var profileStatus = document.getElementById('profileStatus');
-      var emailStatus = document.getElementById('emailStatus');
       var passwordStatus = document.getElementById('passwordStatus');
       var sessionStatus = document.getElementById('sessionStatus');
       var saveProfileBtn = document.getElementById('saveProfileBtn');
-      var updateEmailBtn = document.getElementById('updateEmailBtn');
       var updatePasswordBtn = document.getElementById('updatePasswordBtn');
       var signOutAccountBtn = document.getElementById('signOutAccountBtn');
-      var accountSideName = document.getElementById('accountSideName');
-      var accountSideEmail = document.getElementById('accountSideEmail');
 
       var currentState = typeof loadState === 'function' ? loadState() : null;
       var currentUser = null;
@@ -607,7 +526,7 @@
 
       function setStatus(node, status, message) {
         if (!node) return;
-        node.className = 'account-status ' + (status || '');
+        node.className = 'acct-status ' + (status || '');
         node.textContent = message || '';
       }
 
@@ -639,12 +558,19 @@
         var avatarHTML = window.MiProfilePresets && typeof window.MiProfilePresets.renderAvatar === 'function'
           ? window.MiProfilePresets.renderAvatar(avatarId, { size: 'md', label: label || '学习者' })
           : '';
+        target.innerHTML = avatarHTML;
+      }
 
+      function renderAvatarChip(target, avatarId, label) {
+        if (!target) return;
+        var avatarHTML = window.MiProfilePresets && typeof window.MiProfilePresets.renderAvatar === 'function'
+          ? window.MiProfilePresets.renderAvatar(avatarId, { size: 'sm', label: label || '学习者' })
+          : '';
         target.innerHTML = avatarHTML +
-          '<span class="account-avatar-copy">' +
+          '<div>' +
             '<strong>' + escapeHTML(label || '学习者') + '</strong>' +
-            '<span>' + escapeHTML(avatarId || '默认头像') + '</span>' +
-          '</span>';
+            '<span>' + escapeHTML(avatarId || '默认') + '</span>' +
+          '</div>';
       }
 
       function renderAvatarPicker() {
@@ -662,16 +588,17 @@
       }
 
       function renderProfilePreview(name) {
-        renderAvatar(avatarPreview, selectedAvatarId, name);
+        renderAvatarChip(avatarPreview, selectedAvatarId, name);
       }
 
       function applyLoggedOutState() {
         guestCard.classList.remove('hidden');
         content.classList.add('hidden');
         heroStatus.textContent = '未登录';
-        heroNote.textContent = '登录后可以修改昵称、头像、邮箱和密码。';
+        heroBadge.style.background = 'rgba(255,255,255,0.15)';
+        heroNote.textContent = '登录后可以修改昵称、头像或密码';
         heroName.textContent = '学习者';
-        heroEmail.textContent = '请先登录账号';
+        heroEmail.textContent = '未登录';
         renderAvatar(heroAvatar, getDefaultAvatarId(), '学习者');
       }
 
@@ -682,22 +609,17 @@
 
         guestCard.classList.add('hidden');
         content.classList.remove('hidden');
+        content.style.display = 'grid';
         selectedAvatarId = profile.avatarId;
         profileNameInput.value = profile.name;
-        currentEmailValue.textContent = profile.email || '-';
-        accountSideName.textContent = profile.name;
-        accountSideEmail.textContent = profile.email || '-';
         heroName.textContent = profile.name;
         heroEmail.textContent = profile.email || '-';
         heroStatus.textContent = '已登录';
-        heroNote.textContent = '资料改好后会直接反映在首页入口上。';
+        heroBadge.style.background = 'rgba(255,255,255,0.22)';
+        heroNote.textContent = '修改后会立即同步到首页';
         renderAvatar(heroAvatar, profile.avatarId, profile.name);
         renderProfilePreview(profile.name);
         renderAvatarPicker();
-        setStatus(profileStatus, '', '改完后点保存，首页的名字和头像就会一起更新。');
-        setStatus(emailStatus, '', '如果你暂时不需要换邮箱，这块可以先不用动。');
-        setStatus(passwordStatus, '', '建议使用你自己能记住、但不容易被猜到的密码。');
-        setStatus(sessionStatus, 'success', '当前账号已登录，可以直接修改资料。');
       }
 
       function updateProfileStateAndSync(name, avatarId) {
@@ -720,7 +642,7 @@
         var setup = MiAuth.ensureClient();
         if (!setup.ok) {
           applyLoggedOutState();
-          setStatus(sessionStatus, 'error', '账号服务暂时不可用，请稍后再试。');
+          setStatus(sessionStatus, 'error', '服务暂时不可用，请稍后再试');
           return;
         }
 
@@ -749,17 +671,17 @@
 
       saveProfileBtn.addEventListener('click', async function onSaveProfile() {
         if (!currentUser) {
-          setStatus(profileStatus, 'error', '请先登录，再修改资料。');
+          setStatus(profileStatus, 'error', '请先登录');
           return;
         }
 
         var nextName = (profileNameInput.value || '').trim();
         if (!nextName) {
-          setStatus(profileStatus, 'error', '昵称不能为空。');
+          setStatus(profileStatus, 'error', '昵称不能为空');
           return;
         }
 
-        setStatus(profileStatus, '', '正在保存资料...');
+        setStatus(profileStatus, '', '保存中...');
         updateProfileStateAndSync(nextName, selectedAvatarId);
 
         var metadataResult = await MiAuth.updateProfileMetadata({
@@ -768,7 +690,7 @@
         });
 
         if (!metadataResult.ok) {
-          setStatus(profileStatus, 'error', '本地资料已更新，但账号资料同步失败：' + metadataResult.error);
+          setStatus(profileStatus, 'error', '本地已保存，云端同步失败：' + metadataResult.error);
           await refreshAccountState();
           return;
         }
@@ -779,64 +701,45 @@
           } catch (_) {}
         }
 
-        setStatus(profileStatus, 'success', '资料已保存，首页会显示新的昵称和头像。');
+        setStatus(profileStatus, 'success', '已保存');
         await refreshAccountState();
-      });
-
-      updateEmailBtn.addEventListener('click', async function onUpdateEmail() {
-        if (!currentUser) {
-          setStatus(emailStatus, 'error', '请先登录，再修改邮箱。');
-          return;
-        }
-
-        var nextEmail = (emailInput.value || '').trim();
-        if (!nextEmail || nextEmail.indexOf('@') < 0) {
-          setStatus(emailStatus, 'error', '请输入有效邮箱。');
-          return;
-        }
-
-        setStatus(emailStatus, '', '正在提交新的邮箱...');
-        var result = await MiAuth.updateEmail(nextEmail);
-        if (!result.ok) {
-          setStatus(emailStatus, 'error', '邮箱更新失败：' + result.error);
-          return;
-        }
-
-        setStatus(emailStatus, 'success', '新的邮箱已提交。若系统要求确认，请按邮件流程完成。');
-        emailInput.value = '';
       });
 
       updatePasswordBtn.addEventListener('click', async function onUpdatePassword() {
         if (!currentUser) {
-          setStatus(passwordStatus, 'error', '请先登录，再修改密码。');
+          setStatus(passwordStatus, 'error', '请先登录');
           return;
         }
 
         var nextPassword = passwordInput.value || '';
         var confirmPassword = passwordConfirmInput.value || '';
         if (!nextPassword || nextPassword.length < 6) {
-          setStatus(passwordStatus, 'error', '新密码至少 6 位。');
+          setStatus(passwordStatus, 'error', '密码至少 6 位');
           return;
         }
         if (nextPassword !== confirmPassword) {
-          setStatus(passwordStatus, 'error', '两次输入的新密码不一致。');
+          setStatus(passwordStatus, 'error', '两次输入不一致');
           return;
         }
 
-        setStatus(passwordStatus, '', '正在更新密码...');
+        if (!confirm('确定要修改密码吗？修改后立即生效，请牢记新密码。')) {
+          return;
+        }
+
+        setStatus(passwordStatus, '', '更新中...');
         var result = await MiAuth.updatePassword(nextPassword);
         if (!result.ok) {
-          setStatus(passwordStatus, 'error', '密码更新失败：' + result.error);
+          setStatus(passwordStatus, 'error', '失败：' + result.error);
           return;
         }
 
         passwordInput.value = '';
         passwordConfirmInput.value = '';
-        setStatus(passwordStatus, 'success', '密码已更新。下次登录请使用新密码。');
+        setStatus(passwordStatus, 'success', '密码已更新');
       });
 
       signOutAccountBtn.addEventListener('click', async function onSignOut() {
-        setStatus(sessionStatus, '', '正在退出登录...');
+        setStatus(sessionStatus, '', '退出中...');
         var result = await MiAuth.signOut();
         if (!result.ok) {
           setStatus(sessionStatus, 'error', '退出失败：' + result.error);
@@ -845,11 +748,20 @@
 
         currentUser = null;
         applyLoggedOutState();
-        setStatus(sessionStatus, 'success', '已退出登录。');
+        setStatus(sessionStatus, 'success', '已退出');
       });
 
-      window.addEventListener('mi-auth-changed', function onAuthChanged() {
+      window.addEventListener('mi-auth-changed', function onAuthChanged(event) {
         refreshAccountState();
+
+        // Handle password recovery flow from reset email
+        if (event && event.detail && event.detail.event === 'PASSWORD_RECOVERY') {
+          passwordInput.focus();
+          setStatus(passwordStatus, '', '请在下方设置新密码');
+          // Scroll to password section
+          var pwSection = passwordInput.closest('.acct-section');
+          if (pwSection) pwSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       });
 
       refreshAccountState();
